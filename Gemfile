@@ -7,24 +7,16 @@ gem 'rails', '3.0.1'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'annotate-models'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+gem 'devise'
 
-# To use debugger
-# gem 'ruby-debug'
+gem 'jquery-rails'
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'omniauth'
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+gem 'tiny_mce'
+
+gem 'paperclip'
+
+gem 'will_paginate', '~> 3.0.pre2'

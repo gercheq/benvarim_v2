@@ -1,0 +1,39 @@
+tr:
+  errors:
+    messages:
+      not_found: "bulunamadı"
+      already_confirmed: "daha önce onaylanmış"
+      not_locked: "kilitli değil"
+
+  devise:
+    failure:
+      unauthenticated: 'Devam etmeden önce giriş yapmalısınız.'
+      unconfirmed: 'Devam etmeden önce hesabınızı onaylamalısınız.'
+      locked: 'Hesabınız kilitli.'
+      invalid: 'Hatalı e-posta veya şifre.'
+      invalid_token: 'Hatali onay kodu.'
+      timeout: 'Devam etmek için lütfen tekrar giriş yapınız.'
+      inactive: 'Hesabınız henüz aktiflenmemiş.'
+    sessions:
+      signed_in: 'Giriş başarılı.'
+      signed_out: 'Çıkış başarılı.'
+    passwords:
+      send_instructions: 'Bir kaç dakika içinde şifrenizi sıfırlamak için gerekli bilgileri içeren bir e-posta alacaksınız.'
+      updated: 'Şifreniz başarıyla değiştirildi, giriş yapıldı.'
+    confirmations:
+      send_instructions: 'Bir kaç dakika içinde hesabınızı onaylamanız için gerekli bilgileri içeren bir e-posta alacaksınız.'
+      confirmed: 'Hesabınız başarıyla onaylandı.'
+    registrations:
+      signed_up: 'Kayıt başarılı.'
+      updated: 'Hesabınız başarıyla güncellendi.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Onay Bilgileri'
+      reset_password_instructions:
+        subject: 'Şifre sıfırlama bilgileri'
+      unlock_instructions:
+        subject: 'Unlock Instructions'
