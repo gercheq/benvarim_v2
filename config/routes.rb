@@ -1,5 +1,9 @@
 Benvarim::Application.routes.draw do
   root :to => "home#index"
+  get "home/about"
+
+  get "home/help"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
