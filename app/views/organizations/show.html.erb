@@ -11,5 +11,5 @@
 
 <p>
   <b>Tanım:</b>
-  <%= @organization.description %>
+  <%= raw @organization.description unless @organization.description.nil? %>
 </p>

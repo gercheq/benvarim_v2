@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class OrganizationsController < ApplicationController
   before_filter :authenticate_organization!, :except => [:show, :index]
+  uses_tiny_mce
   def index
     @organizations = Organization.all
   end
