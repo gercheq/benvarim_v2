@@ -1,0 +1,7 @@
+<% if organization_signed_in? %>
+  <li><%=current_organization.email%></li>
+	<li><%= link_to "Çıkış", destroy_organization_session_path %></li>
+<% else %>
+	<li><%= link_to "Giriş", new_organization_session_path %></li>
+	<li><%= link_to "Kayıt", new_organization_registration_path %></li>
+<% end %>

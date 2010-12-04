@@ -1,0 +1,9 @@
+class Organization < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :trackable, :confirmable, :lockable and :timeoutable
+  devise :database_authenticatable, :registerable, :token_authenticatable,
+         :recoverable, :rememberable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+end

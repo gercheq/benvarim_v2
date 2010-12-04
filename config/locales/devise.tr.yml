@@ -4,6 +4,7 @@ tr:
       not_found: "bulunamadı"
       already_confirmed: "daha önce onaylanmış"
       not_locked: "kilitli değil"
+      not_saved: "%{resource} kaydedilemedi: %{count} hata."
 
   devise:
     failure:

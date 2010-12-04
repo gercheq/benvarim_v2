@@ -1,4 +1,25 @@
 Benvarim::Application.routes.draw do
+  get "kurumlar" => 'organizations#index', :as => :organizations
+  get "kurum/ekle" => 'organizations#create', :as => :create_organization
+  get "kurum/duzenle" => 'organizations#edit', :as => :edit_organization
+  get "kurum/:id" => 'organizations#show', :as => :organization
+
+  devise_for :organizations, :skip => [:sessions] do
+    get '/kurum/giris' => 'devise/sessions#new', :as => :new_organization_session
+    post '/kurum/giris' => 'devise/sessions#create', :as => :organization_session
+    get '/kurum/cikis' => 'devise/sessions#destroy', :as => :destroy_organization_session
+
+    post '/kurum' => 'devise/registrations#create', :as => :organization_registration
+    put '/kurum' => 'devise/registrations#update', :as => :organization_registration
+
+    get '/kurum/kayit' =>  'registrations#new', :as => :new_organization_registration
+    get '/kurum/duzenle' => 'registrations#edit', :as => :edit_organization_registration
+
+
+  end
+
+  devise_for :organizations
+
   root :to => "home#index"
   get "home/about"
 

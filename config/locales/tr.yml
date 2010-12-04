@@ -143,10 +143,15 @@ tr:
         odd: "tek olmalı"
         even: "çift olmalı"
         record_invalid: "Doğrulama başarısız oldu: %{errors}"
-    # models:
-    #   user: "Üye"
-    # attributes:
-    #   user:
-    #     email: "e-posta"
+        not_saved: "%{resource} kaydedilemedi: %{count} hata."
+    models:
+      organization: "Kurum"
+    attributes:
+      organization:
+        email: "e-posta"
+        password: "şifre"
+        remember_me: "hatırla"
+        password_confirmation: "şifre (tekrar)"
+        sign_up: "giriş"
   previous: "Önceki"
   next: "Sonraki"
