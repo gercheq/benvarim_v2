@@ -10,9 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101204074142) do
+ActiveRecord::Schema.define(:version => 20101204102705) do
 
 # Could not dump table "organizations" because of following StandardError
 #   Unknown type 'booelan' for column 'approved'
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "description"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

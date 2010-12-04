@@ -1,9 +1,19 @@
 Benvarim::Application.routes.draw do
+
   get "/kurumlar" => 'organizations#index', :as => :organizations
-  get "/kurum/ekle" => 'organizations#create', :as => :create_organization
+  get "/kurum/ekle" => 'organizations#create', :as => :new_organization
   get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization
   get "/kurum/:id" => 'organizations#show', :as => :organization
-  put '/kurum/:id' => 'organizations#update', :as => :event
+  put '/kurum/:id' => 'organizations#update', :as => :organization
+
+  get '/projeler' => "projects#index", :as => :projects
+  post '/projeler' =>  "projects#create", :as => :projects
+  get '/proje/yeni' => "projects#new", :as => :new_project
+  get '/proje/:id/duzenle' => "projects#edit", :as => :edit_project
+  get '/proje/:id' => "projects#show", :as => :project
+  put '/proje/:id' => "projects#update", :as => :project
+  delete '/proje/:id' => "projects#destroy", :as => :project
+  get '/projelerimiz' => 'projects#our_projects', :as => :our_projects
 
   devise_for :organizations, :skip => [:sessions] do
     get '/kurum/giris' => 'devise/sessions#new', :as => :new_organization_session

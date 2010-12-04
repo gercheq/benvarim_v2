@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @project.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @project.end_time %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= @project.organization_id %>
+</p>
+
+<% if organization_signed_in? && current_organization == @project.organization%>
+  <%= link_to 'Düzenle', edit_project_path(@project) %>
+<% end %>
+<%= link_to 'Back', projects_path %>

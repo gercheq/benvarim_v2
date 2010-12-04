@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+class ProjectsController < ApplicationController
+  before_filter :authenticate_organization!, :except => [:show, :index]
+
+  def index
+    @projects = Project.all
+  end
+
+  def our_projects
+    @projects = current_organization.projects.all
+  end
+
+  def show
+    @project = Project.find(params[:id])
+  end
+
+  def new
+    @project = Project.new
+  end
+
+  def edit
+    @project = current_organization.projects.find(params[:id])
+  end
+
+  def create
+    @project = current_organization.projects.build(params[:project])
+
+    if @project.save
+      redirect_to(@project, :notice => 'Proje yaratıldı.')
+    else
+      render :action => "new"
+    end
+  end
+
+  def update
+    @project = current_organization.projects.find(params[:id])
+    if @project.update_attributes(params[:project])
+      redirect_to(@project, :notice => 'Proje kaydedildi.')
+    else
+      render :action => "edit"
+    end
+  end
+
+  def destroy
+    @project = current_organization.projects.find(params[:id])
+    @project.destroy
+  end
+end
