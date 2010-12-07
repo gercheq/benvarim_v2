@@ -1,7 +1,7 @@
 <ul>
 <% if organization_signed_in? %>
   <li><%=current_organization.email%></li>
-	<li><%= link_to "Düzenle", edit_organization_path(current_organization.id) %></li>
+	<li><%= link_to "Kurum Bilgilerini Düzenle", edit_organization_path(current_organization.id) %></li>
 	<li><%= link_to "Çıkış", destroy_organization_session_path %></li>
 	<li><%= link_to "Proje Yarat", new_project_path %></li>
 	<li><%= link_to "Projelerimiz", our_projects_path %></li>
