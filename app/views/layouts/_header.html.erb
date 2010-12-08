@@ -5,9 +5,17 @@
 	<li><%= link_to "Çıkış", destroy_organization_session_path %></li>
 	<li><%= link_to "Proje Yarat", new_project_path %></li>
 	<li><%= link_to "Projelerimiz", our_projects_path %></li>
-<% else %>
-	<li><%= link_to "Giriş", new_organization_session_path %></li>
-	<li><%= link_to "Kayıt", new_organization_registration_path %></li>
+<% end%>
+<% if user_signed_in? %>
+  <li><%=current_user.email%></li>
+  <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
+  <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+<% end %>
+<% unless organization_signed_in? || user_signed_in? %>
+	<li><%= link_to "Kurum Giriş", new_organization_session_path %></li>
+	<li><%= link_to "Kurum Kayıt", new_organization_registration_path %></li>
+	<li><%= link_to "Aktivist Giriş", new_user_session_path %></li>
+	<li><%= link_to "Aktivist Kayıt", new_user_registration_path %></li>
 <% end %>
 <li><%= link_to "Projeler", projects_path %></li>
 </ul>

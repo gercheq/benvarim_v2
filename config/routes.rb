@@ -1,5 +1,13 @@
 Benvarim::Application.routes.draw do
 
+  get "/aktivist/:id" => "users#show", :as => :user
+  get "/aktivist/:id/duzenle" => "users#edit", :as => :edit_user
+  put '/aktivist/:id' => 'users#update', :as => :user
+
+  get "user/update"
+
+  devise_for :users
+
   get "/kurumlar" => 'organizations#index', :as => :organizations
   get "/kurum/ekle" => 'organizations#create', :as => :new_organization
   get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization

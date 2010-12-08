@@ -146,6 +146,7 @@ tr:
         not_saved: "%{resource} kaydedilemedi: %{count} hata."
     models:
       organization: "Kurum"
+      user: "Aktivist"
     attributes:
       organization:
         email: "e-posta"
@@ -153,5 +154,14 @@ tr:
         remember_me: "hatırla"
         password_confirmation: "şifre (tekrar)"
         sign_up: "giriş"
+        address: "adres"
+      user:
+        email: "e-posta"
+        password: "şifre"
+        remember_me: "hatırla"
+        password_confirmation: "şifre (tekrar)"
+        sign_up: "giriş"
+        birthday: "doğum tarihi"
+        address: "adres"
   previous: "Önceki"
   next: "Sonraki"
