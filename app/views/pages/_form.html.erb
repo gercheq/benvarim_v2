@@ -1,0 +1,63 @@
+<%= form_for(@page) do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organization_id %><br />
+    <%= f.select :organization_id, @organizations, {:include_blank => true} %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br />
+    <%= f.select :project_id, @projects, {:include_blank => true}%>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description_html %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :goal %><br />
+    <%= f.text_field :goal %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Yarat" %>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $('#page_organization_id').change(
+    function(event) {
+      var combo = $(event.target)
+      var org_id = combo.val();
+      //load the projects
+      $.getJSON('/kurum/' + org_id + "/projeler", function(resp) {
+        options_html = "";
+        $(resp).each(function(index, project) {
+          options_html += "<option value='" + project.id + "'>" + project.name  + "</option>";
+        });
+        $('#page_project_id').html(options_html);
+      });
+    }
+    );
+</script>

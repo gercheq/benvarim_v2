@@ -1,27 +1,24 @@
 Benvarim::Application.routes.draw do
 
-  get "/aktivist/:id" => "users#show", :as => :user
-  get "/aktivist/:id/duzenle" => "users#edit", :as => :edit_user
-  put '/aktivist/:id' => 'users#update', :as => :user
 
-  get "user/update"
+  get "/sayfalar" => "pages#index", :as => :pages
+  post "sayfa/kaydet" => "pages#create", :as => :pages
+  get "sayfa/yeni" => "pages#new", :as => :new_page
+  get "sayfa/:id/duzenle" => "pages#edit", :as => :edit_page
+  get "/sayfa/:id" => "pages#show", :as => :page
+  put "sayfa/:id" => "pages#update",  :as => :page
 
-  devise_for :users
+  devise_for :users, :skip => [:sessions] do
+    get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session
+    post '/gonullu/giris' => 'devise/sessions#create', :as => :user_session
+    get '/gonullu/cikis' => 'devise/sessions#destroy', :as => :destroy_user_session
 
-  get "/kurumlar" => 'organizations#index', :as => :organizations
-  get "/kurum/ekle" => 'organizations#create', :as => :new_organization
-  get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization
-  get "/kurum/:id" => 'organizations#show', :as => :organization
-  put '/kurum/:id' => 'organizations#update', :as => :organization
+    post '/gonullu' => 'devise/registrations#create', :as => :user_registration
+    put '/gonullu' => 'devise/registrations#update', :as => :user_registration
 
-  get '/projeler' => "projects#index", :as => :projects
-  post '/projeler' =>  "projects#create", :as => :projects
-  get '/proje/yeni' => "projects#new", :as => :new_project
-  get '/proje/:id/duzenle' => "projects#edit", :as => :edit_project
-  get '/proje/:id' => "projects#show", :as => :project
-  put '/proje/:id' => "projects#update", :as => :project
-  delete '/proje/:id' => "projects#destroy", :as => :project
-  get '/projelerimiz' => 'projects#our_projects', :as => :our_projects
+    get '/gonullu/kayit' =>  'registrations#new', :as => :new_user_registration
+    get '/gonullu/duzenle' => 'registrations#edit', :as => :edit_user_registration
+  end
 
   devise_for :organizations, :skip => [:sessions] do
     get '/kurum/giris' => 'devise/sessions#new', :as => :new_organization_session
@@ -33,9 +30,29 @@ Benvarim::Application.routes.draw do
 
     get '/kurum/kayit' =>  'registrations#new', :as => :new_organization_registration
     get '/kurum/duzenle' => 'registrations#edit', :as => :edit_organization_registration
-
-
   end
+
+  get "/gonullu/:id" => "users#show", :as => :user
+  get "/gonullu/:id/duzenle" => "users#edit", :as => :edit_user
+  put '/gonullu/:id' => 'users#update', :as => :user
+
+
+  get '/projeler' => "projects#index", :as => :projects
+  post '/projeler' =>  "projects#create", :as => :projects
+  get '/proje/yeni' => "projects#new", :as => :new_project
+  get '/proje/:id/duzenle' => "projects#edit", :as => :edit_project
+  get '/proje/:id' => "projects#show", :as => :project
+  put '/proje/:id' => "projects#update", :as => :project
+  delete '/proje/:id' => "projects#destroy", :as => :project
+  get '/projelerimiz' => 'projects#our_projects', :as => :our_projects
+  get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
+
+  get "/kurumlar" => 'organizations#index', :as => :organizations
+  get "/kurum/ekle" => 'organizations#create', :as => :new_organization
+  get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization
+  get "/kurum/:id" => 'organizations#show', :as => :organization
+  put '/kurum/:id' => 'organizations#update', :as => :organization
+
 
   devise_for :organizations
 

@@ -1,0 +1,43 @@
+<h1>Listing pages</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Goal</th>
+    <th>Collected</th>
+    <th>User</th>
+    <th>Organization</th>
+    <th>Project</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pages.each do |page| %>
+  <tr>
+    <td><%= page.title %></td>
+    <td><%= page.description %></td>
+    <td><%= page.start_time %></td>
+    <td><%= page.end_time %></td>
+    <td><%= page.goal %></td>
+    <td><%= page.collected %></td>
+    <td><%= page.user_id %></td>
+    <td><%= page.organization_id %></td>
+    <td><%= page.project_id %></td>
+    <td><%= link_to 'Show', page %></td>
+    <% if @show_edit_link %>
+      <td><%= link_to 'Edit', edit_page_path(page) %></td>
+    <% end %>
+    <% if @show_destroy_link %>
+      <td><%= link_to 'Destroy', page, :confirm => 'Emin misiniz?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Page', new_page_path %>

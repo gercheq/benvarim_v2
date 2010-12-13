@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<% if user_signed_in? && @page.user == current_user %>
+  <%= link_to 'Düzenle', edit_page_path(@page) %>
+<% end %>
+<p>
+  <b>Başlık:</b>
+  <%= @page.title %>
+</p>
+
+<p>
+  <b>Tanım:</b>
+  <%= @page.description %>
+</p>
+
+<p>
+  <b>Başlangıç:</b>
+  <%= @page.start_time %>
+</p>
+
+<p>
+  <b>Bitiş:</b>
+  <%= @page.end_time %>
+</p>
+
+<p>
+  <b>Hedef:</b>
+  <%= @page.goal %> TL
+</p>
+
+<p>
+  <b>Toplanan:</b>
+  <%= @page.collected %> TL
+</p>
+
+<p>
+  <b>Kurum:</b>
+  <%= @page.organization.name %>
+</p>
+
+<p>
+  <b>Proje:</b>
+  <%= @page.project.name %>
+</p>

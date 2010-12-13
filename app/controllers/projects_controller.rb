@@ -1,13 +1,29 @@
 # -*- coding: utf-8 -*-
 class ProjectsController < ApplicationController
-  before_filter :authenticate_organization!, :except => [:show, :index]
+  before_filter :authenticate_organization!, :except => [:show, :index, :by_organization]
 
   def index
     @projects = Project.all
   end
 
   def our_projects
-    @projects = current_organization.projects.all
+    redirect_to :action => :by_organization, :id => current_organization.id
+  end
+
+  def by_organization
+    org = Organization.find_by_id(params[:id])
+    puts org.id
+    if org
+      @projects = org.projects.all
+    else
+      @projects = Array.new
+    end
+
+
+    respond_to do |format|
+        format.js
+        format.html
+    end
   end
 
   def show
