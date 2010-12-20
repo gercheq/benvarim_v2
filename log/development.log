@@ -1010,3 +1010,207 @@ Rendered layouts/_header.html.erb (94.8ms)
 Rendered layouts/_footer.html.erb (1.1ms)
 Rendered home/index.html.erb within layouts/application (98.7ms)
 Completed 200 OK in 104ms (Views: 102.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:42:44 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.3ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (98.5ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (102.4ms)
+Completed 200 OK in 107ms (Views: 105.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:42:45 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[36mOrganization Load (1.4ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (107.2ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (111.3ms)
+Completed 200 OK in 119ms (Views: 117.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:43:06 -0800
+  Processing by HomeController#index as HTML
+  [1m[35mOrganization Load (1.3ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (92.9ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered home/index.html.erb within layouts/application (96.7ms)
+Completed 200 OK in 102ms (Views: 99.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:43:41 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[36mOrganization Load (1.3ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (92.8ms)
+Rendered layouts/_footer.html.erb (1.3ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (97.1ms)
+Completed 200 OK in 102ms (Views: 100.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:43:42 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.3ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (185.6ms)
+Rendered layouts/_footer.html.erb (1.7ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (190.5ms)
+Completed 200 OK in 197ms (Views: 195.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:43:43 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (1.3ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (93.9ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (97.9ms)
+Completed 200 OK in 104ms (Views: 101.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:43:46 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.8ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (102.1ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (106.1ms)
+Completed 200 OK in 112ms (Views: 109.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:43:47 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (1.3ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (51.6ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (55.6ms)
+Completed 200 OK in 61ms (Views: 58.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:43:49 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.3ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (51.6ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (55.6ms)
+Completed 200 OK in 61ms (Views: 58.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:43:52 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (2.2ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (54.6ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (58.5ms)
+Completed 200 OK in 63ms (Views: 60.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/kurum/1/duzenle" for 127.0.0.1 at 2010-12-19 20:43:58 -0800
+  Processing by OrganizationsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mOrganization Load (1.0ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered organizations/_form.html.erb (3.7ms)
+Rendered layouts/_header.html.erb (17.8ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered organizations/edit.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 63ms (Views: 32.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:55:49 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (1.3ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (90.1ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (94.2ms)
+Completed 200 OK in 104ms (Views: 102.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:55:52 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.3ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (92.0ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (96.0ms)
+Completed 200 OK in 101ms (Views: 99.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:55:55 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (1.4ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (91.3ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (95.3ms)
+Completed 200 OK in 100ms (Views: 98.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 20:56:01 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.5ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (94.4ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (98.1ms)
+Completed 200 OK in 103ms (Views: 101.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 20:56:04 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (1.3ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (88.0ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (92.0ms)
+Completed 200 OK in 130ms (Views: 128.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 21:19:51 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mOrganization Load (2.1ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (104.2ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/index.html.erb within layouts/application (108.9ms)
+Completed 200 OK in 140ms (Views: 136.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 21:19:54 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[36mOrganization Load (2.3ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (147.4ms)
+Rendered layouts/_footer.html.erb (1.9ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (152.7ms)
+Completed 200 OK in 297ms (Views: 294.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 21:19:55 -0800
+  Processing by HomeController#index as HTML
+  [1m[35mOrganization Load (1.9ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (141.5ms)
+Rendered layouts/_footer.html.erb (1.2ms)
+Rendered home/index.html.erb within layouts/application (146.9ms)
+Completed 200 OK in 154ms (Views: 151.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 21:19:56 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[36mOrganization Load (1.4ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (210.7ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (214.8ms)
+Completed 200 OK in 221ms (Views: 218.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/nasil_calisir" for 127.0.0.1 at 2010-12-19 21:19:57 -0800
+  Processing by HomeController#whats_benvarim as HTML
+  [1m[35mOrganization Load (1.9ms)[0m  SELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (119.4ms)
+Rendered layouts/_footer.html.erb (1.1ms)
+Rendered home/whats_benvarim.html.erb within layouts/application (123.7ms)
+Completed 200 OK in 131ms (Views: 128.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-19 21:20:05 -0800
+  Processing by HomeController#index as HTML
+  [1m[36mOrganization Load (1.5ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE ("organizations"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (88.5ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered home/index.html.erb within layouts/application (92.2ms)
+Completed 200 OK in 97ms (Views: 94.9ms | ActiveRecord: 1.5ms)

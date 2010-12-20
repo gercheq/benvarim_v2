@@ -4,4 +4,3 @@ log/*.log
 tmp/**/*
 .project
 solr/data
-public/system
