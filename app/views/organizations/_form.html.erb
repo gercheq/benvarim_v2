@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class=> "text-field" %>
   </div>
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.text_field :address, :class=> "text-field" %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description, :class => :mceEditor %>
+    <%= f.text_area :description, :class => "mceEditor text-area" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :kaydet, :class=>"button-primary" %>
   </div>
 <% end %>
