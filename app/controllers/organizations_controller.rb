@@ -11,11 +11,11 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @organization = Organization.find(params[:id])
+    @organization = current_organization
   end
 
   def update
-    @organization = Organization.find(params[:id])
+    @organization = current_organization
 
 
     if @organization.update_attributes(params[:organization])

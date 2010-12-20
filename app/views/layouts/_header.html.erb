@@ -9,6 +9,7 @@
 <% if user_signed_in? %>
   <li><%=current_user.email%></li>
   <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
+  <li><%= link_to "Sayfalarım", my_pages_path %></li>
   <li><%= link_to "Çıkış", destroy_user_session_path %></li>
 <% end %>
 <% unless organization_signed_in? || user_signed_in? %>
@@ -18,4 +19,5 @@
 	<li><%= link_to "Aktivist Kayıt", new_user_registration_path %></li>
 <% end %>
 <li><%= link_to "Projeler", projects_path %></li>
+<li><%= link_to "Sayfa Yarat", new_page_path %></li>
 </ul>

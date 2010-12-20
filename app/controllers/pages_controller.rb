@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class PagesController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
+  uses_tiny_mce
 
   def add_organization_list
     @organizations = Organization.all.collect do |org|

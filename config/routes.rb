@@ -2,11 +2,12 @@ Benvarim::Application.routes.draw do
 
 
   get "/sayfalar" => "pages#index", :as => :pages
-  post "sayfa/kaydet" => "pages#create", :as => :pages
-  get "sayfa/yeni" => "pages#new", :as => :new_page
-  get "sayfa/:id/duzenle" => "pages#edit", :as => :edit_page
+  post "/sayfa/kaydet" => "pages#create", :as => :pages
+  get "/sayfa/yeni" => "pages#new", :as => :new_page
+  get "/sayfa/:id/duzenle" => "pages#edit", :as => :edit_page
   get "/sayfa/:id" => "pages#show", :as => :page
-  put "sayfa/:id" => "pages#update",  :as => :page
+  put "/sayfa/:id" => "pages#update",  :as => :page
+  get "/sayfalarim" => "pages#my_pages", :as => :my_pages
 
   devise_for :users, :skip => [:sessions] do
     get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session
