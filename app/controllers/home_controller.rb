@@ -7,5 +7,9 @@ class HomeController < ApplicationController
 
   def help
   end
+  
+  def whats_benvarim
+    @selected_tab = "nav-nedir"
+  end
 
 end

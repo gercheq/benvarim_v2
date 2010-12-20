@@ -1,6 +1,7 @@
 Benvarim::Application.routes.draw do
 
 
+  get "/nasil_calisir" => "home#whats_benvarim", :as => :whats_benvarim
   get "/sayfalar" => "pages#index", :as => :pages
   post "/sayfa/kaydet" => "pages#create", :as => :pages
   get "/sayfa/yeni" => "pages#new", :as => :new_page
