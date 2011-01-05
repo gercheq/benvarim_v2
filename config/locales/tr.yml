@@ -157,6 +157,7 @@ tr:
         password_confirmation: "şifre (tekrar)"
         sign_up: "giriş"
         address: "adres"
+        name: "isim"
       user:
         email: "e-posta"
         password: "şifre"

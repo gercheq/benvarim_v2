@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101204074142
+# Schema version: 20110105080422
 #
 # Table name: organizations
 #
@@ -18,9 +18,17 @@
 #  description          :text
 #  approved             :                default("f")
 #  active               :                default("f")
+#  ologo_file_name      :string(255)
+#  ologo_content_type   :string(255)
+#  ologo_file_size      :integer
+#  ologo_updated_at     :datetime
 #
 
 class Organization < ActiveRecord::Base
+  has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
+                      :url => '/system/:class/:attachment/:id/:style/:filename',
+                      :styles => { :medium => "300x300>",
+                                   :thumb => "100x100>" }
   # Include default devise modules. Others available are:
   # :trackable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :token_authenticatable,
@@ -28,7 +36,7 @@ class Organization < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :name, :address, :description
+                  :name, :address, :description, :logo
 
   has_many :projects
 end
