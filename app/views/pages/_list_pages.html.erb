@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Başlık</th>
     <th>Tanım</th>
     <th>Başlangıç</th>
@@ -18,15 +19,16 @@
 
 <% @pages.each do |page| %>
   <tr>
+    <td><%= image_tag page.logo.url(:thumb) %></td>
     <td><%= page.title %></td>
     <td><%= page.description %></td>
-    <td><%= page.start_time %></td>
-    <td><%= page.end_time %></td>
+    <td><%= human_readable_datetime page.start_time %></td>
+    <td><%= human_readable_datetime page.end_time %></td>
     <td><%= page.goal %></td>
     <td><%= page.collected %></td>
-    <td><%= page.user_id %></td>
-    <td><%= page.organization_id %></td>
-    <td><%= page.project_id %></td>
+    <td><%= link_to page.user.name, page.user %></td>
+    <td><%= link_to page.organization.name, page.organization %></td>
+    <td><%= link_to page.project.name, page.project %></td>
     <td><%= link_to 'Görüntüle', page %></td>
     <% if @show_edit_link %>
       <td><%= link_to 'Düzenle', edit_page_path(page) %></td>

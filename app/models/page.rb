@@ -20,6 +20,10 @@
 #
 
 class Page < ActiveRecord::Base
+  has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
+                      :styles => { :medium => "300x300>",
+                                   :thumb => "100x100>" }
+
   belongs_to :organization
   belongs_to :user
   belongs_to :project
@@ -35,7 +39,7 @@ class Page < ActiveRecord::Base
   private
     def sanitize_description_html
       unless self.description_html.nil?
-        self.description = Sanitize.clean(self.description_html)
+        self.description = Sanitize.clean(self.description_html).gsub("&#13;", "")
       end
     end
 

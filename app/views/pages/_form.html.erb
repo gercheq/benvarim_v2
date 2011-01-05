@@ -1,4 +1,4 @@
-<%= form_for(@page) do |f| %>
+<%= form_for @page, :html => { :multipart => true } do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
@@ -32,6 +32,13 @@
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :logo %><br />
+    <% unless @page.new_record?%>
+      <%= image_tag @page.logo.url(:thumb) %>
+    <% end %>
+    <%= f.file_field :logo %>
   </div>
   <div class="field">
     <%= f.label :description %><br />

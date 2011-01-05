@@ -5,6 +5,13 @@ module ApplicationHelper
     "selected"
   end
 
+  def human_readable_datetime datetime
+    if datetime.nil?
+      return '-'
+    end
+    l datetime, :format => :long
+  end
+
   def add_page_specific_script script_name
     unless @page_spicific_scripts
       @page_spicific_scripts = Array.new
