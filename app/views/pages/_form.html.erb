@@ -13,11 +13,20 @@
 
   <div class="field">
     <%= f.label :organization_id %><br />
-    <%= f.select :organization_id, @organizations, {:include_blank => true} %>
+    <% if @page.new_record? %>
+      <%= f.select :organization_id, @organizations, {:include_blank => true} %>
+    <% else %>
+      <%=@page.organization.name%>
+    <% end %>
+
   </div>
   <div class="field">
     <%= f.label :project_id %><br />
-    <%= f.select :project_id, @projects, {:include_blank => true}%>
+    <% if @page.new_record? %>
+      <%= f.select :project_id, @projects, {:include_blank => true}%>
+    <% else %>
+      <%=@page.project.name%>
+    <% end %>
   </div>
 
   <div class="field">
