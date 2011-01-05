@@ -8,12 +8,11 @@ class ProjectsController < ApplicationController
   end
 
   def our_projects
-    redirect_to :action => :by_organization, :id => current_organization.id
+    @projects = current_organization.projects.all
   end
 
   def by_organization
     org = Organization.find_by_id(params[:id])
-    puts org.id
     if org
       @projects = org.projects.all
     else

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= image_tag @project.logo.url(:thumb) %>
 <p>
   <b>Proje:</b>
   <%= @project.name %>
@@ -28,4 +28,4 @@
 <% if organization_signed_in? && current_organization == @project.organization%>
   <%= link_to 'Düzenle', edit_project_path(@project) %>
 <% end %>
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Geri', projects_path %>

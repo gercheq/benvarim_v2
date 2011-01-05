@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110105080422
+# Schema version: 20110105090227
 #
 # Table name: organizations
 #
@@ -18,10 +18,10 @@
 #  description          :text
 #  approved             :                default("f")
 #  active               :                default("f")
-#  ologo_file_name      :string(255)
-#  ologo_content_type   :string(255)
-#  ologo_file_size      :integer
-#  ologo_updated_at     :datetime
+#  logo_file_name       :string(255)
+#  logo_content_type    :string(255)
+#  logo_file_size       :integer
+#  logo_updated_at      :datetime
 #
 
 class Organization < ActiveRecord::Base
