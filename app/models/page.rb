@@ -1,25 +1,34 @@
 # == Schema Information
-# Schema version: 20101213100425
+# Schema version: 20110105080422
 #
 # Table name: pages
 #
-#  id               :integer         not null, primary key
-#  title            :string(255)
-#  description      :text
-#  start_time       :datetime
-#  end_time         :datetime
-#  goal             :float           default(0.0)
-#  collected        :float           default(0.0)
-#  user_id          :integer
-#  organization_id  :integer
-#  project_id       :integer
-#  active           :boolean
-#  created_at       :datetime
-#  updated_at       :datetime
-#  description_html :text
+#  id                :integer         not null, primary key
+#  title             :string(255)
+#  description       :text
+#  start_time        :datetime
+#  end_time          :datetime
+#  goal              :float           default(0.0)
+#  collected         :float           default(0.0)
+#  user_id           :integer
+#  organization_id   :integer
+#  project_id        :integer
+#  active            :boolean
+#  created_at        :datetime
+#  updated_at        :datetime
+#  description_html  :text
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 
 class Page < ActiveRecord::Base
+  has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
+                      :url => '/system/:class/:attachment/:id/:style/:filename',
+                      :styles => { :medium => "300x300>",
+                                   :thumb => "100x100>" }
+
   belongs_to :organization
   belongs_to :user
   belongs_to :project
@@ -35,7 +44,7 @@ class Page < ActiveRecord::Base
   private
     def sanitize_description_html
       unless self.description_html.nil?
-        self.description = Sanitize.clean(self.description_html)
+        self.description = Sanitize.clean(self.description_html).gsub("&#13;", "")
       end
     end
 

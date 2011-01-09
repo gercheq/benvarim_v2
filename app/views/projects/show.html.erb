@@ -1,31 +1,31 @@
 <p id="notice"><%= notice %></p>
-
+<%= image_tag @project.logo.url(:thumb) %>
 <p>
-  <b>Name:</b>
+  <b>Proje:</b>
   <%= @project.name %>
 </p>
 
 <p>
-  <b>Start time:</b>
-  <%= @project.start_time %>
+  <b>Başlangıç:</b>
+  <%=human_readable_datetime @project.start_time %>
 </p>
 
 <p>
-  <b>End time:</b>
-  <%= @project.end_time %>
+  <b>Bitiş:</b>
+  <%=human_readable_datetime @project.end_time %>
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>Tanım:</b>
   <%= @project.description %>
 </p>
 
 <p>
-  <b>Organization:</b>
-  <%= @project.organization_id %>
+  <b>Kurum:</b>
+  <%= link_to @project.organization.name, @project.organization %>
 </p>
 
 <% if organization_signed_in? && current_organization == @project.organization%>
   <%= link_to 'Düzenle', edit_project_path(@project) %>
 <% end %>
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Geri', projects_path %>

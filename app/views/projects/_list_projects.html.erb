@@ -1,0 +1,40 @@
+<div class="widget widget-light" id="w-yeni-kayi">
+  <div class="w-inner">
+    <div class="w-title">Bağış Kampanyaları</div>
+
+
+    <h1>Projeler</h1>
+
+    <table>
+      <tr>
+        <th>Isim</th>
+        <th>Başlagıç</th>
+        <th>Bitiş</th>
+        <th>Tanım</th>
+        <th>STK</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%=human_readable_datetime project.start_time %></td>
+        <td><%=human_readable_datetime project.end_time %></td>
+        <td><%= project.description %></td>
+        <td><%= project.organization.name %></td>
+        <td><%= link_to 'Görüntüle', project %></td>
+        <% if (defined? show_edit_link) && show_edit_link %>
+          <td><%= link_to 'Düzenle', edit_project_path(project) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+
+    <%= link_to 'Yeni Proje', new_project_path %>
+
+  </div>
+</div>

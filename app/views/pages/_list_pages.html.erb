@@ -1,16 +1,17 @@
-<h1>Listing pages</h1>
+<h1>Sayfalar</h1>
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Start time</th>
-    <th>End time</th>
-    <th>Goal</th>
-    <th>Collected</th>
-    <th>User</th>
-    <th>Organization</th>
-    <th>Project</th>
+    <th></th>
+    <th>Başlık</th>
+    <th>Tanım</th>
+    <th>Başlangıç</th>
+    <th>Bitiş</th>
+    <th>Hedef</th>
+    <th>Toplanan</th>
+    <th>Gönüllü</th>
+    <th>STK</th>
+    <th>Proje</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,21 +19,22 @@
 
 <% @pages.each do |page| %>
   <tr>
+    <td><%= image_tag page.logo.url(:thumb) %></td>
     <td><%= page.title %></td>
     <td><%= page.description %></td>
-    <td><%= page.start_time %></td>
-    <td><%= page.end_time %></td>
+    <td><%= human_readable_datetime page.start_time %></td>
+    <td><%= human_readable_datetime page.end_time %></td>
     <td><%= page.goal %></td>
     <td><%= page.collected %></td>
-    <td><%= page.user_id %></td>
-    <td><%= page.organization_id %></td>
-    <td><%= page.project_id %></td>
-    <td><%= link_to 'Show', page %></td>
+    <td><%= link_to page.user.name, page.user %></td>
+    <td><%= link_to page.organization.name, page.organization %></td>
+    <td><%= link_to page.project.name, page.project %></td>
+    <td><%= link_to 'Görüntüle', page %></td>
     <% if @show_edit_link %>
-      <td><%= link_to 'Edit', edit_page_path(page) %></td>
+      <td><%= link_to 'Düzenle', edit_page_path(page) %></td>
     <% end %>
     <% if @show_destroy_link %>
-      <td><%= link_to 'Destroy', page, :confirm => 'Emin misiniz?', :method => :delete %></td>
+      <td><%= link_to 'Sil', page, :confirm => 'Emin misiniz?', :method => :delete %></td>
     <% end %>
   </tr>
 <% end %>

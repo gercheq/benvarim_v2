@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213100425) do
+ActiveRecord::Schema.define(:version => 20110105090227) do
 
 # Could not dump table "organizations" because of following StandardError
 #   Unknown type 'booelan' for column 'approved'
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(:version => 20101213100425) do
     t.text     "description"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.float    "goal",             :default => 0.0
-    t.float    "collected",        :default => 0.0
+    t.float    "goal",              :default => 0.0
+    t.float    "collected",         :default => 0.0
     t.integer  "user_id"
     t.integer  "organization_id"
     t.integer  "project_id"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(:version => 20101213100425) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description_html"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "projects", :force => true do |t|
@@ -39,6 +43,10 @@ ActiveRecord::Schema.define(:version => 20101213100425) do
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "users", :force => true do |t|
