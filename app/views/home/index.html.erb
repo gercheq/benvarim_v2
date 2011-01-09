@@ -1,8 +1,41 @@
-<div id="featured-content" class="widget widget-dark">
+<div id="featured-content" class="widget widget-dark clearfix">
   <div class="w-inner">
     
-    <p>Find me in app/views/home/index.html.erb</p>
+    <div class="steps-loading">Yükleniyor...</div>
+     
+    <div class="steps clearfix">
+      <div class="step s-first" id="step-1">
+        <div class="s-visual"></div>
+        <div class="s-number">1.</div>
+        <div class="s-content">Desteklemek istediğiniz vakıf yada derneği seçin ve bağış sayfanızı oluşturun.</div>
+      </div>
  
+      <div class="step" id="step-2">
+        <div class="s-visual"></div>
+        <div class="s-number">2.</div>
+        <div class="s-content">Bağış sayfanızı aileniz ve yakın çevreniz ile paylaşın, bağışlar toplansın.</div>
+      </div>
+    
+      <div class="step" id="step-3">
+        <div class="s-visual"></div>
+        <div class="s-number">3.</div>
+        <div class="s-content">Topladığınız bağışlar otomatik olarak desteklediğiniz vakıf ya da dernek hesabına aktarılsın.</div>
+      </div>
+    </div> <!-- end of steps -->
+    
+    <div class="campaign-form-container">
+      <h1>Bağış kampanyası düzenlemek istiyorum.</h1>
+      
+      <form action="#" method="post">
+        <div class="field">
+          <input value="Desteklemek istediğiniz vakıf yada derneği seçiniz..." name="search" class="clear-on-focus" id="featured-input">
+        </div>
+        <input type="submit" value="Başla" name="commit" id="featured-submit" class="button super yellow button-primary">               
+      </form>
+      
+    </div>
+    
+    
   </div>
 </div><!-- end of #featured-content -->
 
@@ -12,41 +45,15 @@
       <div class="w-title">Aktif Bağış Kampanyaları</div>
       <ol>
         <li>kimin eli</li>
-        <li>kimin cebinde</li>
+        <li>kimin cebinde</li>2
       </ol>
       main content widget
     </div>
   </div>
 </div><!-- end of #main-content -->
 
-<div id="sidebar">
 
-  
-  <div id="w-yenikayit" class="widget widget-blue">
-    <div class="w-inner">
-      Yeni vakif ve dernek kaydi<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    </div>
-  </div>
-  
-  <div id="w-facebook" class="widget widget-dark">
-    <div class="w-inner">
-    facebook <br />facebook <br />facebook <br />facebook <br />facebook 
-    <!--
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.benvarim.com" width="270" colorscheme="dark" connections="10" stream="false" header="false"></fb:like-box>
-      
-      <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.benvarim.com&amp;width=270&amp;colorscheme=dark&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:255px;" allowTransparency="true"></iframe> 
-    -->
-    </div>
-  </div><!-- end of .widget -->
-  
-  
-  <div id="w-twitter" class="widget widget-dark">
-    <div class="w-inner">
-    twitter  <br />twitter <br />twitter <br />
-    </div>
-  </div><!-- end of .widget --> 
-  
-</div><!-- end of #sidebar -->
+<%= render 'layouts/sidebar'%>
 
 
  

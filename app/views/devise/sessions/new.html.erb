@@ -1,16 +1,35 @@
-<h2>Giriş</h2>
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+<div class="widget widget-light widget-form" id="w-giris">
+  <div class="w-inner">
+    <div class="w-title">Kullanıcı Girişi</div>
+ 
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+      
+      <% if devise_mapping.rememberable? -%>
+        <div class="field field-checkbox clearfix">
+          <%= f.check_box :remember_me %> 
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+       <div class="actions">
+        <%= f.submit :"Giriş", :class=>"button super yellow button-primary" %>
+      </div>
+      
+      
+      
+    <% end %>
 
-  <p><%= f.submit "Giriş" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+    <%= render :partial => "devise/shared/links" %>
+    
+  </div>
+</div>

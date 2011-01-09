@@ -1,12 +1,26 @@
-<h2>Şifrenizi mi unuttunuz?</h2>
+<div class="widget widget-light widget-form" id="w-sifre-unut">
+  <div class="w-inner">
+    <div class="w-title">Şifrenizi mi unuttunuz?</div>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+ 
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <%= devise_error_messages! %>
+ 
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+ 
+      
+       <div class="actions">
+        <%= f.submit :"Şifre sıfırlama e-postası gönder", :class=>"button super yellow button-primary" %>
+      </div>
+      
+    <% end %>
 
-  <p><%= f.submit "Şifre sıfırlama e-postası gönder" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+    <%= render :partial => "devise/shared/links" %>
+    
+    
+  </div>
+</div>

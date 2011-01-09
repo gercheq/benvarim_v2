@@ -1,18 +1,24 @@
-<h2>Kayıt</h2>
+<div class="widget widget-light widget-form" id="w-yeni-kayi">
+  <div class="w-inner">
+    <div class="w-title">Yeni Kayıt Oluştur</div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%=devise_error_messages!%>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%=devise_error_messages!%>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+      <div class="field"><%= f.label :email %>
+      <%= f.text_field :email %></div>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+      <div class="field"><%= f.label :password %>
+      <%= f.password_field :password %></div>
 
-  <p><%= f.submit "Giriş" %></p>
-<% end %>
+      <div class="field"><%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %></div>
 
-<%= render :partial => "devise/shared/links" %>
+      <div class="actions"><%= f.submit "Kayıt Ol", :class=>"button super yellow button-primary" %></div>
+    <% end %>
+
+ 
+
+  </div>
+</div>
