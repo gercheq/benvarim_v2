@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(:version => 20110105090227) do
 
 # Could not dump table "organizations" because of following StandardError
-#   Unknown type 'booelan' for column 'approved'
+#   Unknown type 'boolean' for column 'approved'
 
   create_table "pages", :force => true do |t|
     t.string   "title"
