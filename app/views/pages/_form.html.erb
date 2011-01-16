@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :organization_id %><br />
+    <%= f.label :organization_id %>
     <% if @page.new_record? %>
       <%= f.select :organization_id, @organizations, {:include_blank => true} %>
     <% else %>
@@ -21,7 +21,7 @@
 
   </div>
   <div class="field">
-    <%= f.label :project_id %><br />
+    <%= f.label :project_id %>
     <% if @page.new_record? %>
       <%= f.select :project_id, @projects, {:include_blank => true}%>
     <% else %>
@@ -30,34 +30,34 @@
   </div>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :logo %><br />
+    <%= f.label :logo %>
     <% unless @page.new_record?%>
       <%= image_tag @page.logo.url(:thumb) %>
     <% end %>
     <%= f.file_field :logo %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description_html, :class => :mceEditor %>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br />
+  <div class="field small-select">
+    <%= f.label :start_time %>
     <%= f.datetime_select :start_time %>
   </div>
-  <div class="field">
-    <%= f.label :end_time %><br />
+  <div class="field small-select">
+    <%= f.label :end_time %>
     <%= f.datetime_select :end_time %>
   </div>
   <div class="field">
-    <%= f.label :goal %><br />
+    <%= f.label :goal %>
     <%= f.text_field :goal %>
   </div>
   <div class="actions">
-    <%= f.submit "Yarat" %>
+    <%= f.submit "Bağış Kampanyası Oluştur", :class => "button yellow super" %>
   </div>
 <% end %>
 

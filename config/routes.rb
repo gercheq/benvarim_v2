@@ -1,7 +1,19 @@
 Benvarim::Application.routes.draw do
 
 
-  get "/nasil_calisir" => "home#whats_benvarim", :as => :whats_benvarim
+  get "/nasil_calisir" => "home#nasil_calisir", :as => :nasil_calisir
+  get "/nedir" => "home#nedir", :as => :nedir
+  get "/iletisim" => "home#iletisim", :as => :iletisim
+
+  # STATIK SAYFALAR
+  get "/kullanim_sartlari" => "home#kullanim_sartlari", :as => :kullanim_sartlari 
+  get "/guvenli_odeme" => "home#guvenli_odeme", :as => :guvenli_odeme 
+  get "/hakkimizda" => "home#hakkimizda", :as => :hakkimizda 
+  get "/gizlilik_politikasi" => "home#gizlilik_politikasi", :as => :gizlilik_politikasi 
+
+
+  
+  
   get "/sayfalar" => "pages#index", :as => :pages
   post "/sayfa/kaydet" => "pages#create", :as => :pages
   get "/sayfa/yeni" => "pages#new", :as => :new_page

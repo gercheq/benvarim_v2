@@ -49,13 +49,17 @@
     <div id="header">
       <div class="container">
         <div id="header-logo"><a href="http://www.benvarim.com" title="BenVarım.com Anasayfa">benvarim.com</a></div>
-        <div id="header-subtitle">dünya'yı değiştirebilmek senin ellerinde...</div>
+        <div id="header-subtitle">Gönüllü ol, çevrenle paylaş, desteklediğin kurumu yapılan bağışlarla güçlendir!</div>
         <div id="site-nav"> 
           <ul class="clearfix">
             <li><%=link_to "Anasayfa", :root, :class => "rc-top #{print_if_selected_tab :home, :index}", :id => "nav-anasayfa"%></li>
-            <li><%=link_to "Nedir?", :whats_benvarim, :class => "rc-top #{print_if_selected_tab :home, :whats_benvarim}", :id => "nav-nedir"%></li>
-            <li><a href="#" id="nav-nasil" class="rc-top">Nasıl Çalışır?</a></li>
-            <li><a href="#" id="nav-iletisim" class="rc-top">iletişim</a></li> 
+            <li><%=link_to "Nedir?", :nedir, :class => "rc-top #{print_if_selected_tab :home, :nedir}", :id => "nav-nedir"%></li>
+            <li>
+              <%=link_to "Nasıl Çalışır?", :nasil_calisir, :class => "rc-top #{print_if_selected_tab :home, :nasil_calisir}", :id => "nav-nasil"%>
+            </li>
+            <li>
+              <%=link_to "İletişim", :iletisim, :class => "rc-top #{print_if_selected_tab :home, :iletisim}", :id => "nav-iletisim"%>
+            </li> 
           </ul>
         </div>
         

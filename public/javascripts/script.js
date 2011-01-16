@@ -9,11 +9,11 @@ function fadeInOrder(elem) {
     
     if( $(this).next().length > 0){
       // fadeIn() next element if exists 
-      fadeInOrder( $(this).next().delay(1500) ); 
+      fadeInOrder( $(this).next().delay(1000) ); 
     }
     else{
       // display the campaign form
-      $('.campaign-form-container').delay(1500).slideDown('slow');
+      $('.campaign-form-container').delay(1000).slideDown('slow');
     }
     
   }); 
@@ -51,6 +51,11 @@ $(document).ready(function(){
   });  
   
   
+  
+  //
+  // Form Custom Styles
+  //
+  $("select, :radio, :checkbox").uniform();  
   
   
 });

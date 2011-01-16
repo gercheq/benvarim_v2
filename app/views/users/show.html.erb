@@ -1,10 +1,25 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <b>Aktivist:</b>
-  <%= @user.name %>, <%=@user.age%>
-</p>
+<div id="main-content">
+  <div class="widget widget-light">
+    <div class="w-inner">
+      <div class="w-title">Kişisel Bilgileri Düzenle</div>
+          <% if notice %>
+            <div class="msg msg-success">
+              <%= notice %>
+            </div>
+          </% end %>
+        <p>
+          <b>Aktivist:</b>
+          <%= @user.name %>, <%=@user.age%>
+        </p>
 
-<p>
-  <b>Adres:</b>
-  <%= @user.address %>
-</p>
+        <p>
+          <b>Adres:</b>
+          <%= @user.address %> 
+        </p>
+
+
+     </div>
+    </div> 
+</div><!-- end of #main-content -->
+
+<%= render 'layouts/sidebar'%>
