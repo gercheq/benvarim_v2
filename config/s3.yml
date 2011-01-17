@@ -1,0 +1,8 @@
+development:
+  bucket: benvarim-bucket-dev-2
+  access_key_id: "AKIAJDAMQ2D3YH6LUOCQ"
+  secret_access_key: "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"
+production:
+  bucket: benvarim-bucket-prod-2
+  access_key_id: "AKIAJDAMQ2D3YH6LUOCQ"
+  secret_access_key: "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"

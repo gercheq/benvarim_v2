@@ -20,7 +20,9 @@
 class Project < ActiveRecord::Base
   belongs_to :organization
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
-                      :url => '/system/:class/:attachment/:id/:style/:filename',
+                      :path => '/:class/:attachment/:id/:style/:filename',
+                      :storage => :s3,
+                      :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "300x300>",
                                    :thumb => "100x100>" }
 end
