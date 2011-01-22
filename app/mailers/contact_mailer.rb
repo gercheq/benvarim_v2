@@ -4,6 +4,5 @@ class Contact < ActionMailer::Base
     from       "My Forum "
     subject    "Please activate your new account"
     sent_on    Time.zone.now
-    body       { :user => user}
   end
 end
