@@ -1,7 +1,9 @@
 class ContactMailer < ActionMailer::Base
   default :from => "team@benvarim.com"
   def test
-    mail(:to => "yigit@benvarim.com",
-         :subject => "Jetkinlik'e hoalal!")
+    recipients "yigit@benvarim.com"
+    subject    "Please activate your new account"
+    sent_on    Time.zone.now
+    body       {}
   end
 end
