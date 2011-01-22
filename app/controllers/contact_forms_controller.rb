@@ -26,7 +26,7 @@ class ContactFormsController < ApplicationController
   def create
     @contact_form = ContactForm.new(params[:contact_form])
     if @contact_form.valid?
-      ContactMailer.contact_benvarim @contact_form
+      ContactMailer.contact_benvarim(@contact_form).deliver
       flash[:notice] = "Mesajınız tarafımıza ulaştı. En kısa sürede sizinle iletişime geçeceğiz. Teşekkürler"
       return redirect_to :action => :index
     else
