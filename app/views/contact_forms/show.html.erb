@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+<p id="notice"><%= notice %></p>
 Yeni Mesaj
 <p>
   <b>Ad, Soyad:</b>
@@ -34,3 +35,6 @@ Yeni Mesaj
   <b>Diğer:</b>
   <%= @contact_form.other %>
 </p>
+
+<%= link_to 'Edit', edit_contact_form_path(@contact_form) %> |
+<%= link_to 'Back', contact_forms_path %>

@@ -175,6 +175,14 @@ tr:
         end_time: "bitiş tarihi"
         goal: "hedef(TL)"
         collected: "toplanan miktar"
+      contact_form:
+        name : 'Ad, Soyad'
+        city : 'Yaşadığınız Şehir'
+        phone : 'Telefon Numaranız'
+        email : "Eposta"
+        organization : "Gönüllüsü olduğunuz Sivil Toplum Kurulusu"
+        organization_role : "Göreviniz"
+        other : "Notlar"
   previous: "Önceki"
   next: "Sonraki"
 

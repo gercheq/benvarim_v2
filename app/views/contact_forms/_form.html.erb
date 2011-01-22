@@ -1,0 +1,45 @@
+<%= form_for(@contact_form) do |f| %>
+  <% if @contact_form.errors.any? %>
+    <div id="error_explanation">
+      <h2>Lütfen bu <%=@contact_form.errors.count%> hatayı düzeltiniz</h2>
+
+      <ul>
+      <% @contact_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :organization %><br />
+    <%= f.text_field :organization %>
+  </div>
+  <div class="field">
+    <%= f.label :organization_role %><br />
+    <%= f.text_field :organization_role %>
+  </div>
+  <div class="field">
+    <%= f.label :other %><br />
+    <%= f.text_area :other %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Gönder"%>
+  </div>
+<% end %>
