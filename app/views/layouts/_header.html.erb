@@ -32,6 +32,7 @@
 
   <!-- CSS : implied media="all" -->
   <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "jquery-ui-1.8.8.custom" %>
   
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <%= stylesheet_link_tag "handheld" %> 
@@ -49,7 +50,7 @@
     <div id="header">
       <div class="container">
         <div id="header-logo"><a href="http://www.benvarim.com" title="BenVarım.com Anasayfa">benvarim.com</a></div>
-        <div id="header-subtitle">Gönüllü ol, çevrenle paylaş, desteklediğin kurumu yapılan bağışlarla güçlendir!</div>
+        <div id="header-subtitle">Kolay bağış platformu</div>
         <div id="site-nav"> 
           <ul class="clearfix">
             <li><%=link_to "Anasayfa", :root, :class => "rc-top #{print_if_selected_tab :home, :index}", :id => "nav-anasayfa"%></li>

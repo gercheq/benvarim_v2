@@ -11,6 +11,11 @@ Benvarim::Application.routes.draw do
   get "/hakkimizda" => "home#hakkimizda", :as => :hakkimizda 
   get "/gizlilik_politikasi" => "home#gizlilik_politikasi", :as => :gizlilik_politikasi 
 
+  
+  # ORNEK STATIK SAYFALAR - ILERLEYEN DONEMLERDE ENTEGRE EDILECEK
+  get "/bagis_sayfasi" => "home#bagis_sayfasi", :as => :bagis_sayfasi 
+  get "/kurum_sayfasi" => "home#kurum_sayfasi", :as => :kurum_sayfasi 
+
 
   
   

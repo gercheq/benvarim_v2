@@ -13,7 +13,8 @@ function fadeInOrder(elem) {
     }
     else{
       // display the campaign form
-      $('.campaign-form-container').delay(1000).slideDown('slow');
+      $('.campaign-form-container').delay(300).animate({ "opacity": ".7" }, 300).animate({ "opacity": "1" }, 300);
+        
     }
     
   }); 
@@ -48,15 +49,27 @@ $(document).ready(function(){
   });  
   $(".clear-on-focus").blur(function(){  
      if($(this).attr("value") == "") $(this).attr("value", searchDefaultText);  
-  });  
-  
-  
+  });   
   
   //
   // Form Custom Styles
   //
   $("select, :radio, :checkbox").uniform();  
   
+  
+  //
+  // Clear margin-bottom for .fullcontent-right p(last)
+  //
+  $('.fullcontent-right p').last().css('margin','0');
+  
+  
+  $('.row').hover(  function(){ $(this).addClass('row-hover'); },
+                    function(){ $(this).removeClass('row-hover'); });
+                    
+                    
+  $('.comment-bubble').append('<div class="comment-arrow"></div>');
+  
+  $('.progress-bar').progressbar({ value: 37 });
   
 });
 
