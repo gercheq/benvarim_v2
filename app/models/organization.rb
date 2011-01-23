@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110105090227
+# Schema version: 20110122102239
 #
 # Table name: organizations
 #
@@ -16,8 +16,8 @@
 #  name                 :string(255)
 #  address              :string(255)
 #  description          :text
-#  approved             :                default("f")
-#  active               :                default("f")
+#  approved             :boolean
+#  active               :boolean
 #  logo_file_name       :string(255)
 #  logo_content_type    :string(255)
 #  logo_file_size       :integer

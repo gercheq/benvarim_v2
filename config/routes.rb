@@ -1,15 +1,19 @@
 Benvarim::Application.routes.draw do
-
+  post "iletisim" => "contact_forms#create", :as => :new_contact_form
+  get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
+  get "iletisim" => "contact_forms#index", :as => :contact_forms
 
   get "/nasil_calisir" => "home#nasil_calisir", :as => :nasil_calisir
   get "/nedir" => "home#nedir", :as => :nedir
   get "/iletisim" => "home#iletisim", :as => :iletisim
 
   # STATIK SAYFALAR
-  get "/kullanim_sartlari" => "home#kullanim_sartlari", :as => :kullanim_sartlari 
-  get "/guvenli_odeme" => "home#guvenli_odeme", :as => :guvenli_odeme 
-  get "/hakkimizda" => "home#hakkimizda", :as => :hakkimizda 
-  get "/gizlilik_politikasi" => "home#gizlilik_politikasi", :as => :gizlilik_politikasi 
+  get "/kullanim_sartlari" => "home#kullanim_sartlari", :as => :kullanim_sartlari
+  get "/guvenli_odeme" => "home#guvenli_odeme", :as => :guvenli_odeme
+  get "/hakkimizda" => "home#hakkimizda", :as => :hakkimizda
+  get "/gizlilik_politikasi" => "home#gizlilik_politikasi", :as => :gizlilik_politikasi
+
+
 
   
   # ORNEK STATIK SAYFALAR - ILERLEYEN DONEMLERDE ENTEGRE EDILECEK
@@ -17,8 +21,6 @@ Benvarim::Application.routes.draw do
   get "/kurum_sayfasi" => "home#kurum_sayfasi", :as => :kurum_sayfasi 
 
 
-  
-  
   get "/sayfalar" => "pages#index", :as => :pages
   post "/sayfa/kaydet" => "pages#create", :as => :pages
   get "/sayfa/yeni" => "pages#new", :as => :new_page

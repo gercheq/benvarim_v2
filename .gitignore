@@ -5,3 +5,4 @@ tmp/**/*
 .project
 solr/data
 public/system
+notes.txt
