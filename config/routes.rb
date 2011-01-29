@@ -15,10 +15,10 @@ Benvarim::Application.routes.draw do
 
 
 
-  
+
   # ORNEK STATIK SAYFALAR - ILERLEYEN DONEMLERDE ENTEGRE EDILECEK
-  get "/bagis_sayfasi" => "home#bagis_sayfasi", :as => :bagis_sayfasi 
-  get "/kurum_sayfasi" => "home#kurum_sayfasi", :as => :kurum_sayfasi 
+  get "/bagis_sayfasi" => "home#bagis_sayfasi", :as => :bagis_sayfasi
+  get "/kurum_sayfasi" => "home#kurum_sayfasi", :as => :kurum_sayfasi
 
 
   get "/sayfalar" => "pages#index", :as => :pages
@@ -41,17 +41,6 @@ Benvarim::Application.routes.draw do
     get '/gonullu/duzenle' => 'registrations#edit', :as => :edit_user_registration
   end
 
-  devise_for :organizations, :skip => [:sessions] do
-    get '/kurum/giris' => 'devise/sessions#new', :as => :new_organization_session
-    post '/kurum/giris' => 'devise/sessions#create', :as => :organization_session
-    get '/kurum/cikis' => 'devise/sessions#destroy', :as => :destroy_organization_session
-
-    post '/kurum' => 'devise/registrations#create', :as => :organization_registration
-    put '/kurum' => 'devise/registrations#update', :as => :organization_registration
-
-    get '/kurum/kayit' =>  'registrations#new', :as => :new_organization_registration
-    get '/kurum/duzenle' => 'registrations#edit', :as => :edit_organization_registration
-  end
 
   get "/gonullu/:id" => "users#show", :as => :user
   get "/gonullu/:id/duzenle" => "users#edit", :as => :edit_user
@@ -68,14 +57,21 @@ Benvarim::Application.routes.draw do
   get '/projelerimiz' => 'projects#our_projects', :as => :our_projects
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
 
-  get "/kurumlar" => 'organizations#index', :as => :organizations
-  get "/kurum/ekle" => 'organizations#create', :as => :new_organization
-  get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization
-  get "/kurum/:id" => 'organizations#show', :as => :organization
-  put '/kurum/:id' => 'organizations#update', :as => :organization
+  get '/kurumlar' => "organizations#index", :as => :organizations
+  post '/kurum' =>  "organizations#create", :as => :organizations
+  get '/kurum/yeni' => "organizations#new", :as => :new_organization
+  get '/kurum/:id/duzenle' => "organizations#edit", :as => :edit_organization
+  get '/kurum/:id' => "organizations#show", :as => :organization
+  put '/kurum/:id' => "organizations#update", :as => :organization
+  get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
+
+  # get "/kurumlar" => 'organizations#index', :as => :organizations
+  # post "/kurum/ekle" => 'organizations#create', :as => :new_organization
+  # get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization
+  # get "/kurum/:id" => 'organizations#show', :as => :organization
+  # put '/kurum/:id' => 'organizations#update', :as => :organization
 
 
-  devise_for :organizations
 
   root :to => "home#index"
   get "home/about"

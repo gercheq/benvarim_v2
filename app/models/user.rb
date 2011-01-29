@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :address, :birthday, :email, :password, :password_confirmation, :remember_me
 
   has_many :pages
+  has_one :organization
 
   def age
     now = Time.now.utc.to_date

@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.is_a?(Organization) && resource_or_scope.name=""
-      edit_organization_path(resource_or_scope.id)
-    else
-      super
+protected
+  def require_organization
+    unless user_signed_in? && !current_user.organization.nil?
+      flash[:error] = "İlk önce bir kurum eklemelisiniz"
+      redirect_to new_organization_path
     end
   end
 end

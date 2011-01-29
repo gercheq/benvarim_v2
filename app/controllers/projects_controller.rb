@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class ProjectsController < ApplicationController
-  before_filter :authenticate_organization!, :except => [:show, :index, :by_organization]
+  before_filter :authenticate_user!, :except => [:show, :index, :by_organization]
+  before_filter :require_organization, :except => [:show, :index, :by_organization]
   uses_tiny_mce
 
   def index
@@ -8,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def our_projects
-    @projects = current_organization.projects.all
+    @projects = current_user.organization.projects.all
   end
 
   def by_organization
@@ -35,11 +36,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = current_organization.projects.find(params[:id])
+    @project = current_user.organization.projects.find(params[:id])
   end
 
   def create
-    @project = current_organization.projects.build(params[:project])
+    @project = current_user.organization.projects.build(params[:project])
 
     if @project.save
       redirect_to(@project, :notice => 'Proje yaratıldı.')
@@ -49,7 +50,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = current_organization.projects.find(params[:id])
+    @project = current_user.organization.projects.find(params[:id])
     if @project.update_attributes(params[:project])
       redirect_to(@project, :notice => 'Proje kaydedildi.')
     else
@@ -58,7 +59,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = current_organization.projects.find(params[:id])
+    @project = current_user.organization.projects.find(params[:id])
     @project.destroy
   end
 end

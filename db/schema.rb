@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110122102239) do
+ActiveRecord::Schema.define(:version => 20110129214607) do
 
   create_table "contact_forms", :force => true do |t|
     t.string   "name"
@@ -25,28 +25,17 @@ ActiveRecord::Schema.define(:version => 20110122102239) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.string   "email",                               :default => "",    :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                       :default => "",    :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "address"
     t.text     "description"
-    t.boolean  "approved",                            :default => false
-    t.boolean  "active",                              :default => false
+    t.boolean  "approved",          :default => false
+    t.boolean  "active",            :default => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
   end
-
-  add_index "organizations", ["email"], :name => "index_organizations_on_email", :unique => true
-  add_index "organizations", ["reset_password_token"], :name => "index_organizations_on_reset_password_token", :unique => true
 
   create_table "pages", :force => true do |t|
     t.string   "title"

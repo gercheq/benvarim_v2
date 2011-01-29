@@ -158,6 +158,7 @@ tr:
         sign_up: "giriş"
         address: "adres"
         name: "isim"
+        description: "Kısa Tanıtım"
       user:
         email: "e-posta"
         password: "şifre"
@@ -183,6 +184,12 @@ tr:
         organization : "Gönüllüsü olduğunuz Sivil Toplum Kurulusu"
         organization_role : "Göreviniz"
         other : "Notlar"
+      project:
+        name : "bağış Kampanyası"
+        logo : "logo"
+        start_time: "başlangıç zamanı"
+        end_time: "bitiş zamanı"
+        description: "tanıtım sayfası"
   previous: "Önceki"
   next: "Sonraki"
 

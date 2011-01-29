@@ -31,8 +31,8 @@
 
 
   <!-- CSS : implied media="all" -->
-  <%= stylesheet_link_tag "style" %> 
-  <%= stylesheet_link_tag "jquery-ui-1.8.8.custom" %> 
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "jquery-ui-1.8.8.custom" %>
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <%= stylesheet_link_tag "handheld" %>
   -->
@@ -65,28 +65,22 @@
 
         <div id="utility-nav" class="rc-bottom">
           <ul>
-
-                  <% if organization_signed_in? %>
-                    <li><%=current_organization.email%></li>
-                  	<li><%= link_to "Kurum Bilgilerini Düzenle", edit_organization_path(current_organization.id) %></li>
-                  	<li><%= link_to "Çıkış", destroy_organization_session_path %></li>
-                  	<li><%= link_to "Proje Yarat", new_project_path %></li>
-                  	<li><%= link_to "Projelerimiz", our_projects_path %></li>
-                  <% end%>
                   <% if user_signed_in? %>
+                    <% if current_user.organization.nil? %>
+                    	<li><%= link_to "Kurum Ekle", new_organization_path %></li>
+                    <% else%>
+                      <li><%= link_to "Kurum Bilgilerini Düzenle", edit_organization_path(current_user.organization) %></li>
+                    	<li><%= link_to "Proje Yarat", new_project_path %></li>
+                    	<li><%= link_to "Projelerimiz", our_projects_path %></li>
+                    <% end%>
                     <li><%=current_user.email%></li>
                     <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
                     <li><%= link_to "Sayfalarım", my_pages_path %></li>
                     <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+                  <% else %>
+                  	<li><%= link_to "Gönüllü Giriş", new_user_session_path %></li>
+                  	<li><%= link_to "Gönüllü Kayıt", new_user_registration_path %></li>
                   <% end %>
-                  <% unless organization_signed_in? || user_signed_in? %>
-                  	<li><%= link_to "Kurum Giriş", new_organization_session_path %></li>
-                  	<li><%= link_to "Kurum Kayıt", new_organization_registration_path %></li>
-                  	<li><%= link_to "Aktivist Giriş", new_user_session_path %></li>
-                  	<li><%= link_to "Aktivist Kayıt", new_user_registration_path %></li>
-                  <% end %>
-                  <li><%=link_to "İletişim", contact_forms_path%>
-                  </li>
                   <li><%= link_to "Projeler", projects_path %></li>
                   <li><%= link_to "Sayfa Yarat", new_page_path %></li>
 
