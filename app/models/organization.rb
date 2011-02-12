@@ -9,7 +9,7 @@
 #  address     :string(255)
 #  description :text
 #  approved    :boolean
-#  active      :boolean
+#  active      :boolean 
 #
 
 class Organization < ActiveRecord::Base
