@@ -1,0 +1,19 @@
+<% flash.each do |key, value| %>
+    <% if value.kind_of? Array %>
+      <% value.each do |msg|%>
+        <div class="flash <%= key %>"><%= msg %></div>
+      <% end %>
+    <% elsif value.kind_of? Hash%>
+      <% value.each do |subkey, v2|%>
+        <% if v2.kind_of? Array%>
+          <% v2.each do msg%>
+            <div class="flash <%= key %>"><%= I18n.t(subkey, :raise => false) + ":" + msg.to_s %></div>
+          <% end %>
+        <% else %>
+          <div class="flash <%= key %>"><%= I18n.t(subkey, :raise => false) + ":" + v2.to_s %></div>
+        <% end %>
+      <% end %>
+    <% else%>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+<% end %>
