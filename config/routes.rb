@@ -1,4 +1,12 @@
 Benvarim::Application.routes.draw do
+  get "payments/new"
+
+  get "payments/paypal_ipn"
+
+  get "payments/create"
+
+  get "payments/finalize"
+
   post "iletisim" => "contact_forms#create", :as => :new_contact_form
   get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
   get "iletisim" => "contact_forms#index", :as => :contact_forms
@@ -28,6 +36,11 @@ Benvarim::Application.routes.draw do
   get "/sayfa/:id" => "pages#show", :as => :page
   put "/sayfa/:id" => "pages#update",  :as => :page
   get "/sayfalarim" => "pages#my_pages", :as => :my_pages
+
+  get '/bagis/kontrol' => "payments#paypal_ipn", :as => :paypal_ipn
+  get '/sayfa/:id/bagis' => "payments#new", :as => :donate
+  post '/sayfa/:id/bagis' => "payments#create", :as => :donate
+  get '/bagis/tamamla' => "payments#finalize", :as => :finalize_donation
 
   devise_for :users, :skip => [:sessions] do
     get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session
@@ -64,6 +77,7 @@ Benvarim::Application.routes.draw do
   get '/kurum/:id' => "organizations#show", :as => :organization
   put '/kurum/:id' => "organizations#update", :as => :organization
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
+
 
   # get "/kurumlar" => 'organizations#index', :as => :organizations
   # post "/kurum/ekle" => 'organizations#create', :as => :new_organization

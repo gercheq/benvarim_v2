@@ -1,15 +1,19 @@
 # == Schema Information
-# Schema version: 20110128071055
+# Schema version: 20110219052812
 #
 # Table name: organizations
 #
-#  id          :integer         not null, primary key
-#  user_id     :integer
-#  name        :string(255)
-#  address     :string(255)
-#  description :text
-#  approved    :boolean
-#  active      :boolean 
+#  id                :integer         not null, primary key
+#  user_id           :integer
+#  name              :string(255)
+#  address           :string(255)
+#  description       :text
+#  approved          :boolean
+#  active            :boolean
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 
 class Organization < ActiveRecord::Base

@@ -46,4 +46,9 @@ Benvarim::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  ENV['PAYPAL_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
+  ENV['PAYPAL_RETURN_URL'] = 'http://benvarim.com/bagis/tamamla'
+  ENV['PAYPAL_USER'] = 'levent@benvarim.com'
+  ENV['PAYPAL_IDENTITY_TOKEN'] = '7UqO3E-CzN4X5Vlg6Qh85RzDsqhnSf-BMTxvry644fnrYSMUwD3uCwBaxJC'
 end

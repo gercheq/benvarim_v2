@@ -190,6 +190,16 @@ tr:
         start_time: "başlangıç zamanı"
         end_time: "bitiş zamanı"
         description: "tanıtım sayfası"
+      tmp_payment:
+        name : "İsminiz"
+        email : "e-posta"
+        note : "notunuz"
+        amount : "miktar"
+      payment:
+        name : "İsim"
+        email : "e-posta"
+        note : "not"
+        amount : "miktar"
   previous: "Önceki"
   next: "Sonraki"
 
