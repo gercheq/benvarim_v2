@@ -7,16 +7,13 @@
 function fadeInOrder(elem) {
   elem.fadeIn(500, function() {
 
-    if( $(this).next().length > 0){
+    if ($(this).next().length > 0) {
       // fadeIn() next element if exists
-      fadeInOrder( $(this).next().delay(1000) );
-    }
-    else{
-      // display the campaign form
-      $('.campaign-form-container').delay(300).animate({ "opacity": ".7" }, 300).animate({ "opacity": "1" }, 300);
+      fadeInOrder( $(this).next().delay(2000) );
+    } else {
+      $('#featured-input').delay(1000).focus();
 
     }
-
   });
 }
 
