@@ -1,15 +1,11 @@
-
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="w-title">Aktif Bağış Kampanyaları</div>
 
-
-
-
       <div class="rows-container" id="donation-pages-container">
         <% @pages.each do |page| %>
-          <div class="row">
+          <div class="row clearfix">
             <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %></div>
             <div class="row-details">
               <h3><%= link_to page.title, page %></h3>
@@ -36,9 +32,6 @@
       <div class="row-action">
         <%= link_to 'Ben de bağış kampanyası düzenlemek istiyorum!', new_page_path, :class=>"green button super" %>
       </div>
-
-
-
 
     </div>
   </div>

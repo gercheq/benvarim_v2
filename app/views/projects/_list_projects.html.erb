@@ -1,40 +1,39 @@
-<div class="widget widget-light" id="w-yeni-kayi">
-  <div class="w-inner">
-    <div class="w-title">Bağış Kampanyaları</div>
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Aktif Bağış Projeleri</div>
 
 
-    <h1>Projeler</h1>
 
-    <table>
-      <tr>
-        <th>Isim</th>
-        <th>Başlagıç</th>
-        <th>Bitiş</th>
-        <th>Tanım</th>
-        <th>STK</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
 
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%=human_readable_datetime project.start_time %></td>
-        <td><%=human_readable_datetime project.end_time %></td>
-        <td><%= project.description %></td>
-        <td><%= project.organization.name %></td>
-        <td><%= link_to 'Görüntüle', project %></td>
-        <% if (defined? show_edit_link) && show_edit_link %>
-          <td><%= link_to 'Düzenle', edit_project_path(project) %></td>
+      <div class="rows-container" id="donation-pages-container">
+        <% @projects.each do |project| %>
+          <div class="row clearfix">
+            <div class="row-photo clearfix"><%= image_tag project.logo.url(:thumb) %></div>
+            <div class="row-details">
+              <h3><%= link_to project.name, project %></h3>
+
+              <p><%=human_readable_datetime project.start_time %></p>
+              <p><%=human_readable_datetime project.end_time %></p>
+              <p><%= project.description %></p>
+              <p><%= project.organization.name %></p>
+
+
+              <p><%= link_to 'Görüntüle', project %></p>
+              <% if (defined? show_edit_link) && show_edit_link %>
+                <p><%= link_to 'Düzenle', edit_project_path(project) %></p>
+              <% end %>
+
+            </div>
+          </div>
         <% end %>
-      </tr>
-    <% end %>
-    </table>
+      </div>
 
-    <br />
+      <div class="row-action">
+        <p>Bu tuşu yalnızca dernek ve vakıf kuruluşları görmeli</p>
+        <%= link_to 'Yeni bağış projesi oluştur!', new_project_path, :class=>"green button super" %>
+      </div>
 
-    <%= link_to 'Yeni Proje', new_project_path %>
-
+    </div>
   </div>
-</div>
+</div><!-- end of .widget -->

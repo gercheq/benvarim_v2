@@ -1,3 +1,10 @@
+<p id="notice"><%= notice %></p>
+<% if user_signed_in? && @page.user == current_user %>
+  <%= link_to 'Düzenle', edit_page_path(@page) %>
+<% end %>
+
+
+
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
@@ -101,17 +108,6 @@
 
 
 
-
-
-
-
-
-
-
-      <p id="notice"><%= notice %></p>
-      <% if user_signed_in? && @page.user == current_user %>
-        <%= link_to 'Düzenle', edit_page_path(@page) %>
-      <% end %>
 
 
 

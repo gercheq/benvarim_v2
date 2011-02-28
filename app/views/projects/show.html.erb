@@ -1,39 +1,43 @@
-
-
-
-
-HELLO2
-
-
-
 <p id="notice"><%= notice %></p>
-<%= image_tag @project.logo.url(:thumb) %>
-<p>
-  <b>Proje:</b>
-  <%= @project.name %>
-</p>
 
-<p>
-  <b>Başlangıç:</b>
-  <%=human_readable_datetime @project.start_time %>
-</p>
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
 
-<p>
-  <b>Bitiş:</b>
-  <%=human_readable_datetime @project.end_time %>
-</p>
+      <%= image_tag @project.logo.url(:thumb) %>
+      <p>
+        <b>Proje:</b>
+        <%= @project.name %>
+      </p>
 
-<p>
-  <b>Tanım:</b>
-  <%= @project.description %>
-</p>
+      <p>
+        <b>Başlangıç:</b>
+        <%=human_readable_datetime @project.start_time %>
+      </p>
 
-<p>
-  <b>Kurum:</b>
-  <%= link_to @project.organization.name, @project.organization %>
-</p>
+      <p>
+        <b>Bitiş:</b>
+        <%=human_readable_datetime @project.end_time %>
+      </p>
 
-<% if user_signed_in? && current_user.organization == @project.organization%>
-  <%= link_to 'Düzenle', edit_project_path(@project) %>
-<% end %>
-<%= link_to 'Geri', projects_path %>
+      <p>
+        <b>Tanım:</b>
+        <%= @project.description %>
+      </p>
+
+      <p>
+        <b>Kurum:</b>
+        <%= link_to @project.organization.name, @project.organization %>
+      </p>
+
+      <% if user_signed_in? && current_user.organization == @project.organization%>
+        <%= link_to 'Düzenle', edit_project_path(@project) %>
+      <% end %>
+      <%= link_to 'Geri', projects_path %>
+
+
+    </div>
+  </div>
+</div><!-- end of #main-content -->
+
+<%= render 'layouts/sidebar_kurum'%>

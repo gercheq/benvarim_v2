@@ -970,6 +970,7 @@ body {
   border: 1px solid #DDD;
   padding: 4px;
   width: 200px;
+  background: #FFF;
 }
 
 .row-photo img {
