@@ -1,55 +1,134 @@
-<p id="notice"><%= notice %></p>
-<% if user_signed_in? && @page.user == current_user %>
-  <%= link_to 'Düzenle', edit_page_path(@page) %>
-<% end %>
-<%= image_tag @page.logo.url(:thumb) %>
-<p>
-  <b>Başlık:</b>
-  <%= @page.title %>
-</p>
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="fullcontent-left">
+        <img src="/images/levent.png">
 
-<p>
-  <b>Tanım:</b>
-  <%= @page.description %>
-</p>
 
-<p>
-  <b>Başlangıç:</b>
-  <%=human_readable_datetime @page.start_time %>
-</p>
+        <%= @page.organization.name %>
+        <%= @page.project.name %>
 
-<p>
-  <b>Bitiş:</b>
-  <%=human_readable_datetime @page.end_time %>
-</p>
+      </div>
+      <div class="fullcontent-right">
+        <div class="comment-bubble rc">
+          <h1><%= @page.title %></h1>
+          <h6>Levent Bas</h6>
 
-<p>
-  <b>Hedef:</b>
-  <%= @page.goal %> TL
-</p>
+          <div class="share-options">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-text="Twitter'da Paylaş" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+          </div>
+        </div><!-- .comment-bubble -->
 
-<p>
-  <b>Toplanan:</b>
-  <%= @page.collected %> TL
-</p>
+        <div class="progress-bar">HEDEF: <%= @page.goal %>  TL || TOPLANAN: <%= @page.collected %> TL</div>
+        <a href="#" class="yellow button super no-margin">Bağış Yap</a>
 
-<p>
-  <b>Kurum:</b>
-  <%= @page.organization.name %>
-</p>
 
-<p>
-  <b>Proje:</b>
-  <%= @page.project.name %>
-</p>
+        <p><%= @page.description %></p>
 
-<p>
-	<fb:like layout="button_count" show_faces="false" width="150"></fb:like>
-	<a name="fb_share" type="button_count href="http://www.facebook.com/sharer.php">Facebook'ta Paylaş </a>
-</p>
-  
-<p>
-	<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" >Tweet</a>
-	<a style="background: url(http://friendfeed.com/static/images/icons/internal.png) 0px 0px no-repeat; padding-left: 20px; margin-left: 30px;" href="http://friendfeed.com/?url=
-		<%= request.url %>&amp;title=<%= @page.title %>" target="_blank">FriendFeed'de Paylaş</a>
-</p>
+
+      </div>
+    </div>
+  </div>
+</div><!-- end of .widget -->
+
+<div id="main-content">
+
+  <div class="widget widget-light widget-aktif-bagis ">
+    <div class="w-inner clearfix">
+      <div class="w-title">Bağışçı Listesi</div>
+      <div class="w-content">
+
+
+        <div class="row">
+            <h2><a href="#">23 Nisan Çocuk Şenliği</a></h2>
+            <a href="#" class="yellow button right no-margin">Destekle</a>
+            <p>2002'den itibaren 23 Nisan şenlikleri düzenlemeye başladık. Gerçek çocuk şenlikleri! Okay Temiz eşliğinde davul dersleri, dans, satranç, resim, surat boyama... Bayram gibi bayram yani! <a href="#">Detaylı bilgi</a></p>
+        </div><!-- end of .row -->
+
+
+        <div class="row">
+          <h2><a href="#">Temmuz Pikniği - Aziz Nesin'i Anma Günü</a></h2>
+          <a href="#" class="yellow button right no-margin">Destekle</a>
+          <p>Adının anma günü olduğuna bakmayın, can sıkıcı bir merasim değildir, uzun söylevler olmaz, yas tutmayız biz. O gün de piknik yaparız, eğleniriz. Pikniğinizi alın ve gelin. Temmuzun ilk cumartesi günü, saat 1-2 gibi. Davetiyesizdir. <a href="#">Detaylı bilgi</a></p>
+        </div><!-- end of .row -->
+
+
+        <div class="row">
+            <h2><a href="#">Nesin Matematik Köyü</a></h2>
+            <a href="#" class="yellow button right no-margin">Destekle</a>
+            <p>Şirince köyünün (İzmir - Selçuk) 1 km uzağında, dağ başında ve mutlak bir ıssızlık içinde, yemyeşil bir ortamda, 7'den 70'e herkesin (her köylünün!) her seviyede matematik yaptığı, öğrendiği, öğrettiği ve düşündüğü, Nesin Vakfı'na ait 30 dönümü zeytinlik olmak üzere toplam 55 dönümlük bir köy. Şatafattan ve gösterişten uzak, sade ve içten. Evler taş, çamur ve samandan. <a href="#">Detaylı bilgi</a></p>
+        </div><!-- end of .row -->
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div><!-- end of #main-content -->
+
+<%= render 'layouts/sidebar_kurum'%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <p id="notice"><%= notice %></p>
+      <% if user_signed_in? && @page.user == current_user %>
+        <%= link_to 'Düzenle', edit_page_path(@page) %>
+      <% end %>
+
+      <%= image_tag @page.logo.url(:thumb) %>
+
+      <p>
+        <b>Tanım:</b>
+
+      </p>
+
+      <p>
+        <b>Başlangıç:</b>
+        <%=human_readable_datetime @page.start_time %>
+      </p>
+
+      <p>
+        <b>Bitiş:</b>
+        <%=human_readable_datetime @page.end_time %>
+      </p>
+
+
+      <p>
+        <b>Kurum:</b>
+
+      </p>
+
+      <p>
+        <b>Proje:</b>
+      </p>
+
+      <p>
+      	<fb:like layout="button_count" show_faces="false" width="150"></fb:like>
+      	<a name="fb_share" type="button_count href="http://www.facebook.com/sharer.php">Facebook'ta Paylaş </a>
+      </p>
+
+      <p>
+      	<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" >Tweet</a>
+      	<a style="background: url(http://friendfeed.com/static/images/icons/internal.png) 0px 0px no-repeat; padding-left: 20px; margin-left: 30px;" href="http://friendfeed.com/?url=
+      		<%= request.url %>&amp;title=<%= @page.title %>" target="_blank">FriendFeed'de Paylaş</a>
+      </p>
+
+
+
+
