@@ -694,26 +694,24 @@ p{
   z-index:10;
   height: 20px;
   position:absolute; top:5px; right:0;
-  padding:5px 5px;
-  opacity: .8; }
+  padding: 5px 15px;
+  opacity: .8;
+  color: #EEE;
+  width: auto;
+  text-align: left;}
 
-#utility-nav ul{
-  margin:0;
-  display:block;
-  list-style:none; }
 
-#utility-nav li {
-  float:left;   }
-
-#utility-nav li a{
+#utility-nav a{
   color:#FFF;
-  display:block;
   height:16px;
   line-height:16px;
-  text-transform: lowercase;
-  text-decoration:none;
-  font-size:13px;
-  padding: 0 10px; }
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+#utility-nav a:hover{
+  border-bottom: 1px dotted #FFF;
+}
 
 #nav-login{ border-right: 1px solid #244267;}
 #nav-register{ border-left: 1px solid #6984a7;}

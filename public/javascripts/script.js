@@ -28,6 +28,10 @@ $(document).ready(function(){
 
   fadeInOrder( $("#step-1") );
 
+  $('.campaign-form-container h2, .steps').click(function(){
+    $('#featured-input').focus();
+  });
+
 
   //
   // Search Focus & Blur

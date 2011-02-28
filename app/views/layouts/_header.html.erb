@@ -64,7 +64,13 @@
         </div>
 
         <div id="utility-nav" class="rc-bottom">
-          <ul>
+            <% if user_signed_in? %>
+              Merhaba, <%= link_to current_user.name, user_path(current_user.id) %>
+            <% else %>
+            	<%= link_to "Giriş", new_user_session_path %> |	<%= link_to "Kayıt", new_user_registration_path %>
+            <% end %>
+
+ <!--
                   <% if user_signed_in? %>
                     <% if current_user.organization.nil? %>
                     	<li><%= link_to "Kurum Ekle", new_organization_path %></li>
@@ -73,16 +79,12 @@
                     	<li><%= link_to "Proje Yarat", new_project_path %></li>
                     	<li><%= link_to "Projelerimiz", our_projects_path %></li>
                     <% end%>
-                    <li><%=current_user.email%></li>
-                    <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
-                    <li><%= link_to "Sayfalarım", my_pages_path %></li>
-                    <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+                    <li>Merhaba, <%= link_to current_user.name, user_path(current_user.id) %></li>
                   <% else %>
                   	<li><%= link_to "Gönüllü Giriş", new_user_session_path %></li>
                   	<li><%= link_to "Gönüllü Kayıt", new_user_registration_path %></li>
                   <% end %>
-                  <li><%= link_to "Projeler", projects_path %></li>
-                  <li><%= link_to "Sayfa Yarat", new_page_path %></li>
+  -->
 
         </div>
 

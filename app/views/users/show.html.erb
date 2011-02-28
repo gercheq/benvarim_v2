@@ -1,7 +1,7 @@
 <div id="main-content">
   <div class="widget widget-light">
     <div class="w-inner">
-      <div class="w-title">Kişisel Bilgileri Düzenle</div>
+      <div class="w-title"><%= @user.name %></div>
           <% if notice %>
             <div class="msg msg-success">
               <%= notice %>
@@ -14,12 +14,39 @@
 
         <p>
           <b>Adres:</b>
-          <%= @user.address %> 
+          <%= @user.address %>
         </p>
 
 
      </div>
-   </div> 
+   </div>
+
+   <div class="widget widget-light">
+       <div class="w-inner">
+          <div class="w-title">Action</div>
+          <ul>
+             <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
+             <li><%= link_to "Sayfalarım", my_pages_path %></li>
+
+             <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+
+             <li>Projeler</li>
+             <li><%= link_to "Projeler", projects_path %></li>
+             <li><%= link_to "Proje Yarat", new_project_path %></li>
+           	 <li><%= link_to "Projelerimiz", our_projects_path %></li>
+             <li><%= link_to "Bağış Kampanyası Düzenle", new_page_path %></li>
+
+
+            <% if current_user.organization.nil? %>
+              	<li><%= link_to "Kurum Ekle", new_organization_path %></li>
+            <% else%>
+              <li><%= link_to "Kurum Bilgilerini Düzenle", edit_organization_path(current_user.organization) %></li>
+            <% end %>
+
+          </ul>
+        </div>
+   </div>
+
 </div><!-- end of #main-content -->
 
 <%= render 'layouts/sidebar'%>
