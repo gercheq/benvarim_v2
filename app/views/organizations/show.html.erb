@@ -1,16 +1,76 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag @organization.logo.url(:thumb) %>
-<p>
-  <b>Isim:</b>
-  <%= @organization.name %>
-</p>
 
-<p>
-  <b>Adres:</b>
-  <%= @organization.address %>
-</p>
 
-<p>
-  <b>Tanım:</b>
-  <%= raw @organization.description unless @organization.description.nil? %>
-</p>
+<% @bodyid = "page-kurum" %>
+
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="fullcontent-left">
+        <%= image_tag @organization.logo.url(:thumb) %>
+        <a href="#" class="yellow button super no-margin">Bağış Yap</a>
+      </div>
+      <div class="fullcontent-right">
+        <h1><%= @organization.name %></h1>
+        <h6><%= @organization.address %></h6>
+        <p class="outlink"><a href="http://www.nesinvakfi.com">RAILS: http://www.nesinvakfi.com</a></p>
+        <%= raw @organization.description unless @organization.description.nil? %>
+      </div>
+    </div>
+  </div>
+</div><!-- end of .widget -->
+
+<div id="main-content">
+
+  <div class="widget widget-light widget-aktif-bagis ">
+    <div class="w-inner clearfix">
+      <div class="w-title">Aktif Bağış Kampanyaları</div>
+      <div class="w-content">
+
+
+        <div class="row">
+            <h2><a href="#">RAILS: 23 Nisan Çocuk Şenliği</a></h2>
+            <a href="#" class="yellow button right no-margin">Destekle</a>
+            <p>RAILS: 2002'den itibaren 23 Nisan şenlikleri düzenlemeye başladık. Gerçek çocuk şenlikleri! Okay Temiz eşliğinde davul dersleri, dans, satranç, resim, surat boyama... Bayram gibi bayram yani! <a href="#">Detaylı bilgi</a></p>
+        </div><!-- end of .row -->
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="widget widget-light widget-aktif-bagis widget-liste">
+    <div class="w-inner clearfix">
+      <div class="w-title">En çok bağış toplayanlar</div>
+      <div class="w-content">
+
+
+        <div class="row clearfix">
+            <div class="bagis-miktari">1,520<span>TL</span></div>
+            <blockquote><span>“</span> Selden zarar gören Nesin Vakfı yardımlarınızı bekliyor. Harekete geçmenin tam zamanı!</blockquote>
+            <div class="bagisci">Gerçek Karakuş</div>
+        </div><!-- end of .row -->
+
+
+       <div class="row clearfix">
+           <div class="bagis-miktari">2,550<span>TL</span></div>
+           <blockquote><span>“</span> 23 Nisan Çocuk Şenliğine kadar 10 adet dizüstü bilgisayar almak ve gençlerimize armağan etmek istiyoruz.</blockquote>
+           <div class="bagisci">Levent Bas</div>
+       </div><!-- end of .row -->
+
+
+        <div class="row center">
+            <a href="#" class="green button super">Ben de bağış kampanyası düzenlemek istiyorum!</a>
+        </div><!-- end of .row -->
+
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- end of #main-content -->
+
+<%= render 'layouts/sidebar_kurum'%>
+
+
