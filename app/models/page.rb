@@ -28,8 +28,8 @@ class Page < ActiveRecord::Base
                       :path => '/:class/:attachment/:id/:style/:filename',
                       :storage => :s3,
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                      :styles => { :medium => "300x300>",
-                                   :thumb => "100x100>" }
+                      :styles => { :medium => "600x600>",
+                                   :thumb => "200x200>" }
 
   belongs_to :organization
   belongs_to :user

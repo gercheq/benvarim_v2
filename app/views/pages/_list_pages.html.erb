@@ -1,45 +1,47 @@
-<h1>Sayfalar</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th>Başlık</th>
-    <th>Tanım</th>
-    <th>Başlangıç</th>
-    <th>Bitiş</th>
-    <th>Hedef</th>
-    <th>Toplanan</th>
-    <th>Gönüllü</th>
-    <th>STK</th>
-    <th>Proje</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Aktif Bağış Kampanyaları</div>
 
-<% @pages.each do |page| %>
-  <tr>
-    <td><%= image_tag page.logo.url(:thumb) %></td>
-    <td><%= page.title %></td>
-    <td><%= page.description %></td>
-    <td><%= human_readable_datetime page.start_time %></td>
-    <td><%= human_readable_datetime page.end_time %></td>
-    <td><%= page.goal %></td>
-    <td><%= page.collected %></td>
-    <td><%= link_to page.user.name, page.user %></td>
-    <td><%= link_to page.organization.name, page.organization %></td>
-    <td><%= link_to page.project.name, page.project %></td>
-    <td><%= link_to 'Görüntüle', page %></td>
-    <% if @show_edit_link %>
-      <td><%= link_to 'Düzenle', edit_page_path(page) %></td>
-    <% end %>
-    <% if @show_destroy_link %>
-      <td><%= link_to 'Sil', page, :confirm => 'Emin misiniz?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Page', new_page_path %>
+
+      <div class="rows-container" id="donation-pages-container">
+        <% @pages.each do |page| %>
+          <div class="row">
+            <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %></div>
+            <div class="row-details">
+              <h3><%= link_to page.title, page %></h3>
+              <p>Gonullu:  <%= link_to page.user.name, page.user %></p>
+              <p><%= link_to page.organization.name, page.organization %> > <%= link_to page.project.name, page.project %></p>
+
+              <p><%= page.description %></p>
+              <p><%= human_readable_datetime page.start_time %></p>
+              <p><%= human_readable_datetime page.end_time %></p>
+              <p>Hedef: <%= page.goal %></p>
+              <p>Toplanan: <%= page.collected %></p>
+              <p></p>
+              <% if @show_edit_link %>
+                <p><%= link_to 'Düzenle', edit_page_path(page) %></p>
+              <% end %>
+              <% if @show_destroy_link %>
+                <p><%= link_to 'Sil', page, :confirm => 'Emin misiniz?', :method => :delete %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row-action">
+        <%= link_to 'Ben de bağış kampanyası düzenlemek istiyorum!', new_page_path, :class=>"green button super" %>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div><!-- end of .widget -->
+
+
