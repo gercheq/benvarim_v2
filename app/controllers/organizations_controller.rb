@@ -11,6 +11,10 @@ class OrganizationsController < ApplicationController
   end
 
   def new
+    #if the current user has an organization, redirect to its page
+    unless current_user.organization.nil?
+      redirect_to current_user.organization
+    end
     @organization = Organization.new
   end
 
