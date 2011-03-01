@@ -86,7 +86,7 @@ class PaymentsController < ApplicationController
       Page.transaction do
         @tmp_payment = TmpPayment.find tmp_payment_id
         unless @tmp_payment.payment.nil?
-          flash[:notice] = "Bu ödeme daha önce onaylanmış"
+          flash[:notice] = "Bağış yapıldı! Teşekkürler!"
           return redirect_to @tmp_payment.page
         end
         @page = @tmp_payment.page
