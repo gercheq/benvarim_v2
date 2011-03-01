@@ -167,6 +167,8 @@ tr:
         sign_up: "giriş"
         birthday: "doğum tarihi"
         address: "adres"
+        name: "ad, soyad"
+        photo: "fotoğraf"
       page:
         organization_id: "kurum"
         project_id: "proje"

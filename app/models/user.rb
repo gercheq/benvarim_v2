@@ -23,9 +23,15 @@ class User < ActiveRecord::Base
   # , :confirmable, :lockable and :timeoutable, :trackable
   devise :database_authenticatable, :registerable, :token_authenticatable,
          :recoverable, :rememberable, :validatable
+  has_attached_file :photo, :default_url =>'/images/adam.png',
+                     :path => '/:class/:attachment/:id/:style/:filename',
+                     :storage => :s3,
+                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                     :styles => { :medium => "600x600>",
+                                  :thumb => "200x200>" }
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :address, :birthday, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :address, :birthday, :email, :password, :password_confirmation, :remember_me, :photo
 
   has_many :pages
   has_one :organization

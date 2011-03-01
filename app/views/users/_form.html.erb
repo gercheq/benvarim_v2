@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
   <% if @user.errors.any? %>
     <div class="msg msg-error">
       <h2><%= pluralize(@user.errors.count, "error") %> hata:</h2>
@@ -14,6 +14,11 @@
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :photo %><br />
+    <%= image_tag @user.photo.url(:thumb) %>
+    <%= f.file_field :photo %>
   </div>
   <div class="field">
     <%= f.label :address %>

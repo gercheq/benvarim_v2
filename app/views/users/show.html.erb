@@ -1,23 +1,13 @@
 <div id="main-content">
   <div class="widget widget-light">
     <div class="w-inner">
-      <div class="w-title"><%= @user.name %></div>
+      <div class="w-title"><%= @user.name %>,  <%=@user.age%></div>
           <% if notice %>
             <div class="msg msg-success">
               <%= notice %>
             </div>
           <% end %>
-        <p>
-          <b>Gönüllü:</b>
-          <%= @user.name %>
-        </p>
-
-        <p>
-          <b>Adres:</b>
-          <%= @user.address %>
-        </p>
-
-
+        <%= image_tag @user.photo.url(:thumb) %>
      </div>
    </div>
 
