@@ -58,6 +58,10 @@ class Page < ActiveRecord::Base
     "%.2f" % self.collect_ratio
   end
 
+  def collected_str
+    "%.2f" % self.collected
+  end
+
   private
     def sanitize_description_html
       unless self.description_html.nil?

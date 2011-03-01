@@ -8,6 +8,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
+    @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
   end
 
   def new

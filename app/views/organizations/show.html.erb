@@ -49,20 +49,13 @@
     <div class="w-inner clearfix">
       <div class="w-title">En çok bağış toplayanlar</div>
       <div class="w-content">
-
-
+      <%@top_pages.each do |page|%>
         <div class="row clearfix">
-            <div class="bagis-miktari">1,520<span>TL</span></div>
-            <blockquote><span>“</span> Selden zarar gören Nesin Vakfı yardımlarınızı bekliyor. Harekete geçmenin tam zamanı!</blockquote>
-            <div class="bagisci">Gerçek Karakuş</div>
+            <div class="bagis-miktari"><%=page.collected_str%> <span>TL</span></div>
+            <blockquote><span>“</span><%=page.description%><%=link_to "...", page%></blockquote>
+            <div class="bagisci"><%=link_to page.user.name, page.user%></div>
         </div><!-- end of .row -->
-
-
-       <div class="row clearfix">
-           <div class="bagis-miktari">2,550<span>TL</span></div>
-           <blockquote><span>“</span> 23 Nisan Çocuk Şenliğine kadar 10 adet dizüstü bilgisayar almak ve gençlerimize armağan etmek istiyoruz.</blockquote>
-           <div class="bagisci">Levent Bas</div>
-       </div><!-- end of .row -->
+      <% end %>
 
 
         <div class="row center">
