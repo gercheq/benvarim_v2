@@ -45,6 +45,19 @@ class Page < ActiveRecord::Base
   validates :title, :length => { :minimum => 5, :maximum => 100 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
 
+  validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 100000
+  validates_numericality_of :collected, :greater_than_or_equal_to => 0
+
+  def collect_ratio
+    return 0 if (self.collected == 0 || self.goal == 0)
+    return 100 if (self.collected >= self.goal)
+    return (self.collected / self.goal)
+  end
+
+  def collect_ratio_str
+    "%.2f" % self.collect_ratio
+  end
+
   private
     def sanitize_description_html
       unless self.description_html.nil?

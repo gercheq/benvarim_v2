@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :address, :birthday, :email, :password, :password_confirmation, :remember_me, :photo
 
+
+
   has_many :pages
   has_one :organization
 

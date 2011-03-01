@@ -59,9 +59,6 @@ $(document).ready(function(){
 
 
   $('.comment-bubble').append('<div class="comment-arrow"></div>');
-
-  $('.progress-bar').progressbar({ value: 37 });
-
 });
 
 

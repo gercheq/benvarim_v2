@@ -2,22 +2,19 @@
 <% if user_signed_in? && @page.user == current_user %>
   <%= link_to 'Düzenle', edit_page_path(@page) %>
 <% end %>
-<<<<<<< HEAD
-
-
-
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="fullcontent-left">
-        <img src="/images/gercek.png">
+        <%= image_tag @page.user.photo.url(:thumb) %>
+
         <div class="related-organization">
           <h2>Desteklediği Kuruluş:</h2>
-          <h3><%link_to @page.organization.name, @page.organization%></p></h3>
-          <h6><%= @page.project.name %></h6>
+          <h3><%= link_to @page.organization.name, @page.organization%></h3>
+          <h6><%= link_to @page.project.name, @page.project %></h6>
           <%= image_tag @page.organization.logo.url(:thumb) %>
-          <p class="small"><%=raw @page.organization.description[0..200]%>
-           <%link_to "devamı", @page.organization%></p>
+          <p class="small"><%=@page.organization.description[0..200]%>
+           <%= link_to "devamı", @page.organization%></p>
         </div>
       </div>
 
@@ -39,7 +36,39 @@
           </div>
         </div><!-- .comment-bubble -->
 
-        <div class="progress-bar">HEDEF: <%= @page.goal %>  TL || TOPLANAN: <%= @page.collected %> TL</div>
+        <div class="meter-wrap">
+            <div class="meter-value" style="background-color: #0a0; width: <%=@page.collect_ratio_str%>%;">
+                <div class="meter-text">
+                    HEDEF: <%= @page.goal %>  TL || TOPLANAN: <%= @page.collected %> TL
+                </div>
+            </div>
+        </div>
+        <style type="text/css" media="screen">
+          .meter-wrap{
+              position: relative;
+          }
+
+          .meter-wrap, .meter-value, .meter-text {
+              /* The width and height of your image */
+              width: 700px; height: 30px;
+          }
+
+          .meter-wrap, .meter-value {
+              background-color: #bdbdbd top left no-repeat;
+          }
+
+          .meter-wrap {
+              border: 1px #aaa dashed;
+          }
+
+          .meter-text {
+              position: absolute;
+              top:0; left:0;
+              padding-top: 5px;
+              padding-left: 10px;
+              width: 100%;
+          }
+        </style>
         <%=link_to "Bağış Yap", donate_path(@page), :class => "yellow button super no-margin"%>
 
 

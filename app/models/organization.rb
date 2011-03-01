@@ -25,8 +25,23 @@ class Organization < ActiveRecord::Base
                                    :thumb => "200x200>" }
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :address, :description, :logo
+  attr_accessible :name, :address, :description_html, :logo
 
   has_many :projects
+  has_many :pages
   belongs_to :user
+
+  before_validation :sanitize_description_html
+
+  validates :user_id, :presence => true
+  validates :name, :length => { :minimum => 5, :maximum => 100 }
+  validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+
+
+  private
+    def sanitize_description_html
+      unless self.description_html.nil?
+        self.description = Sanitize.clean(self.description_html).gsub("&#13;", "")
+      end
+    end
 end
