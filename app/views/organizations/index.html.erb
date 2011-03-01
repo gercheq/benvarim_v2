@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Description</th>
+    <th>Ad</th>
+    <th>Adres</th>
+    <th>Tanım</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,11 +15,8 @@
     <td><%= organization.name %></td>
     <td><%= organization.address %></td>
     <td><%= organization.description %></td>
-    <td><%= link_to 'Show', organization %></td>
+    <td><%= link_to 'Göster', organization %></td>
   </tr>
 <% end %>
 </table>
-
 <br />
-
-<%= link_to 'New Organization', new_organization_path %>
