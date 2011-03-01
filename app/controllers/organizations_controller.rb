@@ -20,8 +20,9 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    current_user.organization = Organization.new(params[:organization])
-    if current_user.save
+    @organization = Organization.new(params[:organization])
+    @organization.user = current_user
+    if @organization.save
       redirect_to(current_user.organization, :notice => "Sivil Toplum Kuruluşu Yaratıldı")
     else
       render :new
