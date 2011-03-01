@@ -15,7 +15,7 @@
           <h2>Desteklediği Kuruluş:</h2>
           <h3><%link_to @page.organization.name, @page.organization%></p></h3>
           <h6><%= @page.project.name %></h6>
-          <%= image_tag @organization.logo.url(:thumb) %>
+          <%= image_tag @page.organization.logo.url(:thumb) %>
           <p class="small"><%=raw @page.organization.description[0..200]%>
            <%link_to "devamı", @page.organization%></p>
         </div>

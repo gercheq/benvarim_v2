@@ -34,8 +34,19 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
+    if params[:organization_id]
+      @organization = Organization.find_by_id params[:organization_id]
+    end
+    if params[:project_id]
+      @project = Project.find_by_id params[:project_id]
+      if(@project)
+        @organization = @project.organization
+      end
+    end
+    @page.project = @project
+    @page.organization = @organization
     add_organization_list
-    add_project_list
+    add_project_list @organization
   end
 
   def edit

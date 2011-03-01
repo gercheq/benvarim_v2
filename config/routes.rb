@@ -32,6 +32,8 @@ Benvarim::Application.routes.draw do
   get "/sayfalar" => "pages#index", :as => :pages
   post "/sayfa/kaydet" => "pages#create", :as => :pages
   get "/sayfa/yeni" => "pages#new", :as => :new_page
+  get "/proje/:project_id/yeni_sayfa" => "pages#new", :as => :new_page_for_project
+  get "/kurum/:organization_id/yeni_sayfa" => "pages#new", :as => :new_page_for_organization
   get "/sayfa/:id/duzenle" => "pages#edit", :as => :edit_page
   get "/sayfa/:id" => "pages#show", :as => :page
   put "/sayfa/:id" => "pages#update",  :as => :page

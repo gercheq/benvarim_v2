@@ -1,7 +1,7 @@
 <%= form_for @project, :html => { :multipart => true } do |f| %>
   <% if @project.errors.any? %>
     <div class="msg-error msg">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <h2>Lütfen bu <%= pluralize(@project.errors.count, "error") %> hatayı düzeltiniz</h2>
 
       <ul>
       <% @project.errors.full_messages.each do |msg| %>
@@ -15,7 +15,7 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div class="field"> 
+  <div class="field">
     <%= f.label :logo %>
     <% unless @project.new_record?%>
       <%= image_tag @project.logo.url(:thumb) %>
@@ -23,7 +23,7 @@
     <%= f.file_field :logo %>
   </div>
   <div class="field small-select">
-    <%= f.label :start_time %> 
+    <%= f.label :start_time %>
     <%= f.datetime_select :start_time %>
   </div>
   <div class="field small-select">

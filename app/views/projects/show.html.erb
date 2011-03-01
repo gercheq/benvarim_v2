@@ -22,7 +22,7 @@
 
       <p>
         <b>Tanım:</b>
-        <%= @project.description %>
+        <%=raw @project.description %>
       </p>
 
       <p>
@@ -33,7 +33,7 @@
       <% if user_signed_in? && current_user.organization == @project.organization%>
         <%= link_to 'Düzenle', edit_project_path(@project) %>
       <% end %>
-      <%= link_to 'Geri', projects_path %>
+      <%=link_to "Destekle", new_page_for_project_path(@project), :class => "yellow button right no-margin"%>
 
 
     </div>

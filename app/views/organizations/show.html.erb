@@ -11,6 +11,14 @@
         <a href="#" class="yellow button super no-margin">Bağış Yap</a>
       </div>
       <div class="fullcontent-right">
+        <% if (user_signed_in? && current_user.organization == @organization)%>
+          <div>
+            Yönetim Paneli<br/>
+            <%=link_to "Düzenle", edit_organization_path(@organization)%>
+            <%=link_to "Yeni Proje Ekle", :new_project%>
+          </div>
+        <% end %>
+
         <h1><%= @organization.name %></h1>
         <h6><%= @organization.address %></h6>
         <p class="outlink"><a href="http://www.nesinvakfi.com">RAILS: http://www.nesinvakfi.com</a></p>
@@ -19,23 +27,21 @@
     </div>
   </div>
 </div><!-- end of .widget -->
-
 <div id="main-content">
 
   <div class="widget widget-light widget-aktif-bagis ">
     <div class="w-inner clearfix">
       <div class="w-title">Aktif Bağış Kampanyaları</div>
       <div class="w-content">
-
-
+      <%@organization.projects.each do |project|%>
         <div class="row">
-            <h2><a href="#">RAILS: 23 Nisan Çocuk Şenliği</a></h2>
-            <a href="#" class="yellow button right no-margin">Destekle</a>
-            <p>RAILS: 2002'den itibaren 23 Nisan şenlikleri düzenlemeye başladık. Gerçek çocuk şenlikleri! Okay Temiz eşliğinde davul dersleri, dans, satranç, resim, surat boyama... Bayram gibi bayram yani! <a href="#">Detaylı bilgi</a></p>
+            <h2><%=link_to project.name, project%></h2>
+            <%=link_to "Destekle", new_page_for_project_path(project), :class => "yellow button right no-margin"%>
+            <p>
+              <%=project.description[0..200]%><%=link_to "Detaylı bilgi", project%>
+            </p>
         </div><!-- end of .row -->
-
-
-
+      <% end %>
       </div>
     </div>
   </div>
