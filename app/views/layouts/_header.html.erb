@@ -65,7 +65,7 @@
 
         <div id="utility-nav" class="rc-bottom">
             <% if user_signed_in? %>
-              Merhaba, <%= link_to current_user.name, user_path(current_user.id) %> | <%= link_to "Çıkış", destroy_user_session_path %>
+              Merhaba, <%= link_to (current_user.name ? current_user.name : current_user.email), user_path(current_user.id) %> | <%= link_to "Çıkış", destroy_user_session_path %>
             <% else %>
             	<%= link_to "Giriş", new_user_session_path %> |	<%= link_to "Kayıt", new_user_registration_path %>
             <% end %>

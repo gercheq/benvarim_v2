@@ -34,6 +34,8 @@ class Page < ActiveRecord::Base
   belongs_to :organization
   belongs_to :user
   belongs_to :project
+  has_many :tmp_payments
+  has_many :payments
 
   before_validation :sanitize_description_html
 

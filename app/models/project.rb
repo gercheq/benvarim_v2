@@ -19,6 +19,8 @@
 
 class Project < ActiveRecord::Base
   belongs_to :organization
+  has_many :tmp_payments
+  has_many :payments
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/:filename',
                       :storage => :s3,
