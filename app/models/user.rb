@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101207064624
+# Schema version: 20110303082136
 #
 # Table name: users
 #
@@ -16,6 +16,10 @@
 #  authentication_token :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  photo_file_name      :string(255)
+#  photo_content_type   :string(255)
+#  photo_file_size      :integer
+#  photo_updated_at     :datetime
 #
 
 class User < ActiveRecord::Base

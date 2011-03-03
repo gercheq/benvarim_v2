@@ -19,6 +19,7 @@ class PaymentsController < ApplicationController
     end
     @tmp_payment = @page.tmp_payments.build params[:tmp_payment]
     @tmp_payment.project_id = @page.project_id
+    @tmp_payment.organization_id = @page.organization_id
     if @tmp_payment.save
       #goto paypal!
       redirect_to paypal_url(@tmp_payment, ENV['PAYPAL_RETURN_URL'])
