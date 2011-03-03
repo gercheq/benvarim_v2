@@ -849,12 +849,12 @@ p{
 
 #main-content{
   width:630px;
-  float:left;
+  float: right;
 }
 
 #sidebar{
-  width:300px;
-  float:right;
+  width: 300px;
+  float: left;
 }
 
 /* Twitter Widget Overwrites */
