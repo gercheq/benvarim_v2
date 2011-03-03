@@ -1,11 +1,13 @@
-<p id="notice"><%= notice %></p>
-<% if user_signed_in? && @page.user == current_user %>
-  <%= link_to 'Düzenle', edit_page_path(@page) %>
-<% end %>
+<%=render :partial => 'layouts/errors'%>
+
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="fullcontent-left">
+        <% if user_signed_in? && @page.user == current_user %>
+          <%= link_to 'Düzenle', edit_page_path(@page) %>
+        <% end %>
+
         <%= image_tag @page.user.photo.url(:thumb) %>
 
         <div class="related-organization">
@@ -25,58 +27,34 @@
           <h6><%= @page.user.name%></h6>
 
           <div class="share-options">
-
             <ul>
-              <li><fb:like layout="button_count" show_faces="false" width="150"></fb:like></li>
+              <!-- <li><fb:like layout="button_count" show_faces="false" width="150"></fb:like></li> -->
               <li><a name="fb_share" type="button_count" href="http://www.facebook.com/sharer.php">Facebook'ta Paylaş</a></li>
               <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" >Tweet</a></li>
-             	<li><a style="background: url(http://friendfeed.com/static/images/icons/internal.png) 0px 0px no-repeat; padding-left: 20px; margin-left: 30px;" href="http://friendfeed.com/?url=<%= request.url %>&amp;title=<%= @page.title %>" target="_blank">FriendFeed'de Paylaş</a></li>
+              <!-- <li><a style="background: url(http://friendfeed.com/static/images/icons/internal.png) 0px 0px no-repeat; padding-left: 20px; margin-left: 30px;" href="http://friendfeed.com/?url=<%= request.url %>&amp;title=<%= @page.title %>" target="_blank">FriendFeed'de Paylaş</a></li> -->
             </ul>
 
           </div>
         </div><!-- .comment-bubble -->
 
-        <div class="meter-wrap">
-            <div class="meter-value" style="background-color: #0a0; width: <%=@page.collect_ratio_str%>%;">
-                <div class="meter-text">
-                    HEDEF: <%= @page.goal %>  TL || TOPLANAN: <%= @page.collected %> TL
-                </div>
-            </div>
+        <div class="description">
+          <%= @page.description %>
         </div>
-        <style type="text/css" media="screen">
-          .meter-wrap{
-              position: relative;
-          }
 
-          .meter-wrap, .meter-value, .meter-text {
-              /* The width and height of your image */
-              width: 700px; height: 30px;
-          }
+        <div class="progress-bar">
+          <div class="pb-value" rel="width: <%=@page.collect_ratio_str%>%;">
+            <div class="pb-reflection"></div>
+            <div class="pb-hedef">HEDEF: <%= @page.goal %>  TL</div>
+            <div class="pb-toplanan">TOPLANAN: <%= @page.collected %> TL</div>
+          </div>
+        </div>
 
-          .meter-wrap, .meter-value {
-              background-color: #bdbdbd top left no-repeat;
-          }
-
-          .meter-wrap {
-              border: 1px #aaa dashed;
-          }
-
-          .meter-text {
-              position: absolute;
-              top:0; left:0;
-              padding-top: 5px;
-              padding-left: 10px;
-              width: 100%;
-          }
-        </style>
         <%=link_to "Bağış Yap", donate_popup_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
-
-
-        <p><%= @page.description %></p>
 
         <div class="photo-gallery">
           <%= image_tag @page.logo.url(:thumb) %>
         </div>
+
       </div>
     </div>
   </div>
