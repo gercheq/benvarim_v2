@@ -9,17 +9,6 @@
         <b>Proje:</b>
         <%= @project.name %>
       </p>
-
-      <p>
-        <b>Başlangıç:</b>
-        <%=human_readable_datetime @project.start_time %>
-      </p>
-
-      <p>
-        <b>Bitiş:</b>
-        <%=human_readable_datetime @project.end_time %>
-      </p>
-
       <p>
         <b>Tanım:</b>
         <%=raw @project.description %>
