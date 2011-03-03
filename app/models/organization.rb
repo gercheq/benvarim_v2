@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 # Schema version: 20110219052812
 #
@@ -33,9 +34,20 @@ class Organization < ActiveRecord::Base
 
   before_validation :sanitize_description_html
 
+  after_create :after_create_hook
+
   validates :user_id, :presence => true
   validates :name, :length => { :minimum => 5, :maximum => 100 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+
+  def after_create_hook
+    #create default project
+    p = self.projects.build({
+      :name => "Genel Bağış",
+      :description => self.description
+    })
+    p.save
+  end
 
 
   private

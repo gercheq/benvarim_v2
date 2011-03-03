@@ -27,4 +27,8 @@ class Project < ActiveRecord::Base
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",
                                    :thumb => "200x200>" }
+
+   validates :organization_id, :presence => true
+   validates :name, :length => { :minimum => 5, :maximum => 100 }
+   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
 end
