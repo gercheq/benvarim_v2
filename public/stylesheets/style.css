@@ -849,12 +849,12 @@ p{
 
 #main-content{
   width:630px;
-  float:left;
+  float: right;
 }
 
 #sidebar{
-  width:300px;
-  float:right;
+  width: 300px;
+  float: left;
 }
 
 /* Twitter Widget Overwrites */
@@ -1006,6 +1006,21 @@ body {
 **
 */
 
+
+  /*
+  ** Layouts
+  */
+  .one-column{
+    width: 630px;
+    margin: 40px auto;
+  }
+
+  .one-column .actions{
+    margin-left: 120px;
+  }
+
+
+
   /*
   ** Form Elements
   */
@@ -1074,8 +1089,8 @@ body {
 
 
   .actions{
-    clear:both;
-    margin-bottom:20px;}
+    clear: both;
+    margin-bottom: 10px;}
 
 
 
@@ -1243,7 +1258,8 @@ body {
       border: 1px solid #FF9900;
       margin-bottom: 20px;
       margin-top: 0px;
-      padding: 10px;
+      padding: 15px;
+      padding-left: 50px;
       /* Rounded  Corners */
       -webkit-border-radius: 5px;
       -khtml-border-radius: 5px;
@@ -1255,31 +1271,31 @@ body {
     .widget-form .msg{ margin-top:-20px;}
 
     .msg-error {
-    background-color:#FFFF99;
-    background-image:url(images/icon_error.png);
-    border:1px solid #FF9900;
+      background-color:#FFFF99;
+      background-image:url(images/icon_error.png);
+      border:1px solid #FF9900;
     }
 
-
-    .msg-info {
-    background-color:#FFFFFF;
-    background-image:url(images/icon_info.gif);
+    .msg-notice {
+      background-color:#FFFFFF;
+      background-image:url(images/icon_info.gif);
+      border: 1px solid #0A3663;
     }
     .msg-alert {
-    background-color:#FFFF99;
-    background-image:url(images/icon_alert.png);
-    border: 1px solid #FF9900;
+      background-color:#FFFF99;
+      background-image:url(images/icon_alert.png);
+      border: 1px solid #FF9900;
     }
 
     .msg-success {
-    background-color:#CCFFCC;
-    background-image:url(images/icon_success.png);
-    border:1px solid #006600;
+      background-color:#CCFFCC;
+      background-image:url(images/icon_success.png);
+      border:1px solid #006600;
     }
 
     .error, .notice, .success {
-    margin-bottom:10px;
-    padding:5px 10px;
+      margin-bottom:10px;
+      padding:5px 10px;
     }
 
 
@@ -1293,7 +1309,20 @@ body {
       position: relative;
       font-size:24px;
       margin-bottom: 20px;
-      background: #EEE; }
+      background: #EEE;
+    }
+
+    .comment-bubble h1{
+      line-height: 1.3;
+      font-size: 24px;
+    }
+
+    .comment-bubble h6{
+      font-weight: normal;
+      margin-bottom: 0;
+      font-style: italic;
+      font-size: 18px;
+    }
 
     .comment-arrow{
       position:absolute;
@@ -1303,6 +1332,58 @@ body {
       width:21px;
       height:25px;
     }
+
+
+    /*
+    ** Progress Bar
+    */
+    .progress-bar{
+        background: url('images/profile_bar_background.png') 50px 0 repeat-x;
+        height: 30px;
+        width: 677px;
+        border: 1px solid #DDD;
+        padding: 3px;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .pb-value{
+        background: url('images/profile_bar.png') 0 0 repeat-y;
+        height: 30px;
+        width: 100%;
+    }
+
+    .pb-reflection{
+        background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0, rgba(235,235,235,.3)),
+            color-stop(0.56, rgba(255,255,255, 0)),
+            color-stop(1, rgba(245,245,245,.3))
+        );
+        background-image: -moz-linear-gradient(
+            center bottom,
+            rgba(235,235,235, .3) 0%,
+            rgba(255,255,255, 0) 56%,
+            rgba(245,245,245, .3) 100%
+        );
+        width: 100%;
+        height: 100%;
+    }
+
+    .pb-toplanan,
+    .pb-hedef {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      line-height: 38px;
+    }
+
+    .pb-hedef {
+      left: 10px;
+    }
+
 
 
     /*
@@ -1424,10 +1505,32 @@ body {
 
 
 
-.share-options{
+.share-options {
   position:absolute;
   right:5px;
   bottom:10px;
+}
+
+.share-options ul{
+  list-style: none;
+}
+
+.share-options li {
+  float: left;
+  margin-left: 10px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.description{
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+
+#page_goal {
+  width: 100px;
 }
 
 

@@ -1,36 +1,42 @@
 <%= form_for @organization , :html => { :multipart => true } do |f| %>
-  <% if @organization.errors.any? %>
-    <div id="error_explanation">
-      <h2>Kurum kaydedilemedi!<br/>
-          Lütfen aşagıdaki hataları düzeltiniz!</h2>
-      <ul>
-      <% @organization.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, :class=> "text-field" %>
-  </div>
-  <div class="field">
-    <%= f.label :logo %><br />
-    <% unless @organization.new_record?%>
-      <%= image_tag @organization.logo.url(:thumb) %>
-    <% end %>
-    <%= f.file_field :logo %>
-  </div>
-  <div class="field">
-    <%= f.label :address %>
-    <%= f.text_field :address, :class=> "text-field" %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description_html, :class => "mceEditor text-area" %>
-  </div>
-  <div class="actions">
-    <%= f.submit :kaydet, :class=>"button yellow button-primary" %>
-  </div>
+        <% if @organization.errors.any? %>
+          <div id="error_explanation">
+            <h2>Kurum kaydedilemedi!<br/>
+                Lütfen aşagıdaki hataları düzeltiniz!</h2>
+            <ul>
+            <% @organization.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, :class=> "text-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :logo %><br />
+          <% unless @organization.new_record?%>
+            <%= image_tag @organization.logo.url(:thumb) %>
+          <% end %>
+          <%= f.file_field :logo %>
+        </div>
+        <div class="field">
+          <%= f.label :address %>
+          <%= f.text_field :address, :class=> "text-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_area :description_html, :class => "mceEditor text-area" %>
+        </div>
+        <div class="actions">
+          <%= f.submit :kaydet, :class=>"button yellow super button-primary" %>
+        </div>
+
 <% end %>
+
+
+
+

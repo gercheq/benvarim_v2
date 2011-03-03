@@ -1,6 +1,6 @@
 <%= form_for @page, :html => { :multipart => true } do |f| %>
   <% if @page.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="msg msg-error">
       <h2>Lütfen bu <%=@page.errors.count %> hatayı düzeltiniz </h2>
 
       <ul>
