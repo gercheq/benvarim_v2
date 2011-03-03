@@ -1006,6 +1006,21 @@ body {
 **
 */
 
+
+  /*
+  ** Layouts
+  */
+  .one-column{
+    width: 630px;
+    margin: 40px auto;
+  }
+
+  .one-column .actions{
+    margin-left: 120px;
+  }
+
+
+
   /*
   ** Form Elements
   */
@@ -1074,8 +1089,8 @@ body {
 
 
   .actions{
-    clear:both;
-    margin-bottom:20px;}
+    clear: both;
+    margin-bottom: 10px;}
 
 
 
@@ -1255,31 +1270,30 @@ body {
     .widget-form .msg{ margin-top:-20px;}
 
     .msg-error {
-    background-color:#FFFF99;
-    background-image:url(images/icon_error.png);
-    border:1px solid #FF9900;
+      background-color:#FFFF99;
+      background-image:url(images/icon_error.png);
+      border:1px solid #FF9900;
     }
-
 
     .msg-info {
-    background-color:#FFFFFF;
-    background-image:url(images/icon_info.gif);
+      background-color:#FFFFFF;
+      background-image:url(images/icon_info.gif);
     }
     .msg-alert {
-    background-color:#FFFF99;
-    background-image:url(images/icon_alert.png);
-    border: 1px solid #FF9900;
+      background-color:#FFFF99;
+      background-image:url(images/icon_alert.png);
+      border: 1px solid #FF9900;
     }
 
     .msg-success {
-    background-color:#CCFFCC;
-    background-image:url(images/icon_success.png);
-    border:1px solid #006600;
+      background-color:#CCFFCC;
+      background-image:url(images/icon_success.png);
+      border:1px solid #006600;
     }
 
     .error, .notice, .success {
-    margin-bottom:10px;
-    padding:5px 10px;
+      margin-bottom:10px;
+      padding:5px 10px;
     }
 
 
@@ -1428,6 +1442,10 @@ body {
   position:absolute;
   right:5px;
   bottom:10px;
+}
+
+#page_goal {
+  width: 100px;
 }
 
 

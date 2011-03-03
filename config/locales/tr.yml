@@ -157,7 +157,7 @@ tr:
         password_confirmation: "şifre (tekrar)"
         sign_up: "giriş"
         address: "adres"
-        name: "isim"
+        name: "Kurum Adı"
         description: "Kısa Tanıtım"
       user:
         email: "e-posta"
@@ -176,7 +176,7 @@ tr:
         description: "içerik"
         start_time: "başlangıç tarihi"
         end_time: "bitiş tarihi"
-        goal: "hedef(TL)"
+        goal: "Hedef"
         collected: "toplanan miktar"
       contact_form:
         name : 'Ad, Soyad'
