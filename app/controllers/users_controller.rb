@@ -9,11 +9,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    if @user != current_user
+      redirect_to :action => :show
+    end
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    if @user != current_user
+      redirect_to :action => :show
+    end
     if @user.update_attributes(params[:user])
       redirect_to(@user, :notice => 'Bigiler başarıyla kaydedildi.')
     else
