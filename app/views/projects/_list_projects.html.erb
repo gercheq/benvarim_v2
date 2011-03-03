@@ -12,9 +12,6 @@
             <div class="row-photo clearfix"><%= image_tag project.logo.url(:thumb) %></div>
             <div class="row-details">
               <h3><%= link_to project.name, project %></h3>
-
-              <p><%=human_readable_datetime project.start_time %></p>
-              <p><%=human_readable_datetime project.end_time %></p>
               <p><%= project.description %></p>
               <p><%= project.organization.name %></p>
 
