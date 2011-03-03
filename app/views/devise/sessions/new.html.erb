@@ -1,9 +1,11 @@
 <div class="widget widget-light widget-form" id="w-giris">
   <div class="w-inner">
     <div class="w-title">Kullanıcı Girişi</div>
- 
+
+    <%=render :partial => 'layouts/errors'%>
+
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      
+
       <div class="field">
         <%= f.label :email %>
         <%= f.text_field :email %>
@@ -13,10 +15,10 @@
         <%= f.label :password %>
         <%= f.password_field :password %>
       </div>
-      
+
       <% if devise_mapping.rememberable? -%>
         <div class="field field-checkbox clearfix">
-          <%= f.check_box :remember_me %> 
+          <%= f.check_box :remember_me %>
           <%= f.label :remember_me %>
         </div>
       <% end -%>
@@ -24,12 +26,12 @@
        <div class="actions">
         <%= f.submit :"Giriş", :class=>"button super yellow button-primary" %>
       </div>
-      
-      
-      
+
+
+
     <% end %>
 
     <%= render :partial => "devise/shared/links" %>
-    
+
   </div>
 </div>
