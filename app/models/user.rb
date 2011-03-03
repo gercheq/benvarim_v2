@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   has_many :pages
   has_one :organization
 
+  validates :name, :length => { :minimum => 5, :maximum => 100 }
+
   def age
     if !birthday
       return "?"
