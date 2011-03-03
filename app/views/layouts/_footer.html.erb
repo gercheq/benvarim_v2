@@ -7,12 +7,12 @@
 <div class="container">
 <div id="footer-logo">benvarim.com</div>
 <div id="footer-nav">
-  &copy;2010  | 
-  <%=link_to "Gizlilik Politikası", :gizlilik_politikasi %> |  
-  <%=link_to "Kullanım Şartları", :kullanim_sartlari %> |  
-  <%=link_to "Güvenli Ödeme", :guvenli_odeme %> |  
-  <%=link_to "Hakkımızda", :hakkimizda %> |  
-  <%=link_to "İletişim", :iletisim %> 
+  &copy;2010  |
+  <%=link_to "Gizlilik Politikası", :gizlilik_politikasi %> |
+  <%=link_to "Kullanım Şartları", :kullanim_sartlari %> |
+  <%=link_to "Güvenli Ödeme", :guvenli_odeme %> |
+  <%=link_to "Hakkımızda", :hakkimizda %> |
+  <%=link_to "İletişim", :iletisim %>
 </div>
 </div>
 </div>
@@ -35,6 +35,9 @@
 
 <!-- scripts concatenated and minified via ant build script-->
 <%= javascript_include_tag "jquery-ui-1.8.8.min" %>
+
+<%= javascript_include_tag "facebox" %>
+
 <%= javascript_include_tag "script" %>
 <!-- end concatenated and minified scripts-->
 
@@ -42,9 +45,9 @@
 <!--[if lt IE 7 ]>
 <%= javascript_include_tag "libs/dd_belatedpng" %>
 <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
-<![endif]--> 
+<![endif]-->
 
-<!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet 
+<!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
 change the UA-XXXXX-X to be your site's ID -->
 <script>
 var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];

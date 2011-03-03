@@ -69,7 +69,7 @@
               width: 100%;
           }
         </style>
-        <%=link_to "Bağış Yap", donate_path(@page), :class => "yellow button super no-margin"%>
+        <%=link_to "Bağış Yap", donate_popup_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
 
 
         <p><%= @page.description %></p>
@@ -77,15 +77,6 @@
         <div class="photo-gallery">
           <%= image_tag @page.logo.url(:thumb) %>
         </div>
-
-        <div>
-            <b>Başlangıç:</b>
-            <%=human_readable_datetime @page.start_time %>
-
-            <b>Bitiş:</b>
-            <%=human_readable_datetime @page.end_time %>
-          </div>
-
       </div>
     </div>
   </div>

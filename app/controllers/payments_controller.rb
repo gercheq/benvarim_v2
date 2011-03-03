@@ -6,6 +6,9 @@ class PaymentsController < ApplicationController
       @tmp_payment = @page.tmp_payments.build
     rescue
     end
+    if params[:popup]
+      render :layout => false
+    end
   end
 
   def create

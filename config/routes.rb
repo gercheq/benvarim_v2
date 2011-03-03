@@ -41,6 +41,7 @@ Benvarim::Application.routes.draw do
 
   get '/bagis/kontrol' => "payments#paypal_ipn", :as => :paypal_ipn
   get '/sayfa/:id/bagis' => "payments#new", :as => :donate
+  get '/sayfa/:id/bagis?popup=1' => "payments#new", :as => :donate_popup
   post '/sayfa/:id/bagis' => "payments#create", :as => :donate
   get '/bagis/tamamla' => "payments#finalize", :as => :finalize_donation
 

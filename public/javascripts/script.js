@@ -60,12 +60,9 @@ $(document).ready(function(){
 
   $('.comment-bubble').append('<div class="comment-arrow"></div>');
 });
-
-
-
-
-
-
-
-
-
+setTimeout(function(){
+  $.facebox.settings.closeImage = '/stylesheets/images/closelabel.png';
+  $.facebox.settings.loadingImage = '/stylesheets/images/loading.gif';
+  // 
+  $('a[rel*=facebox]').facebox();
+}, 100);
