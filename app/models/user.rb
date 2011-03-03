@@ -40,6 +40,15 @@ class User < ActiveRecord::Base
 
   validates :name, :length => { :minimum => 5, :maximum => 100 }
 
+  before_save do
+    self.email.downcase! if self.email
+  end
+
+  def self.find_for_authentication(conditions)
+    conditions[:email].downcase!
+    super(conditions)
+  end
+
   def age
     if !birthday
       return "?"
