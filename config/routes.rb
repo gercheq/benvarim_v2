@@ -61,6 +61,7 @@ Benvarim::Application.routes.draw do
   get "/gonullu/:id" => "users#show", :as => :user
   get "/gonullu/:id/duzenle" => "users#edit", :as => :edit_user
   put '/gonullu/:id' => 'users#update', :as => :user
+  get '/ben' => 'users#me', :as => :user_root
 
 
   get '/projeler' => "projects#index", :as => :projects

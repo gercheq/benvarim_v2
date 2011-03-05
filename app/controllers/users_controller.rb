@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   def index
   end
 
+  def me
+    redirect_to current_user
+  end
   def show
     @user = User.find(params[:id])
   end
