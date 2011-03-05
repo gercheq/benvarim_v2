@@ -55,7 +55,7 @@ class Page < ActiveRecord::Base
   end
 
   def collect_ratio_str
-    "%.2f" % self.collect_ratio
+    "%.0f" % self.collect_ratio
   end
 
   def collected_str
