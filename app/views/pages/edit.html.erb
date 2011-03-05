@@ -1,6 +1,17 @@
-<h1>Sayfa Düzenle</h1>
+<%=render :partial => 'layouts/errors'%>
 
-<%= render 'form' %>
+<div class="one-column">
+  <div class="widget widget-light">
+    <div class="w-inner">
+      <div class="w-title">Bağış Sayfasını Düzenle</div>
+
+      <%= render 'form' %>
+
+
+    </div>
+  </div>
+</div><!-- end of .one-column -->
+
 
 <%= link_to 'Görüntüle', @page %> |
 <%= link_to 'Geri', pages_path %>
