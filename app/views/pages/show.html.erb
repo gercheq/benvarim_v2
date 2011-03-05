@@ -44,7 +44,11 @@
         </div><!-- .comment-bubble -->
 
         <div class="description">
-          <span style="float:right; margin: 0 0 10px 10px;"<%= image_tag @page.logo.url(:thumb) %></span> <%= @page.description %>
+          <span style="float:right; margin: 0 0 10px 10px;">
+            <% if @page.logo.file? %>
+              <%= image_tag @page.logo.url(:thumb) %>
+            <% end %>
+          </span> <%= @page.description %>
         </div>
 
         <div class="progress-bar-container clearfix">
@@ -60,12 +64,7 @@
           <div class="pb-action">
             <%=link_to "Bağış Yap", donate_popup_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
           </div>
-
         </div>
-
-        <div class="photo-gallery">
-        </div>
-
       </div>
     </div>
   </div>
