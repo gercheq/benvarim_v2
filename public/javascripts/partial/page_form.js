@@ -1,6 +1,6 @@
 $('#page_organization_id').change(
   function(event) {
-    var combo = $(event.target)
+    var combo = $(event.target);
     var org_id = combo.val();
     //load the projects
     $.getJSON('/kurum/' + org_id + "/projeler", function(resp) {

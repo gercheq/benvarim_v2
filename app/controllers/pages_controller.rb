@@ -35,6 +35,13 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
+
+    if params[:org_id]
+      @organization = Organization.find_by_id params[:org_id]
+      unless @organization.nil?
+        return redirect_to new_page_for_organization_path(@organization)
+      end
+    end
     if params[:organization_id]
       @organization = Organization.find_by_id params[:organization_id]
     end
