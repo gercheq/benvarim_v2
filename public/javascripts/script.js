@@ -59,10 +59,29 @@ $(document).ready(function(){
 
 
   $('.comment-bubble').append('<div class="comment-arrow"></div>');
+
+
+  var availableOrganizations = [
+		"Nesin Vakfı",
+		"Heybeliada Gönüllüleri Derneği",
+		"Kızılay - Adalar Şubesi",
+		"Heybeliada Ilm-i Musiki Derneği",
+		"Adalar Vakfı",
+		"Kültür Konseyi Derneği",
+		"İlke Eğitim ve Sağlık Vakfı",
+		"Pertevniyal Eğitim Vakfı",
+		"Çamlıca Kültür ve Yardım Vakfı"
+	];
+	$( "#featured-input" ).autocomplete({
+		source: availableOrganizations
+	});
+
 });
+
+
 setTimeout(function(){
   $.facebox.settings.closeImage = '/stylesheets/images/closelabel.png';
   $.facebox.settings.loadingImage = '/stylesheets/images/loading.gif';
-  // 
+  //
   $('a[rel*=facebox]').facebox();
 }, 100);
