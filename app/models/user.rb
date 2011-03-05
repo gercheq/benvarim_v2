@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   # , :confirmable, :lockable and :timeoutable, :trackable
   devise :database_authenticatable, :registerable, :token_authenticatable,
          :recoverable, :rememberable, :validatable
-  has_attached_file :photo, :default_url =>'/images/adam.png',
+  has_attached_file :photo, :default_url =>'/stylesheets/images/userpic_default.jpg',
                      :path => '/:class/:attachment/:id/:style/:filename',
                      :storage => :s3,
                      :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
