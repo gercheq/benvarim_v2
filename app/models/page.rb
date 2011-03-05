@@ -42,7 +42,7 @@ class Page < ActiveRecord::Base
   validates :organization_id, :presence => true
   validates :project_id, :presence => true
   validates :user_id, :presence => true
-  validates :title, :length => { :minimum => 5, :maximum => 100 }
+  validates :title, :length => { :minimum => 5, :maximum => 140 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
 
   validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 100000
