@@ -44,6 +44,10 @@
       </div>
     </div>
   </div>
+  <%=render :partial => "projects/list_projects",
+    :locals => {
+      :show_edit_link => false
+    }%>
 
   <div class="widget widget-light widget-aktif-bagis widget-liste">
     <div class="w-inner clearfix">
