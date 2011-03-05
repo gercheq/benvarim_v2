@@ -30,6 +30,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    @payments = @page.payments.order("id desc")
   end
 
   def new

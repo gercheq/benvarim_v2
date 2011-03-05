@@ -27,6 +27,10 @@ class Payment < ActiveRecord::Base
   validates_presence_of :project_id
   validates :name, :presence => true, :length => {:minimum => 3}
 
+  def amount_str
+    "%.2f" % self.amount
+  end
+
 
   def validate_email
     self.errors.add "email", "geçersiz" unless self.email =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
