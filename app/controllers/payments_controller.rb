@@ -132,7 +132,7 @@ class PaymentsController < ApplicationController
       :return => return_url,
       :charset => "utf-8",
       :amount => tmp_payment.amount,
-      :item_name => tmp_payment.page.title + " - bağış",
+      :item_name => tmp_payment.organization.name + " - bağış",
       :item_number => tmp_payment.id,
       :quantity => 1
       #:invoice => id
