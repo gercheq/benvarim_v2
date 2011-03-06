@@ -53,8 +53,8 @@ Benvarim::Application.routes.draw do
     post '/gonullu' => 'devise/registrations#create', :as => :user_registration
     put '/gonullu' => 'devise/registrations#update', :as => :user_registration
 
-    get '/gonullu/kayit' =>  'registrations#new', :as => :new_user_registration
-    get '/gonullu/duzenle' => 'registrations#edit', :as => :edit_user_registration
+    get '/gonullu/kayit' =>  'devise/registrations#new', :as => :new_user_registration
+    get '/gonullu/duzenle' => 'devise/registrations#edit', :as => :edit_user_registration
   end
 
 
