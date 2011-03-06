@@ -1,35 +1,49 @@
-<% if @tmp_payment.errors.any? %>
-  <div id="error_explanation">
-    <h2>Lütfen bu <%=@tmp_payment.errors.count%> hatayı düzeltiniz</h2>
+<div class="one-column">
+  <div class="widget widget-light" id="w-yeni-kayit">
+    <div class="w-inner">
+      <div class="w-title">Bağış Yap</div>
 
-    <ul>
-    <% @tmp_payment.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+
+      <% if @tmp_payment.errors.any? %>
+        <div id="error_explanation">
+          <h2>Lütfen bu <%=@tmp_payment.errors.count%> hatayı düzeltiniz</h2>
+
+          <ul>
+          <% @tmp_payment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_tag donate_path(@page)%>
+
+      <div class="field">
+      <%=label_tag "Ad Soyad:"%>
+      <%=text_field_tag "tmp_payment[name]", @tmp_payment.name, :class=> "text-field"%>
+      </div>
+
+      <div class="field">
+      <%=label_tag "E-posta:"%>
+      <%=text_field_tag "tmp_payment[email]", @tmp_payment.email, :class=> "text-field"%>
+      </div>
+
+      <div class="field">
+      <%=label_tag "Bağış miktarı:"%>
+      <%=text_field_tag "tmp_payment[amount]", @tmp_payment.amount, :class=> "text-field"%>TL
+      </div>
+
+      <div class="field">
+      <%=label_tag "Notunuz:"%>
+      <%=text_area_tag "tmp_payment[note]", @tmp_payment.note, :class=> "text-field"%>
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Gönder" name="commit" class="yellow button large">
+      </div>
+
+      <small>Gönder tuşuna bastıktan sonra ödeme bilgilerinizi girmek için %100 güvenli ödeme sistemi Paypal'a yönlendirileceksiniz. Ödeme yaptıktan sonra makbuzunuz e-posta adresinize gönderilecek ve benvarim.com'a geri geleceksiniz.</small>
+
+    </div>
   </div>
-<% end %>
-
-<%= form_tag donate_path(@page)%>
-
-<div class="field">
-<%=label_tag "Bağış miktarı:"%>
-<%=text_field_tag "tmp_payment[amount]", @tmp_payment.amount, :class=> "text-field"%>TL
 </div>
-
-<div class="field">
-<%=label_tag "E-posta adresiniz:"%>
-<%=text_field_tag "tmp_payment[email]", @tmp_payment.email, :class=> "text-field"%>
-</div>
-
-<div class="field">
-<%=label_tag "Görüntülenmesini istediğiniz isminiz:"%>
-<%=text_field_tag "tmp_payment[name]", @tmp_payment.name, :class=> "text-field"%>
-</div>
-<div class="field">
-<%=label_tag "Notunuz:"%>
-<%=text_area_tag "tmp_payment[note]", @tmp_payment.note, :class=> "text-field"%>
-</div>
-
-<%=submit_tag "Ödeme yap!"%> <small>Paypal'a yönlendirileceksiniz</small>
-

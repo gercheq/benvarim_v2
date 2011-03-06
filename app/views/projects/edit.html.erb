@@ -1,4 +1,14 @@
-<%= render 'form' %>
+<div class="one-column">
+  <div class="widget widget-light">
+    <div class="w-inner">
+      <div class="w-title"><%= link_to @project.name, @project %> Projesini Düzenle</div>
 
-<%= link_to @project.name, @project %> |
-<%= link_to 'Projeler', projects_path %>
+        <%= render 'form' %>
+
+        <%= link_to 'Projeler', projects_path %>
+
+    </div>
+  </div>
+</div><!-- end of .one-column -->
+
+

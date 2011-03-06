@@ -43,12 +43,11 @@
           </div>
         </div><!-- .comment-bubble -->
 
-        <div class="description">
-          <span style="float:right; margin: 0 0 10px 10px;">
+        <div class="description clearfix">
             <% if @page.logo.file? %>
               <%= image_tag @page.logo.url(:thumb) %>
             <% end %>
-          </span> <%= @page.description %>
+            <%=raw @page.description_html %>
         </div>
 
         <div class="progress-bar-container clearfix">
@@ -56,41 +55,73 @@
           <div class="progress-bar rc clearfix">
             <div class="pb-value rc" style="width: <%=@page.collect_ratio_str%>%;">
               <div class="pb-reflection rc"></div>
-              <div class="pb-hedef">HEDEF: <%= @page.goal %>  TL</div>
-              <div class="pb-toplanan">TOPLANAN: <%= @page.collected %> TL</div>
+              <div class="pb-hedef">HEDEF: <b><%= @page.goal %> TL</b></div>
+              <div class="pb-toplanan">
+              <% if @page.collected < 1 %>
+                İlk bağış yapan sen ol!
+              <% else %>
+                Toplanan: <b><%= @page.collected %> TL</b>
+              <% end%>
+
+              </div>
             </div>
           </div>
 
           <div class="pb-action">
             <%=link_to "Bağış Yap", donate_popup_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
           </div>
-        </div>
+        </div><!-- end of .progress-bar-container -->
+
+        <div class="tabs-container">
+          <div id="tabs">
+          	<ul>
+          		<li><a href="#destekleyenler">Destekleyenler</a></li>
+          		<li><a href="#proje-detaylari">Proje Detayları</a></li>
+          	</ul>
+          	<div id="destekleyenler" class="widget-liste">
+
+          	  <% if @payments.length > 0 %>
+
+                <%@payments.each do |payment|%>
+                  <div class="row clearfix">
+                    <div class="bagis-miktari"><%=payment.amount_str%><span>TL</span></div>
+                    <blockquote><span>“</span> <%=payment.note%></blockquote>
+                    <div class="bagisci"><%=payment.name%></div>
+                  </div><!-- end of .row -->
+                <% end %>
+
+                <div class="row center">
+                  <%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>
+                </div><!-- end of .row -->
+              <% else %>
+                <p><%= @page.user.name%> ilk destekçisini bekliyor. İlk bağış yapan sen ol!</p>
+                <%=link_to "İlk bağış yapan ben olmak istiyorum.", donate_popup_path(@page), :class => "yellow button no-margin", :rel => "facebox"%>
+              <% end %>
+
+
+            </div> <!-- end of #destekleyenler -->
+
+          	<div id="proje-detaylari">
+              <div class="pd-photo clearfix"><%= image_tag @page.project.logo.url(:thumb) %></div>
+              <div class="pd-details">
+            	  <h3><%= link_to @page.project.name, @page.project %></h3>
+                <p><%= @page.project.description %></p>
+                <p><%= link_to 'Daha fazla bilgi', @page.project %></p>
+                <% if (defined? show_edit_link) && show_edit_link %>
+                  <p><%= link_to 'Düzenle', edit_project_path(@page.project) %></p>
+                <% end %>
+              </div>
+            </div> <!-- end of #proje-detaylari -->
+
+          </div>
+        </div><!-- .tabs-container -->
+
       </div>
     </div>
   </div>
 </div><!-- end of .widget -->
 
 <div id="main-content">
-
-  <div class="widget widget-light widget-aktif-bagis widget-liste">
-    <div class="w-inner clearfix">
-      <div class="w-title">Deskteleyenler</div>
-      <div class="w-content">
-<%@payments.each do |payment|%>
-        <div class="row clearfix">
-            <div class="bagis-miktari"><%=payment.amount_str%><span>TL</span></div>
-            <blockquote><span>“</span> <%=payment.note%></blockquote>
-            <div class="bagisci"><%=payment.name%></div>
-        </div><!-- end of .row -->
-<% end %>
-        <div class="row center">
-            <%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>
-        </div><!-- end of .row -->
-
-
-      </div>
-    </div>
-  </div>
 
   <div class="widget widget-light widget-aktif-bagis ">
     <div class="w-inner clearfix">
