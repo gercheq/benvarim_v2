@@ -41,7 +41,7 @@ class PaymentsController < ApplicationController
       #PAYPAL.info "IPN response #{from_pp}"
 
       data = from_pp + "&cmd=_notify-validate"
-      url = URI.parse(ENV['PAYPAL_URL'])
+      url = URI.parse(ENV['PAYPAL_CALLBACK_URL'])
       http = Net::HTTP.new url.host, url.port
 
       response, data = http.post url.path, data, {'Content-Type' => 'application/x-www-for-urlencoded' }
@@ -62,6 +62,8 @@ class PaymentsController < ApplicationController
 
     render :nothing => true
   end
+
+
 
   def finalize
     require 'net/http'
