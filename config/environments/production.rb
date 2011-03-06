@@ -53,7 +53,7 @@ Benvarim::Application.configure do
   #   ENV['PAYPAL_IDENTITY_TOKEN'] = '7UqO3E-CzN4X5Vlg6Qh85RzDsqhnSf-BMTxvry644fnrYSMUwD3uCwBaxJC'
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_CALLBACK_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
-  ENV['PAYPAL_RETURN_URL'] = 'http://localhost:3000/bagis/tamamla'
+  ENV['PAYPAL_RETURN_URL'] = 'http://y-benvarim.com/bagis/tamamla'
   ENV['PAYPAL_USER'] = 'satis_1298099260_biz@benvarim.com'
   ENV['PAYPAL_IDENTITY_TOKEN'] = 'r97EMyFtFL6r3bu1ETAacEQYMUeLw6NusWWsDoKb8ER1-hXdzSQ9RByY2hq'
 end
