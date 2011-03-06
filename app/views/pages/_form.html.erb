@@ -35,6 +35,7 @@
     <%= f.label :title %>
     <%= f.text_area :title %>
   </div>
+
   <div class="field">
     <%= f.label :logo %>
     <% unless @page.new_record?%>
@@ -42,14 +43,17 @@
     <% end %>
     <%= f.file_field :logo %>
   </div>
+
   <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description_html, :class => :mceEditor %>
   </div>
+
   <div class="field">
     <%= f.label :goal %>
     <%= f.text_field :goal %>
   </div>
+
   <div class="actions">
     <%if @page.new_record?%>
       <%=f.submit "Bağış Sayfası Yarat", :class => "button yellow super"%>
@@ -57,6 +61,7 @@
       <%=f.submit "Değişiklikleri Kaydet", :class => "button yellow super"%>
     <%end%>
   </div>
+
 <% end %>
 
 <%add_page_specific_script "partial/page_form.js"%>

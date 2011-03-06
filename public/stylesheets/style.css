@@ -567,6 +567,10 @@ div.uploader input {
     Author:
  */
 
+ * {
+   outline: none;
+ }
+
 body{
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -1015,8 +1019,18 @@ body {
     margin: 40px auto;
   }
 
+  .one-column .w-title{
+    font-size:24px;
+    line-height:32px;
+    margin-bottom:40px;
+  }
+
   .one-column .actions{
-    margin-left: 120px;
+    padding-left: 120px;
+    border-bottom: 1px solid #EEEEEE;
+    clear: both;
+    padding-bottom: 30px;
+    margin-bottom:20px;
   }
 
 
@@ -1089,8 +1103,10 @@ body {
 
 
   .actions{
+    border-bottom: 1px solid #EEEEEE;
     clear: both;
-    margin-bottom: 10px;}
+    padding-bottom: 30px;
+  }
 
 
 
@@ -1338,9 +1354,13 @@ body {
     ** Progress Bar
     */
     .progress-bar-container{
+      border-bottom: 1px solid #EEEEEE;
+      border-top: 1px solid #EEEEEE;
       height: auto;
-      width: 100%;
       margin-bottom: 30px;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      width: 100%;
     }
 
     .progress-bar{
@@ -1462,6 +1482,43 @@ body {
     /*
     ** Widget Customizations
     */
+
+    .widget-liste blockquote {
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    .widget-liste blockquote span {
+        color: #CCCCCC;
+        font-family: Georgia;
+        font-size: 32px;
+        line-height: 12px;
+        vertical-align: bottom;
+    }
+    .bagis-miktari {
+        color: #CCCCCC;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+    .bagis-miktari span {
+        font-size: 18px;
+    }
+    .bagisci {
+        font-style: italic;
+        margin-bottom: 10px;
+    }
+    .widget-aktif-bagis p {
+        font-size: 85%;
+        margin-bottom: 5px;
+    }
+
+
+
+
+
+
+
     .widget-form{
       width:632px;
       margin:40px auto;
@@ -1469,6 +1526,11 @@ body {
     }
     .widget-form .w-title{ font-size:24px; line-height:32px; margin-bottom:40px;}
     .widget-form .button{ }
+
+    .widget-form .actions {
+      margin: -20px 0 20px;
+      padding-left: 120px;
+    }
 
     #widget-giris{}
 
@@ -1482,6 +1544,17 @@ body {
       padding-bottom:10px;
       text-align:center;
       text-shadow:0 1px 0 #2A4A6A;
+    }
+
+    /* Login Registration Form Links */
+    .form-links{
+
+    }
+
+    .form-links a{
+      margin-right: 10px;
+      padding-right: 10px;
+      border-right: 1px solid #EEE;
     }
 
 
@@ -1550,6 +1623,12 @@ body {
  line-height: 1.5;
 }
 
+.description img {
+  float: right;
+  margin: 0 0 5px 5px;
+  border: 1px solid #DDD;
+  padding: 3px;
+}
 
 #page_goal {
  width: 100px;
@@ -1610,8 +1689,48 @@ body {
   font-size: 11px;
 }
 
+#proje-detaylari {
+
+}
+
+.pd-photo {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+
+.pd-photo img {
+  border: 1px solid #DDD;
+  padding: 4px;
+}
+
+.pd-details{
+
+}
 
 
+
+.ui-tabs-nav a:hover{
+  border: none !important;
+}
+
+
+/*************************************************************************************
+** BAGIS ODEME SAYFASI - http://0.0.0.0:3000/sayfa/3/bagis
+*************************************************************************************/
+
+/*
+** FACEBOX HACKS
+*/
+#facebox .one-column{
+  margin:0 !important;
+}
+
+#facebox .widget{
+  margin: 0 !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
 
 
 

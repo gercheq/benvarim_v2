@@ -53,14 +53,14 @@ $(document).ready(function(){
   //
   $('.fullcontent-right p').last().css('margin','0');
 
-
   $('.row').hover(  function(){ $(this).addClass('row-hover'); },
                     function(){ $(this).removeClass('row-hover'); });
 
-
   $('.comment-bubble').append('<div class="comment-arrow"></div>');
 
-
+  //
+  // Autocomplete - Homepage
+  //
   var availableOrganizations = window.availableOrganizations || [];
 
 	$( "#featured-input" ).autocomplete({
@@ -72,6 +72,17 @@ $(document).ready(function(){
 		  }
 		}
 	});
+
+	//
+	// Tabs
+	//
+	$( "#tabs" ).tabs({
+		cookie: {
+			// store cookie for a day, without, it would be a session cookie
+			expires: 1
+		}
+	});
+
 
 });
 
