@@ -27,7 +27,7 @@
       <%=link_to @page.project.name, @page.project%>
       <%=f.hidden_field :project_id%>
     <% else %>
-      <%= f.select :project_id, @projects, {:include_blank => true}%>
+      <%= f.select :project_id, @projects, {:include_blank => @organizations.nil?}%>
     <% end %>
   </div>
 
