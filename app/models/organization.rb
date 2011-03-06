@@ -20,7 +20,7 @@
 
 class Organization < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
-                      :path => '/:class/:attachment/:id/:style/:filename',
+                      :path => '/:class/:attachment/:id/:style/:safe_filename',
                       :storage => :s3,
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",
@@ -41,6 +41,10 @@ class Organization < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :name, :length => { :minimum => 5, :maximum => 100 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+
+  def safe_filename
+    transliterate(logo_file_name)
+  end
 
   def after_create_hook
     #create default project

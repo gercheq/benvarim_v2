@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :token_authenticatable,
          :recoverable, :rememberable, :validatable
   has_attached_file :photo, :default_url =>'/stylesheets/images/userpic_default.jpg',
-                     :path => '/:class/:attachment/:id/:style/:filename',
+                     :path => '/:class/:attachment/:id/:style/:safe_filename',
                      :storage => :s3,
                      :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                      :styles => { :medium => "600x600>",
@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
 
   before_save do
     self.email.downcase! if self.email
+  end
+
+  def safe_filename
+    transliterate(logo_file_name)
   end
 
   def self.find_for_authentication(conditions)
