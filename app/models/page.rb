@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 # Schema version: 20110105080422
 #
@@ -25,7 +26,7 @@
 
 class Page < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
-                      :path => '/:class/:attachment/:id/:style/:filename',
+                      :path => '/:class/:attachment/:id/:style/:safe_filename',
                       :storage => :s3,
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",
@@ -38,6 +39,7 @@ class Page < ActiveRecord::Base
   has_many :payments
 
   before_validation :sanitize_description_html
+  before_save :on_before_save
 
   validates :organization_id, :presence => true
   validates :project_id, :presence => true
@@ -62,6 +64,14 @@ class Page < ActiveRecord::Base
     "%.2f" % self.collected
   end
 
+  def on_before_save
+    self.logo_file_name = transliterate(logo_file_name)
+  end
+
+  def safe_filename
+    transliterate(logo_file_name)
+  end
+
   private
     def sanitize_description_html
       unless self.description_html.nil?
@@ -69,4 +79,27 @@ class Page < ActiveRecord::Base
       end
     end
 
+    def transliterate(str)
+      # Based on permalink_fu by Rick Olsen
+
+      # Escape str by transliterating to UTF-8 with Iconv
+      s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
+
+      # Downcase string
+      s.downcase!
+
+      # Remove apostrophes so isn't changes to isnt
+      s.gsub!(/'/, '')
+
+      # Replace any non-letter or non-number character with a space
+      s.gsub!(/[^A-Za-z0-9]+/, ' ')
+
+      # Remove spaces from beginning and end of string
+      s.strip!
+
+      # Replace groups of spaces with single hyphen
+      s.gsub!(/\ +/, '-')
+
+      return s
+    end
 end
