@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.label :organization_id %>
     <% unless @page.organization.nil? %>
-      <%=@page.organization.name%>
+      <%=link_to @page.organization.name, @page.organization%>
       <%=f.hidden_field :organization_id%>
     <% else %>
       <%= f.select :organization_id, @organizations, {:include_blank => true} %>
@@ -24,7 +24,7 @@
   <div class="field">
     <%= f.label :project_id %>
     <% unless @page.project.nil? %>
-      <%=@page.project.name%>
+      <%=link_to @page.project.name, @page.project%>
       <%=f.hidden_field :project_id%>
     <% else %>
       <%= f.select :project_id, @projects, {:include_blank => true}%>
