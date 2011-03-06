@@ -24,6 +24,11 @@
           <%= f.file_field :logo %>
         </div>
         <div class="field">
+          <%= f.label :website %>
+          http://
+          <%= f.text_field :website, :class=> "text-field" %>
+        </div>
+        <div class="field">
           <%= f.label :address %>
           <%= f.text_field :address, :class=> "text-field" %>
         </div>

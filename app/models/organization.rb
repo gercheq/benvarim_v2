@@ -27,7 +27,7 @@ class Organization < ActiveRecord::Base
                                    :thumb => "200x200>" }
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :address, :description_html, :logo
+  attr_accessible :name, :address, :description_html, :logo, :website
 
   has_many :projects
   has_many :pages

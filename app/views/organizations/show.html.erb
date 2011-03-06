@@ -20,7 +20,11 @@
 
         <h1><%= @organization.name %></h1>
         <h6><%= @organization.address %></h6>
-        <p class="outlink"><a href="http://www.nesinvakfi.com">RAILS: http://www.nesinvakfi.com</a></p>
+        <% if @organization.website %>
+          <p class="outlink">
+            <%=link_to "Web Sitesi", "http://#{@organization.website}", :target => "_blank"%>
+          </p>
+        <% end %>
         <%= raw @organization.description_html unless @organization.description_html.nil? %>
       </div>
     </div>

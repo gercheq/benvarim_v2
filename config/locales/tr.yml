@@ -159,6 +159,7 @@ tr:
         address: "adres"
         name: "Kurum Adı"
         description: "Kısa Tanıtım"
+        website: "İnternet Sitesi"
       user:
         email: "e-posta"
         password: "şifre"
