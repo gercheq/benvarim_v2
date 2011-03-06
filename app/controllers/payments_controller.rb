@@ -22,7 +22,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.organization_id = @page.organization_id
     if @tmp_payment.save
       #goto paypal!
-      redirect_to paypal_url(@tmp_payment, ENV['PAYPAL_RETURN_URL'])
+      redirect_to paypal_url(@tmp_payment, ENV['PAYPAL_URL'])
     else
       puts @tmp_payment.errors
       render :new
