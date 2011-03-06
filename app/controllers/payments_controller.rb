@@ -70,7 +70,7 @@ class PaymentsController < ApplicationController
     require 'uri'
     require 'cgi'
 
-    url = URI.parse(ENV['PAYPAL_URL'])
+    url = URI.parse(ENV['PAYPAL_CALLBACK_URL'])
     post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  ENV['PAYPAL_IDENTITY_TOKEN']}
     resp, data = Net::HTTP.post_form(url, post_args)
 
