@@ -2,25 +2,34 @@
   <div class="w-inner">
     <div class="w-title">Şifrenizi mi unuttunuz?</div>
 
- 
+
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-      <%= devise_error_messages! %>
- 
+      <% if resource.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+        <br/>
+      <% end %>
+
 
       <div class="field">
         <%= f.label :email %>
         <%= f.text_field :email %>
       </div>
- 
-      
+
+
        <div class="actions">
         <%= f.submit :"Şifre sıfırlama e-postası gönder", :class=>"button super yellow button-primary" %>
       </div>
-      
+
     <% end %>
 
     <%= render :partial => "devise/shared/links" %>
-    
-    
+
+
   </div>
 </div>
