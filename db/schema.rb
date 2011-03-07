@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306022004) do
+ActiveRecord::Schema.define(:version => 20110307002554) do
 
   create_table "contact_forms", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20110306022004) do
     t.datetime "updated_at"
     t.float    "amount"
     t.integer  "organization_id"
+  end
+
+  create_table "paypal_infos", :force => true do |t|
+    t.integer  "organization_id"
+    t.string   "paypal_user"
+    t.string   "paypal_id_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", :force => true do |t|

@@ -48,12 +48,9 @@ Benvarim::Application.configure do
   config.active_support.deprecation = :notify
 
   # ENV['PAYPAL_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
-  #   ENV['PAYPAL_RETURN_URL'] = 'http://benvarim.com/bagis/tamamla'
-  #   ENV['PAYPAL_USER'] = 'levent@benvarim.com'
-  #   ENV['PAYPAL_IDENTITY_TOKEN'] = '7UqO3E-CzN4X5Vlg6Qh85RzDsqhnSf-BMTxvry644fnrYSMUwD3uCwBaxJC'
+  # ENV['PAYPAL_IPN_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
+
+  #paypal settings
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
-  ENV['PAYPAL_RETURN_URL'] = 'http://y-benvarim.heroku.com/bagis/tamamla'
-  ENV['PAYPAL_USER'] = 'satis_1298099260_biz@benvarim.com'
-  ENV['PAYPAL_IDENTITY_TOKEN'] = 'r97EMyFtFL6r3bu1ETAacEQYMUeLw6NusWWsDoKb8ER1-hXdzSQ9RByY2hq'
 end

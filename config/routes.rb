@@ -36,6 +36,7 @@ Benvarim::Application.routes.draw do
   get '/sayfa/:id/bagis?popup=1' => "payments#new", :as => :donate_popup
   post '/sayfa/:id/bagis' => "payments#create", :as => :donate
   get '/bagis/tamamla' => "payments#finalize", :as => :finalize_donation
+  get '/sayfa/:page_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_page
 
   devise_for :users, :skip => [:sessions] do
     get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session

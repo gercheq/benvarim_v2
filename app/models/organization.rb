@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110303082136
+# Schema version: 20110306022004
 #
 # Table name: organizations
 #
@@ -16,6 +16,7 @@
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  description_html  :text
+#  website           :string(255)
 #
 
 class Organization < ActiveRecord::Base
@@ -33,6 +34,7 @@ class Organization < ActiveRecord::Base
   has_many :pages
   has_many :payments
   belongs_to :user
+  has_one :paypal_info
 
   before_validation :sanitize_description_html
 

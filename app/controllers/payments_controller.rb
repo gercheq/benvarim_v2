@@ -23,7 +23,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.organization_id = @page.organization_id
     if @tmp_payment.save
       #goto paypal!
-      redirect_to paypal_url(@tmp_payment, ENV['PAYPAL_RETURN_URL'])
+      redirect_to paypal_url(@tmp_payment, finalize_donation_for_page_path(@page, :only_path => false))
     else
       puts @tmp_payment.errors
       render :new
@@ -78,7 +78,9 @@ class PaymentsController < ApplicationController
     require 'cgi'
 
     url = URI.parse(ENV['PAYPAL_IPN_URL'])
-    post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  ENV['PAYPAL_IDENTITY_TOKEN']}
+    @page = Page.find(params[:page_id])
+    id_token = @page.organization.paypal_info.paypal_id_token
+    post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  id_token}
     resp, data = Net::HTTP.post_form(url, post_args)
 
     return_map = Hash.new
@@ -115,25 +117,28 @@ class PaymentsController < ApplicationController
 
   end
 
-  def paypal_url(tmp_payment, return_url)
-    values = {
-      :cmd => "_xclick",
-      :business => ENV['PAYPAL_USER'],
-      :upload => 1,
-      :return => return_url,
-      :charset => "utf-8",
-      :amount => tmp_payment.amount,
-      :item_name => tmp_payment.organization.name + " - bağış",
-      :item_number => tmp_payment.id,
-      :quantity => 1
-      #:invoice => id
-    }
-
-    values[:custom] = tmp_payment.id
-    ENV['PAYPAL_URL']+ "?" + values.to_query
-  end
-
   private
+
+    def paypal_url(tmp_payment, return_url)
+      paypal_info = tmp_payment.organization.paypal_info
+      paypal_user = paypal_info.paypal_user
+      values = {
+        :cmd => "_xclick",
+        :business => paypal_user,
+        :upload => 1,
+        :return => return_url,
+        :charset => "utf-8",
+        :amount => tmp_payment.amount,
+        :item_name => tmp_payment.organization.name + " - bağış",
+        :item_number => tmp_payment.id,
+        :quantity => 1
+        #:invoice => id
+      }
+
+      values[:custom] = tmp_payment.id
+      ENV['PAYPAL_URL']+ "?" + values.to_query
+    end
+
     def create_payment tmp_payment_id
       Page.transaction do
         @tmp_payment = TmpPayment.find tmp_payment_id
