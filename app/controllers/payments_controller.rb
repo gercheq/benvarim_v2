@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class PaymentsController < ApplicationController
+  protect_from_forgery :except => [:ipn_handler]
   def new
     begin
       @page = Page.find params[:id]
@@ -22,14 +23,16 @@ class PaymentsController < ApplicationController
     @tmp_payment.organization_id = @page.organization_id
     if @tmp_payment.save
       #goto paypal!
-      redirect_to paypal_url(@tmp_payment, ENV['PAYPAL_URL'])
+      redirect_to paypal_url(@tmp_payment, ENV['PAYPAL_RETURN_URL'])
     else
       puts @tmp_payment.errors
       render :new
     end
   end
 
-  def paypal_ipn
+  def ipn_handler
+    #bunu kullanarak kurum verifikasyonu yapabiriliz.
+    #sonucta paypali ayarladiklarindan emin olmaliyiz.
     begin
       require 'net/http'
       require 'uri'
@@ -41,7 +44,7 @@ class PaymentsController < ApplicationController
       #PAYPAL.info "IPN response #{from_pp}"
 
       data = from_pp + "&cmd=_notify-validate"
-      url = URI.parse(ENV['PAYPAL_CALLBACK_URL'])
+      url = URI.parse(ENV['PAYPAL_IPN_URL'])
       http = Net::HTTP.new url.host, url.port
 
       response, data = http.post url.path, data, {'Content-Type' => 'application/x-www-for-urlencoded' }
@@ -50,16 +53,20 @@ class PaymentsController < ApplicationController
       custom = params[:custom]
       if custom.nil?
         #PAYPAL.info "could not read custom parameter"
+        #probably someone else sent money to there.
       else
-        tmp_payment = TmpPayment.find_by_id params[:custom]
+        if tmp_payment
+          create_payment params[:custom]
+          #PAYPAL.info successfully created payment via IPN
+        else
+          #PAYPAL.info could not find tmp payment
+        end
         #PAYPAL.info rez
       end
       #PAYPAL.info
-
      rescue Exception => e
        #PAYPAL.error "Error: paypal transaction #{e.message}"
     end
-
     render :nothing => true
   end
 
@@ -70,7 +77,7 @@ class PaymentsController < ApplicationController
     require 'uri'
     require 'cgi'
 
-    url = URI.parse(ENV['PAYPAL_CALLBACK_URL'])
+    url = URI.parse(ENV['PAYPAL_IPN_URL'])
     post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  ENV['PAYPAL_IDENTITY_TOKEN']}
     resp, data = Net::HTTP.post_form(url, post_args)
 
@@ -87,27 +94,9 @@ class PaymentsController < ApplicationController
     end
 
     @payment = nil
-
     begin
-      Page.transaction do
-        @tmp_payment = TmpPayment.find tmp_payment_id
-        unless @tmp_payment.payment.nil?
-          flash[:notice] = "Bağış yapıldı! Teşekkürler!"
-          return redirect_to @tmp_payment.page
-        end
-        @page = @tmp_payment.page
-        attributes = @tmp_payment.attributes
-        attributes.delete "created_at"
-        attributes.delete "updated_at"
-        attributes.delete "payment_id"
-        @page.collected += @tmp_payment.amount
-
-        @payment = Payment.new attributes
-        @payment.save!
-        @page.save!
-        @tmp_payment.payment_id = @payment.id
-        @tmp_payment.save!
-      end
+      create_payment tmp_payment_id
+      return redirect_to @tmp_payment.page
     rescue ActiveRecord::RecordInvalid => invalid
       flash[:error] = invalid.record.errors
       return redirect_to @tmp_payment.page unless @tmp_payment.nil?
@@ -143,4 +132,27 @@ class PaymentsController < ApplicationController
     values[:custom] = tmp_payment.id
     ENV['PAYPAL_URL']+ "?" + values.to_query
   end
+
+  private
+    def create_payment tmp_payment_id
+      Page.transaction do
+        @tmp_payment = TmpPayment.find tmp_payment_id
+        unless @tmp_payment.payment.nil?
+          flash[:notice] = "Bağış yapıldı! Teşekkürler!"
+          return true
+        end
+        @page = @tmp_payment.page
+        attributes = @tmp_payment.attributes
+        attributes.delete "created_at"
+        attributes.delete "updated_at"
+        attributes.delete "payment_id"
+        @page.collected += @tmp_payment.amount
+        @payment = Payment.new attributes
+        @payment.save!
+        @page.save!
+        @tmp_payment.payment_id = @payment.id
+        @tmp_payment.save!
+      end
+      return true
+    end
 end

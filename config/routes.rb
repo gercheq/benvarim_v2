@@ -1,12 +1,4 @@
 Benvarim::Application.routes.draw do
-  get "payments/new"
-
-  get "payments/paypal_ipn"
-
-  get "payments/create"
-
-  get "payments/finalize"
-
   post "iletisim" => "contact_forms#create", :as => :new_contact_form
   get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
   get "iletisim" => "contact_forms#index", :as => :contact_forms
@@ -39,7 +31,7 @@ Benvarim::Application.routes.draw do
   put "/sayfa/:id" => "pages#update",  :as => :page
   get "/sayfalarim" => "pages#my_pages", :as => :my_pages
 
-  get '/bagis/kontrol' => "payments#paypal_ipn", :as => :paypal_ipn
+  post '/bagis/kontrol' => 'payments#ipn_handler' , :as => :paypal_ipn
   get '/sayfa/:id/bagis' => "payments#new", :as => :donate
   get '/sayfa/:id/bagis?popup=1' => "payments#new", :as => :donate_popup
   post '/sayfa/:id/bagis' => "payments#create", :as => :donate
