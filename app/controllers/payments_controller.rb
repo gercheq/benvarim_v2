@@ -40,6 +40,8 @@ class PaymentsController < ApplicationController
 
       #you need to post back to paypal the name/value string
       #in the same order received w/added cmd=_notify-validate
+      puts "from paypal"
+      puts from_pp
       from_pp = request.raw_post
       #PAYPAL.info "IPN response #{from_pp}"
 
@@ -55,8 +57,7 @@ class PaymentsController < ApplicationController
         #PAYPAL.info "could not read custom parameter"
         #probably someone else sent money to there.
       else
-        if tmp_payment
-          create_payment params[:custom]
+        if create_payment(custom)
           #PAYPAL.info successfully created payment via IPN
         else
           #PAYPAL.info could not find tmp payment
