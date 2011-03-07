@@ -3,8 +3,8 @@ class DataToOrganization < ActiveRecord::Migration
     add_column :organizations, :name, :string
     add_column :organizations, :address, :string
     add_column :organizations, :description, :text
-    add_column :organizations, :approved, :boolean, :default => 'false'
-    add_column :organizations, :active, :boolean, :default => 'false'
+    add_column :organizations, :approved, :boolean
+    add_column :organizations, :active, :boolean
   end
 
   def self.down
