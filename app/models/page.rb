@@ -80,9 +80,9 @@ class Page < ActiveRecord::Base
     end
 
     def transliterate(str)
-      # Based on permalink_fu by Rick Olsen
-
-      # Escape str by transliterating to UTF-8 with Iconv
-      return str.downcase.gsub(/[^a-z0-9]+/i, '-')
+      if str
+        return str.downcase.gsub(/[^a-z0-9]+/i, '-')
+      end
+      return nil
     end
 end
