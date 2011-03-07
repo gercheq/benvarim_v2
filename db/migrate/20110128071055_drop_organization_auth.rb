@@ -6,8 +6,8 @@ class DropOrganizationAuth < ActiveRecord::Migration
         t.string :name
         t.string :address
         t.text :description
-        t.boolean :approved, :default => 0
-        t.boolean :active, :default => 0
+        t.boolean :approved, :default => false
+        t.boolean :active, :default => false
       end
     end
 
@@ -22,8 +22,8 @@ class DropOrganizationAuth < ActiveRecord::Migration
         t.string :name
         t.string :address
         t.text :description
-        t.boolean :approved, :default => 0
-        t.boolean :active, :default => 0
+        t.boolean :approved, :default => false
+        t.boolean :active, :default => false
 
         # t.confirmable
         # t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
