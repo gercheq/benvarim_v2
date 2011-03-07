@@ -53,7 +53,7 @@ class Page < ActiveRecord::Base
   def collect_ratio
     return 0 if (self.collected == 0 || self.goal == 0)
     return 100 if (self.collected >= self.goal)
-    return (self.collected / self.goal)
+    return (self.collected / self.goal) * 100
   end
 
   def collect_ratio_str
