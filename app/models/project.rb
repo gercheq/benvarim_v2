@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 # Schema version: 20110105090227
 #
@@ -31,4 +32,8 @@ class Project < ActiveRecord::Base
    validates :organization_id, :presence => true
    validates :name, :length => { :minimum => 5, :maximum => 100 }
    validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+
+   def to_param
+     "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+   end
 end

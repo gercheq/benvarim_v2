@@ -72,6 +72,10 @@ class Page < ActiveRecord::Base
     transliterate(logo_file_name)
   end
 
+  def to_param
+    "#{id}-#{title.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+  end
+
   private
     def sanitize_description_html
       unless self.description_html.nil?

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 # Schema version: 20110303082136
 #
@@ -55,6 +56,10 @@ class User < ActiveRecord::Base
   def self.find_for_authentication(conditions)
     conditions[:email].downcase!
     super(conditions)
+  end
+
+  def to_param
+    "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
   end
 
   def age
