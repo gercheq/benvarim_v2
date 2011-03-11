@@ -71,6 +71,10 @@ class Organization < ActiveRecord::Base
     "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
   end
 
+  def self.available_organizations
+    Organization.all.collect  do |o| { :value => o.name, :id => o.id} end
+  end
+
 
   private
     def sanitize_description_html

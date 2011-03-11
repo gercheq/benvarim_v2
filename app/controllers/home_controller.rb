@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @available_organizations = Organization.all.collect  do |o| { :value => o.name, :id => o.id} end
+    @available_organizations = Organization.available_organizations
   end
 
   def about
@@ -9,8 +9,9 @@ class HomeController < ApplicationController
   def help
   end
 
-  def whats_benvarim
+  def nasil_calisir
     @selected_tab = "nav-nedir"
+    @available_organizations = Organization.available_organizations
   end
 
 end
