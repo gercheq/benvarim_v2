@@ -58,6 +58,11 @@ class User < ActiveRecord::Base
     super(conditions)
   end
 
+  def self.send_reset_password_instructions(conditions)
+    conditions[:email].downcase!
+    super(conditions)
+  end
+
   def to_param
     "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
   end
