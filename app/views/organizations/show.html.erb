@@ -8,6 +8,9 @@
     <div class="w-content">
       <div class="fullcontent-left">
         <%= image_tag @organization.logo.url(:thumb) %>
+        <div class="pb-action">
+          <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button super no-margin", :rel => "facebox"%>
+        </div>
       </div>
       <div class="fullcontent-right">
         <% if (user_signed_in? && current_user.organization == @organization)%>
@@ -39,7 +42,7 @@
       <%@organization.pages.each do |page|%>
         <div class="row">
             <h2><%=link_to page.title, page%></h2>
-            <%=link_to "Bağış Yap", donate_path(page), :class => "yellow button right no-margin"%>
+            <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button right no-margin"%>
             <p>
               <%=page.description[0..200]%><%=link_to "Detaylı bilgi", page%>
             </p>

@@ -22,6 +22,7 @@
       <% if user_signed_in? && current_user.organization == @project.organization%>
         <%= link_to 'Düzenle', edit_project_path(@project) %>
       <% end %>
+      <!-- <%=link_to "Direk Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%> -->
       <%=link_to "Destekle", new_page_for_project_path(@project), :class => "yellow button right no-margin"%>
 
 

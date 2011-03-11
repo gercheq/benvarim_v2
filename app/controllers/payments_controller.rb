@@ -2,28 +2,54 @@
 class PaymentsController < ApplicationController
   protect_from_forgery :except => [:ipn_handler]
   def new
-    begin
-      @page = Page.find params[:id]
-      @tmp_payment = @page.tmp_payments.build
-    rescue
+    if params[:page_id]
+      @page = Page.find params[:page_id]
+      @organization = @page.organization
+      @project = @page.project
+    elsif params[:project_id]
+      @project = Project.find params[:project_id]
+      @organization = @project.organization
+    elsif params[:organization_id]
+      @organization = Organization.find params[:organization_id]
+    else
+      flash[:error] = "Bir kurum, proje veya sayfa seçmelisiniz"
+      return redirect_to root_path
     end
+    @tmp_payment = TmpPayment.new params[:tmp_payment]
+    @tmp_payment.page_id = @page.id if @page
+    @tmp_payment.project_id = @project.id if @project
+    @tmp_payment.organization_id = @organization.id
+
     if params[:popup]
       render :layout => false
     end
+
   end
 
   def create
-    @page = Page.find_by_id params[:id]
-    if @page.nil?
-      #how did i come here??
+    puts params
+    if params[:page_id]
+      @page = Page.find params[:page_id]
+      @organization = @page.organization
+      @project = @page.project
+    elsif params[:project_id]
+      @project = Project.find params[:project_id]
+      @organization = @project.organization
+    elsif params[:organization_id]
+      @organization = Organization.find params[:organization_id]
+    else
+      flash[:error] = "Bir kurum, proje veya sayfa seçmelisiniz"
       return redirect_to root_path
     end
-    @tmp_payment = @page.tmp_payments.build params[:tmp_payment]
-    @tmp_payment.project_id = @page.project_id
-    @tmp_payment.organization_id = @page.organization_id
+
+    @tmp_payment = TmpPayment.new params[:tmp_payment]
+    @tmp_payment.page_id = @page.id if @page
+    @tmp_payment.project_id = @project.id if @project
+    @tmp_payment.organization_id = @organization.id
+
     if @tmp_payment.save
       #goto paypal!
-      redirect_to paypal_url(@tmp_payment, finalize_donation_for_page_path(@page, :only_path => false))
+      redirect_to paypal_url(@tmp_payment)
     else
       puts @tmp_payment.errors
       render :new
@@ -77,8 +103,18 @@ class PaymentsController < ApplicationController
     require 'cgi'
 
     url = URI.parse(ENV['PAYPAL_IPN_URL'])
-    @page = Page.find(params[:page_id])
-    id_token = @page.organization.paypal_info.paypal_id_token
+    if params[:page_id]
+      @page = Page.find(params[:page_id])
+      @organization = @page.organization
+      @project = @page.project
+    elsif params[:project_id]
+      @project = Project.find(params[:project_id])
+      @organization = @project.organization
+    elsif params[:organization_id]
+      @organization = Organization.find(params[:organization_id])
+    end
+
+    id_token = @organization.paypal_info.paypal_id_token
     post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  id_token}
     resp, data = Net::HTTP.post_form(url, post_args)
 
@@ -96,29 +132,41 @@ class PaymentsController < ApplicationController
 
     @payment = nil
     begin
-      create_payment tmp_payment_id
-      return redirect_to @tmp_payment.page
+      res = create_payment tmp_payment_id
+      if res
+        flash[:notice] = "Bağış yapıldı! Teşekkürler!"
+      else
+        flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
+      end
+
     rescue ActiveRecord::RecordInvalid => invalid
       flash[:error] = invalid.record.errors
-      return redirect_to @tmp_payment.page unless @tmp_payment.nil?
-      return redirect_to root_path
     rescue ActiveRecord::RecordNotFound => notfound
       flash[:error] = "Kayıt bulunamadı"
-      return redirect_to @tmp_payment.page unless @tmp_payment.nil?
-      return redirect_to root_path
     rescue
       flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
-      return redirect_to root_path
     end
-    flash[:notice] = "Bağış yapıldı! Teşekkürler!"
-    redirect_to @payment.page unless @tmp_payment.nil?
+
+    return redirect_to @page if @page
+    return redirect_to @project if @project
+    return redirect_to @organization if @organization
+    #wtf ??
+    redirect_to root_path
     #send emails
 
   end
 
   private
 
-    def paypal_url(tmp_payment, return_url)
+    def paypal_url(tmp_payment)
+      if tmp_payment.page
+        return_url = finalize_donation_for_page_path(tmp_payment.page, :only_path => false)
+      elsif tmp_payment.project
+        return_url = finalize_donation_for_project_path(tmp_payment.project, :only_path => false)
+      else
+        return_url = finalize_donation_for_project_path(tmp_payment.organization, :only_path => false)
+      end
+
       paypal_info = tmp_payment.organization.paypal_info
       paypal_user = paypal_info.paypal_user
       values = {
@@ -131,6 +179,8 @@ class PaymentsController < ApplicationController
         :item_name => tmp_payment.organization.name + " - bağış",
         :item_number => tmp_payment.id,
         :quantity => 1
+        # ,
+        # :currency_code => "TRY"
         #:invoice => id
       }
 
@@ -145,17 +195,36 @@ class PaymentsController < ApplicationController
           flash[:notice] = "Bağış yapıldı! Teşekkürler!"
           return true
         end
-        @page = @tmp_payment.page
         attributes = @tmp_payment.attributes
+        attributes.delete "id"
         attributes.delete "created_at"
         attributes.delete "updated_at"
         attributes.delete "payment_id"
-        @page.collected += @tmp_payment.amount
+
+        page = @tmp_payment.page
+        organization = @tmp_payment.organization
+        project = @tmp_payment.project
+
         @payment = Payment.new attributes
         @payment.save!
-        @page.save!
+
         @tmp_payment.payment_id = @payment.id
         @tmp_payment.save!
+
+        unless page.nil?
+          page.collected += @tmp_payment.amount
+          page.save!
+        end
+
+        unless organization.nil?
+          organization.collected += @tmp_payment.amount
+          organization.save!
+        end
+
+        unless project.nil?
+          project.collected += @tmp_payment.amount
+          project.save!
+        end
       end
       return true
     end

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110306022004
+# Schema version: 20110310075157
 #
 # Table name: organizations
 #
@@ -17,6 +17,7 @@
 #  logo_updated_at   :datetime
 #  description_html  :text
 #  website           :string(255)
+#  collected         :float           default(0.0)
 #
 
 class Organization < ActiveRecord::Base
@@ -35,6 +36,7 @@ class Organization < ActiveRecord::Base
   has_many :payments
   belongs_to :user
   has_one :paypal_info
+  has_many :tmp_payments
 
   before_validation :sanitize_description_html
 

@@ -68,7 +68,7 @@
           </div>
 
           <div class="pb-action">
-            <%=link_to "Bağış Yap", donate_popup_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
+            <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
           </div>
         </div><!-- end of .progress-bar-container -->
 
@@ -95,7 +95,7 @@
                 </div><!-- end of .row -->
               <% else %>
                 <p><%= @page.user.name%> ilk destekçisini bekliyor. İlk bağış yapan sen ol!</p>
-                <%=link_to "İlk bağış yapan ben olmak istiyorum.", donate_popup_path(@page), :class => "yellow button no-margin", :rel => "facebox"%>
+                <%=link_to "İlk bağış yapan ben olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin", :rel => "facebox"%>
               <% end %>
 
 

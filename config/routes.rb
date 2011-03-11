@@ -32,11 +32,24 @@ Benvarim::Application.routes.draw do
   get "/sayfalarim" => "pages#my_pages", :as => :my_pages
 
   post '/bagis/kontrol' => 'payments#ipn_handler' , :as => :paypal_ipn
-  get '/sayfa/:id/bagis' => "payments#new", :as => :donate
-  get '/sayfa/:id/bagis?popup=1' => "payments#new", :as => :donate_popup
-  post '/sayfa/:id/bagis' => "payments#create", :as => :donate
+
+  get '/sayfa/:page_id/bagis' => "payments#new", :as => :donate_for_page
+  get '/kurum/:organization_id/bagis' => "payments#new", :as => :donate_for_organization
+  get '/proje/:project_id/bagis' => "payments#new", :as => :donate_for_project
+
+  post '/sayfa/:page_id/bagis' => "payments#create", :as => :donate_for_page
+  post '/kurum/:organization_id/bagis' => "payments#create", :as => :donate_for_organization
+  post '/proje/:project_id/bagis' => "payments#create", :as => :donate_for_project
+
+  get '/sayfa/:page_id/bagis?popup=1' => "payments#new", :as => :donate_popup_for_page
+  get '/kurum/:organization_id/bagis?popup=1' => "payments#new", :as => :donate_popup_for_organization
+  get '/proje/:project_id/bagis?popup=1' => "payments#new", :as => :donate_popup_for_project
+
   get '/bagis/tamamla' => "payments#finalize", :as => :finalize_donation
   get '/sayfa/:page_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_page
+  get '/kurum/:organization_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_project
+  get '/proje/:project_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_organization
+
 
   devise_for :users, :skip => [:sessions] do
     get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session

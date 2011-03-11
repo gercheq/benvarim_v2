@@ -16,8 +16,16 @@
         </div>
       <% end %>
 
-      <%= form_tag donate_path(@page)%>
+      <% if @tmp_payment.page%>
+        <%= form_tag donate_for_page_path(@tmp_payment.page)%>
+      <% elsif @tmp_payment.project%>
+        <%= form_tag donate_for_project_path(@tmp_payment.project)%>
+      <% elsif @tmp_payment.organization%>
+        <%= form_tag donate_for_organization_path(@tmp_payment.organization)%>
+      <% else %>
+        <%#cannot come here, checked in the control%>
 
+      <% end %>
       <div class="field">
       <%=label_tag "Ad Soyad:"%>
       <%=text_field_tag "tmp_payment[name]", @tmp_payment.name, :class=> "text-field"%>

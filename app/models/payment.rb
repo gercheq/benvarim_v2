@@ -23,8 +23,8 @@ class Payment < ActiveRecord::Base
 
   validate :validate_email
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 500
-  # validates_presence_of :page_id
-  # validates_presence_of :project_id
+  validates_presence_of :organization_id
+
   validates :name, :presence => true, :length => {:minimum => 3}
 
   def amount_str

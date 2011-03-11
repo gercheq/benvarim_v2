@@ -17,7 +17,7 @@
               <p><%= human_readable_datetime page.end_time %></p>
               <p>Hedef: <%= page.goal %></p>
               <p>Toplanan: <%= page.collected %></p>
-              <%=link_to "Bağış Yap", donate_path(page), :class => "yellow button super no-margin"%>
+              <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button super no-margin"%>
               <p></p>
               <% if @show_edit_link %>
                 <p><%= link_to 'Düzenle', edit_page_path(page) %></p>

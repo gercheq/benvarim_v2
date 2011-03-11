@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110105090227
+# Schema version: 20110310075157
 #
 # Table name: projects
 #
@@ -16,6 +16,7 @@
 #  logo_content_type :string(255)
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
+#  collected         :float           default(0.0)
 #
 
 class Project < ActiveRecord::Base
