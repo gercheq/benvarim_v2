@@ -3,8 +3,12 @@
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
+      <% if @project.logo.file? %>
+        <%= image_tag @project.logo.url(:thumb) %>
+      <% else %>
+        <%= image_tag @project.organization.logo.url(:thumb) %>
+      <% end %>
 
-      <%= image_tag @project.logo.url(:thumb) %>
       <p>
         <b>Proje:</b>
         <%= @project.name %>
