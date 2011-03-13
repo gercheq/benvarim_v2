@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @available_organizations = Organization.available_organizations_simple
   end
 
   def edit

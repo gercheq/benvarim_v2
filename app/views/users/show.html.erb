@@ -8,7 +8,16 @@
             </div>
           <% end %>
         <%= image_tag @user.photo.url(:thumb) %>
+        <div>
+            Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:
+         <%=render :partial => "layouts/quickstart_widget",
+            :locals => {
+              :available_organizations => @available_organizations
+            }
+          %>
+        </div>
      </div>
+
    </div>
 
 <% if user_signed_in? && current_user == @user%>

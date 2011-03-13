@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @available_organizations = Organization.available_organizations
+    @available_organizations = Organization.available_organizations_simple
   end
 
   def about
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   def nasil_calisir
     @selected_tab = "nav-nedir"
-    @available_organizations = Organization.available_organizations
+    @available_organizations = Organization.available_organizations_simple
   end
 
 end

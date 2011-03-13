@@ -41,6 +41,7 @@ class Organization < ActiveRecord::Base
   before_validation :sanitize_description_html
 
   after_create :after_create_hook
+  before_save :before_save_hook
 
   validates :user_id, :presence => true
   validates :name, :length => { :minimum => 5, :maximum => 100 }
@@ -54,7 +55,7 @@ class Organization < ActiveRecord::Base
     #create default project
     p = self.projects.build({
       :name => "Genel Bağış",
-      :description => self.description
+      :description => "#{self.name} için toplanacak genel bağışlar kurumun çeşitli projelerine destek olacaktır."
     })
     p.save
 
@@ -67,12 +68,20 @@ class Organization < ActiveRecord::Base
 
   end
 
+  def before_save_hook
+    self.active = true
+  end
+
   def to_param
     "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
   end
 
   def self.available_organizations
-    Organization.all.collect  do |o| { :value => o.name, :id => o.id} end
+    Organization.where("active=?", true).all
+  end
+
+  def self.available_organizations_simple
+    self.available_organizations.collect  do |o| { :value => o.name, :id => o.id} end
   end
 
 
