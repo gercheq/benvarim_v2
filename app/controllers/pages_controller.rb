@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   uses_tiny_mce
 
   def add_organization_list
-    @organizations = Organization.all.collect do |org|
+    @organizations = Organization.available_organizations.collect do |org|
       [org.name, org.id]
     end
   end
