@@ -46,6 +46,7 @@ class Page < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :title, :length => { :minimum => 5, :maximum => 140 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+  validate :organization_active_validation
 
   validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 100000
   validates_numericality_of :collected, :greater_than_or_equal_to => 0
@@ -74,6 +75,10 @@ class Page < ActiveRecord::Base
 
   def to_param
     "#{id}-#{title.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+  end
+
+  def organization_active_validation
+    self.errors.add "kurum", "aktif değil" if self.organization && !self.organization.active?
   end
 
   private
