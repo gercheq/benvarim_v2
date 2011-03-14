@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<div class="project-form">
   <div class="field">
     <%= f.label :organization_id %>
     <% unless @project.organization.nil? %>
@@ -44,4 +44,16 @@
   <div class="actions">
     <%= f.submit :kaydet, :class=>"button yellow super button-primary" %>
   </div>
+</div>
 <% end %>
+
+<style type="text/css" media="screen">
+  .project-form label {
+    width: 130px;
+  }
+
+  .project-form input, .project-form textarea {
+    width: 400px;
+  }
+</style>
+
