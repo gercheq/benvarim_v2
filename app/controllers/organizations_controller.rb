@@ -10,6 +10,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     @projects = @organization.projects
+    if !@organization.can_be_donated?
+      flash.now[:notice] = "Kurum bilgileri Benvarım.com tarafından henüz onaylanmadığı için bağış yapamazsınız"
+    end
   end
 
   def new

@@ -3,7 +3,7 @@
     <div class="w-content">
       <div class="w-title">Aktif Bağış Projeleri</div>
       <div class="rows-container" id="donation-pages-container">
-        <% @projects.each do |project| %>
+        <% projects.each do |project| %>
           <div class="row clearfix">
             <div class="row-photo clearfix"><%= image_tag project.logo.url(:thumb) %></div>
             <div class="row-details">

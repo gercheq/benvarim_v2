@@ -9,7 +9,9 @@
       <div class="fullcontent-left">
         <%= image_tag @organization.logo.url(:thumb) %>
         <div class="pb-action">
-          <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button super no-margin", :rel => "facebox"%>
+          <% if @organization.can_be_donated? %>
+            <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button super no-margin", :rel => "facebox"%>
+          <% end %>
         </div>
       </div>
       <div class="fullcontent-right">
@@ -37,15 +39,22 @@
 
   <div class="widget widget-light widget-aktif-bagis ">
     <div class="w-inner clearfix">
-      <div class="w-title">Aktif Bağış Sayfaları</div>
+      <div class="w-title">Bağış Sayfaları</div>
       <div class="w-content">
       <%@organization.pages.each do |page|%>
         <div class="row">
             <h2><%=link_to page.title, page%></h2>
-            <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button right no-margin"%>
+            <% if page.can_be_donated? %>
+              <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button right no-margin"%>
+            <% end %>
             <p>
               <%=page.description[0..200]%><%=link_to "Detaylı bilgi", page%>
             </p>
+        </div><!-- end of .row -->
+      <% end %>
+      <% if @organization.pages.length == 0 %>
+        <div class="row center">
+          <%=link_to "İlk bağış sayfasını yaratan sen ol!", new_page_for_organization_path(@organization), :class => "green button super" %>
         </div><!-- end of .row -->
       <% end %>
       </div>
@@ -53,7 +62,8 @@
   </div>
   <%=render :partial => "projects/list_projects",
     :locals => {
-      :show_edit_link => false
+      :show_edit_link => false,
+      :projects => @projects
     }%>
 
   <div class="widget widget-light widget-aktif-bagis widget-liste">
