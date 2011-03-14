@@ -27,7 +27,9 @@
         <%= link_to 'Düzenle', edit_project_path(@project) %>
       <% end %>
       <!-- <%=link_to "Direk Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%> -->
-      <%=link_to "Destekle", new_page_for_project_path(@project), :class => "yellow button right no-margin"%>
+      <% if @project.can_be_donated? %>
+        <%=link_to "Destekle", new_page_for_project_path(@project), :class => "yellow button right no-margin"%>
+      <% end %>
 
 
     </div>

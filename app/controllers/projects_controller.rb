@@ -29,6 +29,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    unless @project.can_be_donated?
+      flash.now[:notice] = "Proje aktif olmadığı için bağış toplayamazsınız."
+    end
   end
 
   def new
