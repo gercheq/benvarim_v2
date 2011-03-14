@@ -59,7 +59,7 @@
               <div class="pb-reflection rc"></div>
               <div class="pb-hedef">HEDEF: <b><%= @page.goal %> TL</b></div>
               <div class="pb-toplanan">
-              <% if @page.collected < 1 %>
+              <% if @page.collected < 1 && @page.active? %>
                 İlk bağış yapan sen ol!
               <% else %>
                 Toplanan: <b><%= @page.collected %> TL</b>
@@ -69,9 +69,11 @@
             </div>
           </div>
 
-          <div class="pb-action">
-            <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
-          </div>
+          <% if @page.can_be_donated? %>
+            <div class="pb-action">
+              <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
+            </div>
+          <% end %>
         </div><!-- end of .progress-bar-container -->
 
         <div class="tabs-container">

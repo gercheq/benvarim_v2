@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110310075157) do
+ActiveRecord::Schema.define(:version => 20110313225837) do
 
   create_table "contact_forms", :force => true do |t|
     t.string   "name"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20110310075157) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.float    "collected",         :default => 0.0
+    t.boolean  "active",            :default => true
   end
 
   create_table "tmp_payments", :force => true do |t|

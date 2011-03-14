@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110310075157
+# Schema version: 20110313225837
 #
 # Table name: projects
 #
@@ -17,6 +17,7 @@
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  collected         :float           default(0.0)
+#  active            :boolean         default(TRUE)
 #
 
 class Project < ActiveRecord::Base
@@ -36,5 +37,9 @@ class Project < ActiveRecord::Base
 
    def to_param
      "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+   end
+
+   def can_be_donated?
+     self.active? && self.organization.can_be_donated?
    end
 end

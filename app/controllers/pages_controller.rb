@@ -30,6 +30,9 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    if !@page.can_be_donated?
+      flash.now[:notice] = "Sayfa aktif olmadığı için bağış yapamazsınız"
+    end
     @payments = @page.payments.order("id desc")
   end
 

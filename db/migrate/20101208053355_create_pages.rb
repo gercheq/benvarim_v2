@@ -10,7 +10,7 @@ class CreatePages < ActiveRecord::Migration
       t.integer :user_id
       t.integer :organization_id
       t.integer :project_id
-      t.boolean :active
+      t.boolean :active, :default => true
 
       t.timestamps
     end

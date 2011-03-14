@@ -25,8 +25,10 @@ class TmpPayment < ActiveRecord::Base
   belongs_to :organization
 
   validate :validate_email
+  validate :active_validation
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 500
   validates_presence_of :organization_id
+
   validates :name, :presence => true, :length => {:minimum => 3}
 
 
@@ -36,5 +38,16 @@ class TmpPayment < ActiveRecord::Base
 
   def validate_amount
     self.errors.add "amount", "geçersiz" if self.amount =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  end
+  def active_validation
+    self.errors.add "bağış sayfası", "aktif değil" if self.page && !self.page.can_be_donated?
+    unless self.page
+      self.errors.add "proje", "aktif değil" if self.project && !self.project.can_be_donated?
+      unless self.project
+        self.errors.add "kurum", "aktif değil" if self.organization && !self.organization.can_be_donated?
+      end
+    end
+
+
   end
 end
