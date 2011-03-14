@@ -65,6 +65,10 @@ class Page < ActiveRecord::Base
     "%.2f" % self.collected
   end
 
+  def goal_str
+    "%.2f" % self.goal
+  end
+
   def on_before_save
     self.logo_file_name = transliterate(logo_file_name)
   end

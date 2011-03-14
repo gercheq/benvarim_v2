@@ -29,42 +29,38 @@ if u3.nil?
   u3.save!
 end
 
-unless u1.organization
-  org = Organization.new({
+unless u1.organizations.length > 0
+  org = u1.organizations.build({
     :name => "Nesin Vakfı",
     :description_html => "Ben <b>eşşek</b> sen eşşek onlar eşşek"
   })
-  org.user_id = u1.id
   org.save!
-  u1.organization = org
-  u1.save!
 end
-unless u2.organization
-  org2 = Organization.new({
+org = u1.organizations[0]
+unless u2.organizations.length > 0
+  org2 = u2.organizations.build({
     :name => "Temaaaaa",
     :description_html => "toprak kaymasin yagmur yagsin"
   })
-  org2.user_id = u2.id
   org2.save!
-  u2.organization = org2
-  u2.save!
 end
+org2 = u2.organizations[0]
 
-if u2.organization.projects.length < 2
-  u2.organization.projects.build({
+if org.projects.length < 2
+  org.projects.build({
     :name => "Toprak Ana",
     :description => "Bu projede amac toprak ana"
   })
-  u2.organization.save!
+  org.save!
 end
 
 if u3.pages.length < 1
   u3.pages.build({
-    :organization_id => u2.organization.id,
+    :organization_id => org2.id,
     :description_html => "ben de para <b>toplamak</b> isterim",
     :title => "para toplamak en guzeli",
     :goal => 10,
-    :project_id => u2.organization.projects[0].id
+    :project_id => org2.projects[0].id
   })
   u3.pages[0].save!
 end

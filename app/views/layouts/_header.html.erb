@@ -71,23 +71,6 @@
             <% else %>
             	<%= link_to "Giriş", new_user_session_path %> |	<%= link_to "Kayıt", new_user_registration_path %>
             <% end %>
-
- <!--
-                  <% if user_signed_in? %>
-                    <% if current_user.organization.nil? %>
-                    	<li><%= link_to "Kurum Ekle", new_organization_path %></li>
-                    <% else%>
-                      <li><%= link_to "Kurum Bilgilerini Düzenle", edit_organization_path(current_user.organization) %></li>
-                    	<li><%= link_to "Proje Yarat", new_project_path %></li>
-                    	<li><%= link_to "Projelerimiz", our_projects_path %></li>
-                    <% end%>
-                    <li>Merhaba, <%= link_to current_user.name, user_path(current_user.id) %></li>
-                  <% else %>
-                  	<li><%= link_to "Gönüllü Giriş", new_user_session_path %></li>
-                  	<li><%= link_to "Gönüllü Kayıt", new_user_registration_path %></li>
-                  <% end %>
-  -->
-
         </div>
 
       </div>

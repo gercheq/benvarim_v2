@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
 
   has_many :pages
-  has_one :organization
+  has_many :organizations
 
   validates :name, :length => { :minimum => 5, :maximum => 100 }
 

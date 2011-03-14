@@ -13,10 +13,8 @@
               <p><%= link_to page.organization.name, page.organization %> > <%= link_to page.project.name, page.project %></p>
 
               <p><%= page.description %></p>
-              <p><%= human_readable_datetime page.start_time %></p>
-              <p><%= human_readable_datetime page.end_time %></p>
-              <p>Hedef: <%= page.goal %></p>
-              <p>Toplanan: <%= page.collected %></p>
+              <p>Hedef: <%= page.goal_str %> TL</p>
+              <p>Toplanan: <%= page.collected_str %> TL</p>
               <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button super no-margin"%>
               <p></p>
               <% if @show_edit_link %>

@@ -188,11 +188,12 @@ tr:
         organization_role : "Göreviniz"
         other : "Notlar"
       project:
-        name : "bağış Kampanyası"
+        name : "bağış kampanyası"
         logo : "logo"
         start_time: "başlangıç zamanı"
         end_time: "bitiş zamanı"
         description: "tanıtım sayfası"
+        organization_id: "kurum"
       tmp_payment:
         name : "İsminiz"
         email : "e-posta"

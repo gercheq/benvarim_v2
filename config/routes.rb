@@ -77,8 +77,8 @@ Benvarim::Application.routes.draw do
   get '/proje/:id' => "projects#show", :as => :project
   put '/proje/:id' => "projects#update", :as => :project
   delete '/proje/:id' => "projects#destroy", :as => :project
-  get '/projelerimiz' => 'projects#our_projects', :as => :our_projects
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
+  get 'kurum/:organization_id/proje/yeni' => 'projects#new',  :as => :new_project_for_organization
 
   get '/kurumlar' => "organizations#index", :as => :organizations
   post '/kurum' =>  "organizations#create", :as => :organizations

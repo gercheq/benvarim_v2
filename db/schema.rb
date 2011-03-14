@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20110313225837) do
     t.integer  "user_id"
     t.integer  "organization_id"
     t.integer  "project_id"
-    t.boolean  "active"
+    t.boolean  "active",            :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description_html"

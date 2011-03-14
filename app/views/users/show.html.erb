@@ -30,23 +30,28 @@
           </ul>
           <br />
           <ul>
-          <% if current_user.organization.nil? %>
-            	<li><%= link_to "Kurum Ekle", new_organization_path %></li>
-          <% else%>
-            <ul>
-              <li><%= link_to "Kurum Bilgilerini Düzenle", edit_organization_path(current_user.organization) %></li>
-               <li><%= link_to "Projeler", projects_path %></li>
-               <li><%= link_to "Projelerimiz", our_projects_path %></li>
-               <li><%= link_to "Proje Yarat", new_project_path %></li>
-            </ul>
-          <% end %>
-             <br />
-
-
-
+            <li><%= link_to "Kurum Ekle", new_organization_path %></li>
+            <% @user.organizations.each do |organization| %>
+            <li>
+              <%= link_to organization.name, organization%>
+              | <%= link_to "Düzenle", edit_organization_path(organization) %>
+              | <%= link_to "Projeleri", organization_projects_path(organization) %>
+              | <%= link_to "Proje Yarat", new_project_for_organization_path(organization) %>
+            </li>
+            <% end %>
+          </ul>
           <ul>
-           	 <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
              <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
+             <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
+          </ul>
+          <ul class="sub-ul">
+          <% @user.pages.each do |page| %>
+            <li>
+              <%= link_to page.title, page %> <%=page.collected_str%> TL
+
+              |  <%= link_to "Düzenle", edit_page_path(page)%>
+            </li>
+          <% end %>
           </ul>
              <br />
 
@@ -54,7 +59,14 @@
    </div>
 <% end %>
 </div><!-- end of #main-content -->
-
+<style type="text/css" media="screen">
+  .sub-ul {
+    padding-left: 20px;
+  }
+  .sub-ul li {
+    margin-left: 10px;
+  }
+</style>
 <%= render 'layouts/sidebar'%>
 
 

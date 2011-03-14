@@ -17,7 +17,7 @@
       <%=link_to @page.organization.name, @page.organization%>
       <%=f.hidden_field :organization_id%>
     <% else %>
-      <%= f.select :organization_id, @organizations, {:include_blank => true} %>
+      <%= f.select :organization_id, @organizations, {:include_blank => false} %>
     <% end %>
 
   </div>
@@ -51,7 +51,7 @@
 
   <div class="field">
     <%= f.label :goal %>
-    <%= f.text_field :goal %>
+    <%= f.text_field :goal %> TL
   </div>
 
   <div class="actions">

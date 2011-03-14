@@ -8,10 +8,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  def our_projects
-    @projects = current_user.organization.projects.all
-  end
-
   def by_organization
     org = Organization.find_by_id(params[:id])
     if org
@@ -36,24 +32,54 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @organization = Organization.find_by_id(params[:organization_id])
+    if @organization
+      @project.organization = @organization
+    else
+      @organizations = current_user.organizations.collect do |org|
+        [org.name, org.id]
+      end
+    end
   end
 
   def edit
-    @project = current_user.organization.projects.find(params[:id])
+    @project = Project.find(params[:id])
+    if @project.organization.user != current_user
+      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      redirect_to @project
+    end
   end
 
   def create
-    @project = current_user.organization.projects.build(params[:project])
-
+    @organization = current_user.organizations.find_by_id(params[:organization_id])
+    if(@organization)
+      @project = @organization.projects.build(params[:project])
+    else
+      #we know it cannot be created w/o organization but just to let things go
+      #we create it
+      @project = Project.new(params[:project])
+    end
     if @project.save
       redirect_to(@project, :notice => 'Proje yaratıldı.')
     else
+      if @organization
+        # @project.organization = @organization
+      else
+        @organizations = current_user.organizations.collect do |org|
+          [org.name, org.id]
+        end
+      end
       render :action => "new"
     end
   end
 
   def update
-    @project = current_user.organization.projects.find(params[:id])
+    @project = Project.find(params[:id])
+    if @project.organization.user != current_user
+      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      redirect_to @project
+    end
+
     if @project.update_attributes(params[:project])
       redirect_to(@project, :notice => 'Proje kaydedildi.')
     else
@@ -62,7 +88,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = current_user.organization.projects.find(params[:id])
-    @project.destroy
+    @project = Project.find(params[:id])
+    if @project.organization.user != current_user
+      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      redirect_to @project
+    end
+    @project.active = false
+    @project.save!
   end
 end

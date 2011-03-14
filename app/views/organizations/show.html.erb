@@ -15,11 +15,11 @@
         </div>
       </div>
       <div class="fullcontent-right">
-        <% if (user_signed_in? && current_user.organization == @organization)%>
+        <% if (user_signed_in? && current_user == @organization.user)%>
           <div>
             Yönetim Paneli<br/>
             <%=link_to "Düzenle", edit_organization_path(@organization)%>
-            <%=link_to "Yeni Proje Ekle", :new_project%>
+            <%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@organization)%>
           </div>
         <% end %>
 
@@ -63,7 +63,9 @@
   <%=render :partial => "projects/list_projects",
     :locals => {
       :show_edit_link => false,
-      :projects => @projects
+      :projects => @projects,
+      :hide_organization_link => true,
+      :organization => @organization
     }%>
 
   <div class="widget widget-light widget-aktif-bagis widget-liste">

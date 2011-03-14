@@ -16,30 +16,25 @@ class OrganizationsController < ApplicationController
   end
 
   def new
-    #if the current user has an organization, redirect to its page
-    unless current_user.organization.nil?
-      redirect_to current_user.organization
-    end
     @organization = Organization.new
   end
 
   def create
-    @organization = Organization.new(params[:organization])
-    @organization.user = current_user
+    @organization = current_user.organizations.build(params[:organization])
     if @organization.save
-      redirect_to(current_user.organization, :notice => "Sivil Toplum Kuruluşu Yaratıldı")
+      redirect_to(@organization, :notice => "Sivil Toplum Kuruluşu Yaratıldı")
     else
       render :new
     end
   end
 
   def edit
-    @organization = current_user.organization
+    @organization = current_user.organizations.find(params[:id])
     redirect_to :action => :new if @organization.nil?
   end
 
   def update
-    @organization = current_user.organization
+    @organization = current_user.organizations.find(params[:id])
     redirect_to :action => :new if @organization.nil?
 
     if @organization.update_attributes(params[:organization])
