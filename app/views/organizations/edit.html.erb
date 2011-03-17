@@ -1,0 +1,11 @@
+<div class="widget widget-light">
+  <div class="w-inner">
+    <div class="w-title">Kurum Bilgilerini Düzenle</div>
+
+    <%= render 'form' %>
+
+    <%= link_to @organization.name, @organization %> |
+    <%= link_to 'Kurumlar', organizations_path %>
+
+    </div>
+  </div>

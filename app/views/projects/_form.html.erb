@@ -1,0 +1,47 @@
+<%= form_for @project, :html => { :multipart => true } do |f| %>
+  <% if @project.errors.any? %>
+    <div class="msg-error msg">
+      <h2>Lütfen bu <%=@project.errors.count%> hatayı düzeltiniz</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organization_id %>
+    <% unless @project.organization.nil? %>
+      <%=link_to @project.organization.name, @project.organization%>
+      <%=f.hidden_field :organization_id%>
+    <% else %>
+      <%= f.select :organization_id, @organizations, {:include_blank => false} %>
+    <% end %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :logo %>
+    <% unless @project.new_record?%>
+      <% if @project.logo.file? %>
+        <%= image_tag @project.logo.url(:thumb) %>
+      <% else %>
+        <%= image_tag @project.organization.logo.url(:thumb) %>
+      <% end %>
+    <% end %>
+    <%= f.file_field :logo %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit :kaydet, :class=>"button yellow super button-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<%=render :partial => 'layouts/errors'%>
+
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <% if @project.logo.file? %>
+        <%= image_tag @project.logo.url(:thumb) %>
+      <% else %>
+        <%= image_tag @project.organization.logo.url(:thumb) %>
+      <% end %>
+
+      <p>
+        <b>Proje:</b>
+        <%= @project.name %>
+      </p>
+      <p>
+        <b>Tanım:</b>
+        <%=raw @project.description %>
+      </p>
+
+      <p>
+        <b>Kurum:</b>
+        <%= link_to @project.organization.name, @project.organization %>
+      </p>
+
+      <% if user_signed_in? && current_user == @project.organization.user%>
+        <%= link_to 'Düzenle', edit_project_path(@project) %>
+      <% end %>
+      <!-- <%=link_to "Direk Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%> -->
+      <% if @project.can_be_donated? %>
+        <%=link_to "Destekle", new_page_for_project_path(@project), :class => "yellow button right no-margin"%>
+      <% end %>
+
+
+    </div>
+  </div>
+</div><!-- end of #main-content -->
+
+<%= render 'layouts/sidebar_kurum'%>

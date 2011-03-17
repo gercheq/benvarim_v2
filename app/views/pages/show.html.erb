@@ -1,0 +1,157 @@
+<%=render :partial => 'layouts/errors'%>
+
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="fullcontent-left">
+
+        <div class="userpic">
+          <%= image_tag @page.user.photo.url(:thumb) %>
+        </div>
+
+        <div class="related-organization">
+          <h2>Desteklediği Kuruluş:</h2>
+          <div class="ro-details">
+            <h3><%= link_to @page.organization.name, @page.organization%></h3>
+            <h4><%= link_to @page.project.name, @page.project %></h4>
+            <p class="small"><%= image_tag @page.organization.logo.url(:thumb) %> <%=@page.organization.description[0..200]%> <%= link_to "devamı", @page.organization%></p>
+
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <% if user_signed_in? && @page.user == current_user %>
+            <%= link_to 'Düzenle', edit_page_path(@page) %>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="fullcontent-right">
+        <div class="comment-bubble rc">
+          <h1><%= @page.title %></h1>
+          <h6><%= @page.user.name%></h6>
+
+          <div class="share-options">
+            <ul>
+              <!-- <li><fb:like layout="button_count" show_faces="false" width="150"></fb:like></li> -->
+              <li><a  target="_blank" name="fb_share" type="button_count" href="javascript:void(alert('Demo aşamasında sayfaları paylaşamazsınız, teşekkürler'))">Facebook'ta Paylaş</a></li>
+              <!-- <li><a  target="_blank" name="fb_share" type="button_count" href="http://www.facebook.com/sharer.php">Facebook'ta Paylaş</a></li> -->
+              <!-- <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" >Tweet</a></li> -->
+              <li><a href="javascript:void(alert('Demo aşamasında sayfaları paylaşamazsınız, teşekkürler'))" class="twitter-share-button" data-count="horizontal" >Tweet</a></li>
+              <!-- <li><a style="background: url(http://friendfeed.com/static/images/icons/internal.png) 0px 0px no-repeat; padding-left: 20px; margin-left: 30px;" href="http://friendfeed.com/?url=<%= request.url %>&amp;title=<%= @page.title %>" target="_blank">FriendFeed'de Paylaş</a></li> -->
+            </ul>
+
+          </div>
+        </div><!-- .comment-bubble -->
+
+        <div class="description clearfix">
+            <% if @page.logo.file? %>
+              <%= image_tag @page.logo.url(:thumb) %>
+            <% end %>
+            <%=raw @page.description_html %>
+        </div>
+
+        <div class="progress-bar-container clearfix">
+
+          <div class="progress-bar rc clearfix">
+            <div class="pb-value rc" style="width: <%=@page.collect_ratio_str%>%;">
+              <div class="pb-reflection rc"></div>
+              <div class="pb-hedef">HEDEF: <b><%= @page.goal %> TL</b></div>
+              <div class="pb-toplanan">
+              <% if @page.collected < 1 && @page.active? %>
+                İlk bağış yapan sen ol!
+              <% else %>
+                Toplanan: <b><%= @page.collected %> TL</b>
+              <% end%>
+
+              </div>
+            </div>
+          </div>
+
+          <% if @page.can_be_donated? %>
+            <div class="pb-action">
+              <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
+            </div>
+          <% end %>
+        </div><!-- end of .progress-bar-container -->
+
+        <div class="tabs-container">
+          <div id="tabs">
+          	<ul>
+          		<li><a href="#destekleyenler">Destekleyenler</a></li>
+          		<li><a href="#proje-detaylari">Proje Detayları</a></li>
+          	</ul>
+          	<div id="destekleyenler" class="widget-liste">
+
+          	  <% if @payments.length > 0 %>
+
+                <%@payments.each do |payment|%>
+                  <div class="row clearfix">
+                    <div class="bagis-miktari"><%=payment.amount_str%><span>TL</span></div>
+                    <blockquote><span>“</span> <%=payment.note%></blockquote>
+                    <div class="bagisci"><%=payment.name%></div>
+                  </div><!-- end of .row -->
+                <% end %>
+
+                <div class="row center">
+                  <%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>
+                </div><!-- end of .row -->
+              <% else %>
+                <p><%= @page.user.name%> ilk destekçisini bekliyor. İlk bağış yapan sen ol!</p>
+                <%=link_to "İlk bağış yapan ben olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin", :rel => "facebox"%>
+              <% end %>
+
+
+            </div> <!-- end of #destekleyenler -->
+
+          	<div id="proje-detaylari">
+              <div class="pd-photo clearfix"><%= image_tag @page.project.logo.url(:thumb) %></div>
+              <div class="pd-details">
+            	  <h3><%= link_to @page.project.name, @page.project %></h3>
+                <p><%= @page.project.description %></p>
+                <p><%= link_to 'Daha fazla bilgi', @page.project %></p>
+                <% if (defined? show_edit_link) && show_edit_link %>
+                  <p><%= link_to 'Düzenle', edit_project_path(@page.project) %></p>
+                <% end %>
+              </div>
+            </div> <!-- end of #proje-detaylari -->
+
+          </div>
+        </div><!-- .tabs-container -->
+
+      </div>
+    </div>
+  </div>
+</div><!-- end of .widget -->
+
+<div id="main-content">
+
+  <div class="widget widget-light widget-aktif-bagis ">
+    <div class="w-inner clearfix">
+      <div class="w-title">Sıkça Sorulan Sorular</div>
+      <div class="w-content">
+
+
+        <div class="row">
+          <h3>Benvarım.com’da kimler projelerini tanıtabilir ve bağış toplayabilir?</h3>
+          <p>Türkiye Cumhuriyeti'nde yasal olarak bağış toplama yetkisi bulunan vakıf ve derneklerin gönüllüleri ile yöneticileri BenVarım.com platformunu kullanarak sosyal sorumluluk projelerini tanıtabilir  ve bunlar için bağış toplayabilirler</p>
+        </div>
+        <div class="row">
+          <h3>Bağışları BenVarım.com kendi hesabında mı topluyor?</h3>
+          <p>Hayır.  Benvarım.com sosyal sorumluluk projelerininin internaktif bir şekilde tanıtılmasına aracı olan bir platformdur. Benvarım.com bağışçıların direk olarak ilgili vakıf veya derneğe bağışta bulunmalarını sağlar.</p>
+        </div>
+        <div class="row">
+          <h3>Kredi kartımla bağış yapabilir miyim?</h3>
+          <p>Evet. Bu aşamada ödeme sistemi olarak kullandığımız PayPal servisi ister kredi kartı veya banka kartı ile, ister sahip olduğunuz PayPal hesabı ile bağış yapma olanağı sağlar.</p>
+        </div>
+        <div class="row">
+          <h3>PayPal ödeme sistemi güvenli midir?</h3>
+          <p>PayPal, tüm dünyada 100 milyondan fazla kullanıcıya sahip, en güvenli internet ödeme arayüzlerinden biridir. PayPal servisi ile yaptığınız kart ödemelerinde hesap bilgilerinizin ne bağış yaptığınız kurum tarafından ne de BenVarım.com platformu tarafından erişilmesine olanak yoktur. Ödemenizi yaparken, BenVarım.com sayfasından kısa süreliğine ayrılıp, PayPal hesabına yönlendirilecek, güvenli şekilde kart numaranızı girip ödemenizi yaptıktan sonra BenVarım platformuna geri yönlendirileceksiniz. PayPal servisi ödemenizi yaptığınız anda hem bağış yaptığınız kuruma eposta ile yapılan bağışı bildirir, hem de BenVarım platformuna ödemenin gerçekleştirildiğini bildirir. BenVarım platformu, bağışçıların ve kurumların güvenliğine en üst seviyede önem veren bir platformdur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end of #main-content -->
+
+<%= render 'layouts/sidebar_kurum'%>

@@ -1,0 +1,65 @@
+
+
+
+
+
+<div id="footer">
+<div class="container">
+<div id="footer-logo">benvarim.com</div>
+<div id="footer-nav">
+  &copy;2010  |
+  <%=link_to "Gizlilik Politikası", :gizlilik_politikasi %> |
+  <%=link_to "Kullanım Şartları", :kullanim_sartlari %> |
+  <%=link_to "Güvenli Ödeme", :guvenli_odeme %> |
+  <%=link_to "Hakkımızda", :hakkimizda %> |
+  <%=link_to "İletişim", :iletisim %>
+</div>
+</div>
+</div>
+</div> <!--! end of #footer -->
+
+
+<!-- Share part -->
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
+
+
+<!-- Javascript at the bottom for fast page loading -->
+
+<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/libs/jquery-1.4.2.js"%3E%3C/script%3E'))</script>
+
+<%= javascript_include_tag "plugins" %>
+
+<!-- scripts concatenated and minified via ant build script-->
+<%= javascript_include_tag "jquery-ui-1.8.8.min" %>
+<%= javascript_include_tag "jquery.cookie.js" %>
+
+
+<%= javascript_include_tag "facebox" %>
+
+<%= javascript_include_tag "script" %>
+<!-- end concatenated and minified scripts-->
+
+
+<!--[if lt IE 7 ]>
+<%= javascript_include_tag "libs/dd_belatedpng" %>
+<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+<![endif]-->
+
+<!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
+change the UA-XXXXX-X to be your site's ID -->
+<script>
+var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+(function(d, t) {
+var g = d.createElement(t),
+s = d.getElementsByTagName(t)[0];
+g.async = true;
+g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g, s);
+})(document, 'script');
+</script>
+</body>
+</html>

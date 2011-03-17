@@ -1,0 +1,59 @@
+<%= form_for(@contact_form) do |f| %>
+  <% if @contact_form.errors.any? %>
+    <div id="error_explanation">
+      <h2>Lütfen bu <%=@contact_form.errors.count%> hatayı düzeltiniz</h2>
+
+      <ul>
+      <% @contact_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="contact-form">
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :organization, :style=> "line-height:20px" %>
+      <%= f.text_field :organization %>
+    </div>
+    <br/>
+    <div class="field">
+      <%= f.label :organization_role %>
+      <%= f.text_field :organization_role %>
+    </div>
+    <div class="field">
+      <%= f.label :other %>
+      <%= f.text_area :other %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Gönder", :class=>"button yellow super button-primary", :style=>"margin-left:200px;width:120px" %>
+    </div>
+  </div>
+<% end %>
+
+<style type="text/css" media="screen">
+  .contact-form label {
+    width: 200px;
+  }
+
+  .contact-form input, .contact-form textarea {
+    width: 300px;
+  }
+</style>

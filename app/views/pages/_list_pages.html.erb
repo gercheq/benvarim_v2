@@ -1,0 +1,43 @@
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Aktif Bağış Kampanyaları</div>
+
+      <div class="rows-container" id="donation-pages-container">
+        <% @pages.each do |page| %>
+          <div class="row clearfix">
+            <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %></div>
+            <div class="row-details">
+              <h3><%= link_to page.title, page %></h3>
+              <p>Gonullu:  <%= link_to page.user.name, page.user %></p>
+              <p><%= link_to page.organization.name, page.organization %> > <%= link_to page.project.name, page.project %></p>
+
+              <p><%= page.description %></p>
+              <p>Hedef: <%= page.goal_str %> TL</p>
+              <p>Toplanan: <%= page.collected_str %> TL</p>
+              <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button super no-margin"%>
+              <p></p>
+              <% if @show_edit_link %>
+                <p><%= link_to 'Düzenle', edit_page_path(page) %></p>
+              <% end %>
+              <% if @show_destroy_link %>
+                <p><%= link_to 'Sil', page, :confirm => 'Emin misiniz?', :method => :delete %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row-action">
+        <% unless user_signed_in? && current_user.pages.length > 0 %>
+          <%= link_to 'Ben de bağış kampanyası düzenlemek istiyorum!', new_page_path, :class=>"green button super" %>
+        <% else %>
+          <%= link_to 'Yeni bağış kampanyası düzenle!', new_page_path, :class=>"green button super" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div><!-- end of .widget -->
+
+

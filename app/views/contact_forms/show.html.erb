@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+<p id="notice"><%= notice %></p>
+Yeni Mesaj
+<p>
+  <b>Ad, Soyad:</b>
+  <%= @contact_form.name %>
+</p>
+
+<p>
+  <b>Şehir:</b>
+  <%= @contact_form.city %>
+</p>
+
+<p>
+  <b>Telefon:</b>
+  <%= @contact_form.phone %>
+</p>
+
+<p>
+  <b>E-posta:</b>
+  <%= @contact_form.email %>
+</p>
+
+<p>
+  <b>Sivil Toplum Kuruluşu:</b>
+  <%= @contact_form.organization %>
+</p>
+
+<p>
+  <b>Görevi:</b>
+  <%= @contact_form.organization_role %>
+</p>
+
+<p>
+  <b>Diğer:</b>
+  <%= @contact_form.other %>
+</p>
+
+<%= link_to 'Geri', contact_forms_path %>

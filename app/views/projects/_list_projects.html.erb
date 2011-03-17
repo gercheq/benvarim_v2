@@ -1,0 +1,35 @@
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Bağış Projeleri</div>
+      <div class="rows-container" id="donation-pages-container">
+        <%
+        org_ids = []
+        %>
+
+        <% projects.each do |project| %>
+          <div class="row clearfix">
+            <div class="row-photo clearfix"><%= image_tag project.logo.url(:thumb) %></div>
+            <div class="row-details">
+              <h3><%= link_to project.name, project %></h3>
+              <p><%= project.description %></p>
+              <% unless (defined?(hide_organization_link) && hide_organization_link == true)%>
+                <p><%= link_to project.organization.name, project.organization%></p>
+              <% end %>
+              <p><%= link_to 'Görüntüle', project %></p>
+            </div>
+          </div>
+          <%
+          org_ids << project.organization_id
+          %>
+        <% end %>
+      </div>
+      <% if (defined?(organization) && current_user == organization.user) %>
+        <div class="row-action">
+          <%= link_to 'Yeni bağış projesi oluştur!', new_project_for_organization_path(organization), :class=>"green button super" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div><!-- end of .widget -->

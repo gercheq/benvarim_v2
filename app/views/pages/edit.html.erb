@@ -1,0 +1,13 @@
+<%=render :partial => 'layouts/errors'%>
+
+<div class="one-column">
+  <div class="widget widget-light">
+    <div class="w-inner">
+      <div class="w-title">Bağış Sayfasını Düzenle</div>
+
+      <%= render 'form' %>
+
+      <%= link_to 'Görüntüle', @page %> | <%= link_to 'Geri', pages_path %>
+    </div>
+  </div>
+</div><!-- end of .one-column -->

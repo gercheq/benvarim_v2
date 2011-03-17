@@ -1,0 +1,2 @@
+<%out = @projects.collect do |p| { :name => p.name, :id => p.id} end%>
+<%=raw out.to_json%>

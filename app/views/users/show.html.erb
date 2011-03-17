@@ -1,0 +1,72 @@
+<div id="main-content">
+  <div class="widget widget-light">
+    <div class="w-inner">
+      <div class="w-title"><%= @user.name %>,  <%=@user.age%></div>
+          <% if notice %>
+            <div class="msg msg-success">
+              <%= notice %>
+            </div>
+          <% end %>
+        <%= image_tag @user.photo.url(:thumb) %>
+        <div>
+            Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:
+         <%=render :partial => "layouts/quickstart_widget",
+            :locals => {
+              :available_organizations => @available_organizations
+            }
+          %>
+        </div>
+     </div>
+
+   </div>
+
+<% if user_signed_in? && current_user == @user%>
+   <div class="widget widget-light">
+       <div class="w-inner">
+          <div class="w-title">Yönetim Paneli</div>
+          <ul>
+             <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
+             <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+          </ul>
+          <br />
+          <ul>
+            <li><%= link_to "Kurum Ekle", new_organization_path %></li>
+            <% @user.organizations.each do |organization| %>
+            <li>
+              <%= link_to organization.name, organization%>
+              | <%= link_to "Düzenle", edit_organization_path(organization) %>
+              | <%= link_to "Projeleri", organization_projects_path(organization) %>
+              | <%= link_to "Proje Yarat", new_project_for_organization_path(organization) %>
+            </li>
+            <% end %>
+          </ul>
+          <ul>
+             <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
+             <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
+          </ul>
+          <ul class="sub-ul">
+          <% @user.pages.each do |page| %>
+            <li>
+              <%= link_to page.title, page %> <%=page.collected_str%> TL
+
+              |  <%= link_to "Düzenle", edit_page_path(page)%>
+            </li>
+          <% end %>
+          </ul>
+             <br />
+
+        </div>
+   </div>
+<% end %>
+</div><!-- end of #main-content -->
+<style type="text/css" media="screen">
+  .sub-ul {
+    padding-left: 20px;
+  }
+  .sub-ul li {
+    margin-left: 10px;
+  }
+</style>
+<%= render 'layouts/sidebar'%>
+
+

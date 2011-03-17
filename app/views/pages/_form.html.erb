@@ -1,0 +1,68 @@
+<%= form_for @page, :html => { :multipart => true } do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation" class="msg msg-error">
+      <h2>Lütfen bu <%=@page.errors.count %> hatayı düzeltiniz </h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organization_id %>
+    <% unless @page.organization.nil? %>
+      <%=link_to @page.organization.name, @page.organization%>
+      <%=f.hidden_field :organization_id%>
+    <% else %>
+      <%= f.select :organization_id, @organizations, {:include_blank => false} %>
+    <% end %>
+
+  </div>
+  <div class="field">
+    <%= f.label :project_id %>
+    <% unless @page.project.nil? %>
+      <%=link_to @page.project.name, @page.project%>
+      <%=f.hidden_field :project_id%>
+    <% else %>
+      <%= f.select :project_id, @projects, {:include_blank => @organizations.nil?}%>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :logo %>
+    <% unless @page.new_record?%>
+      <%= image_tag @page.logo.url(:thumb) %>
+    <% end %>
+    <%= f.file_field :logo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description_html, :class => :mceEditor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :goal %>
+    <%= f.text_field :goal %> TL
+  </div>
+
+  <div class="actions">
+    <%if @page.new_record?%>
+      <%=f.submit "Bağış Sayfası Yarat", :class => "button yellow super"%>
+    <%else%>
+      <%=f.submit "Değişiklikleri Kaydet", :class => "button yellow super"%>
+    <%end%>
+  </div>
+
+<% end %>
+
+<%add_page_specific_script "partial/page_form.js"%>
+
