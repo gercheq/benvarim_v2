@@ -44,7 +44,7 @@ class Organization < ActiveRecord::Base
   before_save :before_save_hook
 
   validates :user_id, :presence => true
-  validates :name, :length => { :minimum => 5, :maximum => 100 }
+  validates :name, :length => { :minimum => 2, :maximum => 100 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
 
   def safe_filename
