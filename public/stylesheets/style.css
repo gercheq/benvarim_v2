@@ -1749,11 +1749,15 @@ body {
   display: none;
 }
 
+.admin-actions,
 .profile-actions{
-  margin-top: 30px;
-  padding-top: 10px;
-  border-top: 1px solid #EEE;
-  font-size: 11px;
+    border-top: 1px solid #EEEEEE;
+    clear: both;
+    float: left;
+    font-size: 11px;
+    margin-top: 30px;
+    padding-top: 10px;
+    width: 100%;
 }
 
 #proje-detaylari {

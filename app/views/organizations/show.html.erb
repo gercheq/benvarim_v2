@@ -13,15 +13,18 @@
             <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button super no-margin", :rel => "facebox"%>
           <% end %>
         </div>
-      </div>
-      <div class="fullcontent-right">
+
+
         <% if (user_signed_in? && current_user == @organization.user)%>
-          <div>
-            Yönetim Paneli<br/>
-            <%=link_to "Düzenle", edit_organization_path(@organization)%>
-            <%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@organization)%>
+        <div class="admin-actions">
+          <ul>
+            <li><%=link_to "Düzenle", edit_organization_path(@organization)%></li>
+            <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@organization)%></li>
           </div>
         <% end %>
+
+      </div>
+      <div class="fullcontent-right">
 
         <h1><%= @organization.name %></h1>
         <h6><%= @organization.address %></h6>
