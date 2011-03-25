@@ -577,7 +577,7 @@ body{
 }
 
 a{ text-decoration:none; }
-a:hover{ border-bottom: 1px dotted #607890 !important;}
+a:hover{ border-bottom: 1px dotted #607890;}
 
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
@@ -998,6 +998,72 @@ body {
 
 
 
+#featured-charities {
+    text-align: center;
+}
+
+#featured-charities .w-title {
+    text-align: left;
+}
+
+
+#featured-charities a {
+    height: 80px;
+    display: inline-block;
+    margin: 10px 20px;
+    text-indent: -999em;
+}
+
+#featured-charities a:hover{
+    border: none;
+}
+
+#featured-charities .more-link a {
+    font-size: %90;
+    text-align: right;
+    float: right;
+    clear: both;
+    padding: 20px 0;
+    display: block;
+    margin: 0;
+    text-indent: 0;
+    height: auto;
+}
+
+#fc-tema {
+    background-image: url('../images/logo-tema.jpg');
+    width: 206px;
+}
+
+#fc-tegv {
+    background-image: url('../images/logo-tegv.jpg');
+    width: 82px;
+}
+
+#fc-ormana {
+    background-image: url('../images/logo-ormana.jpg');
+    width: 158px;
+}
+
+#fc-nesin {
+    background-image: url('../images/logo-nesin.png');
+    width: 81px;
+}
+
+#fc-iksv {
+    background-image: url('../images/logo-iksv.jpg');
+    width: 114px;
+}
+
+#featured-charities .opaque {
+      filter: alpha(opacity=20);
+      -moz-opacity: 0.2;
+      -webkit-opacity: 0.2;
+      opacity: 0.2;
+}
+
+
+
 
 
 
@@ -1009,6 +1075,7 @@ body {
 ** buttons, rounded corners, shadows, widgets
 **
 */
+
 
 
   /*
