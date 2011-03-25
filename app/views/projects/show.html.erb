@@ -1,39 +1,58 @@
 <%=render :partial => 'layouts/errors'%>
 
+<% @bodyid = "page-proje" %>
+
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
-      <% if @project.logo.file? %>
-        <%= image_tag @project.logo.url(:thumb) %>
-      <% else %>
-        <%= image_tag @project.organization.logo.url(:thumb) %>
-      <% end %>
+      <div class="fullcontent-left">
+        <% if @project.logo.file? %>
+          <%= image_tag @project.logo.url(:thumb) %>
+        <% else %>
+          <%= image_tag @project.organization.logo.url(:thumb) %>
+        <% end %>
 
-      <p>
-        <b>Proje:</b>
-        <%= @project.name %>
-      </p>
-      <p>
-        <b>Tanım:</b>
-        <%=raw @project.description %>
-      </p>
-
-      <p>
-        <b>Kurum:</b>
-        <%= link_to @project.organization.name, @project.organization %>
-      </p>
-
-      <% if user_signed_in? && current_user == @project.organization.user%>
-        <%= link_to 'Düzenle', edit_project_path(@project) %>
-      <% end %>
-      <!-- <%=link_to "Direk Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%> -->
-      <% if @project.can_be_donated? %>
-        <%=link_to "Destekle", new_page_for_project_path(@project), :class => "yellow button right no-margin"%>
-      <% end %>
+        <div class="pb-action">
+          <% if @project.can_be_donated? %>
+            <%=link_to "Destekle", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%>
+          <% end %>
 
 
+          <% if user_signed_in? && current_user == @project.organization.user%>
+          <div class="profile-actions">
+            <ul>
+              <li><%= link_to 'Düzenle', edit_project_path(@project) %></li>
+              <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@project)%></li>
+            </ul>
+          </div>
+          <% end %>
+
+
+        </div>
+      </div>
+      <div class="fullcontent-right">
+        <h1><%= @project.name %></h1>
+        <h6><%= link_to @project.organization.name, @project.organization %></h6>
+
+        <% if @project.organization.website %>
+          <p class="outlink">
+            <%=link_to "Web Sitesi", "http://#{@project.organization.website}", :target => "_blank"%>
+          </p>
+        <% end %>
+
+
+
+        <%= raw @project.description %>
+      </div>
     </div>
   </div>
-</div><!-- end of #main-content -->
+</div><!-- end of .widget -->
+
+
+
+
+
+
+
 
 <%= render 'layouts/sidebar_kurum'%>
