@@ -17,6 +17,21 @@ function fadeInOrder(elem) {
   });
 }
 
+//
+// Search Focus & Blur
+//
+function setup_search(){
+
+  var searchDefaultText = $(".clear-on-focus").attr("value");
+
+  $(".clear-on-focus").focus(function(){
+    if($(this).attr("value") == searchDefaultText) $(this).attr("value", "");
+  });
+  $(".clear-on-focus").blur(function(){
+     if($(this).attr("value") == "") $(this).attr("value", searchDefaultText);
+  });
+}
+
 
 /*
 ** DOM READY
@@ -29,22 +44,9 @@ $(document).ready(function(){
     $('#featured-input').focus();
   });
 
+  setup_search();
 
-  //
-  // Search Focus & Blur
-  //
-  var searchDefaultText = $(".clear-on-focus").attr("value");
-
-  $(".clear-on-focus").focus(function(){
-    if($(this).attr("value") == searchDefaultText) $(this).attr("value", "");
-  });
-  $(".clear-on-focus").blur(function(){
-     if($(this).attr("value") == "") $(this).attr("value", searchDefaultText);
-  });
-
-  //
-  // Form Custom Styles
-  //
+  //  Custom Form Styles
   $("select, :radio, :checkbox").uniform();
 
 

@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = current_user.organizations.build(params[:organization])
     if @organization.save
-      redirect_to(@organization, :notice => "Sivil Toplum Kuruluşu Yaratıldı")
+      redirect_to(@organization, :success => "Sivil Toplum Kuruluşu Yaratıldı")
     else
       render :new
     end
@@ -38,7 +38,7 @@ class OrganizationsController < ApplicationController
     redirect_to :action => :new if @organization.nil?
 
     if @organization.update_attributes(params[:organization])
-      redirect_to(@organization, :notice => 'Bigiler başarıyla kaydedildi.')
+      redirect_to(@organization, :success => 'Bigiler başarıyla kaydedildi.')
     else
       render :action => "edit"
     end
