@@ -1563,6 +1563,10 @@ body {
       font-size:20px;
       line-height: 22px;}
 
+    .widget li {
+        margin-bottom: 10px;
+    }
+
 
     /*
     ** Widget Customizations
@@ -1653,12 +1657,40 @@ body {
 *************************************************************************************/
 
 /*************************************************************************************
+** ANASAYFA
+*************************************************************************************/
+#home-stats .row-details{
+    padding-left: 135px;
+}
+
+#home-stats .row-photo,
+#home-stats .row-photo img {
+    width: 100px;
+}
+
+
+/*************************************************************************************
 ** NEDIR
 *************************************************************************************/
 #page-nedir{
     background: #2B4B6C url('../images/nedir.png') 20px center no-repeat;
     height: 250px;
     padding: 20px 0;
+}
+
+.nedir-item{
+    margin: 30px 0;
+}
+
+
+/*************************************************************************************
+** NASIL
+*************************************************************************************/
+#page-nasil{
+    background: #2B4B6C url('../images/nasil.png') 20px center no-repeat;
+    height: 250px;
+    padding: 20px 0;
+    margin-bottom: 30px;
 
 }
 
@@ -1860,6 +1892,16 @@ body {
     height: 200px;
     margin-right: 0 !important;
 }
+
+
+
+#organization_website{
+    width: 415px;
+}
+
+
+
+
 
 
 

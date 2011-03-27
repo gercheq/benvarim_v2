@@ -77,13 +77,13 @@
 
 
 <div id="main-content">
+  <div id="home-stats">
   <%=render :partial => "projects/list_projects",
     :locals => {
       :show_edit_link => false,
       :projects => @top_projects,
       :hide_organization_link => true
     }%>
-  <div class="widget widget-light">
     <% if @top_pages.length > 0 %>
       <div class="widget widget-light widget-aktif-bagis widget-liste">
         <div class="w-inner clearfix">
