@@ -65,18 +65,29 @@
 
 
 <div id="main-content">
+  <%=render :partial => "projects/list_projects",
+    :locals => {
+      :show_edit_link => false,
+      :projects => @top_projects,
+      :hide_organization_link => true
+    }%>
   <div class="widget widget-light">
-    <div class="w-inner">
-      <div class="w-title">Aktif Projeler</div>
-      main content widget
-    </div>
-  </div>
-
-  <div class="widget widget-light">
-    <div class="w-inner">
-      <div class="w-title">En çok bağış toplayan gönüllüler</div>
-      main content widget
-    </div>
+    <% if @top_pages.length > 0 %>
+      <div class="widget widget-light widget-aktif-bagis widget-liste">
+        <div class="w-inner clearfix">
+          <div class="w-title">En çok bağış toplayanlar</div>
+          <div class="w-content">
+          <%@top_pages.each do |page|%>
+            <div class="row clearfix">
+                <div class="bagis-miktari"><%=page.collected_str%> <span>TL</span></div>
+                <blockquote><span>“</span><%=page.description%><%=link_to "...", page%></blockquote>
+                <div class="bagisci"><%=link_to page.user.name, page.user%></div>
+            </div><!-- end of .row -->
+          <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div><!-- end of #main-content -->
 
