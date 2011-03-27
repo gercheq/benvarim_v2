@@ -572,14 +572,15 @@ div.uploader input {
  }
 
 body{
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
 a,
 a:focus,
-a:active { text-decoration:none; color: #0862A2;}
-a:hover{ border-bottom: 1px dotted #0862A2;}
+a:active,
+a:visited { text-decoration:none; color: #0862A2;}
+a:hover{ text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
@@ -715,9 +716,6 @@ p{
   font-weight: bold;
 }
 
-#utility-nav a:hover{
-  border-bottom: 1px dotted #FFF;
-}
 
 #nav-login{ border-right: 1px solid #244267;}
 #nav-register{ border-left: 1px solid #6984a7;}
@@ -741,7 +739,7 @@ p{
 }
 
 #featured-content-2 h2{
-    font-size: 26px !important;
+    font-size: 24px !important;
     margin-bottom: 10px;
 }
 
@@ -786,7 +784,6 @@ p{
 .step{
   clear: both;
   display:none;
-  font-weight: lighter;
   padding: 0 20px;
   position:relative;
   margin: 10px 0 20px; }
@@ -800,6 +797,7 @@ p{
   line-height:1;
   float: left;
   width: 40px;
+  font-weight: 300;
   margin-right: 5px;
   font-family: "Gotham Rounded", "Gotham", "Helvetica Neue", Helvetica, sans-serif ;
   color: #a4b1cb;}
@@ -1021,6 +1019,7 @@ body {
     display: inline-block;
     margin: 10px 20px;
     text-indent: -999em;
+    background-repeat: no-repeat;
 }
 
 #featured-charities a:hover{
@@ -1037,6 +1036,11 @@ body {
     margin: 0;
     text-indent: 0;
     height: auto;
+}
+
+.fc-default{
+    background-image: url('../images/logo-default.jpg');
+    width: 120px;
 }
 
 #fc-tema {
@@ -1123,7 +1127,7 @@ body {
   fieldset textarea,
   fieldset select,
   .selector {
-    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: #444;
     width: 458px;
     padding: 5px;
@@ -1205,7 +1209,7 @@ body {
   	cursor: pointer;
    }
 
-  .button:hover	{ background-color: #111; color: #fff; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important;}
+  .button:hover	{ background-color: #111; color: #fff; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important; text-decoration: none !important;}
   .button:active { top: 1px; }
   .small.button, .small.button:visited { font-size: 11px}
   .button, .button:visited,
@@ -1407,6 +1411,7 @@ body {
     .comment-bubble h1{
       line-height: 1.3;
       font-size: 24px;
+      margin-bottom: 15px !important;
     }
 
     .comment-bubble h6{
@@ -1451,6 +1456,10 @@ body {
         background: -moz-linear-gradient(top, #eeeeee 0%, #E2E2E2 50%, #eeeeee 100%); /* firefox */
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(50%,#E2E2E2), color-stop(100%,#eeeeee)); /* webkit */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
+    }
+
+    #list-pages .progress-bar{
+        width: 525px;
     }
 
     .pb-value{
@@ -1586,7 +1595,6 @@ body {
         margin-bottom: 10px;
     }
     .widget-aktif-bagis p {
-        font-size: 85%;
         margin-bottom: 5px;
     }
 
@@ -1670,10 +1678,20 @@ body {
   float:right;
   width: 710px; }
 
+.widget-kurum h1{
+    margin-bottom: 0;
+}
+
+.org-address{
+    font-size: 12px;
+    margin-bottom:0;
+}
+.org-url{
+    font-size: 12px;
+}
 
 
-.widget-aktif-bagis p{ margin-bottom:5px; font-size:85%; }
-
+.widget-aktif-bagis p{ margin-bottom:5px; }
 
 
 .share-options {
@@ -1723,7 +1741,8 @@ body {
   margin-bottom: 20px;
 }
 .userpic img {
-  margin-bottom: 0;
+  margin: 0;
+  border: 1px solid #DDD;
 }
 
 .ro-details {
@@ -1819,11 +1838,15 @@ body {
   box-shadow: none !important;
 }
 
+
+#w-yeni-kayit .text-field,
 #facebox .text-field {
     width: 300px;
     margin-right: 10px;
 }
 
+
+#w-yeni-kayit textarea,
 #facebox textarea {
     width: 450px !important;
     height: 200px;

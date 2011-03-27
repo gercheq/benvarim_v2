@@ -102,13 +102,14 @@ $(document).ready(function(){
 	  });
 	});
 
-
-  $('.truncate-200').truncatable({
-    limit: 200,
-    more: '&raquo; devamını göster',
-    less: true,
+  /*
+  $('.truncate-short').truncatable({
+    limit: 600,
+    more: ' devamını göster &raquo; ',
+    less: false,
     hideText: '[sakla]'
   });
+  */
 
 
 
