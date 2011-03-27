@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     unless @project.can_be_donated?
-      flash.now[:notice] = "Proje aktif olmadığı için bağış toplayamazsınız."
+      flash.now[:error] = "Proje aktif olmadığı için bağış toplayamazsınız."
     end
   end
 
@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
       @project = Project.new(params[:project])
     end
     if @project.save
-      redirect_to(@project, :notice => 'Proje yaratıldı.')
+      redirect_to(@project, :success => 'Proje yaratıldı.')
     else
       if @organization
         # @project.organization = @organization
@@ -81,7 +81,7 @@ class ProjectsController < ApplicationController
     end
 
     if @project.update_attributes(params[:project])
-      redirect_to(@project, :notice => 'Proje kaydedildi.')
+      redirect_to(@project, :success => 'Proje kaydedildi.')
     else
       render :action => "edit"
     end
@@ -90,7 +90,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     if @project.organization.user != current_user
-      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      flash[:error] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
       redirect_to @project
     end
     @project.active = false
