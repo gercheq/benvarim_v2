@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   has_many :tmp_payments
   has_many :payments
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
-                      :path => '/:class/:attachment/:id/:style/:filename',
+                      :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",

@@ -22,7 +22,7 @@
 
 class Organization < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
-                      :path => '/:class/:attachment/:id/:style/:safe_filename',
+                      :path => "/:class/:attachment/:id/:style/resim.:extension",
                       :storage => :s3,
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",
@@ -47,7 +47,7 @@ class Organization < ActiveRecord::Base
   validates :name, :length => { :minimum => 2, :maximum => 100 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
 
-  def safe_filename
+  def safefilename
     transliterate(logo_file_name)
   end
 

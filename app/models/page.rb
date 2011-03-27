@@ -26,7 +26,7 @@
 
 class Page < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
-                      :path => '/:class/:attachment/:id/:style/:safe_filename',
+                      :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",
@@ -39,7 +39,6 @@ class Page < ActiveRecord::Base
   has_many :payments
 
   before_validation :sanitize_description_html
-  before_save :on_before_save
 
   validates :organization_id, :presence => true
   validates :project_id, :presence => true
@@ -67,14 +66,6 @@ class Page < ActiveRecord::Base
 
   def goal_str
     "%.2f" % self.goal
-  end
-
-  def on_before_save
-    self.logo_file_name = transliterate(logo_file_name)
-  end
-
-  def safe_filename
-    transliterate(logo_file_name)
   end
 
   def can_be_donated?
