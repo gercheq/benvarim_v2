@@ -1,6 +1,6 @@
 <div id="featured-content-2" class="clearfix">
     <div class="fc-left rc-left">
-      <div class="fc-inner">
+      <div class="fc-inner" id="fc-inner-individual">
         <div class="steps rc clearfix">
           <div class="step s-first" id="step-1">
             <div class="s-number">1.</div>
@@ -19,7 +19,7 @@
         </div> <!-- end of steps -->
 
         <div class="campaign-form-container">
-          <h2>Bağış sayfası düzenlemek istiyorum.</h2>
+          <h2>Gönüllü olmak istiyorum:</h2>
           <%=render :partial => "layouts/quickstart_widget",
             :locals => {
               :available_organizations => @available_organizations
@@ -27,19 +27,23 @@
           %>
         </div>
       </div><!-- end of .fc-inner -->
+      <div class="fc-inner" id="fc-inner-nonprofit">
+        Kurum kayit formu
+
+      </div>
     </div>
 
     <div class="fc-right">
       <div class="profile profile-individual rc-right">
         <div class="fc-inner">
-          <h3>Gönüllü olmak istiyorum.</h3>
-          <p>benvarım.com’a üye olun, bağış sayfanızı yaratın ve desteklediğiniz vakıf ve dernek için anında bağış toplamaya başlayın.</p>
+          <h3>Gönüllü olmak istiyorum:</h3>
+          <p>Benvarım.com’a üye olun, bağış sayfanızı yaratın ve desteklediğiniz vakıf ve dernek için anında bağış toplamaya başlayın.</p>
         </div>
       </div>
 
       <div class="profile profile-nonprofit opaque rc-right">
         <div class="fc-inner">
-          <h3>Yeni Dernek <span class="amp">&amp;</span> Vakıf Kaydı</h3>
+          <h3>Yeni Dernek <span class="amp">&amp;</span> Vakıf Kaydı:</h3>
           <p>Organizasyonunuz için internet üzerinden bağış toplamak istiyorsanız, lütfen bizimle iletişime geçiniz.</p>
         </div>
       </div>

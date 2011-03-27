@@ -110,7 +110,7 @@ html { overflow-y: scroll; }
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-a, a:active, a:visited { color: #607890; }
+a, a:active, a:visited { color: #0862A2; }
 a:hover { color: #036; }
 
 
@@ -576,8 +576,10 @@ body{
   font-size: 14px;
 }
 
-a{ text-decoration:none; }
-a:hover{ border-bottom: 1px dotted #607890;}
+a,
+a:focus,
+a:active { text-decoration:none; color: #0862A2;}
+a:hover{ border-bottom: 1px dotted #0862A2;}
 
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
@@ -736,7 +738,11 @@ p{
   height: auto;
   margin-top: 40px;
   margin-bottom: 30px;
+}
 
+#featured-content-2 h2{
+    font-size: 26px !important;
+    margin-bottom: 10px;
 }
 
 .fc-left {
@@ -835,6 +841,10 @@ p{
 #featured-submit{
   font-size: 16px;
   line-height: 18px;
+}
+
+#fc-inner-nonprofit {
+    display: none;
 }
 
 
@@ -969,8 +979,7 @@ body {
 
 .row-photo {
   float: left;
-  border: 1px solid #DDD;
-  padding: 4px;
+  margin: 10px 0 20px 10px;
   width: 200px;
   background: #FFF;
 }
@@ -1564,9 +1573,10 @@ body {
     .bagis-miktari {
         color: #CCCCCC;
         float: right;
-        font-size: 32px;
+        font-size: 24px;
         font-weight: bold;
         margin-left: 20px;
+        font-family: Georgia, serif;
     }
     .bagis-miktari span {
         font-size: 18px;
@@ -1647,11 +1657,10 @@ body {
 
 .fullcontent-left img{
  background: none repeat scroll 0 0 #FFFFFF;
- border: 1px solid #DDD;
  height: auto;
  padding: 3px;
- width: 174px;
- margin-bottom:5px;}
+ margin: 10px 0 20px;
+ width: 174px; }
 
 .fullcontent-left .button{
   text-align: center;
@@ -1784,6 +1793,13 @@ body {
   border: none !important;
 }
 
+.ui-tabs .ui-tabs-nav li a {
+    float: left !important;
+    font-size: 13px !important;
+    padding: 10px 30px !important;
+    text-transform: capitalize !important;
+}
+
 
 /*************************************************************************************
 ** BAGIS ODEME SAYFASI - http://0.0.0.0:3000/sayfa/3/bagis
@@ -1801,6 +1817,17 @@ body {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
+}
+
+#facebox .text-field {
+    width: 300px;
+    margin-right: 10px;
+}
+
+#facebox textarea {
+    width: 450px !important;
+    height: 200px;
+    margin-right: 0 !important;
 }
 
 
