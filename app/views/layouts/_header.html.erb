@@ -22,6 +22,39 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <!--  dynamic metadatas -->
+	
+  <% if defined?(@page) && !@page.nil? %>
+    <meta property="og:title" content="<%= @page.name %>" /> 
+    <meta property="og:type"  content="<%= @page.description %>"/>
+    <% if @page.logo? %>
+      <meta property="og:image" content="<%= url_for @page.logo.url(:medium)%>"/>
+    <% end %>
+    <meta property="og:site_name" content="<%= @page.organization.website %>"/>
+  <% elsif defined?(@project) && !@project.nil? %> 
+    <meta property="og:title" content="<%= @project.name %>" />
+    <meta property="og:type"  content="<%= @project.description %>"/>
+    <% if @project.logo? %>
+      <meta property="og:image" content="<%= url_for @project.logo.url(:medium)%>"/>
+    <% end %>
+    <meta property="og:site_name" content="<%= @project.organization.website %>"/>
+  <% elsif defined?(@organization) && !@organization.nil? %> 
+    <meta property="og:title" content="<%= @organization.name %>" />
+    <meta property="og:type"  content="<%= @organization.description %>"/>
+    <% if @organization.logo? %>
+      <meta property="og:image" content="<%= url_for @organization.logo.url(:medium)%>"/>
+    <% end %>
+    <meta property="og:site_name" content="<%= @organization.website %>"/>
+  <% else %> 
+    <meta property="og:title" content="Benvarim.com" />
+    <meta property="og:type"  content="activity"/>
+    <meta property="og:image" content="<%=  url_for root_path  %>stylesheets/images/logo.gif"/>
+    <meta property="og:site_name" content="Benvarim.com"/>
+  <% end %>
+  
+	
+
+
   <!--  Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
