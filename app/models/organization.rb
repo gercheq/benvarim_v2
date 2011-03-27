@@ -60,16 +60,16 @@ class Organization < ActiveRecord::Base
     p.save
 
     #create test paypal information
-    self.paypal_info = PaypalInfo.new(
-      {"paypal_id_token"=>"r97EMyFtFL6r3bu1ETAacEQYMUeLw6NusWWsDoKb8ER1-hXdzSQ9RByY2hq",
-        "paypal_user"=>"satis_1298099260_biz@benvarim.com",
-        "organization_id" => self.id})
-    self.paypal_info.save!
+    # self.paypal_info = PaypalInfo.new(
+    #   {"paypal_id_token"=>"r97EMyFtFL6r3bu1ETAacEQYMUeLw6NusWWsDoKb8ER1-hXdzSQ9RByY2hq",
+    #     "paypal_user"=>"satis_1298099260_biz@benvarim.com",
+    #     "organization_id" => self.id})
+    # self.paypal_info.save!
 
   end
 
   def before_save_hook
-    self.active = true
+    # self.active = true
   end
 
   def to_param

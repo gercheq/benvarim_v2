@@ -47,12 +47,8 @@ Benvarim::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'y-benvarim.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'www.benvarim.com' }
 
-  # ENV['PAYPAL_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
-  # ENV['PAYPAL_IPN_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
-
-  #paypal settings
-  ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
-  ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
+  ENV['PAYPAL_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
+  ENV['PAYPAL_IPN_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
 end
