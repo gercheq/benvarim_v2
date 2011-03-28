@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313225837) do
+ActiveRecord::Schema.define(:version => 20110328070645) do
 
   create_table "contact_forms", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(:version => 20110313225837) do
     t.text     "description_html"
     t.string   "website"
     t.float    "collected",         :default => 0.0
+    t.string   "email"
+    t.string   "phone"
+    t.string   "contact_name"
+    t.string   "contact_title"
+    t.string   "contact_phone"
+    t.string   "contact_email"
   end
 
   create_table "pages", :force => true do |t|

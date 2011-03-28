@@ -29,12 +29,36 @@
           <%= f.text_field :website, :class=> "text-field" %>
         </div>
         <div class="field">
+          <%= f.label :email %>
+          <%= f.text_field :email, :class=> "text-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :phone %>
+          <%= f.text_field :phone, :class=> "text-field" %>
+        </div>
+        <div class="field">
           <%= f.label :address %>
           <%= f.text_field :address, :class=> "text-field" %>
         </div>
         <div class="field">
           <%= f.label :description %>
           <%= f.text_area :description_html, :class => "mceEditor text-area" %>
+        </div>
+        <div class="field">
+          <%= f.label :contact_name %>
+          <%= f.text_field :contact_name, :class=> "text-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :contact_title %>
+          <%= f.text_field :contact_title, :class=> "text-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :contact_email %>
+          <%= f.text_field :contact_email, :class=> "text-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :contact_phone %>
+          <%= f.text_field :contact_phone, :class=> "text-field" %>
         </div>
         <div class="actions">
           <%= f.submit :kaydet, :class=>"button yellow super button-primary" %>
