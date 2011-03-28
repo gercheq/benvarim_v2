@@ -28,3 +28,5 @@ gem 'aws-s3'
 group :development do
   gem 'heroku_san'
 end
+
+gem "friendly_id", "~> 3.2.1"

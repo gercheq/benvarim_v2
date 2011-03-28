@@ -36,6 +36,7 @@ GEM
       builder
       mime-types
       xml-simple
+    babosa (0.3.0)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
     configuration (1.2.0)
@@ -48,6 +49,8 @@ GEM
       addressable (~> 2.2.2)
       multipart-post (~> 1.0.1)
       rack (>= 1.1.0, < 2)
+    friendly_id (3.2.1.1)
+      babosa (~> 0.3.0)
     heroku (1.19.1)
       activesupport (>= 2.1.0)
       launchy (~> 0.3.2)
@@ -158,6 +161,7 @@ DEPENDENCIES
   annotate-models
   aws-s3
   devise
+  friendly_id (~> 3.2.1)
   heroku_san
   jquery-rails
   omniauth
