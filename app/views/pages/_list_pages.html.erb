@@ -1,7 +1,7 @@
-<div class="widget widget-light widget-kurum ">
+<div class="widget widget-light widget-kurum" id="list-pages">
   <div class="w-inner clearfix">
     <div class="w-content">
-      <div class="w-title">Aktif Bağış Kampanyaları</div>
+      <div class="w-title">Aktif Bağış Sayfaları</div>
 
       <div class="rows-container" id="donation-pages-container">
         <% @pages.each do |page| %>
@@ -9,14 +9,38 @@
             <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %></div>
             <div class="row-details">
               <h3><%= link_to page.title, page %></h3>
-              <p>Gonullu:  <%= link_to page.user.name, page.user %></p>
-              <p><%= link_to page.organization.name, page.organization %> > <%= link_to page.project.name, page.project %></p>
+              <p><%= link_to page.organization.name, page.organization %> &raquo; <%= link_to page.project.name, page.project %>  &raquo; <%= link_to page.user.name, page.user %></p>
 
-              <p><%= page.description %></p>
-              <p>Hedef: <%= page.goal_str %> TL</p>
-              <p>Toplanan: <%= page.collected_str %> TL</p>
-              <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button super no-margin"%>
-              <p></p>
+              <div class="truncate-short">
+                <%= page.description %>
+              </div>
+
+              <div class="progress-bar-container clearfix">
+
+                <div class="progress-bar rc clearfix">
+                  <div class="pb-value rc" style="width: <%=page.collect_ratio_str%>%;">
+                    <div class="pb-reflection rc"></div>
+                    <div class="pb-hedef">HEDEF: <b><%= page.goal %> TL</b></div>
+                    <div class="pb-toplanan">
+                    <% if page.collected < 1 && page.active? %>
+                      İlk bağış yapan sen ol!
+                    <% else %>
+                      Toplanan: <b><%= page.collected %> TL</b>
+                    <% end%>
+
+                    </div>
+                  </div>
+                </div>
+
+                <% if page.can_be_donated? %>
+                  <div class="pb-action">
+                    <%=link_to "Bağış Yap", donate_popup_for_page_path(page), :class => "yellow button super no-margin", :rel => "facebox"%>
+                  </div>
+                <% end %>
+              </div><!-- end of .progress-bar-container -->
+
+
+
               <% if @show_edit_link %>
                 <p><%= link_to 'Düzenle', edit_page_path(page) %></p>
               <% end %>
@@ -30,9 +54,9 @@
 
       <div class="row-action">
         <% unless user_signed_in? && current_user.pages.length > 0 %>
-          <%= link_to 'Ben de bağış kampanyası düzenlemek istiyorum!', new_page_path, :class=>"green button super" %>
+          <%= link_to 'Ben de bağış sayfası yaratmak istiyorum!', new_page_path, :class=>"green button super" %>
         <% else %>
-          <%= link_to 'Yeni bağış kampanyası düzenle!', new_page_path, :class=>"green button super" %>
+          <%= link_to 'Ben de bağış sayfası yaratmak istiyorum!', new_page_path, :class=>"green button super" %>
         <% end %>
       </div>
 

@@ -75,6 +75,44 @@ $(document).ready(function(){
 		}
 	});
 
+
+  //
+  //  Homepage Tabs for non-profits and individuals
+  //
+	$('.profile-nonprofit').click(function(){
+	  $this = $(this);
+	  $p_individual = $('.profile-individual');
+	  $this.removeClass('opaque');
+	  $p_individual.addClass('opaque');
+
+	  $('#fc-inner-individual').fadeOut(function(){
+	    $('#fc-inner-nonprofit').fadeIn();
+	  });
+	});
+
+
+	$('.profile-individual').click(function(){
+	  $this = $(this);
+	  $p_individual = $('.profile-nonprofit');
+	  $this.removeClass('opaque');
+	  $p_individual.addClass('opaque');
+
+	  $('#fc-inner-nonprofit').fadeOut(function(){
+	    $('#fc-inner-individual').fadeIn();
+	  });
+	});
+
+  /*
+  $('.truncate-short').truncatable({
+    limit: 600,
+    more: ' devamını göster &raquo; ',
+    less: false,
+    hideText: '[sakla]'
+  });
+  */
+
+
+
 	//
 	// Tabs
 	//
