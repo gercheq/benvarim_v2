@@ -1352,7 +1352,7 @@ body {
     .msg{
       background-color: #FFFF99;
       border: 1px solid #FF9900;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       margin-top: 0px;
       padding: 15px;
       padding-left: 50px;
@@ -1361,7 +1361,7 @@ body {
       -khtml-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background-position:12px center;
+      background-position:12px 15px;
       background-repeat:no-repeat;    }
 
     .widget-form .msg{ margin-top:-20px;}
@@ -1394,6 +1394,10 @@ body {
       padding:5px 10px;
     }
 
+    .msg h2 {
+        font-size: 18px;
+        padding: 4px 0;
+    }
 
     /*
     ** Comment Bubble
@@ -1679,7 +1683,7 @@ body {
 }
 
 .nedir-item{
-    margin: 30px 0;
+    margin: 30px 0 40px;
 }
 
 
