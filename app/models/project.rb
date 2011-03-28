@@ -34,10 +34,12 @@ class Project < ActiveRecord::Base
    validates :organization_id, :presence => true
    validates :name, :length => { :minimum => 5, :maximum => 100 }
    validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+   
+   has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
-   def to_param
-     "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
-   end
+   # def to_param
+   #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+   # end
 
    def can_be_donated?
      self.active? && self.organization.can_be_donated?

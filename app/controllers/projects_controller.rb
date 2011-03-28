@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def by_organization
-    org = Organization.find_by_id(params[:id])
+    org = Organization.find(params[:id])
     if org
       @projects = org.projects.all
     else
@@ -32,10 +32,10 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @organization = Organization.find_by_id(params[:organization_id])
-    if @organization
+    begin
+      @organization = Organization.find(params[:organization_id])
       @project.organization = @organization
-    else
+    rescue
       @organizations = current_user.organizations.collect do |org|
         [org.name, org.id]
       end
@@ -51,10 +51,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @organization = current_user.organizations.find_by_id(params[:organization_id])
-    if(@organization)
+    begin
+      @organization = current_user.organizations.find(params[:organization_id])
       @project = @organization.projects.build(params[:project])
-    else
+    rescue
       #we know it cannot be created w/o organization but just to let things go
       #we create it
       @project = Project.new(params[:project])

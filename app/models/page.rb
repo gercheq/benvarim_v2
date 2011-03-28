@@ -50,6 +50,8 @@ class Page < ActiveRecord::Base
   validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 100000
   validates_numericality_of :collected, :greater_than_or_equal_to => 0
 
+  has_friendly_id :friendly_id_with_user, :use_slug => true
+
   def collect_ratio
     return 0 if (self.collected == 0 || self.goal == 0)
     return 100 if (self.collected >= self.goal)
@@ -72,13 +74,18 @@ class Page < ActiveRecord::Base
     self.active? && self.project.can_be_donated?
   end
 
-  def to_param
-    "#{id}-#{title.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
-  end
+  # def to_param
+  #   "#{id}-#{title.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+  # end
 
   def organization_and_project_active_validation
     self.errors.add "kurum", "aktif değil" if self.organization && !self.organization.active?
     self.errors.add "proje", "aktif değil" if self.project && !self.project.active?
+  end
+
+  def friendly_id_with_user
+    return "#{id}" if self.user == nil
+    self.user.friendly_id
   end
 
   private

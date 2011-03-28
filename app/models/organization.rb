@@ -55,6 +55,8 @@ class Organization < ActiveRecord::Base
   validates :name, :length => { :minimum => 2, :maximum => 100 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 5000}
 
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true
+
   def safefilename
     transliterate(logo_file_name)
   end
@@ -85,9 +87,9 @@ class Organization < ActiveRecord::Base
     # self.active = true
   end
 
-  def to_param
-    "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
-  end
+  # def to_param
+  #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+  # end
 
   def can_be_donated?
     self.active?

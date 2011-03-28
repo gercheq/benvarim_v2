@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :address, :birthday, :email, :password, :password_confirmation, :remember_me, :photo
 
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true
+
 
 
   has_many :pages
@@ -63,9 +65,9 @@ class User < ActiveRecord::Base
     super(conditions)
   end
 
-  def to_param
-    "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
-  end
+  # def to_param
+  #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
+  # end
 
   def age
     if !birthday

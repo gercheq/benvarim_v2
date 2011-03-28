@@ -40,20 +40,25 @@ class PagesController < ApplicationController
     @page = Page.new
 
     if params[:org_id]
-      @organization = Organization.find_by_id params[:org_id]
-      unless @organization.nil?
+      begin
+        @organization = Organization.find params[:org_id]
         return redirect_to new_page_for_organization_path(@organization)
+      rescue
       end
     end
     if params[:organization_id]
-      @organization = Organization.find_by_id params[:organization_id]
+      @organization = Organization.find params[:organization_id]
     end
     if params[:project_id]
-      @project = Project.find_by_id params[:project_id]
-      if(@project)
-        @organization = @project.organization
+      begin
+        @project = Project.find params[:project_id]
+        if(@project)
+          @organization = @project.organization
+        end
+      rescue
       end
     end
+
     @page.project = @project
     @page.organization = @organization
     add_organization_list
@@ -85,14 +90,6 @@ class PagesController < ApplicationController
       add_organization_list
       add_project_list (@page.organization.nil? ? nil : @page.organization)
       render :action => "edit"
-    end
-  end
-
-  def destroy
-    @page = current_user.pages.find(params[:id])
-    @page.destroy
-    respond_to do |format|
-      redirect_to(pages_url)
     end
   end
 end

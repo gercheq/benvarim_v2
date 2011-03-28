@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110328070645) do
+ActiveRecord::Schema.define(:version => 20110328080644) do
 
   create_table "contact_forms", :force => true do |t|
     t.string   "name"
@@ -44,7 +44,10 @@ ActiveRecord::Schema.define(:version => 20110328070645) do
     t.string   "contact_title"
     t.string   "contact_phone"
     t.string   "contact_email"
+    t.string   "cached_slug"
   end
+
+  add_index "organizations", ["cached_slug"], :name => "index_organizations_on_cached_slug", :unique => true
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -64,7 +67,10 @@ ActiveRecord::Schema.define(:version => 20110328070645) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "cached_slug"
   end
+
+  add_index "pages", ["cached_slug"], :name => "index_pages_on_cached_slug", :unique => true
 
   create_table "payments", :force => true do |t|
     t.string   "name"
@@ -100,7 +106,22 @@ ActiveRecord::Schema.define(:version => 20110328070645) do
     t.datetime "logo_updated_at"
     t.float    "collected",         :default => 0.0
     t.boolean  "active",            :default => true
+    t.string   "cached_slug"
   end
+
+  add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
+
+  create_table "slugs", :force => true do |t|
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "tmp_payments", :force => true do |t|
     t.string   "name"
@@ -132,8 +153,10 @@ ActiveRecord::Schema.define(:version => 20110328070645) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "cached_slug"
   end
 
+  add_index "users", ["cached_slug"], :name => "index_users_on_cached_slug", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
