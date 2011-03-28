@@ -26,14 +26,18 @@
       </div>
       <div class="fullcontent-right">
 
-        <h1><%= @organization.name %></h1>
-        <h6><%= @organization.address %></h6>
+        <h1 class="org-name"><%= @organization.name %></h1>
+        <p class="org-address"><%= @organization.address %></p>
+
         <% if @organization.website %>
-          <p class="outlink">
-            <%=link_to "Web Sitesi", "http://#{@organization.website}", :target => "_blank"%>
+          <p class="org-url outlink">
+            <%=link_to "http://#{@organization.website}", "http://#{@organization.website}", :target => "_blank"%>
           </p>
         <% end %>
-        <%= raw @organization.description_html unless @organization.description_html.nil? %>
+
+        <div class="fcr-desc org-desc truncate-short">
+          <%= raw @organization.description_html unless @organization.description_html.nil? %>
+        </div>
       </div>
     </div>
   </div>
@@ -85,10 +89,9 @@
           </div><!-- end of .row -->
         <% end %>
 
-
-          <div class="row center">
-            <%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_organization_path(@organization), :class => "green button super" %>
-          </div><!-- end of .row -->
+        <div class="row row-action">
+          <%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
+        </div><!-- end of .row -->
 
 
         </div>

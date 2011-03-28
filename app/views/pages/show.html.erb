@@ -14,7 +14,7 @@
           <div class="ro-details">
             <h3><%= link_to @page.organization.name, @page.organization%></h3>
             <h4><%= link_to @page.project.name, @page.project %></h4>
-            <p class="small"><%= image_tag @page.organization.logo.url(:thumb) %> <%=@page.organization.description[0..200]%> <%= link_to "devamı", @page.organization%></p>
+            <p class="small"><%= image_tag @page.organization.logo.url(:thumb) %> <%=@page.organization.description[0..200]%>... <%= link_to "devamı »", @page.organization%></p>
 
           </div>
         </div>
@@ -45,7 +45,7 @@
           </div>
         </div><!-- .comment-bubble -->
 
-        <div class="description clearfix">
+        <div class="description clearfix truncate-short">
             <% if @page.logo.file? %>
               <%= image_tag @page.logo.url(:thumb) %>
             <% end %>

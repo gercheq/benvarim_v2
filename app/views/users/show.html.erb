@@ -1,68 +1,88 @@
-<div id="main-content">
-  <div class="widget widget-light">
-    <div class="w-inner">
-      <div class="w-title"><%= @user.name %>
-        <% if @user.birthday %>
-          <%=", #{@user.age}"%>
-        <% end %>
-        </div>
-          <% if notice %>
-            <div class="msg msg-success">
-              <%= notice %>
-            </div>
-          <% end %>
-        <%= image_tag @user.photo.url(:thumb) %>
-        <div>
-            Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:
-         <%=render :partial => "layouts/quickstart_widget",
-            :locals => {
-              :available_organizations => @available_organizations
-            }
-          %>
-        </div>
-     </div>
+<%=render :partial => 'layouts/errors'%>
 
-   </div>
-
-<% if user_signed_in? && current_user == @user%>
-   <div class="widget widget-light">
-       <div class="w-inner">
-          <div class="w-title">Yönetim Paneli</div>
-          <ul>
-             <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
-             <li><%= link_to "Çıkış", destroy_user_session_path %></li>
-          </ul>
-          <br />
-          <ul>
-            <li><%= link_to "Kurum Ekle", new_organization_path %></li>
-            <% @user.organizations.each do |organization| %>
-            <li>
-              <%= link_to organization.name, organization%>
-              | <%= link_to "Düzenle", edit_organization_path(organization) %>
-              | <%= link_to "Projeleri", organization_projects_path(organization) %>
-              | <%= link_to "Proje Yarat", new_project_for_organization_path(organization) %>
-            </li>
-            <% end %>
-          </ul>
-          <ul>
-             <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
-             <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
-          </ul>
-          <ul class="sub-ul">
-          <% @user.pages.each do |page| %>
-            <li>
-              <%= link_to page.title, page %> <%=page.collected_str%> TL
-
-              |  <%= link_to "Düzenle", edit_page_path(page)%>
-            </li>
-          <% end %>
-          </ul>
-             <br />
-
-        </div>
-   </div>
+<% if notice %>
+<div class="msg msg-success">
+  <%= notice %>
+</div>
 <% end %>
-</div><!-- end of #main-content -->
+
+<div class="widget widget-light widget-user">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="fullcontent-left">
+
+        <div class="userpic">
+          <%= image_tag @user.photo.url(:thumb) %>
+        </div>
+
+        <div class="related-organization">
+          <h2><%= @user.name %></h2>
+          <% if @user.birthday %>
+          <div class="ro-details">
+             <p class="small"><%=", #{@user.age}"%></p>
+          </div>
+          <% end %>
+        </div>
+
+        <% if user_signed_in? && current_user == @user%>
+        <div class="profile-actions">
+            <h4>Yönetim Paneli</h4>
+            <ul>
+               <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user.id) %></li>
+               <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+            </ul>
+            <br />
+            <ul>
+              <li><%= link_to "Kurum Ekle", new_organization_path %></li>
+              <% @user.organizations.each do |organization| %>
+              <li>
+                <%= link_to organization.name, organization%>
+                | <%= link_to "Düzenle", edit_organization_path(organization) %>
+           | <%= link_to "Projeleri", organization_projects_path(organization) %>
+                | <%= link_to "Proje Yarat", new_project_for_organization_path(organization) %>
+              </li>
+              <% end %>
+            </ul>
+            <ul>
+               <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
+               <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
+            </ul>
+            <ul class="sub-ul">
+            <% @user.pages.each do |page| %>
+              <li>
+                <%= link_to page.title, page %> <%=page.collected_str%> TL
+
+                |  <%= link_to "Düzenle", edit_page_path(page)%>
+              </li>
+            <% end %>
+            </ul>
+        </div>
+        <% end %>
+      </div>
+
+
+      <div class="fullcontent-right">
+        <% if user_signed_in? && current_user == @user%>
+          <p>Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:<br/></p>
+          <div>
+          <%=render :partial => "layouts/quickstart_widget",
+          :locals => {
+            :available_organizations => @available_organizations
+          }
+          %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 <style type="text/css" media="screen">
   .sub-ul {
     padding-left: 20px;
@@ -71,6 +91,5 @@
     margin-left: 10px;
   }
 </style>
-<%= render 'layouts/sidebar'%>
 
 

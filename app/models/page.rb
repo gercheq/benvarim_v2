@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110105080422
+# Schema version: 20110328070645
 #
 # Table name: pages
 #
@@ -14,7 +14,7 @@
 #  user_id           :integer
 #  organization_id   :integer
 #  project_id        :integer
-#  active            :boolean
+#  active            :boolean         default(TRUE)
 #  created_at        :datetime
 #  updated_at        :datetime
 #  description_html  :text

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110310075157
+# Schema version: 20110328070645
 #
 # Table name: organizations
 #
@@ -18,6 +18,12 @@
 #  description_html  :text
 #  website           :string(255)
 #  collected         :float           default(0.0)
+#  email             :string(255)
+#  phone             :string(255)
+#  contact_name      :string(255)
+#  contact_title     :string(255)
+#  contact_phone     :string(255)
+#  contact_email     :string(255)
 #
 
 class Organization < ActiveRecord::Base
@@ -29,7 +35,7 @@ class Organization < ActiveRecord::Base
                                    :thumb => "200x200>" }
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :address, :description_html, :logo, :website
+  attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email
 
   has_many :projects
   has_many :pages
@@ -40,15 +46,22 @@ class Organization < ActiveRecord::Base
 
   before_validation :sanitize_description_html
 
+  validate :validate_emails
+
   after_create :after_create_hook
   before_save :before_save_hook
 
   validates :user_id, :presence => true
   validates :name, :length => { :minimum => 2, :maximum => 100 }
-  validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+  validates :description, :presence => true, :length => {:minimum => 20, :maximum => 5000}
 
   def safefilename
     transliterate(logo_file_name)
+  end
+
+  def validate_emails
+    self.errors.add "email", "geçersiz" unless self.email =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+    self.errors.add "contact_email", "geçersiz" unless self.contact_email =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
   end
 
   def after_create_hook

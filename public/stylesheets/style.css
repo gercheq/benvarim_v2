@@ -110,7 +110,7 @@ html { overflow-y: scroll; }
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-a, a:active, a:visited { color: #607890; }
+a, a:active, a:visited { color: #0862A2; }
 a:hover { color: #036; }
 
 
@@ -572,12 +572,15 @@ div.uploader input {
  }
 
 body{
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
-a{ text-decoration:none; }
-a:hover{ border-bottom: 1px dotted #607890;}
+a,
+a:focus,
+a:active,
+a:visited { text-decoration:none; color: #0862A2;}
+a:hover{ text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
@@ -713,9 +716,6 @@ p{
   font-weight: bold;
 }
 
-#utility-nav a:hover{
-  border-bottom: 1px dotted #FFF;
-}
 
 #nav-login{ border-right: 1px solid #244267;}
 #nav-register{ border-left: 1px solid #6984a7;}
@@ -736,7 +736,11 @@ p{
   height: auto;
   margin-top: 40px;
   margin-bottom: 30px;
+}
 
+#featured-content-2 h2{
+    font-size: 24px !important;
+    margin-bottom: 10px;
 }
 
 .fc-left {
@@ -780,7 +784,6 @@ p{
 .step{
   clear: both;
   display:none;
-  font-weight: lighter;
   padding: 0 20px;
   position:relative;
   margin: 10px 0 20px; }
@@ -794,6 +797,7 @@ p{
   line-height:1;
   float: left;
   width: 40px;
+  font-weight: 300;
   margin-right: 5px;
   font-family: "Gotham Rounded", "Gotham", "Helvetica Neue", Helvetica, sans-serif ;
   color: #a4b1cb;}
@@ -835,6 +839,10 @@ p{
 #featured-submit{
   font-size: 16px;
   line-height: 18px;
+}
+
+#fc-inner-nonprofit {
+    display: none;
 }
 
 
@@ -969,8 +977,7 @@ body {
 
 .row-photo {
   float: left;
-  border: 1px solid #DDD;
-  padding: 4px;
+  margin: 10px 0 20px 10px;
   width: 200px;
   background: #FFF;
 }
@@ -1012,6 +1019,7 @@ body {
     display: inline-block;
     margin: 10px 20px;
     text-indent: -999em;
+    background-repeat: no-repeat;
 }
 
 #featured-charities a:hover{
@@ -1028,6 +1036,11 @@ body {
     margin: 0;
     text-indent: 0;
     height: auto;
+}
+
+.fc-default{
+    background-image: url('../images/logo-default.jpg');
+    width: 120px;
 }
 
 #fc-tema {
@@ -1114,7 +1127,7 @@ body {
   fieldset textarea,
   fieldset select,
   .selector {
-    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: #444;
     width: 458px;
     padding: 5px;
@@ -1196,7 +1209,7 @@ body {
   	cursor: pointer;
    }
 
-  .button:hover	{ background-color: #111; color: #fff; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important;}
+  .button:hover	{ background-color: #111; color: #fff; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important; text-decoration: none !important;}
   .button:active { top: 1px; }
   .small.button, .small.button:visited { font-size: 11px}
   .button, .button:visited,
@@ -1339,7 +1352,7 @@ body {
     .msg{
       background-color: #FFFF99;
       border: 1px solid #FF9900;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       margin-top: 0px;
       padding: 15px;
       padding-left: 50px;
@@ -1348,7 +1361,7 @@ body {
       -khtml-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background-position:12px center;
+      background-position:12px 15px;
       background-repeat:no-repeat;    }
 
     .widget-form .msg{ margin-top:-20px;}
@@ -1381,6 +1394,10 @@ body {
       padding:5px 10px;
     }
 
+    .msg h2 {
+        font-size: 18px;
+        padding: 4px 0;
+    }
 
     /*
     ** Comment Bubble
@@ -1398,6 +1415,7 @@ body {
     .comment-bubble h1{
       line-height: 1.3;
       font-size: 24px;
+      margin-bottom: 15px !important;
     }
 
     .comment-bubble h6{
@@ -1442,6 +1460,10 @@ body {
         background: -moz-linear-gradient(top, #eeeeee 0%, #E2E2E2 50%, #eeeeee 100%); /* firefox */
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(50%,#E2E2E2), color-stop(100%,#eeeeee)); /* webkit */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
+    }
+
+    #list-pages .progress-bar{
+        width: 525px;
     }
 
     .pb-value{
@@ -1545,6 +1567,10 @@ body {
       font-size:20px;
       line-height: 22px;}
 
+    .widget li {
+        margin-bottom: 10px;
+    }
+
 
     /*
     ** Widget Customizations
@@ -1564,9 +1590,10 @@ body {
     .bagis-miktari {
         color: #CCCCCC;
         float: right;
-        font-size: 32px;
+        font-size: 24px;
         font-weight: bold;
         margin-left: 20px;
+        font-family: Georgia, serif;
     }
     .bagis-miktari span {
         font-size: 18px;
@@ -1576,7 +1603,6 @@ body {
         margin-bottom: 10px;
     }
     .widget-aktif-bagis p {
-        font-size: 85%;
         margin-bottom: 5px;
     }
 
@@ -1634,7 +1660,43 @@ body {
  *
 *************************************************************************************/
 
+/*************************************************************************************
+** ANASAYFA
+*************************************************************************************/
+#home-stats .row-details{
+    padding-left: 135px;
+}
 
+#home-stats .row-photo,
+#home-stats .row-photo img {
+    width: 100px;
+}
+
+
+/*************************************************************************************
+** NEDIR
+*************************************************************************************/
+#page-nedir{
+    background: #2B4B6C url('../images/nedir.png') 20px center no-repeat;
+    height: 250px;
+    padding: 20px 0;
+}
+
+.nedir-item{
+    margin: 30px 0 40px;
+}
+
+
+/*************************************************************************************
+** NASIL
+*************************************************************************************/
+#page-nasil{
+    background: #2B4B6C url('../images/nasil.png') 20px center no-repeat;
+    height: 250px;
+    padding: 20px 0;
+    margin-bottom: 30px;
+
+}
 
 
 /*************************************************************************************
@@ -1647,11 +1709,10 @@ body {
 
 .fullcontent-left img{
  background: none repeat scroll 0 0 #FFFFFF;
- border: 1px solid #DDD;
  height: auto;
  padding: 3px;
- width: 174px;
- margin-bottom:5px;}
+ margin: 10px 0 20px;
+ width: 174px; }
 
 .fullcontent-left .button{
   text-align: center;
@@ -1661,10 +1722,20 @@ body {
   float:right;
   width: 710px; }
 
+.widget-kurum h1{
+    margin-bottom: 0;
+}
+
+.org-address{
+    font-size: 12px;
+    margin-bottom:0;
+}
+.org-url{
+    font-size: 12px;
+}
 
 
-.widget-aktif-bagis p{ margin-bottom:5px; font-size:85%; }
-
+.widget-aktif-bagis p{ margin-bottom:5px; }
 
 
 .share-options {
@@ -1714,7 +1785,8 @@ body {
   margin-bottom: 20px;
 }
 .userpic img {
-  margin-bottom: 0;
+  margin: 0;
+  border: 1px solid #DDD;
 }
 
 .ro-details {
@@ -1784,6 +1856,13 @@ body {
   border: none !important;
 }
 
+.ui-tabs .ui-tabs-nav li a {
+    float: left !important;
+    font-size: 13px !important;
+    padding: 10px 30px !important;
+    text-transform: capitalize !important;
+}
+
 
 /*************************************************************************************
 ** BAGIS ODEME SAYFASI - http://0.0.0.0:3000/sayfa/3/bagis
@@ -1802,6 +1881,31 @@ body {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+
+#w-yeni-kayit .text-field,
+#facebox .text-field {
+    width: 300px;
+    margin-right: 10px;
+}
+
+
+#w-yeni-kayit textarea,
+#facebox textarea {
+    width: 450px !important;
+    height: 200px;
+    margin-right: 0 !important;
+}
+
+
+
+#organization_website{
+    width: 415px;
+}
+
+
+
+
 
 
 

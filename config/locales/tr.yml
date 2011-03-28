@@ -157,9 +157,15 @@ tr:
         password_confirmation: "şifre (tekrar)"
         sign_up: "giriş"
         address: "adres"
-        name: "Kurum Adı"
-        description: "Kısa Tanıtım"
-        website: "İnternet Sitesi"
+        name: "Kurum adı"
+        description: "Kısa tanıtım"
+        website: "İnternet sitesi"
+        phone: "Telefon numarası"
+        contact_name: "İlgili kişinin adı soyadı"
+        contact_title: "İlgili kişinin görevi"
+        contact_phone: "İlgili kişinin telefon numarası"
+        contact_email: "İlgili kişinin e-posta adresi"
+
       user:
         email: "e-posta"
         password: "şifre"
