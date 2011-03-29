@@ -106,7 +106,14 @@
             </div> <!-- end of #destekleyenler -->
 
           	<div id="proje-detaylari">
-              <div class="pd-photo clearfix"><%= image_tag @page.project.logo.url(:thumb) %></div>
+              <div class="pd-photo clearfix">
+                <% if @page.project.logo.file? %>
+                  <%= image_tag @page.project.logo.url(:thumb) %>
+                <% else %>
+                  <%= image_tag @page.organization.logo.url(:thumb) %>
+                <% end %>
+
+              </div>
               <div class="pd-details">
             	  <h3><%= link_to @page.project.name, @page.project %></h3>
                 <p><%= @page.project.description %></p>

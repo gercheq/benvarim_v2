@@ -9,7 +9,13 @@
 
         <% projects.each do |project| %>
           <div class="row clearfix">
-            <div class="row-photo clearfix"><%= image_tag project.logo.url(:thumb) %></div>
+            <div class="row-photo clearfix">
+              <% if project.logo.file? %>
+                <%= image_tag project.logo.url(:thumb) %>
+              <% else %>
+                <%= image_tag project.organization.url(:thumb) %>
+              <% end %>
+            </div>
             <div class="row-details">
               <h3><%= link_to project.name, project %></h3>
               <p><%= project.description %></p>
