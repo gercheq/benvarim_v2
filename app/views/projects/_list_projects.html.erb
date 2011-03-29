@@ -13,7 +13,7 @@
               <% if project.logo.file? %>
                 <%= image_tag project.logo.url(:thumb) %>
               <% else %>
-                <%= image_tag project.organization.url(:thumb) %>
+                <%= image_tag project.organization.logo.url(:thumb) %>
               <% end %>
             </div>
             <div class="row-details">
