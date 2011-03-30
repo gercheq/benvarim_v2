@@ -51,4 +51,5 @@ Benvarim::Application.configure do
 
   ENV['PAYPAL_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
+  ENV['PAYPAL_CURRENCY'] = 'TRY'
 end

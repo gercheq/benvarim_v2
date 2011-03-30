@@ -32,5 +32,6 @@ Benvarim::Application.configure do
   #paypal settings
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
+  ENV['PAYPAL_CURRENCY'] = 'USD'
 end
 

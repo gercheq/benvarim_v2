@@ -172,6 +172,7 @@ class PaymentsController < ApplicationController
       values = {
         :cmd => "_xclick",
         :business => paypal_user,
+        :currency_code => ENV['PAYPAL_CURRENCY'],
         :upload => 1,
         :return => return_url,
         :charset => "utf-8",
