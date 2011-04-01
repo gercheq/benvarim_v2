@@ -50,6 +50,6 @@ Benvarim::Application.configure do
   config.action_mailer.default_url_options = { :host => 'www.benvarim.com' }
 
   ENV['PAYPAL_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
-  ENV['PAYPAL_IPN_URL'] = 'https://www.paypal.com/cgi-bin/webscr'
+  ENV['PAYPAL_IPN_URL'] = 'http://www.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_CURRENCY'] = 'TRY'
 end
