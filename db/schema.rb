@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330055616) do
+ActiveRecord::Schema.define(:version => 20110409205016) do
+
+  create_table "bvlogs", :force => true do |t|
+    t.string   "namespace"
+    t.text     "content"
+    t.string   "controller"
+    t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contact_forms", :force => true do |t|
     t.string   "name"

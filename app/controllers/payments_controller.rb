@@ -59,6 +59,8 @@ class PaymentsController < ApplicationController
   def ipn_handler
     #bunu kullanarak kurum verifikasyonu yapabiriliz.
     #sonucta paypali ayarladiklarindan emin olmaliyiz.
+    BvLogger::log("ipn_handler", "start")
+    BvLogger::log("ipn_handler", params.to_json)
     begin
       require 'net/http'
       require 'uri'
@@ -82,15 +84,18 @@ class PaymentsController < ApplicationController
         #probably someone else sent money to there.
       else
         if create_payment(custom)
+          BvLogger::log("ipn_handler", "success in create_payment")
           #PAYPAL.info successfully created payment via IPN
         else
-          #PAYPAL.info could not find tmp payment
+          BvLogger::log("ipn_handler", "problem in create_payment")
         end
         #PAYPAL.info rez
       end
       #PAYPAL.info
      rescue Exception => e
        #PAYPAL.error "Error: paypal transaction #{e.message}"
+       BvLogger::log("ipn_handler", "exception in create_payment : #{e.message}")
+       BvLogger::log("ipn_handler", e.to_json)
     end
     render :nothing => true
   end
@@ -98,6 +103,8 @@ class PaymentsController < ApplicationController
 
 
   def finalize
+    BvLogger::log("paypal_finalize", "start")
+    BvLogger::log("paypal_finalize", params.to_json)
     require 'net/http'
     require 'uri'
     require 'cgi'
@@ -116,7 +123,10 @@ class PaymentsController < ApplicationController
 
     id_token = @organization.paypal_info.paypal_id_token
     post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  id_token}
+    BvLogger::log("paypal_finalize", post_args.to_json)
+
     resp, data = Net::HTTP.post_form(url, post_args)
+    BvLogger::log("paypal_finalize", resp)
 
     return_map = Hash.new
     if data.split("\n").first == 'SUCCESS'
@@ -129,22 +139,30 @@ class PaymentsController < ApplicationController
 
       tmp_payment_id = params[:cm]
     end
+    BvLogger::log("paypal_finalize", return_map.to_json)
 
     @payment = nil
     begin
       res = create_payment tmp_payment_id
       if res
         flash[:notice] = "Bağış yapıldı! Teşekkürler!"
+        BvLogger::log("paypal_finalize", "success")
       else
         flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
+        BvLogger::log("paypal_finalize", "error")
       end
 
     rescue ActiveRecord::RecordInvalid => invalid
       flash[:error] = invalid.record.errors
+      BvLogger::log("paypal_finalize", "invalid record error")
+      BvLogger::log("paypal_finalize", invalid.to_json)
     rescue ActiveRecord::RecordNotFound => notfound
       flash[:error] = "Kayıt bulunamadı"
+      BvLogger::log("paypal_finalize", "record not found error")
+      BvLogger::log("paypal_finalize", notfound.to_json)
     rescue
       flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
+      BvLogger::log("paypal_finalize", "unidentified error")
     end
 
     return redirect_to @page if @page
@@ -164,8 +182,10 @@ class PaymentsController < ApplicationController
       elsif tmp_payment.project
         return_url = finalize_donation_for_project_path(tmp_payment.project, :only_path => false)
       else
-        return_url = finalize_donation_for_project_path(tmp_payment.organization, :only_path => false)
+        return_url = finalize_donation_for_organization_path(tmp_payment.organization, :only_path => false)
       end
+
+      puts return_url
 
       paypal_info = tmp_payment.organization.paypal_info
       paypal_user = paypal_info.paypal_user
