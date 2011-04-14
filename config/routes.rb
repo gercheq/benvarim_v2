@@ -47,8 +47,8 @@ Benvarim::Application.routes.draw do
 
   get '/bagis/tamamla' => "payments#finalize", :as => :finalize_donation
   get '/sayfa/:page_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_page
-  get '/kurum/:organization_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_project
-  get '/proje/:project_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_organization
+  get '/proje/:project_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_project
+  get '/kurum/:organization_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_organization
 
 
   devise_for :users, :skip => [:sessions] do
