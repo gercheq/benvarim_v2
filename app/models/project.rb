@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110313225837
+# Schema version: 20110409205016
 #
 # Table name: projects
 #
@@ -18,8 +17,10 @@
 #  logo_updated_at   :datetime
 #  collected         :float           default(0.0)
 #  active            :boolean         default(TRUE)
+#  cached_slug       :string(255)
 #
 
+# -*- coding: utf-8 -*-
 class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :tmp_payments

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110328070645
+# Schema version: 20110409205016
 #
 # Table name: organizations
 #
@@ -24,6 +24,7 @@
 #  contact_title     :string(255)
 #  contact_phone     :string(255)
 #  contact_email     :string(255)
+#  cached_slug       :string(255)
 #
 
 class Organization < ActiveRecord::Base

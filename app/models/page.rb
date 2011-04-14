@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110328070645
+# Schema version: 20110409205016
 #
 # Table name: pages
 #
@@ -22,7 +22,9 @@
 #  logo_content_type :string(255)
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
+#  cached_slug       :string(255)
 #
+
 
 class Page < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',

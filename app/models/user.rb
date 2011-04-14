@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # == Schema Information
-# Schema version: 20110303082136
+# Schema version: 20110409205016
 #
 # Table name: users
 #
@@ -21,8 +20,10 @@
 #  photo_content_type   :string(255)
 #  photo_file_size      :integer
 #  photo_updated_at     :datetime
+#  cached_slug          :string(255)
 #
 
+# -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # , :confirmable, :lockable and :timeoutable, :trackable
