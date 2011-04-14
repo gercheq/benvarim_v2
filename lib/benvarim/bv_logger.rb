@@ -1,7 +1,7 @@
 require 'iconv'
 class BvLogger
   def self.to_my_utf8 seq
-      Iconv.conv('UTF-8//IGNORE', 'UTF-8', seq + ' ')[0..-2]
+      Iconv.conv('UTF-8//IGNORE', 'UTF-8', seq.to_s + ' ')[0..-2]
     end
   def self.log(namespace, content)
     log = Bvlog::create({
