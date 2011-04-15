@@ -1,29 +1,29 @@
 # -*- coding: utf-8 -*-
-u1 = User.find_by_email "baslevent@gmail.com"
+u1 = User.find_by_email "baslev123ent@gmail.com"
 if u1.nil?
   u1 = User.create({
     :name => "Levent Baş",
-    :email => "baslevent@gmail.com",
+    :email => "baslev123ent@gmail.com",
     :password => "test123"
   });
   u1.save!
 end
 
-u2 = User.find_by_email "rizaosman@gmail.com"
+u2 = User.find_by_email "rizao123sman@gmail.com"
 if u2.nil?
   u2 = User.create({
     :name => "Osman Rıza",
-    :email => "rizaosman@gmail.com",
+    :email => "rizao123sman@gmail.com",
     :password => "test123"
   });
   u2.save!
 end
 
-u3 = User.find_by_email "selamimimimimi@gmail.com"
+u3 = User.find_by_email "sela123mimimimimi@gmail.com"
 if u3.nil?
   u3 = User.create({
     :name => "Selami Şaho",
-    :email => "selamimimimimi@gmail.com",
+    :email => "sela123mimimimimi@gmail.com",
     :password => "test123"
   });
   u3.save!
