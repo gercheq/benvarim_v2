@@ -161,10 +161,10 @@ tr:
         description: "Kısa tanıtım"
         website: "İnternet sitesi"
         phone: "Telefon numarası"
-        contact_name: "İlgili kişinin adı soyadı"
-        contact_title: "İlgili kişinin görevi"
-        contact_phone: "İlgili kişinin telefon numarası"
-        contact_email: "İlgili kişinin e-posta adresi"
+        contact_name: "Ad Soyad"
+        contact_title: "Görevi"
+        contact_phone: "Telefon"
+        contact_email: "E-posta"
 
       user:
         email: "e-posta"
