@@ -145,7 +145,7 @@ class PaymentsController < ApplicationController
     begin
       res = create_payment tmp_payment_id
       if res
-        flash[:notice] = "Bağış yapıldı! Teşekkürler!"
+        flash[:success] = "Bağış yapıldı! Teşekkürler!"
         BvLogger::log("paypal_finalize", "success")
       else
         flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
