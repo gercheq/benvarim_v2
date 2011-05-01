@@ -1,0 +1,27 @@
+<div class="widget widget-light w-top-fundraisers widget-liste">
+  <div class="w-inner clearfix">
+    <div class="w-title"><%= title %></div>
+    <div class="w-content">
+    <% pages.each do |page|%>
+      <div class="row clearfix">
+        <div class="row-photo bagisci">
+          <%= image_tag page.user.photo.url(:thumb) %>
+          <p><%=link_to page.user.name, page%></p>
+        </div>
+        <div class="row-details">
+          <h3><%= page.title %></h3>
+          <div class="bagis-miktari"><%= page.collected_str%> <span>TL</span></div>
+          <blockquote><span>“ </span> <%= page.description%></blockquote>
+        </div>
+      </div><!-- end of .row -->
+    <% end %>
+    <div class="row row-action">
+      <% if @organization %>
+        <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
+      <% else %>
+        <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", :new_page, :class => "button green large"%>
+      <% end %>
+    </div><!-- end of .row -->
+    </div>
+  </div>
+</div>
