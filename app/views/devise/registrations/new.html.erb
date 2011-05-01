@@ -3,6 +3,8 @@
     <div class="w-inner">
       <div class="w-title">Yeni Kayıt Oluştur</div>
 
+
+<!--
       <%
       if resource.errors.any?
         flash.now[:error] = raw resource.errors.full_messages.join('<br/>')
@@ -11,7 +13,18 @@
 
 
       <%=render :partial => 'layouts/errors'%>
+-->
 
+      <% if resource.errors.any? %>
+        <div class="msg msg-error" id="error_explanation">
+          <h2>Lütfen aşagıdaki hataları düzeltiniz.</h2>
+          <ul>
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
 
 
 

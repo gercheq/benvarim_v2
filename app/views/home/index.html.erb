@@ -84,21 +84,14 @@
       :projects => @top_projects,
       :hide_organization_link => true
     }%>
+
+
     <% if @top_pages.length > 0 %>
-      <div class="widget widget-light widget-aktif-bagis widget-liste">
-        <div class="w-inner clearfix">
-          <div class="w-title">En çok bağış toplayanlar</div>
-          <div class="w-content">
-          <%@top_pages.each do |page|%>
-            <div class="row clearfix">
-                <div class="bagis-miktari"><%=page.collected_str%> <span>TL</span></div>
-                <blockquote><span>“</span><%=page.description%><%=link_to "...", page%></blockquote>
-                <div class="bagisci"><%=link_to page.user.name, page%></div>
-            </div><!-- end of .row -->
-          <% end %>
-          </div>
-        </div>
-      </div>
+    <%=render :partial => "pages/list_pages_condensed",
+      :locals => {
+        :title => "En çok bağış toplayanlar",
+        :pages => @top_pages
+      }%>
     <% end %>
   </div>
 </div><!-- end of #main-content -->

@@ -960,6 +960,7 @@ body {
   clear:both;
   padding: 10px 0 10px;
   border-bottom: 1px dotted #ddd;
+  cursor: pointer;
 }
 
 .row-hover {
@@ -977,9 +978,11 @@ body {
 
 .row-photo {
   float: left;
-  margin: 10px 0 20px 10px;
+  margin: 0 0 20px 10px;
   width: 200px;
   background: #FFF;
+  text-align: center;
+  border: 1px solid #FFF;
 }
 
 .row-photo img {
@@ -988,8 +991,20 @@ body {
   max-height: 400px;
 }
 
+.row-photo p {
+    margin: 5px 0;
+}
+
 .row-details {
   padding-left: 225px;
+}
+
+blockquote span{
+    color: #CCCCCC;
+    font-family: Georgia;
+    font-size: 32px;
+    line-height: 12px;
+    vertical-align: bottom;
 }
 
 .row-action{
@@ -1088,6 +1103,11 @@ body {
 ** buttons, rounded corners, shadows, widgets
 **
 */
+
+  .center{
+      text-align: center;
+      margin: 0 auto;
+  }
 
 
 
@@ -1209,14 +1229,15 @@ body {
   	cursor: pointer;
    }
 
-  .button:hover	{ background-color: #111; color: #fff; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important; text-decoration: none !important;}
-  .button:active { top: 1px; }
+  .button:hover	{ background-color: #111; color: #fff !important; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important; text-decoration: none !important;}
+  .button:active { top: 1px; color: #FFF !important; }
   .small.button, .small.button:visited { font-size: 11px}
   .button, .button:visited,
   .medium.button, .medium.button:visited {
     font-size: 13px;
     font-weight: bold;
     line-height: 1;
+    color: #FFF  !important;
     text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
 
 	.large.button, .large.button:visited {
@@ -1361,7 +1382,7 @@ body {
       -khtml-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background-position:12px 15px;
+      background-position:12px 10px;
       background-repeat:no-repeat;    }
 
     .widget-form .msg{ margin-top:-20px;}
@@ -1607,11 +1628,6 @@ body {
     }
 
 
-
-
-
-
-
     .widget-form{
       width:632px;
       margin:40px auto;
@@ -1638,6 +1654,15 @@ body {
       text-align:center;
       text-shadow:0 1px 0 #2A4A6A;
     }
+
+    /*
+    ** En cok bagis toplayanlar
+    */
+    .w-top-fundraisers{
+
+    }
+
+
 
     /* Login Registration Form Links */
     .form-links{
@@ -1842,7 +1867,6 @@ body {
 }
 
 .pd-photo img {
-  border: 1px solid #DDD;
   padding: 4px;
 }
 

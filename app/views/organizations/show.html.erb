@@ -77,7 +77,7 @@
     }%>
 
   <% if @top_pages.length > 0 %>
-    <div class="widget widget-light widget-aktif-bagis widget-liste">
+    <div class="widget widget-light widget-en-cok-bagis widget-liste">
       <div class="w-inner clearfix">
         <div class="w-title">En çok bağış toplayanlar</div>
         <div class="w-content">
@@ -90,7 +90,7 @@
         <% end %>
 
         <div class="row row-action">
-          <%=link_to "Ben de bağış sayfası düzenlemek istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
+          <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
         </div><!-- end of .row -->
 
 

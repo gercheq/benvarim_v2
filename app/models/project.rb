@@ -25,6 +25,7 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :tmp_payments
   has_many :payments
+  has_many :pages
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
@@ -35,7 +36,7 @@ class Project < ActiveRecord::Base
    validates :organization_id, :presence => true
    validates :name, :length => { :minimum => 5, :maximum => 100 }
    validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
-   
+
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
    # def to_param

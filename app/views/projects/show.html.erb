@@ -36,7 +36,7 @@
 
         <% if @project.organization.website %>
           <p class="outlink">
-            <%=link_to "Web Sitesi", "http://#{@project.organization.website}", :target => "_blank"%>
+            <%=link_to "http://#{@project.organization.website}", :target => "_blank"%>
           </p>
         <% end %>
 
@@ -51,8 +51,17 @@
 
 
 
+<% if @project.pages.count > 0 %>
+  <% @pages = @project.pages%>
+  <%=render :partial => "pages/list_pages"%>
+<% end %>
 
 
+<%=render :partial => "pages/list_pages_condensed",
+  :locals => {
+    :title => "En çok bağış toplayanlar",
+    :pages => @project.pages
+  }%>
 
 
 

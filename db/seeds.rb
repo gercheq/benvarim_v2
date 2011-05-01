@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-u1 = User.find_by_email "baslev123ent@gmail.com"
+u1 = User.find_by_email "baslevent@gmail.com"
 if u1.nil?
   u1 = User.create({
     :name => "Levent Baş",
-    :email => "baslev123ent@gmail.com",
-    :password => "test123"
+    :email => "baslevent@gmail.com",
+    :password => "test"
   });
   u1.save!
 end
@@ -19,12 +19,12 @@ if u2.nil?
   u2.save!
 end
 
-u3 = User.find_by_email "sela123mimimimimi@gmail.com"
+u3 = User.find_by_email "gercekk@gmail.com"
 if u3.nil?
   u3 = User.create({
-    :name => "Selami Şaho",
-    :email => "sela123mimimimimi@gmail.com",
-    :password => "test123"
+    :name => "Gercek Karakus",
+    :email => "gercekk@gmail.com",
+    :password => "00198400"
   });
   u3.save!
 end
@@ -32,16 +32,22 @@ end
 unless u1.organizations.length > 0
   org = u1.organizations.build({
     :name => "Nesin Vakfı",
-    :description_html => "Ben <b>eşşek</b> sen eşşek onlar eşşek"
+    :description_html => "Nesin Vakfi aciklama yazisi",
+    :email => "nesin@vakif.com",
+    :contact_email => "nesin@vaikf.com"
   })
+  org.active = true;
   org.save!
 end
 org = u1.organizations[0]
 unless u2.organizations.length > 0
   org2 = u2.organizations.build({
-    :name => "Temaaaaa",
-    :description_html => "toprak kaymasin yagmur yagsin"
+    :name => "TEMA",
+    :description_html => "toprak kaymasin yagmur yagsin",
+    :email => "nesin2@vakif.com",
+    :contact_email => "nesin2@vaikf.com"
   })
+  org2.active = true;
   org2.save!
 end
 org2 = u2.organizations[0]
@@ -49,7 +55,8 @@ org2 = u2.organizations[0]
 if org.projects.length < 2
   org.projects.build({
     :name => "Toprak Ana",
-    :description => "Bu projede amac toprak ana"
+    :description => "Bu projede amac toprak ana",
+    :active => true
   })
   org.save!
 end
@@ -60,7 +67,10 @@ if u3.pages.length < 1
     :description_html => "ben de para <b>toplamak</b> isterim",
     :title => "para toplamak en guzeli",
     :goal => 10,
-    :project_id => org2.projects[0].id
+    :project_id => org2.projects[0].id,
+    :active => true
+
+
   })
   u3.pages[0].save!
 end

@@ -41,7 +41,7 @@
               <!-- <li><a style="background: url(http://friendfeed.com/static/images/icons/internal.png) 0px 0px no-repeat; padding-left: 20px; margin-left: 30px;" href="http://friendfeed.com/?url=<%= request.url %>&amp;title=<%= @page.title %>" target="_blank">FriendFeed'de Paylaş</a></li> -->
 	      <li><a class="addthis_button_preferred_1"></a></li>
             </ul>
-	      
+
 
           </div>
         </div><!-- .comment-bubble -->
@@ -83,7 +83,7 @@
           		<li><a href="#destekleyenler">Destekleyenler</a></li>
           		<li><a href="#proje-detaylari">Proje Detayları</a></li>
           	</ul>
-          	<div id="destekleyenler" class="widget-liste">
+          	<div id="destekleyenler" class="widget-liste clearfix">
 
           	  <% if @payments.length > 0 %>
 
@@ -96,7 +96,8 @@
                 <% end %>
 
                 <div class="row center">
-                  <%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>
+                  <%=link_to "Ben de destek olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin large", :rel => "facebox"%>
+                  <!--<%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>-->
                 </div><!-- end of .row -->
               <% else %>
                 <p><%= @page.user.name%> ilk destekçisini bekliyor. İlk bağış yapan sen ol!</p>
@@ -106,7 +107,7 @@
 
             </div> <!-- end of #destekleyenler -->
 
-          	<div id="proje-detaylari">
+          	<div id="proje-detaylari" class="clearfix">
               <div class="pd-photo clearfix">
                 <% if @page.project.logo.file? %>
                   <%= image_tag @page.project.logo.url(:thumb) %>
