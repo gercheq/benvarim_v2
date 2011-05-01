@@ -38,7 +38,7 @@ class PaymentsController < ApplicationController
     elsif params[:organization_id]
       @organization = Organization.find params[:organization_id]
     else
-      flash[:error] = "Bir kurum, proje veya sayfa seçmelisiniz"
+      flash[:error] = "Bir kurum, proje veya sayfa seçmelisiniz."
       return redirect_to root_path
     end
 
@@ -213,7 +213,7 @@ class PaymentsController < ApplicationController
       Page.transaction do
         @tmp_payment = TmpPayment.find tmp_payment_id
         unless @tmp_payment.payment.nil?
-          flash[:notice] = "Bağış yapıldı! Teşekkürler!"
+          flash[:success] = "Bağış yapıldı! Teşekkürler!"
           return true
         end
         attributes = @tmp_payment.attributes

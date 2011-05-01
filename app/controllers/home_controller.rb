@@ -16,4 +16,9 @@ class HomeController < ApplicationController
     @available_organizations = Organization.available_organizations_simple
   end
 
+  def nedir
+    @selected_tab = "nav-nedir"
+    @available_organizations = Organization.available_organizations_simple
+  end
+
 end

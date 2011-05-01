@@ -767,6 +767,7 @@ p{
   background: #FFF;
   margin-bottom: 10px;
   background: #FFF url('images/fc2-background.png') repeat-x top left;
+  cursor: pointer;
 }
 
 .steps{
@@ -967,6 +968,10 @@ body {
   background: #f5f5f5;
 }
 
+.row-hover .bagis-miktari{
+    color: #AAA;
+}
+
 .row-hover h2 a,
 .row-hover p a {
   color: #003366;
@@ -979,16 +984,16 @@ body {
 .row-photo {
   float: left;
   margin: 0 0 20px 10px;
-  width: 200px;
+  width: 100px;
   background: #FFF;
   text-align: center;
   border: 1px solid #FFF;
 }
 
 .row-photo img {
-  width: 200px;
+  width: 100px;
   height: auto;
-  max-height: 400px;
+  max-height: 200px;
 }
 
 .row-photo p {
@@ -996,7 +1001,12 @@ body {
 }
 
 .row-details {
-  padding-left: 225px;
+    padding-left: 135px;
+}
+
+.row-details h3{
+    font-size: 14px;
+    font-weight: bold;
 }
 
 blockquote span{
@@ -1008,7 +1018,6 @@ blockquote span{
 }
 
 .row-action{
-  margin: 20px auto;
   text-align: center;
 }
 
@@ -1054,32 +1063,32 @@ blockquote span{
 }
 
 .fc-default{
-    background-image: url('../images/logo-default.jpg');
+    background: url('../images/logo-default.jpg') top center;
     width: 120px;
 }
 
 #fc-tema {
-    background-image: url('../images/logo-tema.jpg');
+    background: url('../images/logo-tema.jpg') top center;
     width: 206px;
 }
 
 #fc-tegv {
-    background-image: url('../images/logo-tegv.jpg');
+    background: url('../images/logo-tegv.jpg') top center;
     width: 82px;
 }
 
 #fc-ormana {
-    background-image: url('../images/logo-ormana.jpg');
-    width: 158px;
+    background: url('../images/logo-ormana.jpg') top center;
+    width: 120px;
 }
 
 #fc-nesin {
-    background-image: url('../images/logo-nesin.png');
-    width: 81px;
+    background: url('../images/logo-nesin.png') top center;
+    width: 120px;
 }
 
 #fc-iksv {
-    background-image: url('../images/logo-iksv.jpg');
+    background: url('../images/logo-iksv.jpg') top center;
     width: 114px;
 }
 
@@ -1160,10 +1169,9 @@ blockquote span{
     -moz-border-radius: 5px;
     border-radius: 5px;
   }
-  .field select{ height: 38px;}
 
   .field textarea,
-  fieldset textarea{ margin-bottom:0; height:120px; }
+  fieldset textarea{ margin-bottom:0; height:90px; }
 
 
   .field input:focus,
@@ -1417,7 +1425,6 @@ blockquote span{
 
     .msg h2 {
         font-size: 18px;
-        padding: 4px 0;
     }
 
     /*
@@ -1655,6 +1662,10 @@ blockquote span{
       text-shadow:0 1px 0 #2A4A6A;
     }
 
+    #w-iletisim textarea{
+        width: 370px;
+    }
+
     /*
     ** En cok bagis toplayanlar
     */
@@ -1688,14 +1699,6 @@ blockquote span{
 /*************************************************************************************
 ** ANASAYFA
 *************************************************************************************/
-#home-stats .row-details{
-    padding-left: 135px;
-}
-
-#home-stats .row-photo,
-#home-stats .row-photo img {
-    width: 100px;
-}
 
 
 /*************************************************************************************

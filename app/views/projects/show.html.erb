@@ -14,9 +14,8 @@
 
         <div class="pb-action">
           <% if @project.can_be_donated? %>
-            <%=link_to "Destekle", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%>
+            <%=link_to "Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%>
           <% end %>
-
 
           <% if user_signed_in? && current_user == @project.organization.user%>
           <div class="admin-actions">
@@ -51,18 +50,20 @@
 
 
 
-<% if @project.pages.count > 0 %>
-  <% @pages = @project.pages%>
-  <%=render :partial => "pages/list_pages"%>
-<% end %>
 
+<div id="main-content">
+  <div id="home-stats">
+    <% if @project.pages.count > 0 %>
 
-<%=render :partial => "pages/list_pages_condensed",
-  :locals => {
-    :title => "En çok bağış toplayanlar",
-    :pages => @project.pages
-  }%>
+      <%=render :partial => "pages/list_pages_condensed",
+        :locals => {
+          :title => "En çok bağış toplayanlar",
+          :pages => @project.pages
+        }%>
 
+    <% end %>
 
+  </div>
+</div><!-- end of #main-content -->
 
 <%= render 'layouts/sidebar_kurum'%>

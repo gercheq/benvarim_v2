@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
     if @project.organization.user != current_user
-      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz."
       redirect_to @project
     end
   end
@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.organization.user != current_user
-      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz."
       redirect_to @project
     end
 
@@ -90,7 +90,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     if @project.organization.user != current_user
-      flash[:error] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz"
+      flash[:error] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz."
       redirect_to @project
     end
     @project.active = false

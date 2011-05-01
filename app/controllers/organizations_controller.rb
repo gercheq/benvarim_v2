@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
     @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     @projects = @organization.projects
     if !@organization.can_be_donated?
-      flash.now[:notice] = "Kurum bilgileri Benvarım.com tarafından henüz onaylanmadığı için bağış yapamazsınız"
+      flash.now[:error] = "Kurum bilgileri Benvarım.com tarafından henüz onaylanmadığı için bağış yapamazsınız."
     end
   end
 
@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = current_user.organizations.build(params[:organization])
     if @organization.save
-      redirect_to(@organization, :success => "Sivil Toplum Kuruluşu Yaratıldı")
+      redirect_to(@organization, :success => "Sivil Toplum Kuruluşu yaratıldı.")
     else
       render :new
     end

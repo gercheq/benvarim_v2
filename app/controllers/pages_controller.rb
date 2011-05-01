@@ -31,7 +31,7 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     if !@page.can_be_donated?
-      flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız"
+      flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız."
     end
     @payments = @page.payments.order("id desc")
   end
@@ -74,7 +74,7 @@ class PagesController < ApplicationController
   def create
     @page = current_user.pages.build(params[:page])
     if @page.save
-      redirect_to(@page, :success => 'Sayfa yaratıldı.')
+      redirect_to(@page, :success => 'Bağış sayfası yaratıldı.')
     else
       add_organization_list
       add_project_list (@page.organization.nil? ? nil : @page.organization)
@@ -85,7 +85,7 @@ class PagesController < ApplicationController
   def update
     @page = current_user.pages.find(params[:id])
     if @page.update_attributes(params[:page])
-      redirect_to(@page, :success => 'Sayfa güncellendi.')
+      redirect_to(@page, :success => 'Bağış sayfası güncellendi.')
     else
       add_organization_list
       add_project_list (@page.organization.nil? ? nil : @page.organization)

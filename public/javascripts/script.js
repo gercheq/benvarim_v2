@@ -5,13 +5,13 @@
 */
 
 function fadeInOrder(elem) {
-  elem.fadeIn(500, function() {
+  elem.fadeIn(300, function() {
 
     if ($(this).next().length > 0) {
       // fadeIn() next element if exists
-      fadeInOrder( $(this).next().delay(2000) );
+      fadeInOrder( $(this).next().delay(1500) );
     } else {
-      $('#featured-input').delay(1000).focus();
+      // $('#featured-input').delay(1000).focus();
 
     }
   });
@@ -47,7 +47,7 @@ $(document).ready(function(){
   setup_search();
 
   //  Custom Form Styles
-  $("select, :radio, :checkbox").uniform();
+  // $("select, :radio, :checkbox").uniform();
 
 
   //
@@ -61,7 +61,9 @@ $(document).ready(function(){
   // Trigger link in the row element, if user clicks on the row
   $('.row').click(function(){
     var url = $(this).find('a').attr('href');
-    window.location = url;
+    if (url){
+      window.location = url;
+    }
   });
 
 

@@ -45,7 +45,7 @@ class Page < ActiveRecord::Base
   validates :organization_id, :presence => true
   validates :project_id, :presence => true
   validates :user_id, :presence => true
-  validates :title, :length => { :minimum => 5, :maximum => 140 }
+  validates :title, :length => { :minimum => 5, :maximum => 240 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
   validate :organization_and_project_active_validation
 

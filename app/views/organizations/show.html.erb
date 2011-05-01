@@ -43,31 +43,6 @@
   </div>
 </div><!-- end of .widget -->
 <div id="main-content">
-  <% if @organization.pages.count() > 0 %>
-    <div class="widget widget-light widget-aktif-bagis ">
-      <div class="w-inner clearfix">
-        <div class="w-title">Bağış Sayfaları</div>
-        <div class="w-content">
-        <%@organization.pages.each do |page|%>
-          <div class="row">
-              <h2><%=link_to page.title, page%></h2>
-              <% if page.can_be_donated? %>
-                <%=link_to "Bağış Yap", donate_for_page_path(page), :class => "yellow button right no-margin"%>
-              <% end %>
-              <p>
-                <%=page.description[0..200]%><%=link_to "Detaylı bilgi", page%>
-              </p>
-          </div><!-- end of .row -->
-        <% end %>
-        <% if @organization.pages.length == 0 %>
-          <div class="row center">
-            <%=link_to "İlk bağış sayfasını yaratan sen ol!", new_page_for_organization_path(@organization), :class => "green button super" %>
-          </div><!-- end of .row -->
-        <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
   <%=render :partial => "projects/list_projects",
     :locals => {
       :show_edit_link => false,
@@ -77,28 +52,12 @@
     }%>
 
   <% if @top_pages.length > 0 %>
-    <div class="widget widget-light widget-en-cok-bagis widget-liste">
-      <div class="w-inner clearfix">
-        <div class="w-title">En çok bağış toplayanlar</div>
-        <div class="w-content">
-        <%@top_pages.each do |page|%>
-          <div class="row clearfix">
-              <div class="bagis-miktari"><%=page.collected_str%> <span>TL</span></div>
-              <blockquote><span>“</span><%=page.description%><%=link_to "...", page%></blockquote>
-              <div class="bagisci"><%=link_to page.user.name, page%></div>
-          </div><!-- end of .row -->
-        <% end %>
-
-        <div class="row row-action">
-          <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
-        </div><!-- end of .row -->
-
-
-        </div>
-      </div>
-    </div>
+  <%=render :partial => "pages/list_pages_condensed",
+    :locals => {
+      :title => "En çok bağış toplayanlar",
+      :pages => @top_pages
+    }%>
   <% end %>
-
 </div><!-- end of #main-content -->
 
 <%= render 'layouts/sidebar_kurum'%>

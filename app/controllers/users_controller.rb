@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       return redirect_to :action => :show
     end
     if @user.update_attributes(params[:user])
-      redirect_to(@user, :notice => 'Bigiler başarıyla kaydedildi.')
+      redirect_to(@user, :success => 'Bigiler başarıyla kaydedildi.')
     else
       render :action => "edit"
     end

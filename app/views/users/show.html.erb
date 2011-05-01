@@ -16,12 +16,7 @@
         </div>
 
         <div class="related-organization">
-          <h2><%= @user.name %></h2>
-          <% if @user.birthday %>
-          <div class="ro-details">
-             <p class="small"><%="#{@user.age}"%></p>
-          </div>
-          <% end %>
+          <h2><%= @user.name %><% if @user.birthday %> <span class="small">(<%="#{@user.age}"%>)<% end %></span></h2>
         </div>
 
         <% if user_signed_in? && current_user == @user%>
