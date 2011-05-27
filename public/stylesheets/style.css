@@ -1092,6 +1092,17 @@ blockquote span{
     width: 114px;
 }
 
+#fc-cydd {
+    background: url('../images/logo-cydd.png') top center;
+    width: 114px;
+}
+
+#fc-tef {
+    background: url('../images/logo-tef.png') top center;
+    width: 114px;
+}
+
+
 #featured-charities .opaque {
       filter: alpha(opacity=20);
       -moz-opacity: 0.2;
