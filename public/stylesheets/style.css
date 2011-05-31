@@ -169,10 +169,10 @@ input:invalid, textarea:invalid {
 
 /* These selection declarations have to be separate.
    No text-shadow: twitter.com/miketaylr/status/12228805301
-   Also: hot pink. */
+   Also: hot pink.
 ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
 ::selection { background:#FF5E99; color:#fff; text-shadow: none; }
-
+*/
 /*  j.mp/webkit-tap-highlight-color */
 a:link { -webkit-tap-highlight-color: #FF5E99; }
 
@@ -1091,6 +1091,17 @@ blockquote span{
     background: url('../images/logo-iksv.jpg') top center;
     width: 114px;
 }
+
+#fc-cydd {
+    background: url('../images/logo-cydd.png') top center;
+    width: 114px;
+}
+
+#fc-tef {
+    background: url('../images/logo-tef.png') top center;
+    width: 114px;
+}
+
 
 #featured-charities .opaque {
       filter: alpha(opacity=20);
