@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>
+      Benvarım.com
+    </title>
+  </head>
+  <body>
+Merhaba <%=@user.name%>,
+Benvarım.com'a katıldığınız için teşekkürler.<br/>
+Benvarım.com sayesinde sosyal ağınızın gücünü kullanarak
+dilediğiniz sosyal toplum kuruluşunu destekleyebilirsiniz.<br/>
+Teşekkürler.<br/>
+Benvarım.com Ekibi<br/>
+
+<ul>
+  <li>
+    <a href="<%= nedir_path(:only_path => false) %>"> Benvarım Nedir?</a>
+    <a href="<%= nasil_calisir_path(:only_path => false) %>"> Benvarım Nasıl Çalışır?</a>
+    <a href="<%= user_path(@user, :only_path => false) %>"> Profilim</a>
+    <a href="<%= new_page_path(:only_path => false) %>"> Yeni Sayfa Yarat</a>
+  </li>
+</ul>
+  </body>
+</html>

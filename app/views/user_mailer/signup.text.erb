@@ -1,0 +1,10 @@
+Merhaba <%=@user.name%>,
+Benvarım.com'a katıldığınız için teşekkürler.
+Benvarım.com sayesinde sosyal ağınızın gücünü kullanarak
+dilediğiniz sosyal toplum kuruluşunu destekleyebilirsiniz.
+Teşekkürler.
+Benvarım.com Ekibi
+    Benvarım Nedir? <%= nedir_path(:only_path => false) %>
+    Benvarım Nasıl Çalışır? <%= nasil_calisir_path(:only_path => false) %>
+    Profilim <%= user_path(@user, :only_path => false) %>
+    Yeni Sayfa Yarat <%= new_page_path(:only_path => false) %>

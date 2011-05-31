@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   has_many :pages
   has_many :organizations
 
+  after_create :after_create_hook
+
   validates :name, :length => { :minimum => 5, :maximum => 100 }
 
   before_save do
@@ -76,5 +78,9 @@ class User < ActiveRecord::Base
     end
     now = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+  end
+
+  def after_create_hook
+    UserMailer.signup(self).deliver
   end
 end
