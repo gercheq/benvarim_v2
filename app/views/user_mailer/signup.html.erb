@@ -3,31 +3,34 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title>
-      Benvarım.com
+      Benvarım.com'a Hoşgeldin!
     </title>
   </head>
   <body>
+
 Merhaba <%=@user.name%>,<br/>
 
-<a href="<%=root_path(:only_path => false)%>">Benvarım</a>'a katıldığınız için teşekkürler.<br/>
-<a href="<%=root_path(:only_path => false)%>">Benvarım</a> sayesinde sosyal ağınızın gücünü kullanarak
-dilediğiniz sosyal toplum kuruluşunu destekleyebilirsiniz.<br/>
-Teşekkürler.<br/>
-<a href="<%=root_path(:only_path => false)%>">Benvarım.com</a> Ekibi<br/>
-
+<a href="<%=root_path(:only_path => false)%>">Benvarım.com</a>'a hoşgeldin!<br/>
+<br/>
+"Ben Varım!" diyerek Türkiye'nin sosyal gelişimine katkıda bulunduğun için teşekkür ederiz.<br/>
+<br/>
+-Özel bir gününü kutlamak,<br/>
+-Sportif veya sanatsal bir faaliyetini duyurmak,<br/>
+-Veya sosyal aktivizmine güç katmak için<br/>
+Hemen bir <a href="<%= new_page_path(:only_path => false) %>">gönüllü sayfası</a> oluşturup, çevrenle paylaşarak destekçisi olduğun vakıf veya derneği güçlendirebilirsin.<br/>
+<br/>
+Yöneticisi, çalışanı veya gönüllüsü olduğun STK'yı, Benvarım.com'a <a href="<%= new_organization_path(:only_path => false) %>">ekleyebilirsin</a>.<br/>
+<br/>
+Bir hayırsever olarak, <a href="<%= all_pages_path(:only_path => false) %>">gönüllüler</a> aracılığıyla vakıf ve derneklere bağışta bulunabilirsin.<br/>
+<br/>
+Lütfen sana nasıl yardımcı olabileceğimizi bize ilet. Elimizden geleni yapmaya hazırız.<br/>
+<br/>
+Görüşmek üzere,<br/>
+Benvarım.com Ekibi<br/>
 <ul>
-  <li>
-    <a href="<%= nedir_path(:only_path => false) %>"> Benvarım Nedir?</a>
-  </li>
-  <li>
-    <a href="<%= nasil_calisir_path(:only_path => false) %>"> Benvarım Nasıl Çalışır?</a>
-  </li>
-  <li>
-    <a href="<%= user_path(@user, :only_path => false) %>"> Profilim</a>
-  </li>
-  <li>
-    <a href="<%= new_page_path(:only_path => false) %>"> Yeni Sayfa Yarat</a>
-  </li>
+  <li>Twitter<a href="http://twitter.com/#!/Ben_Varim">@BenVarim</a></li>
+  <li>Facebook: <a href="http://www.facebook.com/BenVarim.Platformu">Ben Varım Facebok</a></li>
+  <li>Email: <a href="mailto:iletisim@benvarim.com">iletisim@benvarim.com</a></li>
 </ul>
   </body>
 </html>
