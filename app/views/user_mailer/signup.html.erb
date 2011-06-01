@@ -7,18 +7,25 @@
     </title>
   </head>
   <body>
-Merhaba <%=@user.name%>,
-Benvarım.com'a katıldığınız için teşekkürler.<br/>
-Benvarım.com sayesinde sosyal ağınızın gücünü kullanarak
+Merhaba <%=@user.name%>,<br/>
+
+<a href="<%=root_path(:only_path => false)%>">Benvarım</a>'a katıldığınız için teşekkürler.<br/>
+<a href="<%=root_path(:only_path => false)%>">Benvarım</a> sayesinde sosyal ağınızın gücünü kullanarak
 dilediğiniz sosyal toplum kuruluşunu destekleyebilirsiniz.<br/>
 Teşekkürler.<br/>
-Benvarım.com Ekibi<br/>
+<a href="<%=root_path(:only_path => false)%>">Benvarım.com</a> Ekibi<br/>
 
 <ul>
   <li>
     <a href="<%= nedir_path(:only_path => false) %>"> Benvarım Nedir?</a>
+  </li>
+  <li>
     <a href="<%= nasil_calisir_path(:only_path => false) %>"> Benvarım Nasıl Çalışır?</a>
+  </li>
+  <li>
     <a href="<%= user_path(@user, :only_path => false) %>"> Profilim</a>
+  </li>
+  <li>
     <a href="<%= new_page_path(:only_path => false) %>"> Yeni Sayfa Yarat</a>
   </li>
 </ul>
