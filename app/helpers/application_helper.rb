@@ -81,7 +81,7 @@ module ApplicationHelper
   end
 
   def tags_title
-    if @page
+    if @page && @page.project
       return "#{@page.project.name} | BenVarim.com"
     end
     if @project
@@ -94,42 +94,42 @@ module ApplicationHelper
   end
 
   def tags_description
-    if @page
-      return "#{@page.organization.name} BenVarim platformu'ndan bağış toplayarak #{@page.project.name} güçlendiriyor 
+    if @page && @page.organization && @page.project
+      return "#{@page.organization.name} BenVarim platformu'ndan bağış toplayarak #{@page.project.name} güçlendiriyor
       ve projelerin tanıtımını sağlıyor. Siz de gönüllü ve hayırsever olarak yapacağınız bağışlarınızla projeleri güçlendirin."
     end
-    if @project
-      return "#{@project.organization.name} BenVarim platformu'ndan bağış toplayarak #{@project.name} güçlendiriyor 
+    if @project && @project.organization
+      return "#{@project.organization.name} BenVarim platformu'ndan bağış toplayarak #{@project.name} güçlendiriyor
       ve projelerin tanıtımını sağlıyor. Siz de gönüllü ve hayırsever olarak yapacağınız bağışlarınızla projeleri güçlendirin."
     end
     if @organization
-      return "#{@organization.name} BenVarim platformu ile bağış toplayarak projelerini güçlendirmekte ve tanıtımını sağlamaktadır. 
+      return "#{@organization.name} BenVarim platformu ile bağış toplayarak projelerini güçlendirmekte ve tanıtımını sağlamaktadır.
       Bağış yaparak desteklediğiniz kurumu güçlendirebilirsiniz."
     end
-      "BenVarım, vakıf ve dernek'lerin sosyal sorumluluk projeleri için bağış ve tanıtım platformudur. BenVarım platformu ile Türkiye'deki 
+      "BenVarım, vakıf ve dernek'lerin sosyal sorumluluk projeleri için bağış ve tanıtım platformudur. BenVarım platformu ile Türkiye'deki
       vakıf ve dernekler ile gönüllüleri internet üzerinde bağış sayfası yaratarak projelere kaynak yaratabilir ve kurumlarını güçlendirebilirler."
   end
 
   def tags_keywords
-    if @page
-      return "#{@page.organization.name}, #{@page.project.name}, vakıf, vakif, dernek, kurum, proje, hayır projesi, projeye destek, yardım, yardim, 
+    if @page && @page.project && @page.organization
+      return "#{@page.organization.name}, #{@page.project.name}, vakıf, vakif, dernek, kurum, proje, hayır projesi, projeye destek, yardım, yardim,
       destek, STK, sivil toplum, sosyal proje, aktivite, bağış, bagis, kolay bağış, platform, benvarim, ben varim, benvarım, ben varım, benvarim.com"
     end
-    if @project
-      return "#{@project.organization.name}, #{@project.name}, vakıf, vakif, dernek, kurum, proje, hayır projesi, projeye destek, yardım, yardim, 
+    if @project && @project.organization
+      return "#{@project.organization.name}, #{@project.name}, vakıf, vakif, dernek, kurum, proje, hayır projesi, projeye destek, yardım, yardim,
       destek, STK, sivil toplum, sosyal proje, aktivite, bağış, bagis, kolay bağış, platform, benvarim, ben varim, benvarım, ben varım, benvarim.com"
     end
     if @organization
       projectnames = ", "
-      
+
       @organization.projects.each do |project|
         projectnames += project.name + ", "
       end
-      
-      return "#{@organization.name}" + projectnames + "vakıf, vakif, dernek, kurum, yardım, yardim, destek, STK, sivil toplum, sosyal proje, aktivite, 
+
+      return "#{@organization.name}" + projectnames + "vakıf, vakif, dernek, kurum, yardım, yardim, destek, STK, sivil toplum, sosyal proje, aktivite,
       bağış, bagis, kolay bağış, platform, benvarim, ben varim, benvarım, ben varım, benvarim.com"
     end
-      "vakıf, vakif, dernek, kurum, yardım, yardımsever, bağışçı, yardim, STK, sivil toplum, sosyal proje, aktivite, bağış, bagis, gönüllü, maraton, 
+      "vakıf, vakif, dernek, kurum, yardım, yardımsever, bağışçı, yardim, STK, sivil toplum, sosyal proje, aktivite, bağış, bagis, gönüllü, maraton,
       fundraising, koşu, kolay bağış, platform, benvarim, ben varim, benvarım, ben varım, benvarim.com"
   end
 
