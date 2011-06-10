@@ -81,6 +81,9 @@ class User < ActiveRecord::Base
   end
 
   def after_create_hook
-    UserMailer.signup(self).deliver
+    begin
+    	UserMailer.signup(self).deliver
+    rescue
+    end
   end
 end
