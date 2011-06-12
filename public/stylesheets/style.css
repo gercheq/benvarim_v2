@@ -1455,6 +1455,7 @@ blockquote span{
       line-height: 1.3;
       font-size: 24px;
       margin-bottom: 15px !important;
+      text-shadow: 0 2px 0 #FFF;
     }
 
     .comment-bubble h6{
