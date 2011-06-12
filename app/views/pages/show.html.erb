@@ -35,21 +35,15 @@
           <div class="share-options">
             <ul>
               <!-- <li><fb:like layout="button_count" show_faces="false" type="button_count"></fb:like></li> -->
+              <li><span  class='st_email_hcount' displayText='Email'></span></li>
               <li><a  target="_blank" name="fb_share" type="button_count">Facebook'ta Paylaş</a></li>
               <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>" >Tweet</a></li>
-              <li><a class="addthis_button_preferred_1"></a></li>
             </ul>
 
 
           </div>
         </div><!-- .comment-bubble -->
 
-        <div class="description clearfix truncate-short">
-            <% if @page.logo.file? %>
-              <%= image_tag @page.logo.url(:thumb) %>
-            <% end %>
-            <%=raw @page.description_html %>
-        </div>
 
         <div class="progress-bar-container clearfix">
 
@@ -74,6 +68,14 @@
             </div>
           <% end %>
         </div><!-- end of .progress-bar-container -->
+
+
+        <div class="description clearfix condense-400">
+            <% if @page.logo.file? %>
+              <%= image_tag @page.logo.url(:thumb) %>
+            <% end %>
+            <%=raw @page.description_html %>
+        </div>
 
         <div class="tabs-container">
           <div id="tabs">

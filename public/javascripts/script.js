@@ -122,8 +122,6 @@ $(document).ready(function(){
   });
   */
 
-
-
 	//
 	// Tabs
 	//
@@ -133,6 +131,28 @@ $(document).ready(function(){
 			expires: 1
 		}
 	});
+
+
+ /*
+  *  condensedLength: Target length of condensed element. Default: 200
+  *  minTrail: Minimun length of the trailing text. Default: 20
+  *  delim: Delimiter used for finding the break point. Default: " " - {space}
+  *  moreText: Text used for the more control. Default: [more]
+  *  lessText: Text used for the less control. Default: [less]
+  *  ellipsis: Text added to condensed element. Default:  ( ... )
+  *  moreSpeed: Animation Speed for expanding. Default: "normal"
+  *  lessSpeed: Animation Speed for condensing. Default: "normal"
+  *  easing: Easing algorith. Default: "linear"
+
+
+	$('.condense-200').condense({
+	  condensedLength: 200,
+	  moreText: "Devamını Göster",
+	  lessText: "",
+	  ellipsis: ""
+	});
+*/
+
 
 
 });

@@ -1009,7 +1009,7 @@ body {
     font-weight: bold;
 }
 
-blockquote span{
+blockquote span.quotation{
     color: #CCCCCC;
     font-family: Georgia;
     font-size: 32px;
@@ -1620,7 +1620,7 @@ blockquote span{
         line-height: 1.5;
         margin-bottom: 10px;
     }
-    .widget-liste blockquote span {
+    .widget-liste blockquotespan.quotation {
         color: #CCCCCC;
         font-family: Georgia;
         font-size: 32px;
@@ -1945,6 +1945,12 @@ blockquote span{
 
 
 
+
+
+.condense_control_more{
+    font-size: 13px;
+    color: #0862A2;
+}
 
 
 
