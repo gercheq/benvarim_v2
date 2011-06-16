@@ -64,16 +64,14 @@ module ApplicationHelper
       if @page.organization && @page.organization.logo.file?
         images.push url_for @page.organization.logo.url(:medium)
       end
-    end
-    if @project
+    elsif @project
       if @project.logo.file?
         images.push url_for @project.logo.url(:medium)
       end
       if @project.organization.logo.file?
         images.push url_for @project.organization.logo.url(:medium)
       end
-    end
-    if @organization
+    elsif @organization
       if @organization.logo.file?
         images.push url_for @organization.logo.url(:medium)
       end
