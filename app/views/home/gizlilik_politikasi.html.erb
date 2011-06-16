@@ -10,11 +10,10 @@
       <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=DE-AT
       style='mso-ansi-language:DE-AT'>Gizlilik Politikası</span></b></p>
 
-      <p class=MsoNormal><span lang=DE-AT style='mso-ansi-language:DE-AT'>Benvarim.com
-      „Kullan</span><span lang=TR style='mso-ansi-language:TR'>ım &#350;artlarını” (</span><a
-      href="http://benvarim.com/kullanim_sartlari"><span lang=DE-AT style='mso-ansi-language:
-      DE-AT'>http://benvarim.com/kullanim_sartlari</span></a><span lang=DE-AT
-      style='mso-ansi-language:DE-AT'>) kabul ederek websitemizin a&#351;a&#287;ıda
+      <p class=MsoNormal>
+      <%=link_to "Benvarim.com Kullanım Şartlarını", :kullanim_sartlari%>
+<span lang=DE-AT
+      style='mso-ansi-language:DE-AT'> kabul ederek websitemizin a&#351;a&#287;ıda
       açıklananan gizlilik politikasını kabul ediyorsunuz. E&#287;er gizlilik
       politikasını kabul etmiyorsanız lütfen bu websitesini kullanmayınız. Bu
       gizlilik politikasını kısmen veya tamamen de&#287;i&#351;tirme hakkımız saklı
@@ -116,9 +115,8 @@
       <p class=MsoNormal>E&#287;er gizlilik politikamız veya ki&#351;isel veya
       kurumsal bilgilerinizin kullanılması do&#287;rultusunda merak ettikleriniz
       varsa lütfen <a href="mailto:iletisim@benvarim.com">iletisim@benvarim.com</a> adresinden
-      bizimle ileti&#351;ime geçiniz veya ileti&#351;im formunu (<a
-      href="http://benvarim.com/iletisim">http://benvarim.com/iletisim</a>
-      ) doldurunuz.</p>
+      bizimle ileti&#351;ime geçiniz veya <%=link_to "iletişim formunu", :new_contact_form%>
+      doldurunuz.</p>
 
       </div>
     </div>
