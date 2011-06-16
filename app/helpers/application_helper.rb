@@ -58,6 +58,11 @@ module ApplicationHelper
       if @page.logo.file?
         images.push url_for @page.logo.url(:medium)
       end
+
+      if @page.user && @page.user.photo.file?
+        images.push url_for @page.user.photo.url(:medium)
+      end
+
       if @page.project && @page.project.logo.file?
         images.push url_for @page.project.logo.url(:medium)
       end
@@ -74,6 +79,10 @@ module ApplicationHelper
     elsif @organization
       if @organization.logo.file?
         images.push url_for @organization.logo.url(:medium)
+      end
+    elsif @user
+      if @user.photo.file?
+        images.push url_for @user.photo.url(:medium)
       end
     end
     images.push "#{url_for root_path :only_path => false}stylesheets/images/logo.gif"
