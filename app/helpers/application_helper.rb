@@ -52,32 +52,34 @@ module ApplicationHelper
     toplanmasına aracı olacaksınız."
   end
 
-  def fb_og_image
-    if @page
+  def fb_og_images
+    images = Array.new
+    if @page && @page.logo.file?
       if @page.logo.file?
-        return (url_for @page.logo.url(:medium))
+        images.push url_for @page.logo.url(:medium)
       end
       if @page.project && @page.project.logo.file?
-        return (url_for @page.project.logo.url(:medium))
+        images.push url_for @page.project.logo.url(:medium)
       end
       if @page.organization && @page.organization.logo.file?
-        return (url_for @page.organization.logo.url(:medium))
+        images.push url_for @page.organization.logo.url(:medium)
       end
     end
     if @project
       if @project.logo.file?
-        return (url_for @project.logo.url(:medium))
+        images.push url_for @project.logo.url(:medium)
       end
       if @project.organization.logo.file?
-        return (url_for @project.organization.logo.url(:medium))
+        images.push url_for @project.organization.logo.url(:medium)
       end
     end
     if @organization
       if @organization.logo.file?
-        return (url_for @organization.logo.url(:medium))
+        images.push url_for @organization.logo.url(:medium)
       end
     end
-      "#{url_for root_path}stylesheets/images/logo.gif"
+    images.push "#{url_for root_path :only_path => false}stylesheets/images/logo.gif"
+    images.uniq
   end
 
   def tags_title
