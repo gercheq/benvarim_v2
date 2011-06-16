@@ -6,3 +6,4 @@ tmp/**/*
 solr/data
 public/system
 notes.txt
+.idea
