@@ -1,4 +1,6 @@
 Benvarim::Application.routes.draw do
+  get "/sitemap" => "sitemap#index", :as => :sitemap
+
   post "iletisim" => "contact_forms#create", :as => :new_contact_form
   get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
   get "iletisim" => "contact_forms#index", :as => :contact_forms
@@ -82,6 +84,7 @@ Benvarim::Application.routes.draw do
   get 'kurum/:organization_id/proje/yeni' => 'projects#new',  :as => :new_project_for_organization
 
   get '/kurumlar' => "organizations#index", :as => :organizations
+  get '/kurumlar' => "organizations#index", :as => :all_organizations
   post '/kurum' =>  "organizations#create", :as => :organizations
   get '/kurum/yeni' => "organizations#new", :as => :new_organization
   get '/kurum/:id/duzenle' => "organizations#edit", :as => :edit_organization
@@ -102,6 +105,7 @@ Benvarim::Application.routes.draw do
   get "home/about"
 
   get "home/help"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

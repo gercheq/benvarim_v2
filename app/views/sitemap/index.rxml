@@ -1,0 +1,46 @@
+xml.instruct!
+xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+  xml.url do
+    xml.loc all_organizations_path(:only_path => false)
+    xml.lastmod @today
+  end
+  @organizations.each do |organization|
+    xml.url do
+      xml.loc organization_path(organization, :only_path => false)
+      xml.lastmod @today
+    end
+  end
+# --------
+  xml.url do
+    xml.loc all_pages_path(:only_path => false)
+    xml.lastmod @today
+  end
+  @pages.each do |page|
+    xml.url do
+      xml.loc page_path(page, :only_path => false)
+      xml.lastmod page.updated_at.to_date
+    end
+  end
+
+# --------
+
+  xml.url do
+    xml.loc projects_path(:only_path => false)
+    xml.lastmod @today
+  end
+  @projects.each do |project|
+    xml.url do
+      xml.loc project_path(project, :only_path => false)
+      xml.lastmod project.updated_at.to_date
+    end
+  end
+
+# --------
+
+  @users.each do |user|
+    xml.url do
+      xml.loc user_path(user, :only_path => false)
+      xml.lastmod user.updated_at.to_date
+    end
+  end
+end
