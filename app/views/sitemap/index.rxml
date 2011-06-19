@@ -1,5 +1,27 @@
 xml.instruct!
 xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+  #static pages
+  xml.url do
+    xml.loc nasil_calisir_path(:only_path => false)
+  end
+  xml.url do
+    xml.loc nedir_path(:only_path => false)
+  end
+  xml.url do
+    xml.loc kullanim_sartlari_path(:only_path => false)
+  end
+  xml.url do
+    xml.loc guvenli_odeme_path(:only_path => false)
+  end
+  xml.url do
+    xml.loc hakkimizda_path(:only_path => false)
+  end
+
+  xml.url do
+    xml.loc gizlilik_politikasi_path(:only_path => false)
+  end
+  #static pages end
+
   xml.url do
     xml.loc all_organizations_path(:only_path => false)
     xml.lastmod @today
