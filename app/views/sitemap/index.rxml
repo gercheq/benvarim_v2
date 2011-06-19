@@ -40,8 +40,8 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       xml.priority 0.7
       if organization.logo.file?
         xml.image:image do
-          xml.image:loc organization.logo.url(:medium)
-          xml.image:caption "logo"
+          xml.image:loc, organization.logo.url(:medium)
+          xml.image:caption, "logo"
         end
       end
     end
@@ -58,8 +58,8 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       xml.priority 0.8
       if page.logo.file?
         xml.image:image do
-          xml.image:loc page.logo.url(:medium)
-          xml.image:caption "logo"
+          xml.image:loc, page.logo.url(:medium)
+          xml.image:caption, "logo"
         end
       end
     end
@@ -77,8 +77,8 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       xml.lastmod project.updated_at.to_date
       if project.logo.file?
         xml.image:image do
-          xml.image:loc project.logo.url(:medium)
-          xml.image:caption "logo"
+          xml.image:loc, project.logo.url(:medium)
+          xml.image:caption, "logo"
         end
       end
     end
@@ -92,8 +92,8 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       xml.lastmod user.updated_at.to_date
       if user.photo.file?
         xml.image:image do
-          xml.image:loc user.photo.url(:medium)
-          xml.image:caption "fotoğraf"
+          xml.image:loc, user.photo.url(:medium)
+          xml.image:caption, "logo"
         end
       end
     end
