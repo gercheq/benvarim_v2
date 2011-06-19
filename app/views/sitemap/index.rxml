@@ -41,7 +41,7 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       if organization.logo.file?
         xml.image:image do
           xml.image:loc, organization.logo.url(:medium)
-          xml.image:caption, "logo"
+          xml.image:caption, organization.name
         end
       end
     end
@@ -59,7 +59,7 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       if page.logo.file?
         xml.image:image do
           xml.image:loc, page.logo.url(:medium)
-          xml.image:caption, "logo"
+          xml.image:caption, page.title
         end
       end
     end
@@ -78,7 +78,7 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       if project.logo.file?
         xml.image:image do
           xml.image:loc, project.logo.url(:medium)
-          xml.image:caption, "logo"
+          xml.image:caption, project.name
         end
       end
     end
@@ -93,7 +93,7 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
       if user.photo.file?
         xml.image:image do
           xml.image:loc, user.photo.url(:medium)
-          xml.image:caption, "logo"
+          xml.image:caption, user.name
         end
       end
     end
