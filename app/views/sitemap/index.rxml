@@ -1,24 +1,31 @@
 xml.instruct!
-xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9",
+           "xmlns:image"=>"http://www.google.com/schemas/sitemap-image/1.1" do
   #static pages
   xml.url do
     xml.loc nasil_calisir_path(:only_path => false)
+    xml.priority 0.7
   end
   xml.url do
     xml.loc nedir_path(:only_path => false)
+    xml.priority 0.9
   end
   xml.url do
     xml.loc kullanim_sartlari_path(:only_path => false)
+    xml.priority 0.6
   end
   xml.url do
     xml.loc guvenli_odeme_path(:only_path => false)
+    xml.priority 0.6
   end
   xml.url do
     xml.loc hakkimizda_path(:only_path => false)
+    xml.priority 0.4
   end
 
   xml.url do
     xml.loc gizlilik_politikasi_path(:only_path => false)
+    xml.priority 0.4
   end
   #static pages end
 
@@ -30,6 +37,13 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     xml.url do
       xml.loc organization_path(organization, :only_path => false)
       xml.lastmod @today
+      xml.priority 0.7
+      if organization.logo.file?
+        xml.image:image do
+          xml.url organization.logo.url(:medium)
+          xml.caption "logo"
+        end
+      end
     end
   end
 # --------
@@ -41,6 +55,13 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     xml.url do
       xml.loc page_path(page, :only_path => false)
       xml.lastmod page.updated_at.to_date
+      xml.priority 0.8
+      if page.logo.file?
+        xml.image:image do
+          xml.url page.logo.url(:medium)
+          xml.caption "logo"
+        end
+      end
     end
   end
 
@@ -54,6 +75,12 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     xml.url do
       xml.loc project_path(project, :only_path => false)
       xml.lastmod project.updated_at.to_date
+      if project.logo.file?
+        xml.image:image do
+          xml.url project.logo.url(:medium)
+          xml.caption "logo"
+        end
+      end
     end
   end
 
@@ -63,6 +90,12 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     xml.url do
       xml.loc user_path(user, :only_path => false)
       xml.lastmod user.updated_at.to_date
+      if user.photo.file?
+        xml.image:image do
+          xml.url user.photo.url(:medium)
+          xml.caption "fotoğraf"
+        end
+      end
     end
   end
 end
