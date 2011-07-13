@@ -32,7 +32,9 @@
           <h1><%= @page.title %></h1>
           <h6><%= @page.user.name%></h6>
 
+<div id="fb-root"></div>
           <div class="share-options">
+
             <ul>
               <li style="width:60px"><g:plusone size="medium"></g:plusone></li>
               <li><fb:like send="true" layout="button_count" width="165" url="<%=url_for :only_path => false%>" show_faces="false" font=""></fb:like></li>
