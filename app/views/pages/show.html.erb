@@ -35,7 +35,7 @@
           <div class="share-options">
             <ul>
               <li style="width:60px"><g:plusone size="medium"></g:plusone></li>
-              <li><fb:like send="true" layout="button_count" width="165" show_faces="false" font=""></fb:like></li>
+              <li><fb:like send="true" layout="button_count" width="165" url="<%=url_for :only_path => false%>" show_faces="false" font=""></fb:like></li>
               <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>" >Tweet</a></li>
             </ul>
 
