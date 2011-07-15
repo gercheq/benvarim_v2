@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 class PagesController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
-  uses_tiny_mce
+  uses_tiny_mce :options => {
+    :height => 450
+  }
 
   def add_organization_list
     @organizations = Organization.available_organizations.collect do |org|
