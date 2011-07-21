@@ -17,4 +17,6 @@ javascripts:
 
 stylesheets:
   workspace:
-    - public/stylesheets/*.css
+    - public/stylesheets/style.css
+    - public/stylesheets/jquery-ui-1.8.8.custom.css
+    - public/stylesheets/facebox.css
