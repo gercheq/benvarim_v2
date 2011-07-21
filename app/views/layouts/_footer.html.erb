@@ -29,19 +29,17 @@
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
   {lang: 'tr'}
 </script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
+
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript">stLight.options({publisher:'892c5681-c08d-497e-b99e-8ae413aa62c7'});</script>
 
 <script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/libs/jquery-1.4.2.js"%3E%3C/script%3E'))</script>
 
-<%= javascript_include_tag "plugins" %>
 
 <!-- scripts concatenated and minified via ant build script-->
-<%= javascript_include_tag "jquery-ui-1.8.8.min" %>
-<%= javascript_include_tag "jquery.cookie.js" %>
-<%= javascript_include_tag "jquery.condense.js" %>
-<%= javascript_include_tag "facebox" %>
-<%= javascript_include_tag "script" %>
+<%= include_javascripts :workspace %>
 <!-- end concatenated and minified scripts-->
 
 
