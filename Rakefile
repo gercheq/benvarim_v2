@@ -7,4 +7,6 @@ require 'rake'
 Benvarim::Application.load_tasks
 
 require 'jammit'
-Jammit.package!
+Jammit.package! {
+  "base-url" => "http://benvarim.com"
+}
