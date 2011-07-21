@@ -33,7 +33,7 @@ GEM
       activesupport (= 3.0.1)
     activesupport (3.0.1)
     addressable (2.2.2)
-    annotate-models (1.0.4)
+    annotate (2.4.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     aws-s3 (0.6.2)
@@ -167,7 +167,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate-models
+  annotate
   aws-s3
   devise
   friendly_id (~> 3.2.1)
