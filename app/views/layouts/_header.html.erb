@@ -43,9 +43,7 @@
 
 
   <!-- CSS : implied media="all" -->
-  <%= stylesheet_link_tag "style" %>
-  <%= stylesheet_link_tag "jquery-ui-1.8.8.custom" %>
-  <%= stylesheet_link_tag "facebox" %>
+  <%= include_stylesheets :workspace, :media => 'all' %>
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <%= stylesheet_link_tag "handheld" %>
   -->
