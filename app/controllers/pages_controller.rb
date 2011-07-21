@@ -36,8 +36,8 @@ class PagesController < ApplicationController
       flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız."
     end
     @payments = @page.payments.order("id desc")
-    
-    @show_fb_like_send = params[:fb] ? true : false
+
+    @show_fb_like_send = (@page.id > 9 || params[:fb]) ? true : false
   end
 
   def new
