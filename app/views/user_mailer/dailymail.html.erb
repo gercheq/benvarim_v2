@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>
+      Günlük bağış raporu
+    </title>
+  </head>
+  <body>
+
+Merhaba <%=@page.user.name%>,<br/><br/>
+
+Gün içerisinde <%=@page.title%> isimli sayfanıza yapılmış olan bağışları aşağıda görebilirsiniz. <br/><br/>
+
+<% toplam = 0 %>
+<% @payments.each do |payment| %>
+
+İsim   : <%=payment.name%=><br/>
+Not    : <%=payment.note%=><br/>
+Miktar : <%=payment.amount%=><br/><br/>
+
+<% toplam += payment.amount %>
+<% end %>
+<br/><br/>
+
+Toplam: <%= toplam %>
+
+</body>
+</html>
