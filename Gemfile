@@ -13,7 +13,7 @@ gem 'devise'
 
 gem 'jquery-rails'
 
-gem 'omniauth'
+gem "oa-oauth", :require => "omniauth/oauth"
 
 gem 'tiny_mce'
 

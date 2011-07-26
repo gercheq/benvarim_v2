@@ -48,6 +48,9 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   config.pepper = "eff043d5517f6992fe8627dc895e9eec270abdd0570368a0956dc2899d09fb77e0e99a5d63e7b4d8eb78f27eb939e3945b0c6b30c9766db65be1b941cb29a8c3"
 
+  config.omniauth :facebook, "116309391796241", "c50d6f39391f55efd2f226a9ead420ad",
+          {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.

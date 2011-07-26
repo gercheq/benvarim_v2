@@ -29,6 +29,8 @@ Benvarim::Application.configure do
   # devise needs action mailer
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  # Paperclip.options[:command_path] = "/opt/local/bin/identify"
+
   #paypal settings
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
