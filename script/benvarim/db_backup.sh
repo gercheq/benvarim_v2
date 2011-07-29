@@ -19,7 +19,8 @@ echo "fetching latest backup"
 curl -o latest.dump `heroku pgbackups:url --app bprod`;
 #email it
 echo "emailing backup"
-uuencode latest.dump benvarim_prod | mail iletisim@benvarim.com -s "db backup $now";
+uuencode latest.dump benvarim_prod | mail -s "db backup $now" iletisim@benvarim.com
 #delete it
 echo "deleting backup"
 rm -rf latest.dump
+# mv latest.dump "$now.dump"
