@@ -33,15 +33,17 @@
         <h1 class="org-name"><%= @organization.name %></h1>
         <p class="org-address"><%= @organization.address %></p>
 
-        <div class="toplam-bagis hidden">
-          Bugüne kadar toplanan bağış miktarı: <%= @organization.collected %> <small>TL</small>
-        </div>
-
         <% if @organization.website %>
           <p class="org-url outlink">
             <%=link_to "http://#{@organization.website}", "http://#{@organization.website}", :target => "_blank"%>
           </p>
         <% end %>
+
+        <div class="toplam-bagis hidden">
+          Bugüne kadar toplanan bağış miktarı: <%= @organization.collected %> <small>TL</small>
+        </div>
+
+        <br/>
 
         <div class="fcr-desc org-desc truncate-short">
           <%= raw @organization.description_html unless @organization.description_html.nil? %>
