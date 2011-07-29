@@ -1,14 +1,16 @@
+class Bvlog < ActiveRecord::Base
+end
+
 # == Schema Information
-# Schema version: 20110409205016
 #
 # Table name: bvlogs
 #
 #  id         :integer         not null, primary key
 #  namespace  :string(255)
 #  content    :text
+#  controller :string(255)
+#  action     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Bvlog < ActiveRecord::Base
-end

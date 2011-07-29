@@ -1,32 +1,4 @@
 # -*- coding: utf-8 -*-
-# == Schema Information
-# Schema version: 20110409205016
-#
-# Table name: organizations
-#
-#  id                :integer         not null, primary key
-#  user_id           :integer
-#  name              :string(255)
-#  address           :string(255)
-#  description       :text
-#  approved          :boolean
-#  active            :boolean
-#  logo_file_name    :string(255)
-#  logo_content_type :string(255)
-#  logo_file_size    :integer
-#  logo_updated_at   :datetime
-#  description_html  :text
-#  website           :string(255)
-#  collected         :float           default(0.0)
-#  email             :string(255)
-#  phone             :string(255)
-#  contact_name      :string(255)
-#  contact_title     :string(255)
-#  contact_phone     :string(255)
-#  contact_email     :string(255)
-#  cached_slug       :string(255)
-#
-
 class Organization < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => "/:class/:attachment/:id/:style/resim.:extension",
@@ -112,3 +84,31 @@ class Organization < ActiveRecord::Base
       end
     end
 end
+
+# == Schema Information
+#
+# Table name: organizations
+#
+#  id                :integer         not null, primary key
+#  user_id           :integer
+#  name              :string(255)
+#  address           :string(255)
+#  description       :text
+#  approved          :boolean         default(FALSE)
+#  active            :boolean         default(FALSE)
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#  description_html  :text
+#  website           :string(255)
+#  collected         :float           default(0.0)
+#  email             :string(255)
+#  phone             :string(255)
+#  contact_name      :string(255)
+#  contact_title     :string(255)
+#  contact_phone     :string(255)
+#  contact_email     :string(255)
+#  cached_slug       :string(255)
+#
+

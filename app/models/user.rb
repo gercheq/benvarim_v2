@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # , :confirmable, :lockable and :timeoutable, :trackable
   devise :database_authenticatable, :registerable, :token_authenticatable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
   has_attached_file :photo, :default_url =>'/stylesheets/images/userpic_default.jpg',
                      :path => '/:class/:attachment/:id/:style/:safe_filename',
                      :storage => :s3,
@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
 
   has_many :pages
   has_many :organizations
+  has_one :fb_connect
 
   after_create :after_create_hook
 
@@ -68,9 +69,41 @@ class User < ActiveRecord::Base
     super(conditions)
   end
 
-  # def to_param
-  #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
-  # end
+  def self.find_or_create_by_fb_connect fb_connect
+    if fb_connect.user
+      return fb_connect.user
+    elsif fb_connect.auth
+      user_info = fb_connect.auth['user_info']
+      user_hash = fb_connect.auth['extra']['user_hash']
+      email = user_info["email"]
+      user = User.find_by_email email
+      if !user
+        #create new user
+        user = User.new({
+          :email => email,
+          :name => user_info["name"],
+          :password => Devise.friendly_token[0,20]
+        })
+      end
+      user.fb_connect = fb_connect
+      #if there is image and user does not have photo, save it!
+      if !user.photo.file? && user_info["image"]
+        sp = URI.split user_info["image"]
+        #we need to construct large fb image url :/
+        if(sp && sp.length > 5)
+          image_url = sp[0] + "://" + sp[2] + sp[5] + "?type=large"
+          user.photo = open(image_url)
+        end
+      end
+
+      if !user.birthday && user_hash['birthday']
+        user.birthday = Date.strptime(user_hash['birthday'], "%m/%d/%Y")
+      end
+      user.save!
+      return user
+    end
+    nil
+  end
 
   def age
     if !birthday

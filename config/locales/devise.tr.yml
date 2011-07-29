@@ -38,3 +38,7 @@ tr:
         subject: 'Şifre sıfırlama bilgileri'
       unlock_instructions:
         subject: 'Unlock Instructions'
+    omniauth_callbacks:
+      success: 'Giriş başarılı'
+      user:
+        failure: 'Giriş başarısız'

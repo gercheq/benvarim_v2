@@ -25,6 +25,9 @@
 
        <div class="actions">
         <%= f.submit :"Giriş", :class=>"button super yellow button-primary" %>
+        <% if params[:fb] %>
+          <%= link_to "FB Login", user_omniauth_authorize_path(:facebook) %>
+        <% end %>
       </div>
 
 

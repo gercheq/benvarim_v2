@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110409205016) do
+ActiveRecord::Schema.define(:version => 20110726032930) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20110409205016) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "fb_connects", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "fb_user_id"
+    t.string   "auth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fb_connects", ["user_id"], :name => "index_fb_connects_on_user_id", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.integer  "user_id"

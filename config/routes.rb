@@ -54,7 +54,7 @@ Benvarim::Application.routes.draw do
   get '/kurum/:organization_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_organization
 
 
-  devise_for :users, :skip => [:sessions] do
+  devise_for :users, :skip => [:sessions], :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
     get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session
     post '/gonullu/giris' => 'devise/sessions#create', :as => :user_session
     get '/gonullu/cikis' => 'devise/sessions#destroy', :as => :destroy_user_session
