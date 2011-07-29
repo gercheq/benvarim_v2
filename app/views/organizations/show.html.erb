@@ -8,11 +8,15 @@
     <div class="w-content">
       <div class="fullcontent-left">
         <%= image_tag @organization.logo.url(:thumb) %>
+
         <div class="pb-action">
           <% if @organization.can_be_donated? %>
             <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button super no-margin", :rel => "facebox"%>
           <% end %>
         </div>
+
+
+
 
 
         <% if (user_signed_in? && current_user == @organization.user)%>
@@ -28,6 +32,10 @@
 
         <h1 class="org-name"><%= @organization.name %></h1>
         <p class="org-address"><%= @organization.address %></p>
+
+        <div class="toplam-bagis hidden">
+          Bugüne kadar toplanan bağış miktarı: <%= @organization.collected %> <small>TL</small>
+        </div>
 
         <% if @organization.website %>
           <p class="org-url outlink">
