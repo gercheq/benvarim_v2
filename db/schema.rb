@@ -36,8 +36,7 @@ ActiveRecord::Schema.define(:version => 20110726032930) do
   create_table "fb_connects", :force => true do |t|
     t.integer  "user_id"
     t.string   "fb_user_id"
-    t.string   "extra"
-    t.string   "user_info"
+    t.string   "auth"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

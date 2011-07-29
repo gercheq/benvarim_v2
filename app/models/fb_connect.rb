@@ -1,6 +1,5 @@
 class FbConnect < ActiveRecord::Base
-  serialize :extra
-  serialize :user_info
+  serialize :auth
   belongs_to :user
 
 end

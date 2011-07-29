@@ -72,52 +72,37 @@ class User < ActiveRecord::Base
   def self.find_or_create_by_fb_connect fb_connect
     if fb_connect.user
       return fb_connect.user
-    elsif fb_connect.user_info["email"]
-      email = fb_connect.user_info["email"]
+    elsif fb_connect.auth
+      user_info = fb_connect.auth['user_info']
+      user_hash = fb_connect.auth['extra']['user_hash']
+      email = user_info["email"]
       user = User.find_by_email email
-      if user
-        user.fb_connect = fb_connect
-        #if user does not have photo, attach it!
-        if !user.photo.file?
-          #create new user
-          puts "NO PHOTO"
-          sp = URI.split fb_connect.user_info["image"]
-          #we need to construct large fb image url :/
-          image_url = sp[0] + "://" + sp[2] + sp[5] + "?type=large"
-          puts "image url " + image_url
-          user.photo = open image_url
-        end
-        user.save!
-        return user
-      else
+      if !user
         #create new user
-        sp = URI.split fb_connect.user_info["image"]
-        #we need to construct large fb image url :/
-        image_url = sp[0] + "://" + sp[2] + sp[5] + "?type=large"
         user = User.new({
           :email => email,
-          :name => fb_connect.user_info["name"],
-          :photo => open(image_url)
+          :name => user_info["name"],
+          :password => Devise.friendly_token[0,20]
         })
-        user.fb_connect = fb_connect
-        user.save!
-        return user
       end
+      user.fb_connect = fb_connect
+      #if there is image and user does not have photo, save it!
+      if !user.photo.file? && user_info["image"]
+        sp = URI.split user_info["image"]
+        #we need to construct large fb image url :/
+        if(sp && sp.length > 5)
+          image_url = sp[0] + "://" + sp[2] + sp[5] + "?type=large"
+          user.photo = open(image_url)
+        end
+      end
+
+      if !user.birthday && user_hash['birthday']
+        user.birthday = Date.strptime(user_hash['birthday'], "%m/%d/%Y")
+      end
+      user.save!
+      return user
     end
     nil
-  end
-
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    data = access_token['extra']['user_hash']
-    fb_user_id = access_token['uid']
-
-    if user = User.find_by_email(data["email"])
-      user
-    else
-      # Create a user with a stub password.
-      # check params
-      User.create!(params, :password => Devise.friendly_token[0,20])
-    end
   end
 
   def age

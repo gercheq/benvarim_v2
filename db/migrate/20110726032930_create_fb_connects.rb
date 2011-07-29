@@ -3,8 +3,7 @@ class CreateFbConnects < ActiveRecord::Migration
     create_table :fb_connects do |t|
       t.integer :user_id
       t.string :fb_user_id
-      t.string :extra
-      t.string :user_info
+      t.string :auth
 
       t.timestamps
     end
