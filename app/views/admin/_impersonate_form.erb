@@ -1,0 +1,5 @@
+<%= form_tag(admin_impersonate_path, :method => "post") do %>
+  <%= label_tag(:username, "Kullanıcı adı veya email:") %>
+  <%= text_field_tag(:username) %>
+  <%= submit_tag("Giriş yap") %>
+<% end %>

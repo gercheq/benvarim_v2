@@ -8,4 +8,11 @@ protected
       redirect_to new_organization_path
     end
   end
+
+  def authenticate_admin!
+    authenticate_user!
+    unless ["yboyar@gmail.com", "baslevent@gmail.com", "gercekk@gmail.com"].include? current_user.email
+      redirect_to root_url
+    end
+  end
 end
