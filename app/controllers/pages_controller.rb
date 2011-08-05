@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 class PagesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
+
+  before_filter :authenticate_user!, :except => [:show, :index, :partial_payments]
   uses_tiny_mce :options => {
     :height => 450
   }
+
+  @@payment_page_size = 15
 
   def add_organization_list
     @organizations = Organization.available_organizations.collect do |org|
@@ -35,9 +38,23 @@ class PagesController < ApplicationController
     if !@page.can_be_donated?
       flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız."
     end
-    @payments = @page.payments.order("id desc")
+    @include_more_link = params[:paginate] ? true : false
+    @payments = fetch_payments_page
 
     @show_fb_like_send = (@page.id > 9 || params[:fb]) ? true : false
+  end
+
+  def fetch_payments_page(start=nil)
+    query = @page.payments
+    if(start)
+      query = query.where("id < ?", start)
+    end
+    payments = query.order("id desc").limit(@include_more_link ? @@payment_page_size + 1 : 250)
+    @more = @include_more_link && payments.length > @@payment_page_size ? true : false
+    if @more
+      payments.pop
+    end
+    return payments
   end
 
   def new
@@ -95,5 +112,16 @@ class PagesController < ApplicationController
       add_project_list (@page.organization.nil? ? nil : @page.organization)
       render :action => "edit"
     end
+  end
+
+  def partial_payments
+    @include_more_link = true
+    @page = Page.find(params[:id])
+    if !@page.can_be_donated?
+      flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız."
+    end
+    puts params[:start]
+    @payments = fetch_payments_page params[:start]
+    render :layout => false
   end
 end

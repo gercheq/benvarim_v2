@@ -91,17 +91,12 @@
           	<div id="destekleyenler" class="widget-liste clearfix">
 
           	  <% if @payments.length > 0 %>
-
-                <%@payments.each do |payment|%>
-                  <div class="row clearfix">
-                    <div class="bagis-miktari"><%=payment.amount_str%><span>TL</span></div>
-                    <% if payment.note? %>
-                      <blockquote><span class="quotation">“</span> <%=payment.note%></blockquote>
-                    <% end %>
-                    <div class="bagisci"><%=payment.name%> - <%=payment.created_at.in_time_zone("Istanbul").to_formatted_s(:simple) %>  </div>
-                  </div><!-- end of .row -->
-                <% end %>
-
+                <%=render :partial => "payment",
+                  :locals => {
+                    :payments => @payments,
+                    :more => @more
+                  }
+                %>
                 <div class="row center">
                   <%=link_to "Ben de destek olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin large", :rel => "facebox"%>
                   <!--<%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>-->

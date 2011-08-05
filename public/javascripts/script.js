@@ -164,3 +164,18 @@ setTimeout(function(){
   //
   $('a[rel*=facebox]').facebox();
 }, 100);
+
+$(".more-link").live("click", function() {
+    // debugger;
+    var that = this;
+    $(that).html("<img src='/images/ajax-loader.gif'>");
+    $.ajax({
+        type: "GET",
+        url: $(that).attr("url"),
+        cache: false,
+        success: function(html){
+            $(that).before(html);
+            $(that).remove();
+        }
+    });
+});

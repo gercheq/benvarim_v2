@@ -36,6 +36,7 @@ Benvarim::Application.routes.draw do
   get "/sayfa/:id" => "pages#show", :as => :page
   put "/sayfa/:id" => "pages#update",  :as => :page
   get "/sayfalarim" => "pages#my_pages", :as => :my_pages
+  get "/bagislar/:id/:start" => "pages#partial_payments", :as => :partial_payments
 
   post '/bagis/kontrol' => 'payments#ipn_handler' , :as => :paypal_ipn
 
