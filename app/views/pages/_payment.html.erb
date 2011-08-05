@@ -1,0 +1,18 @@
+<%
+last = nil
+payments.each do |payment|%>
+  <div class="row clearfix">
+    <div class="bagis-miktari"><%=payment.amount_str%><span>TL</span></div>
+    <% if payment.note? %>
+      <blockquote><span class="quotation">“</span> <%=payment.note%></blockquote>
+    <% end %>
+    <div class="bagisci"><%=payment.name%> - <%=payment.created_at.in_time_zone("Istanbul").to_formatted_s(:simple) %>  </div>
+  </div><!-- end of .row -->
+<%
+last = payment
+end %>
+<% if(defined?(more) && more) %>
+  <div class="row clearfix more-link" url="<%=partial_payments_path(last.page, :start => last.id)%>">
+    devamı...
+  </div><!-- end of .row -->
+<% end %>
