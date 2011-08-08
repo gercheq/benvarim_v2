@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.all
+    @pages = Page.where("id != 12")
   end
 
   def my_pages
