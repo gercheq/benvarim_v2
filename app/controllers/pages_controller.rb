@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.limit(10)
+    @pages = Page.all
   end
 
   def my_pages
