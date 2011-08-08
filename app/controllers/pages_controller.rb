@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.where("id != 12")
+    @pages = Page.limit(10)
   end
 
   def my_pages
