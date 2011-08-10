@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
     query.each do |page|
       payments = page.payments.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
       if payments.length
-        self.dailymail(page, payments).deliver
+        UserMailer.dailymail(page, payments).deliver
       end
     end
   end
