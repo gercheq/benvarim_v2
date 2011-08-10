@@ -4,7 +4,7 @@ if u1.nil?
   u1 = User.create({
     :name => "Levent Baş",
     :email => "baslevent@gmail.com",
-    :password => "test"
+    :password => "test567"
   });
   u1.save!
 end
