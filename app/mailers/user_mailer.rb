@@ -12,9 +12,9 @@ class UserMailer < ActionMailer::Base
 	@page = page
 	@payments = payments
 
-    # mail(:to => page.user.email,
-    mail(:to => "yboyar@gmail.com",
-        :subject => "Benvarim - %s isimli sayfaniza bugün yapilan bagislar" % [page.title],
+    mail(:to => page.user.email,
+        :bcc => "team@benvarim.com",
+        :subject => "Benvarim - %s isimli sayfanıza bugün yapılan bağışlar" % [page.title],
         "X-SMTPAPI" => '{"category": "daily"}')
   end
 
