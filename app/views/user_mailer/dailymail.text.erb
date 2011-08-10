@@ -1,15 +1,21 @@
 Merhaba <%=@page.user.name%>,
 
-Gün içerisinde <%=@page.title%> isimli sayfanıza yapılmış olan bağışları aşağıda görebilirsiniz.
+Gün içerisinde <%=@page.title%>(<%=page_path(@page, :only_path => false)%>) isimli sayfanıza yapılmış olan bağışları aşağıda görebilirsiniz.
 
 <% toplam = 0 %>
 <% @payments.each do |payment| %>
 
 İsim   : <%=payment.name%>
 Not    : <%=payment.note%>
-Miktar : <%=payment.amount%>
+Miktar : <%=payment.amount%> TL
 
 <% toplam += payment.amount %>
 <% end %>
 
-Toplam: <%= toplam %>
+Toplam: <%= toplam %> TL
+Bu güne kadar yapılan toplan bağış: <%=@page.collected%> TL
+
+
+Twitter: http://twitter.com/#!/Ben_Varim
+Facebook: http://www.facebook.com/BenVarim.Platformu
+Email: iletisim@benvarim.com
