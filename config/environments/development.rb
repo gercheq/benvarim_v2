@@ -30,6 +30,9 @@ Benvarim::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Paperclip.options[:command_path] = "/opt/local/bin/identify"
+  #config.action_mailer.delivery_method = :sendmail
+  #config.action_mailer.sendmail_settings = {:arguments => '-i'}
+
 
   #paypal settings
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
