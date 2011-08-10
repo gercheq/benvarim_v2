@@ -1,0 +1,15 @@
+Merhaba <%=@page.user.name%>,
+
+Gün içerisinde <%=@page.title%> isimli sayfanıza yapılmış olan bağışları aşağıda görebilirsiniz.
+
+<% toplam = 0 %>
+<% @payments.each do |payment| %>
+
+İsim   : <%=payment.name%=>
+Not    : <%=payment.note%=>
+Miktar : <%=payment.amount%=>
+
+<% toplam += payment.amount %>
+<% end %>
+
+Toplam: <%= toplam %>
