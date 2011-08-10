@@ -8,35 +8,28 @@ class UserMailer < ActionMailer::Base
          "X-SMTPAPI" => '{"category": "welcome"}')
   end
 
-  def dailymail(page,payments) 	
+  def daily_mail(page,payments)
 	@page = page
 	@payments = payments
 
-  	mail(:to => page.user.email,
+    # mail(:to => page.user.email,
+    mail(:to => "yboyar@gmail.com",
         :subject => "Benvarim - %s isimli sayfaniza bugün yapilan bagislar" % [page.title],
         "X-SMTPAPI" => '{"category": "daily"}')
   end
 
-  def doit(day_before)
-    time_begin = Time.now - 86400 * day_before  
-        
-    @pages = Page.all
-    @pages.each do |page|
-    	#payments = page.payments.where("? >= ? - created_at.yday", day_before, Time.now.yday + (Time.now.year - time_begin.year) * 366).all
-	payments = page.payments.all
-        inrange_payments = Array.new
-
-	payments.each do |payment|
-		creationyday = payment.created_at.yday
-		if day_before >= Time.now.yday + (Time.now.year - time_begin.year) * 366 - creationyday
-			inrange_payments.push(payment)		
-		end
-	end
-        if !inrange_payments.empty?
-    		UserMailer.dailymail(page,inrange_payments).deliver
-        end
+  def send_daily_payment_emails
+    now = Time.now.in_time_zone("Istanbul")
+    self.send_payment_email_for_days((now - 1.day),now)
+  end
+  def send_payment_email_for_days(start_date, end_date)
+    query = Page.joins(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+    query.each do |page|
+      payments = page.payments.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+      if payments.length
+        self.daily_mail(page, payments)
+      end
     end
   end
-
 end
 
