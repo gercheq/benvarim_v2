@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
 
   def send_daily_payment_emails
     now = Time.now.in_time_zone("Istanbul")
-    self.send_payment_email_for_days((now - 1.day),now)
+    UserMailer.send_payment_email_for_days((now - 1.day),now)
   end
   def send_payment_email_for_days(start_date, end_date)
     query = Page.joins(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
