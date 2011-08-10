@@ -15,9 +15,9 @@ Gün içerisinde <%=@page.title%> isimli sayfanıza yapılmış olan bağışlar
 <% toplam = 0 %>
 <% @payments.each do |payment| %>
 
-İsim   : <%=payment.name%=><br/>
-Not    : <%=payment.note%=><br/>
-Miktar : <%=payment.amount%=><br/><br/>
+İsim   : <%=payment.name%><br/>
+Not    : <%=payment.note%><br/>
+Miktar : <%=payment.amount%><br/><br/>
 
 <% toplam += payment.amount %>
 <% end %>
