@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
          "X-SMTPAPI" => '{"category": "welcome"}')
   end
 
-  def daily_mail(page,payments)
+  def dailymail(page,payments)
 	@page = page
 	@payments = payments
 
@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
     query.each do |page|
       payments = page.payments.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
       if payments.length
-        self.daily_mail(page, payments)
+        self.dailymail(page, payments)
       end
     end
   end
