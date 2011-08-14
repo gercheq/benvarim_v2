@@ -39,6 +39,14 @@
           </p>
         <% end %>
 
+        <%if @project.organization.collected? %>
+        <div class="toplam-bagis">
+          Bugüne kadar toplanan bağış miktarı: <%= @project.organization.collected %> <small>TL</small>
+        </div>
+        <% end %>
+
+        <br/>
+
 
         <div class="fcr-desc truncate-short">
           <%= raw @project.description %>
