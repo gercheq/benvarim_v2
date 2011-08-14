@@ -32,11 +32,37 @@ function setup_search(){
   });
 }
 
+//
+// Registration
+//
+function init_registration(){
+
+  // Show the sign up with email form is necessary
+  $('.toggle').click(function(){
+    $this = $(this);
+    $this.fadeOut('fast', function(){
+      $this.next().slideDown();
+    });
+  });
+
+  // Slide in the confirm password field on focus
+  $('#user_password').focus(function(){
+    $this = $(this);
+    $this.parents('.field').next().css('visibility','visible').slideDown();
+  });
+}
+
+
+
 
 /*
 ** DOM READY
 */
 $(document).ready(function(){
+
+
+  init_registration();
+
 
   fadeInOrder( $("#step-1") );
 

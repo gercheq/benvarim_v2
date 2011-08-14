@@ -1,0 +1,67 @@
+/*
+<div class="signup-options" id="signup-with-fb">
+   <div class="line">
+     <div class="size1of2">
+       <div id="fb-root"></div>
+       <script src="http://connect.facebook.net/en_US/all.js#appId=116309391796241&amp;xfbml=1"></script>
+       <fb:signup-button show-faces="true" width="300" max-rows="2"></fb:signup-button>
+     </div>
+     <div class="size1of2 lastUnit">
+       <a class="fb-button" href="" data-redirect_uri="https://benvarim.com/authenticate">
+       	<span class="fb-button-left"></span>
+       	<span class="fb-button-center"><strong>Facebook</strong> ile <strong>Bağlan</strong></span>
+       	<span class="fb-button-right"></span>
+       </a>
+     </div>
+   </div>
+ </div><!-- signup-options -->
+*/
+
+
+.signup-options{
+    text-align: center;
+}
+
+.signup-options label,
+.signup-options .actions{
+    text-align: left;
+}
+
+.signup-separator {
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #F0F0F0;
+    margin: 40px 0;
+    height: 0;
+    line-height: 0;
+    overflow: visible;
+    text-align: center;
+    font-family: Georgia, Garamond, serif;
+    color: #AAA;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.signup-separator span{
+    background: #FFF;
+    padding: 15px;
+}
+
+.signup-toggle{
+
+}
+
+.signup-form{
+    display: none;
+}
+
+#signup-with-fb{
+
+}
+
+#signup-with-email{
+
+}
+
+#w-login-link .w-inner{
+    padding: 10px 20px;
+}

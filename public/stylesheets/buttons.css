@@ -1,0 +1,204 @@
+/*
+ * Facebook Button
+ *
+ *   <a class="fb-button" href="https://www.facebook.com/dialog/oauth?client_id=138566025676&amp;scope=email,user_birthday,user_likes,user_education_history,user_hometown,user_interests,user_activities,user_location&amp;redirect_uri=https://www.airbnb.com/authenticate" data-redirect_uri="https://www.airbnb.com/authenticate">
+ *   	<span class="fb-button-left"></span>
+ *   	<span class="fb-button-center"><strong>Connect</strong> with <strong>Facebook</strong></span>
+ *   	<span class="fb-button-right"></span>
+ *   </a>
+**/
+
+.fb-button {
+    border-radius: 4px 4px 4px 4px;
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
+}
+.fb-button:hover {
+    box-shadow: 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 5px rgba(0, 0, 0, 0.6), 0 0 0 transparent, 0 0 0 transparent;
+}
+.fb-button:active {
+    box-shadow: 0 0 0.7em rgba(0, 0, 0, 0.9) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 transparent, 0 0 0 transparent;
+}
+.fb-button, .fb-button:hover {
+    text-decoration: none;
+}
+.fb-button.loading {
+    background: url("images/buttons/loading-fb.gif") no-repeat scroll 50% top transparent;
+}
+.loading {
+    cursor: default;
+}
+.loading .fb-button-right, .loading .fb-button-center, .loading .fb-button-left {
+    visibility: hidden;
+}
+.loading:hover {
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+}
+.loading:active {
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+}
+.fb-button strong {
+    font-weight: bolder;
+}
+.fb-button-right, .fb-button-center, .fb-button-left {
+    display: block;
+}
+.fb-button-right, .fb-button-center, .fb-button-left {
+    background: url("images/buttons/fb-button-sprite.png") no-repeat scroll left top transparent;
+    float: left;
+    height: 40px;
+}
+.fb-button-left {
+    width: 40px;
+}
+.fb-button-center {
+    background-color: #6385BA;
+    background-position: left -40px;
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 40px;
+    padding: 0 5px 0 8px;
+}
+.fb-button-right {
+    background-position: 100% -80px;
+    width: 6px;
+}
+.fb-button:active .fb-button-left {
+    background-position: 100% -120px;
+}
+.fb-button:active .fb-button-center {
+    background-position: 100% -160px;
+}
+.fb-button:active .fb-button-right {
+    background-position: 100% -200px;
+}
+
+/*
+ * LinkedIn Button
+ *
+ *
+ */
+.linkedin-button {
+    background: -moz-linear-gradient(center top , #EFEFEF, #D5D5D5) repeat scroll 0 0 transparent;
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    margin-bottom: 10px;
+    position: relative;
+}
+.linkedin-button:hover .linkedin-button-center {
+    box-shadow: 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 5px rgba(0, 0, 0, 0.6), 0 0 0 transparent, 0 0 0 transparent;
+}
+.linkedin-button:active .linkedin-button-center {
+    box-shadow: 0 0 0.7em rgba(0, 0, 0, 0.9) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 transparent, 0 0 0 transparent;
+}
+.linkedin-button, .linkedin-button:hover {
+    text-decoration: none;
+}
+.loading {
+    cursor: default;
+}
+.loading .linkedin-button-center {
+    visibility: hidden;
+}
+.loading:hover .linkedin-button-center {
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+}
+.loading:active .linkedin-button-center {
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+}
+.linkedin-button-border {
+    border-color: #BEBEBE;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    float: left;
+}
+.linkedin-button-inner {
+    background: url("images/buttons/linkedin-button-bg.png") no-repeat scroll left top transparent;
+    float: left;
+}
+.linkedin-button strong {
+    font-weight: bolder;
+}
+.linkedin-button-center {
+    border-radius: 4px 4px 4px 4px;
+    color: #393C3D;
+    float: left;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 11px 0 47px;
+    text-shadow: 0 1px 1px white;
+}
+.linkedin-button.loading {
+    background: url("/images/buttons/loading.gif") no-repeat scroll center center transparent;
+}
+
+
+
+
+
+/*
+ * Twitter Button
+ *
+ *
+ */
+.twitter-button {
+    background: -moz-linear-gradient(center top , #EFEFEF, #D5D5D5) repeat scroll 0 0 transparent;
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    margin-bottom: 10px;
+    position: relative;
+}
+.twitter-button:hover .twitter-button-center {
+    box-shadow: 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 5px rgba(0, 0, 0, 0.6), 0 0 0 transparent, 0 0 0 transparent;
+}
+.twitter-button:active .twitter-button-center {
+    box-shadow: 0 0 0.7em rgba(0, 0, 0, 0.9) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 transparent, 0 0 0 transparent;
+}
+.twitter-button, .twitter-button:hover {
+    text-decoration: none;
+}
+
+.loading {
+    cursor: default;
+}
+.loading .twitter-button-center {
+    visibility: hidden;
+}
+.loading:hover .twitter-button-center {
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+}
+.loading:active .twitter-button-center {
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+}
+
+.twitter-button-border {
+    border-color: #BEBEBE;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    float: left;
+}
+.twitter-button-inner {
+    background: url("images/buttons/twitter-button-bg.png") no-repeat scroll left top transparent;
+    float: left;
+}
+.twitter-button strong {
+    font-weight: bolder;
+}
+.twitter-button-center {
+    border-radius: 4px 4px 4px 4px;
+    color: #393C3D;
+    float: left;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 11px 0 47px;
+    text-shadow: 0 1px 1px white;
+}
+.twitter-button.loading {
+    background: url("images/buttons/loading.gif") no-repeat scroll center center transparent;
+}

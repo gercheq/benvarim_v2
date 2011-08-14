@@ -21,3 +21,5 @@ stylesheets:
     - public/stylesheets/jquery-ui-1.8.8.custom.css
     - public/stylesheets/facebox.css
     - public/stylesheets/buttons.css
+    - public/stylesheets/grids.css
+    - public/stylesheets/login-registration.css

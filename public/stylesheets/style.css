@@ -1139,6 +1139,12 @@ blockquote span.quotation{
     margin: 40px auto;
   }
 
+  .one-column h1{
+      text-align: center;
+      color: #FFF;
+      text-shadow: 0 -2px 1px #0A3663;
+      margin-bottom: 20px;
+  }
   .one-column .w-title{
     font-size:24px;
     line-height:32px;
@@ -1147,10 +1153,8 @@ blockquote span.quotation{
 
   .one-column .actions{
     padding-left: 120px;
-    border-bottom: 1px solid #EEEEEE;
     clear: both;
-    padding-bottom: 30px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
   }
 
 
@@ -1222,9 +1226,7 @@ blockquote span.quotation{
 
 
   .actions{
-    border-bottom: 1px solid #EEEEEE;
     clear: both;
-    padding-bottom: 30px;
   }
 
 

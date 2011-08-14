@@ -1,67 +1,79 @@
 <div class="one-column">
+
+  <h1>BenVarım'a kayıt olmak çok kolay!</h1>
+
   <div class="widget widget-light" id="w-yeni-kayit">
     <div class="w-inner">
-      <div class="w-title">Yeni Kayıt Oluştur</div>
 
+      <div class="signup-options" id="signup-with-fb">
+        <div class="line">
+          <div class="size1of2">
+            bla
+            <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=116309391796241&amp;xfbml=1"></script><fb:signup-button show-faces="true" width="300" max-rows="2"></fb:signup-button>
+          </div>
+          <div class="size1of2 lastUnit">
+            <a class="fb-button" href="#" data-redirect_uri="https://benvarim.com/authenticate">
+            	<span class="fb-button-left"></span>
+            	<span class="fb-button-center"><strong>Facebook</strong> ile <strong>Bağlan</strong></span>
+            	<span class="fb-button-right"></span>
+            </a>
+          </div>
+        </div>
+      </div><!-- signup-options -->
 
-<!--
-      <%
-      if resource.errors.any?
-        flash.now[:error] = raw resource.errors.full_messages.join('<br/>')
-      end
-      %>
+      <div class="signup-separator"><span>ya da</span></div>
 
-
-      <%=render :partial => 'layouts/errors'%>
--->
-
-
-
-<a class="fb-button" href="https://www.facebook.com/dialog/oauth?client_id=138566025676&amp;scope=email,user_birthday,user_likes,user_education_history,user_hometown,user_interests,user_activities,user_location&amp;redirect_uri=https://www.airbnb.com/authenticate" data-redirect_uri="https://www.airbnb.com/authenticate">
-	<span class="fb-button-left"></span>
-	<span class="fb-button-center"><strong>Connect</strong> with <strong>Facebook</strong></span>
-	<span class="fb-button-right"></span>
-</a>
-
-
-
-      <% if resource.errors.any? %>
-        <div class="msg msg-error" id="error_explanation">
-          <h2>Lütfen aşagıdaki hataları düzeltiniz.</h2>
-          <ul>
-          <% resource.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+      <div class="signup-options" id="signup-with-email">
+        <div class="signup-toggle toggle">
+          <p>Benvarim.com'a isterseniz <a href="#">email ile kayıt olabilirsiniz</a>.</p>
+        </div>
+        <div class="signup-form">
+          <% if resource.errors.any? %>
+            <div class="msg msg-error" id="error_explanation">
+              <h2>Lütfen aşagıdaki hataları düzeltiniz.</h2>
+              <ul>
+              <% resource.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
-          </ul>
-        </div>
-      <% end %>
-  
 
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
+            <div class="field">
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+            </div>
+            <div class="field">
+              <%= f.label :email %>
+              <%= f.text_field :email %>
+            </div>
 
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+            </div>
 
-        <div class="field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :email %>
-          <%= f.text_field :email %>
-        </div>
+            <div class="field hidden">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation %>
+            </div>
 
-        <div class="field"><%= f.label :password %>
-        <%= f.password_field :password %></div>
-
-        <div class="field"><%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %></div>
-
-        <div class="actions"><%= f.submit "Kayıt Ol", :class=>"button super yellow button-primary" %></div>
-      <% end %>
-
-      <%= render :partial => "devise/shared/links" %>
+            <div class="actions">
+              <%= f.submit "Kayıt Ol", :class=>"button super yellow button-primary" %>
+            </div>
+          <% end %>
+        </div><!-- signup-form -->
+      </div><!-- signup-options -->
 
 
     </div>
+  </div> <!-- .widget -->
+
+  <div class="widget widget-light" id="w-login-link">
+    <div class="w-inner">
+      <%= render :partial => "devise/shared/links" %>
+    </div>
   </div>
-</div>
+</div><!-- .one-column -->
