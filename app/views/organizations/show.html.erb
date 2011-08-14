@@ -39,9 +39,11 @@
           </p>
         <% end %>
 
-        <div class="toplam-bagis hidden">
+        <%if @organization.collected? %>
+        <div class="toplam-bagis">
           Bugüne kadar toplanan bağış miktarı: <%= @organization.collected %> <small>TL</small>
         </div>
+        <% end %>
 
         <br/>
 

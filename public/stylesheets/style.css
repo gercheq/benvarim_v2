@@ -1638,13 +1638,21 @@ blockquote span.quotation{
     .bagis-miktari span {
         font-size: 18px;
     }
+
     .bagisci {
         font-style: italic;
-        margin-bottom: 10px;
+        text-transform: capitalize;
+        margin: 10px 0;
     }
+
+    .bagis-tarihi{
+        color: #CCC;
+    }
+
     .more-link {
         cursor: pointer;
     }
+
     .widget-aktif-bagis p {
         margin-bottom: 5px;
     }
@@ -1807,7 +1815,6 @@ blockquote span.quotation{
 .description img {
   float: right;
   margin: 0 0 5px 5px;
-  border: 1px solid #DDD;
   padding: 3px;
 }
 
@@ -1953,6 +1960,16 @@ blockquote span.quotation{
     font-size: 13px;
     color: #0862A2;
 }
+
+
+
+/******
+ * LOGIN & REGISTRATION
+*/
+.field-forgot-pwd{
+    margin: 0 0 30px 120px;
+}
+
 
 
 

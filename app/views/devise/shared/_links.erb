@@ -6,7 +6,4 @@
     <%= link_to "Yeni Kayıt Oluştur", new_user_registration_path %>
   <% end -%>
 
-  <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-    <%= link_to "Şifrenizi mi unuttunuz?", new_password_path(resource_name) %>
-  <% end -%>
 </div>

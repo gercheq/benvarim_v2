@@ -16,6 +16,12 @@
         <%= f.password_field :password %>
       </div>
 
+      <div class="field field-forgot-pwd">
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+        <%= link_to "Şifrenizi mi unuttunuz?", new_password_path(resource_name) %>
+      <% end -%>
+      </div>
+
       <% if devise_mapping.rememberable? -%>
         <div class="field field-checkbox clearfix">
           <%= f.check_box :remember_me %>
