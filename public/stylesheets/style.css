@@ -1712,6 +1712,40 @@ blockquote span.quotation{
       border-right: 1px solid #EEE;
     }
 
+    /* Newsletter */
+    #w-newsletter{
+
+    }
+
+    #w-newsletter .w-title{
+        color: #FFF;
+    }
+
+    #w-newsletter form{
+        width: 248px;
+    }
+
+    #w-newsletter label{
+        font-size: 12px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    #w-newsletter input{
+        width: 248px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    #w-newsletter #mc-embedded-subscribe{
+        width: 100px;
+        margin: 0;
+    }
+
+    #w-newsletter .w-footer{
+        margin-top: 15px;
+        display: block;
+    }
 
 
 /*************************************************************************************
