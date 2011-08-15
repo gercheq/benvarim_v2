@@ -1,46 +1,76 @@
-<div class="widget widget-light widget-form" id="w-giris">
-  <div class="w-inner">
-    <div class="w-title">Kullanıcı Girişi</div>
+<div class="one-column">
 
-    <%=render :partial => 'layouts/errors'%>
+<h1>BenVarım'a Giriş Yap</h1>
 
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="widget widget-light" id="w-giris">
+    <div class="w-inner">
 
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      </div>
 
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-      </div>
-
-      <div class="field field-forgot-pwd">
-      <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-        <%= link_to "Şifrenizi mi unuttunuz?", new_password_path(resource_name) %>
-      <% end -%>
-      </div>
-
-      <% if devise_mapping.rememberable? -%>
-        <div class="field field-checkbox clearfix">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+      <div class="signup-options" id="signup-with-fb">
+        <div class="line">
+          <div class="size1of2">
+            <img src="/stylesheets/images/facepile.png" />
+            <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=116309391796241&amp;xfbml=1"></script><fb:signup-button show-faces="true" width="300" max-rows="2"></fb:signup-button>
+          </div>
+          <div class="size1of2 lastUnit">
+            <a class="fb-button" href="#" data-redirect_uri="https://benvarim.com/authenticate">
+            	<span class="fb-button-left"></span>
+            	<span class="fb-button-center"><strong>Facebook</strong> ile <strong>Giriş Yap</strong></span>
+            	<span class="fb-button-right"></span>
+            </a>
+          </div>
         </div>
-      <% end -%>
+      </div><!-- signup-options -->
 
-       <div class="actions">
-        <%= f.submit :"Giriş", :class=>"button super yellow button-primary" %>
-        <% if params[:fb] %>
-          <%= link_to "FB Login", user_omniauth_authorize_path(:facebook) %>
-        <% end %>
-      </div>
+      <div class="signup-separator"><span>ya da</span></div>
 
+      <div class="signup-options" id="signup-with-email">
+        <div class="signup-toggle toggle">
+          <p>BenVarım'a istersen <a href="#">e-posta ile  giriş yapabilirsin</a>.</p>
+        </div>
+        <div class="signup-form">
 
+          <%=render :partial => 'layouts/errors'%>
 
-    <% end %>
+           <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-    <%= render :partial => "devise/shared/links" %>
+             <div class="field">
+               <%= f.label :email %>
+               <%= f.text_field :email %>
+             </div>
 
-  </div>
-</div>
+             <div class="field">
+               <%= f.label :password %>
+               <%= f.password_field :password %>
+             </div>
+
+             <% if devise_mapping.rememberable? -%>
+               <div class="field field-checkbox clearfix remember-me">
+                 <%= f.check_box :remember_me %>
+                 <%= f.label :remember_me %>
+
+                 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+                   <div class="forgot-pwd"><%= link_to "Şifreni mi unuttun?", new_password_path(resource_name) %></div>
+                 <% end -%>
+              </div>
+             <% end -%>
+
+              <div class="actions">
+               <%= f.submit :"Giriş", :class=>"button large yellow button-primary" %>
+               <% if params[:fb] %>
+                 <%= link_to "FB Login", user_omniauth_authorize_path(:facebook) %>
+               <% end %>
+            <% end %>
+          </div>
+        </div><!-- .signup-form -->
+      </div><!-- .sign-up-options -->
+
+    </div><!-- .w-inner -->
+  </div> <!-- .widget -->
+
+  <div class="widget widget-light" id="w-login-link">
+    <div class="w-inner">
+      <%= render :partial => "devise/shared/links" %>
+    </div>
+  </div><!-- .widget -->
+</div><!-- .one-column -->

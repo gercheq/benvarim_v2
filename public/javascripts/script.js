@@ -48,7 +48,7 @@ function init_registration(){
   // Slide in the confirm password field on focus
   $('#user_password').focus(function(){
     $this = $(this);
-    $this.parents('.field').next().css('visibility','visible').slideDown();
+    $this.parents('.field').next().css({'visibility':'visible','height':'0'}).slideDown('1000');
   });
 }
 

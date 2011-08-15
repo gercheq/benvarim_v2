@@ -169,7 +169,7 @@ tr:
       user:
         email: "e-posta"
         password: "şifre"
-        remember_me: "hatırla"
+        remember_me: "Beni Hatırla"
         password_confirmation: "şifre (tekrar)"
         sign_up: "giriş"
         birthday: "doğum tarihi"

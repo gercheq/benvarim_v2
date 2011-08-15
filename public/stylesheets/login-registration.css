@@ -54,12 +54,16 @@
     display: none;
 }
 
+.signup-form .button{
+    width: 120px;
+}
+
 #signup-with-fb{
 
 }
 
 #signup-with-fb .fb-button {
-    margin: 60px 40px 0;
+    margin: 60px auto 0;
 }
 #signup-with-email{
 
@@ -67,4 +71,16 @@
 
 #w-login-link .w-inner{
     padding: 10px 20px;
+}
+
+.forgot-pwd {
+    float: left;
+    margin-left: 10px;
+    border-left: 1px solid #CCC;
+    padding-left: 10px;
+}
+
+.remember-me label{
+    width: auto;
+    height: auto;
 }

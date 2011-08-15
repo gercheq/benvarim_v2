@@ -1404,7 +1404,8 @@ blockquote span.quotation{
       -moz-border-radius: 5px;
       border-radius: 5px;
       background-position:12px 10px;
-      background-repeat:no-repeat;    }
+      background-repeat:no-repeat;
+      text-align: left;  }
 
     .widget-form .msg{ margin-top:-20px;}
 
