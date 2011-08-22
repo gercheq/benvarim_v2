@@ -53,6 +53,17 @@ function init_registration(){
 }
 
 
+//
+// FAQ
+//
+function init_accordion(){
+  $('.accordion h3').click(function(){
+    alert($(this).text());
+    $(this).next().slideToggle();
+  })
+}
+
+
 
 
 /*
@@ -62,6 +73,11 @@ $(document).ready(function(){
 
 
   init_registration();
+
+
+
+  init_accordion();
+
 
 
   fadeInOrder( $("#step-1") );

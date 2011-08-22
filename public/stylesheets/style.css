@@ -1442,6 +1442,20 @@ blockquote span.quotation{
     }
 
     /*
+     *  Accordion
+     */
+
+    .accordion h3{
+        cursor: pointer;
+    }
+
+    .accordion-content,
+    .accordion p{
+        display: none;
+    }
+
+
+    /*
     ** Comment Bubble
     */
     .comment-bubble {
@@ -1784,6 +1798,105 @@ blockquote span.quotation{
     padding: 20px 0;
     margin-bottom: 30px;
 
+}
+
+
+
+
+/*************************************************************************************
+** PROFILE
+*************************************************************************************/
+
+
+.profile_pic {
+    position: relative;
+    float: left;
+    text-align: center;
+    width: 243px;
+}
+
+._pm_container ._pm {
+    position: relative;
+    background-color: white;
+    padding: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DDD #CACACA #ACACAC;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(3, 3, 3, 0.1),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    -moz-box-shadow: 0 1px 0 rgba(3, 3, 3, 0.1),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    -webkit-box-shadow: 0 1px 0 rgba(3, 3, 3, 0.1),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+}
+
+._pm_container ._pm_shadow.l {
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+}
+
+._pm_container ._pm_shadow.r {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    transform: rotate(3deg);
+}
+
+._pm_container ._pm_shadow {
+    content: ' ';
+    bottom: .45em;
+    left: 2%;
+    width: 96%;
+    height: .4em;
+    position: absolute;
+    border-radius: .1em;
+    -moz-border-radius: .1em;
+    -webkit-border-radius: .1em;
+    box-shadow: 0 0 .8em rgba(3, 3, 3, 0.7),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    -moz-box-shadow: 0 0 .8em rgba(3, 3, 3, 0.7),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    -webkit-box-shadow: 0 0 .8em rgba(3, 3, 3, 0.7),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+}
+
+._pm_container ._pm_inner {
+position: relative;
+}
+
+._pm_inner img {
+    -webkit-transition: opacity .3s linear;
+    -moz-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+    margin: 0!important;
+    display: block;
+}
+
+.profile_pic .img_inner_shadow {
+    width: 223px;
+    height: 223px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #777;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8),0 0 0 transparent,0 0 0 transparent,0 0 0 transparent,0 0 0 transparent;
+    opacity: .5;
+    -ms-filter: "alpha(opacity=50)";
+    filter: alpha(opacity=50);
+}
+
+.profile_pic h3{
+    font-weight: normal;
+    color: #444;
+    font-family: Georgia;
+    margin: 15px auto 5px;
 }
 
 
