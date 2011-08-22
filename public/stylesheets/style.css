@@ -2008,6 +2008,19 @@ blockquote span.quotation{
 }
 
 
+/******
+ * FAQ
+ */
+#w-faq .ui-tabs .ui-tabs-nav li a {
+ padding: 10px  !important;
+}
+
+#w-faq h3{
+    font-size: 14px;
+    margin: 20px 0 10px;
+}
+
+
 
 
 /*

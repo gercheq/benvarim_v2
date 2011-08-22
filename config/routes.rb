@@ -12,6 +12,7 @@ Benvarim::Application.routes.draw do
   get "/iletisim" => "home#iletisim", :as => :iletisim
 
   # STATIK SAYFALAR
+  get "/sik_sorulan_sorular" => "home#sik_sorulan_sorular", :as => :sik_sorulan_sorular
   get "/kullanim_sartlari" => "home#kullanim_sartlari", :as => :kullanim_sartlari
   get "/guvenli_odeme" => "home#guvenli_odeme", :as => :guvenli_odeme
   get "/hakkimizda" => "home#hakkimizda", :as => :hakkimizda
