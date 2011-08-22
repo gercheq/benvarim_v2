@@ -58,7 +58,6 @@ function init_registration(){
 //
 function init_accordion(){
   $('.accordion h3').click(function(){
-    alert($(this).text());
     $(this).next().slideToggle();
   })
 }
