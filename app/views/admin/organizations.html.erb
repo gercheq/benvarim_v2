@@ -1,0 +1,44 @@
+<div class="widget widget-light widget-kurum">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Tüm Vakıflar ve Dernekler</div>
+      <div class="rows-container" id="donation-pages-container">
+        <% @organizations.each do |organization| %>
+          <div class="row clearfix">
+            <div class="row-photo clearfix"><%= image_tag organization.logo.url(:thumb) %></div>
+            <div class="row-details">
+              <h3><%= link_to organization.name, organization %></h3>
+              <p><%= organization.description %></p>
+              <p><%= organization.address %></p>
+              <p>İletişim Bilgileri:<br/>
+                <table border="1">
+                  <tr>
+                    <td>Ekleyen:</td><td><%=link_to organization.user.name, organization.user%></td></tr>
+                  <tr>
+                    <td>Kurum Telefon:</td><td><%=organization.phone%></td></tr>
+                  <tr>
+                    <td>(kontakt) Ad Soyad:</td><td><%=organization.contact_name%></td></tr>
+                  <tr>
+                    <td>(kontakt) Görev:</td><td><%=organization.contact_title%></td></tr>
+                  <tr>
+                    <td>(kontakt) Telefon:</td><td><%=organization.contact_phone%></td></tr>
+                  <tr>
+                    <td>(kontakt) E-posta:</td><td><%=organization.contact_email%></td></tr>
+                </table>
+
+              </p>
+
+              <p><%= link_to 'Görüntüle', organization %></p>
+              <% if (defined? show_edit_link) && show_edit_link %>
+                <p><%= link_to 'Düzenle', edit_project_path(organization) %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
