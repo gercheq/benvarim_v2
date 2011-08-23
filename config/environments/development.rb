@@ -38,5 +38,9 @@ Benvarim::Application.configure do
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_CURRENCY'] = 'USD'
+
+  #facebook settings
+  ENV['FACEBOOK_APP_ID'] = "137649746329130"
+  ENV['FACEBOOK_SECRET'] = "6e50bfd342289a64457fdc6289903f2c"
 end
 
