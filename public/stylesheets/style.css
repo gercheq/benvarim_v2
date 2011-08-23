@@ -1087,6 +1087,11 @@ blockquote span.quotation{
     width: 120px;
 }
 
+#fc-unicef{
+    background: url('../images/logo-unicef.jpg') top center;
+    width: 140px;
+}
+
 #fc-iksv {
     background: url('../images/logo-iksv.jpg') top center;
     width: 114px;
