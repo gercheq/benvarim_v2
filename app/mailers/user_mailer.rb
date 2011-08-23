@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     UserMailer.send_payment_email_for_days((now - 1.day),now)
   end
   def send_payment_email_for_days(start_date, end_date)
-    query = Page.joins(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+    query = Page.includes(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
     query.each do |page|
       payments = page.payments.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
       if payments.length
