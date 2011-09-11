@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110729041710) do
+ActiveRecord::Schema.define(:version => 20110911054725) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20110729041710) do
     t.datetime "updated_at"
     t.float    "amount"
     t.integer  "organization_id"
+    t.string   "currency",           :default => "TRY"
+    t.float    "amount_in_currency"
   end
 
   create_table "paypal_infos", :force => true do |t|
@@ -109,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20110729041710) do
     t.string   "paypal_id_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency",        :default => "TRY"
   end
 
   create_table "projects", :force => true do |t|
@@ -163,6 +166,8 @@ ActiveRecord::Schema.define(:version => 20110729041710) do
     t.float    "amount"
     t.integer  "payment_id"
     t.integer  "organization_id"
+    t.string   "currency",           :default => "TRY"
+    t.float    "amount_in_currency"
   end
 
   create_table "users", :force => true do |t|
@@ -171,7 +176,6 @@ ActiveRecord::Schema.define(:version => 20110729041710) do
     t.date     "birthday"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

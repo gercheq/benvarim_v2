@@ -29,11 +29,17 @@ class TmpPayment < ActiveRecord::Base
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 500
   validates_presence_of :organization_id
 
+  before_validation :calculate_amount
+
   validates :name, :presence => true, :length => {:minimum => 3}
 
 
   def validate_email
     self.errors.add "email", "geçersiz" unless self.email =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  end
+
+  def human_readable_currency
+    BvCurrency.human_readable_currency(self.currency)
   end
 
   def validate_amount
@@ -47,7 +53,20 @@ class TmpPayment < ActiveRecord::Base
         self.errors.add "kurum", "aktif değil" if self.organization && !self.organization.can_be_donated?
       end
     end
+  end
 
-
+  def calculate_amount
+    if !self.amount_in_currency
+      return
+    end
+    conversion_rate = BvCurrency.convert(self.currency, "TRY")
+    if(!conversion_rate)
+      #wtf, we cannot find conversion rate, is not acceptable to continue w/o it
+      #TODO
+      #report error! email us etc.
+      self.errors.add "currency_exchange", "sisteminde meydana gelen bir hatadan dolayı ödemeniz şuan yapılamamktadır"
+      return
+    end
+    self.amount = self.amount_in_currency * conversion_rate
   end
 end

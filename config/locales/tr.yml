@@ -205,6 +205,8 @@ tr:
         email : "e-posta"
         note : "notunuz"
         amount : "miktar"
+        amount_in_currency : "döviz miktarı"
+        currency_exchange : "Döviz çevirimi"
       payment:
         name : "İsim"
         email : "e-posta"

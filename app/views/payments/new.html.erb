@@ -36,7 +36,7 @@
 
       <div class="field">
       <%=label_tag "Bağış miktarı:"%>
-      <%=text_field_tag "tmp_payment[amount]", @tmp_payment.amount, :class=> "text-field"%>TL
+      <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.human_readable_currency%>
       </div>
 
       <div class="field">

@@ -19,6 +19,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.page_id = @page.id if @page
     @tmp_payment.project_id = @project.id if @project
     @tmp_payment.organization_id = @organization.id
+    @tmp_payment.currency = @organization.paypal_info.currency
 
     if params[:popup]
       render :layout => false
@@ -46,6 +47,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.page_id = @page.id if @page
     @tmp_payment.project_id = @project.id if @project
     @tmp_payment.organization_id = @organization.id
+    @tmp_payment.currency = @organization.paypal_info.currency
 
     if @tmp_payment.save
       #goto paypal!
@@ -192,11 +194,11 @@ class PaymentsController < ApplicationController
       values = {
         :cmd => "_xclick",
         :business => paypal_user,
-        :currency_code => ENV['PAYPAL_CURRENCY'],
+        :currency_code => tmp_payment.currency,
         :upload => 1,
         :return => return_url,
         :charset => "utf-8",
-        :amount => tmp_payment.amount,
+        :amount => tmp_payment.amount_in_currency,
         :item_name => tmp_payment.organization.name + " - bağış",
         :item_number => tmp_payment.id,
         :quantity => 1
