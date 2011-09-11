@@ -35,6 +35,10 @@ class Payment < ActiveRecord::Base
     BvCurrency.human_readable_currency(self.currency)
   end
 
+  def currency_sign
+    BvCurrency.currency_sign(self.currency)
+  end
+
 
   def validate_email
     self.errors.add "email", "geçersiz" unless self.email =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i

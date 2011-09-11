@@ -42,6 +42,10 @@ class TmpPayment < ActiveRecord::Base
     BvCurrency.human_readable_currency(self.currency)
   end
 
+  def currency_sign
+    BvCurrency.currency_sign(self.currency)
+  end
+
   def validate_amount
     self.errors.add "amount", "geçersiz" if self.amount =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
   end

@@ -2,7 +2,7 @@
 last = nil
 payments.each do |payment|%>
   <div class="row clearfix">
-    <div class="bagis-miktari"><%=payment.amount_str%><span>TL</span></div>
+    <div class="bagis-miktari"><%=payment.amount_str%><span><%=payment.currency_sign%></span></div>
     <% if payment.note? %>
       <blockquote><span class="quotation">“</span> <%=payment.note%></blockquote>
     <% end %>

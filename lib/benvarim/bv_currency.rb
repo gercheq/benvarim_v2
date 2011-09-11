@@ -57,11 +57,23 @@ class BvCurrency
   def self.human_readable_currency(type)
     case type
       when "TRY"
+        "TL (Türk Lirası)"
+      when "USD"
+        "$ (ABD Doları)"
+      when "EUR"
+        "€ (Avro)"
+      else
+        type
+    end
+  end
+  def self.currency_sign(type)
+    case type
+      when "TRY"
         "TL"
       when "USD"
-        "$ (ABD)"
+        "$"
       when "EUR"
-        "€ (avro)"
+        "€"
       else
         type
     end
