@@ -31,6 +31,10 @@ class Payment < ActiveRecord::Base
     "%.2f" % self.amount
   end
 
+  def amount_in_currency_str
+    "%.2f" % self.amount_in_currency
+  end
+
   def human_readable_currency
     BvCurrency.human_readable_currency(self.currency)
   end
