@@ -15,6 +15,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user && @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
       sign_in_and_redirect @user, :event => :authentication
+      if "popup" == params[:state]
+        #instead of redirect, redirect opener
+        @redirect_url = after_sign_up_path
+      else
+        # sign_in_and_redirect @user, :event => :authentication
+        @redirect_url = after_sign_in_path_for(:user)
+      end
     else
       session["devise.facebook_data"] = env["omniauth.auth"]
       redirect_to new_user_registration_url

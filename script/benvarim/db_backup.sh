@@ -22,5 +22,5 @@ echo "emailing backup"
 uuencode latest.dump benvarim_prod | mail -s "db backup $now" iletisim@benvarim.com
 #delete it
 echo "deleting backup"
-rm -rf latest.dump
-# mv latest.dump "$now.dump"
+# rm -rf latest.dump
+mv latest.dump "$now.dump"
