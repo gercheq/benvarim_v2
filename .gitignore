@@ -7,3 +7,5 @@ solr/data
 public/system
 notes.txt
 .idea
+script/benvarim/*.dump
+*.patch
