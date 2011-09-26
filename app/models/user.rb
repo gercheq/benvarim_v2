@@ -1,28 +1,3 @@
-# == Schema Information
-# Schema version: 20110409205016
-#
-# Table name: users
-#
-#  id                   :integer         not null, primary key
-#  name                 :string(255)
-#  address              :string(255)
-#  birthday             :date
-#  email                :string(255)     default(""), not null
-#  encrypted_password   :string(128)     default(""), not null
-#  password_salt        :string(255)     default(""), not null
-#  reset_password_token :string(255)
-#  remember_token       :string(255)
-#  remember_created_at  :datetime
-#  authentication_token :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
-#  photo_file_name      :string(255)
-#  photo_content_type   :string(255)
-#  photo_file_size      :integer
-#  photo_updated_at     :datetime
-#  cached_slug          :string(255)
-#
-
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -120,3 +95,27 @@ class User < ActiveRecord::Base
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :integer         not null, primary key
+#  name                 :string(255)
+#  address              :string(255)
+#  birthday             :date
+#  email                :string(255)     default(""), not null
+#  encrypted_password   :string(128)     default(""), not null
+#  reset_password_token :string(255)
+#  remember_token       :string(255)
+#  remember_created_at  :datetime
+#  authentication_token :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  photo_file_name      :string(255)
+#  photo_content_type   :string(255)
+#  photo_file_size      :integer
+#  photo_updated_at     :datetime
+#  cached_slug          :string(255)
+#
+
