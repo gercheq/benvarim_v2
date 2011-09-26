@@ -42,5 +42,8 @@ Benvarim::Application.configure do
   #facebook settings
   ENV['FACEBOOK_APP_ID'] = "137649746329130"
   ENV['FACEBOOK_SECRET'] = "6e50bfd342289a64457fdc6289903f2c"
+
+  #indextank settings
+  ENV['INDEXTANK_API_URL'] = 'http://:m8Qc52GryxmiN7@qgx.api.indextank.com'
 end
 
