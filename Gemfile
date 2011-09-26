@@ -33,3 +33,5 @@ gem "friendly_id", "~> 3.2.1"
 gem "jammit"
 
 gem 'indextank'
+
+gem 'rush'
