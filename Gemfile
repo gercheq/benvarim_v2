@@ -39,3 +39,5 @@ gem 'rush'
 gem 'delayed_job'
 
 gem 'heroku'
+
+gem 'heroku_delayed_job_autoscale', :git => 'git://github.com/phaza/Heroku-Delayed-Job-Autoscale.git'

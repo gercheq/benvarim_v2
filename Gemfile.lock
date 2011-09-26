@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/phaza/Heroku-Delayed-Job-Autoscale.git
+  revision: 5cd502e780e67053fd27a90741804616180ba340
+  specs:
+    heroku_delayed_job_autoscale (0.0.7)
+      delayed_job (>= 2.1)
+      heroku (>= 1)
+      rush (>= 0.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -164,6 +173,7 @@ DEPENDENCIES
   devise
   friendly_id (~> 3.2.1)
   heroku
+  heroku_delayed_job_autoscale!
   heroku_san
   indextank
   jammit
