@@ -35,3 +35,5 @@ gem "jammit"
 gem 'indextank'
 
 gem 'rush'
+
+gem 'delayed_job'

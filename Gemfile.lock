@@ -44,6 +44,10 @@ GEM
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
     cocaine (0.1.0)
+    daemons (1.1.4)
+    delayed_job (2.1.4)
+      activesupport (~> 3.0)
+      daemons
     devise (1.4.2)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
@@ -156,6 +160,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-s3
+  delayed_job
   devise
   friendly_id (~> 3.2.1)
   heroku_san
