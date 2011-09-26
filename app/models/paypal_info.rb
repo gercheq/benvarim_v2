@@ -1,5 +1,8 @@
+class PaypalInfo < ActiveRecord::Base
+  belongs_to :organization
+end
+
 # == Schema Information
-# Schema version: 20110307002554
 #
 # Table name: paypal_infos
 #
@@ -9,8 +12,6 @@
 #  paypal_id_token :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
+#  currency        :string(255)     default("TRY")
 #
 
-class PaypalInfo < ActiveRecord::Base
-  belongs_to :organization
-end

@@ -1,21 +1,4 @@
 # -*- coding: utf-8 -*-
-# == Schema Information
-# Schema version: 20110303082136
-#
-# Table name: payments
-#
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  note            :text
-#  email           :string(255)
-#  page_id         :integer
-#  project_id      :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#  amount          :float
-#  organization_id :integer
-#
-
 class Payment < ActiveRecord::Base
   belongs_to :page
   belongs_to :project
@@ -52,3 +35,22 @@ class Payment < ActiveRecord::Base
     self.errors.add "amount", "geçersiz" if self.amount =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
   end
 end
+
+# == Schema Information
+#
+# Table name: payments
+#
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  note               :text
+#  email              :string(255)
+#  page_id            :integer
+#  project_id         :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  amount             :float
+#  organization_id    :integer
+#  currency           :string(255)     default("TRY")
+#  amount_in_currency :float
+#
+
