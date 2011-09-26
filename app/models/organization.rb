@@ -7,8 +7,12 @@ class Organization < ActiveRecord::Base
                       :styles => { :medium => "600x600>",
                                    :thumb => "200x200>" }
 
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email
+
+  index_map :fields => [:user_id, :name, :description, :website, :url],
+            :variables => [:can_be_donated?, :collected]
 
   has_many :projects
   has_many :pages
@@ -47,7 +51,6 @@ class Organization < ActiveRecord::Base
       :description => "#{self.name} için toplanacak genel bağışlar kurumun çeşitli projelerine destek olacaktır."
     })
     p.save
-    self.index
   end
 
   def before_save_hook
@@ -55,7 +58,7 @@ class Organization < ActiveRecord::Base
   end
 
   def after_save_hook
-    self.index
+    puts "obj after save"
   end
 
   def can_be_donated?
@@ -69,21 +72,6 @@ class Organization < ActiveRecord::Base
   def self.available_organizations_simple
     self.available_organizations.collect  do |o| { :value => o.name, :id => o.id} end
   end
-
-  def index
-    add_to_index({
-      :user_id => user_id,
-      :name => name,
-      :description => description,
-      :can_be_donated => can_be_donated,
-      :website => website,
-      :url => to_param
-    },
-    {
-      0 => collected
-    })
-  end
-
 
   private
     def sanitize_description_html

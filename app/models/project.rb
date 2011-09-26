@@ -39,6 +39,8 @@ class Project < ActiveRecord::Base
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
+   index_map :fields => [:title, :description]
+
    # def to_param
    #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
    # end
