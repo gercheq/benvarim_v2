@@ -36,6 +36,6 @@ gem 'indextank'
 
 gem 'rush'
 
-gem 'delayed_job', :git => 'git://github.com/pedro/delayed_job.git'
+gem 'delayed_job'
 
 gem 'heroku'
