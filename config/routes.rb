@@ -97,6 +97,9 @@ Benvarim::Application.routes.draw do
   put '/kurum/:id' => "organizations#update", :as => :organization
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
 
+  # search page
+  get 'ara' => "search#index", :as => :search
+
 
   # get "/kurumlar" => 'organizations#index', :as => :organizations
   # post "/kurum/ekle" => 'organizations#create', :as => :new_organization

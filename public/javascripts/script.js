@@ -60,7 +60,7 @@ function init_accordion(){
   $('.accordion h3').click(function(){
     $(this).next().slideToggle();
   })
-}
+};
 
 
 
@@ -230,4 +230,18 @@ function popupCenter(url, width, height, name) {
 $("a.popup").click(function(e) {
   popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
   e.stopPropagation(); return false;
+});
+
+//indextank search autocomplete codes
+var publicApiUrl = "<%=ENV['INDEXTANK_PUBLIC_URL']%>";
+var indexName = "<%=BvSearch.get_default_index_name%>";
+
+$(document).ready(function(){
+    // let the form be 'indextank-aware'
+    $("#search_form").indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
+    // let the query box have autocomplete
+    $("#search_query").indextank_Autocomplete({
+            fieldName : "human_readable_name",
+            fields: "title,name,url,human_readable_name"
+        });
 });
