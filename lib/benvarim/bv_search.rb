@@ -86,8 +86,7 @@ class ActiveRecord::Base
     data[:id] = self.id
     #delete nil, indextank does not love them
     data.delete_if{|key,value| value.blank?}
-    #replace any tr characters for better ux
-    data = data.inject({}) { |h, (k, v)| h[k] = BvSearch.clean_turkish_letters(v); h }
+    human_readable_name = nil
     #replace title with name
     if(data[:title] && !data[:name])
       data[:name] = data[:title]
@@ -96,6 +95,13 @@ class ActiveRecord::Base
     if(!data[:text])
       data[:text] = data[:name]
     end
+    human_readable_name = data[:name]
+
+    #replace any tr characters for better ux
+    data = data.inject({}) { |h, (k, v)| h[k] = BvSearch.clean_turkish_letters(v); h }
+    #human_readable_name may include turkish chars
+    data["human_readable_name"] = human_readable_name
+
     puts "indexing data:#{self.class.name} #{data} #{variables}"
     BvSearch.index(self.class.name, data, variables)
   end
