@@ -11,8 +11,9 @@ class Organization < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email
 
-  index_map :fields => [:user_id, :name, :description, :website, :url],
-            :variables => [:can_be_donated?, :collected]
+  index_map :fields => [:user_id, :name, :description, :website, :to_param],
+            :text => :name,
+            :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
   has_many :projects
   has_many :pages

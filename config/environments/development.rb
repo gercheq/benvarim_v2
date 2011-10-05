@@ -45,5 +45,6 @@ Benvarim::Application.configure do
 
   #indextank settings
   ENV['INDEXTANK_API_URL'] = 'http://:m8Qc52GryxmiN7@qgx.api.indextank.com'
+  ENV['INDEXTANK_PUBLIC_URL'] = 'http://qgx.api.indextank.com'
 end
 
