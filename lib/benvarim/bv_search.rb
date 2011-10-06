@@ -151,13 +151,36 @@ class BvSearch
 
     #remove nil params
     params.delete_if{|key,value| value.blank?}
-    doc_id = "#{class_name}.#{data[:id]}"
+    if data[:text]
+      data[:text] = self.particulate data[:text]
+    end
+    doc_id = "#{class_name}-#{data[:id]}"
     # res = index.batch_insert([obj ])
     puts "indexing id #{doc_id} data #{data} params #{params}"
     res = index.document(doc_id).add(data, params)
 
     puts "index reuslt #{res}"
     res == 200
+  end
+
+  def self.particulate string, min=2
+    min = min < string.length ? min : string.length
+    if string.nil?
+      return ""
+    end
+    response = Array.new
+    string.split(" ").each do |s|
+      len = min-1
+      while len < s.length do
+        start=0
+        while start+len < s.length do
+          response.push s[start..(start+len)]
+          start=start+1
+        end
+        len=len+1
+      end
+    end
+    response.uniq.join(" ")
   end
 
   def self.clean_turkish_letters text
@@ -202,5 +225,22 @@ class BvSearch
       puts "could not recreate index"
     end
   end
+
+  def self.find_by_doc_id doc_id
+    begin
+      if !doc_id
+        return nil
+      end
+      type, id = doc_id.split("-")
+      if !type || !id
+        return nil
+      end
+      o = type.constantize.find_by_id(id)
+      return o
+    rescue
+      return nil
+    end
+  end
+
 
 end

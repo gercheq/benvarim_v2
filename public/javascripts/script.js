@@ -236,12 +236,68 @@ $("a.popup").click(function(e) {
 var publicApiUrl = "<%=ENV['INDEXTANK_PUBLIC_URL']%>";
 var indexName = "<%=BvSearch.get_default_index_name%>";
 
+
 $(document).ready(function(){
     // let the form be 'indextank-aware'
     $("#search_form").indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
-    // let the query box have autocomplete
-    $("#search_query").indextank_Autocomplete({
-            fieldName : "human_readable_name",
-            fields: "title,name,url,human_readable_name"
-        });
+            
+            var customFormat = function(item){
+                return $("<div></div>")
+                    .addClass("result")
+                    .append( $("<span></span>").html(item.human_readable_name) );
+            }
+            var customSetupContainer = function($el) {
+                $el.html("Search results!");
+            }
+    
+    var r = $("#search_renderer").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
+    $("#search_query").indextank_AjaxSearch({listeners: r,
+        fields: "name, human_readable_name",
+        rewriteQuery : function(t) {return t;}});
+    
+    //keep it global for testing
+    searchForm = $("<form></form>");
+    searchInput = $("<input type='text'>");
+    searchForm.append(searchInput);
+    searchForm.indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
+    searchDummyRenderer = $("<div/>").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
+    
+    searchDummyRenderer.bind("Indextank.AjaxSearch.success", function(e, data) {
+        console.log(e,data);
+    });
+    searchInput.indextank_AjaxSearch({listeners: searchDummyRenderer,
+        fields: "name, human_readable_name"});
+    $("#search_query").autocomplete({
+        source: function(x,callback) {
+            var term = x.term;
+            searchInput.val(term);
+            searchInput.submit();
+            searchDummyRenderer.bind("Indextank.AjaxSearch.success",function(e, data) {
+                var results = [];
+                if(data && data.results) {
+                    $(data.results).each(function(i, obj) {
+                        results.push({
+                            id : obj.docid,
+                            label : obj.human_readable_name
+                            });
+                    });
+                }
+                callback(results);
+            });
+        },
+        minLength: 1,
+        select : function(event, obj) {
+            event.preventDefault();
+            if(obj && obj.item && obj.item.id) {
+                window.location = "/ara/d/" + obj.item.id;
+            }
+        }
+    }
+);
+                
+                
+    
+    
+                                    // $("#search_query").val()    
+    // $("#search_query").trigger("Indextank.AjaxSearch.runQuery", $("#search_query").data("Indextank.AjaxSearch").getDefaultQuery().withQueryString("tttt"))
 });

@@ -99,6 +99,7 @@ Benvarim::Application.routes.draw do
 
   # search page
   get 'ara' => "search#index", :as => :search
+  get 'ara/d/:id' => "search#id_redirect", :as => :search_result_redirect
 
 
   # get "/kurumlar" => 'organizations#index', :as => :organizations
