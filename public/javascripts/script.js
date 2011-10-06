@@ -262,28 +262,30 @@ $(document).ready(function(){
     searchForm.indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
     searchDummyRenderer = $("<div/>").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
     
-    searchDummyRenderer.bind("Indextank.AjaxSearch.success", function(e, data) {
-        console.log(e,data);
-    });
     searchInput.indextank_AjaxSearch({listeners: searchDummyRenderer,
         fields: "name, human_readable_name"});
+        
+    var searchCb = function(e, data) {
+        var results = [];
+        if(data && data.results) {
+            $(data.results).each(function(i, obj) {
+                results.push({
+                    id : obj.docid,
+                    label : obj.human_readable_name
+                    });
+            });
+        }
+        callback = $("#search_query").data("bv.cb");
+        callback && callback(results);
+    };   
+    searchDummyRenderer.bind("Indextank.AjaxSearch.success", searchCb); 
     $("#search_query").autocomplete({
         source: function(x,callback) {
             var term = x.term;
+            $("#search_query").data("bv.cb", callback);
             searchInput.val(term);
             searchInput.submit();
-            searchDummyRenderer.bind("Indextank.AjaxSearch.success",function(e, data) {
-                var results = [];
-                if(data && data.results) {
-                    $(data.results).each(function(i, obj) {
-                        results.push({
-                            id : obj.docid,
-                            label : obj.human_readable_name
-                            });
-                    });
-                }
-                callback(results);
-            });
+            
         },
         minLength: 1,
         select : function(event, obj) {
