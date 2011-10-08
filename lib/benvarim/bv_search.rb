@@ -154,7 +154,7 @@ class BvSearch
     if data[:text]
       data[:text] = self.particulate data[:text]
     end
-    doc_id = "#{class_name}-#{data[:id]}"
+    doc_id = self.create_doc_id class_name, data[:id]
     # res = index.batch_insert([obj ])
     puts "indexing id #{doc_id} data #{data} params #{params}"
     res = index.document(doc_id).add(data, params)
@@ -226,6 +226,9 @@ class BvSearch
     end
   end
 
+  def self.create_doc_id class_name, id
+    "#{class_name}-#{data[:id]}"
+  end
   def self.find_by_doc_id doc_id
     begin
       if !doc_id
