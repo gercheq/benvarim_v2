@@ -28,4 +28,24 @@ class AdminController < ApplicationController
     @organizations = Organization.all
   end
 
+  def edit_organization
+    org = Organization.find params[:id]
+    active = params[:active]
+
+    if active && org.active
+      flash[:notice] = "e zaten #{org.name} aktif :/"
+    elsif !active && !org.active
+      flash[:notice] = "e zaten #{org.name} pasif :/"
+    elsif active
+      org.active = true
+      org.save!
+      flash[:notice] = "#{org.name} aktiflendi, hayirli ugurlu olsun."
+    else
+      org.active = false
+      org.save!
+      flash[:notice] = "#{org.name} kapatildi, cok uzuldum :("
+    end
+    redirect_to :action => :organizations
+  end
+
 end

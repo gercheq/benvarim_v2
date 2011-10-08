@@ -1,7 +1,11 @@
 Benvarim::Application.routes.draw do
   get "admin/impersonate"
 
+
+
   get "/sitemap" => "sitemap#index", :as => :sitemap
+
+
 
   post "iletisim" => "contact_forms#create", :as => :new_contact_form
   get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
@@ -97,17 +101,11 @@ Benvarim::Application.routes.draw do
   put '/kurum/:id' => "organizations#update", :as => :organization
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
 
-
-  # get "/kurumlar" => 'organizations#index', :as => :organizations
-  # post "/kurum/ekle" => 'organizations#create', :as => :new_organization
-  # get "/kurum/:id/duzenle" => 'organizations#edit', :as => :edit_organization
-  # get "/kurum/:id" => 'organizations#show', :as => :organization
-  # put '/kurum/:id' => 'organizations#update', :as => :organization
-
   # ADMIN PAGES
-  get 'kertenkele' => "admin#impersonate", :as => :admin_impersonate
-  post 'kertenkele' => "admin#impersonate", :as => :admin_impersonate
-  get 'kertenkele/kurumlar' => "admin#organizations", :as => :admin_organizations
+  post '/kertenkele/kurum/:id/duzenle' => "admin#edit_organization", :as => :admin_edit_organization
+  get '/kertenkele/impersonate' => "admin#impersonate", :as => :admin_impersonate
+  post '/kertenkele/impersonate' => "admin#impersonate", :as => :admin_impersonate
+  get '/kertenkele/kurumlar' => "admin#organizations", :as => :admin_organizations
 
 
 
