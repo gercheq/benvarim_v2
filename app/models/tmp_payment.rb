@@ -8,7 +8,7 @@ class TmpPayment < ActiveRecord::Base
 
   validate :validate_email
   validate :active_validation
-  validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 500
+  validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 1500
   validates_presence_of :organization_id
 
   before_validation :calculate_amount
