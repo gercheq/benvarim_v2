@@ -1,23 +1,158 @@
-
-
-
-
-
 <div id="footer">
-<div class="container">
-<div id="footer-logo">benvarim.com</div>
-<div id="footer-nav">
-  &copy;2010  |
-  <%=link_to "Gizlilik Politikası", :gizlilik_politikasi %> |
-  <%=link_to "Kullanım Şartları", :kullanim_sartlari %> |
-  <%=link_to "Güvenli Ödeme", :guvenli_odeme %> |
-  <%=link_to "Kariyer", :kariyer %> |
-  <%=link_to "Sık Sorulan Sorular", :sik_sorulan_sorular %> |
-  <%=link_to "Hakkımızda", :hakkimizda %> |
-  <%=link_to "İletişim", :new_contact_form %>
-</div>
-</div>
-</div>
+  <div class="container">
+    <div class="media-container line">
+        <div class="size1of3">
+            <p>“Sosyal yardım kuruluşları için bağış toplamak
+            isteyenlerin “doğru mecra”sı…”</p>
+            <p class="media-icon mi1">sosyalmedya.co</p>
+        </div>
+        <div class="size1of3">
+            <p>“Sosyal medya kanalıyla yardım toplama ve
+            bağışçıya uaşmanın en güzel örneği.”</p>
+            <p class="media-icon mi2">webrazzi</p>
+        </div>
+        <div class="size1of3 lastUnit">
+            <p>“BenVarım sitesindeki % 100 güvenli ödeme
+            sistemi Paypal ile bağış yapabilirsiniz.”</p>
+            <p class="media-icon mi3">teknokedi</p>
+        </div>
+    </div><!-- end of .media-container -->
+
+    <div class="security-social line">
+      <div class="security size1of2">
+        <h1>%100 Güvenli Ödeme Sistemi</h1>
+        <h3>BenVarım Platformu üzerinden yapılan bağışlar
+        %100 güvenli ödeme sistemi Paypal* ile kurumların
+        banka hesaplarına anında yatırılır.</h3>
+        <div class="security-icons">
+          <img src="/images/cards/paypal_64.png" />
+          <img src="/images/cards/american_express_64.png" />
+          <img src="/images/cards/visa_64.png" />
+          <img src="/images/cards/mastercard_64.png" />
+        </div>
+        <div class="ss-note">
+          <small>* PayPal uluslararası para transferi hizmeti sunan, 100 milyondan fazla kullanıcıya sahip ve dünya çapında kendini kanıtlamış bir ödeme sistemidir. Türkiye’de Nisan 2011’den itibaren Türkiye PayPal Direktörlüğü bulunmaktadır ve Türk Lirası ile işlem yapılabilir. <a href="http://www.paypal.com.tr" target="_blank">http://www.paypal.com.tr</a></small>
+        </div>
+      </div>
+      <div class="social line size1of2 lastUnit">
+        <div class="widget widget-dark">
+          <div class="w-inner">
+            <h3>Bizi Twitter ve Facebook'ta takip edin!</h3>
+            <div class="line">
+              <div class="f-twitter size1of2">
+
+                <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+                <script>
+                new TWTR.Widget({
+                  version: 2,
+                  type: 'profile',
+                  rpp: 6,
+                  interval: 5000,
+                  width: 210,
+                  height: 207,
+                  theme: {
+                    shell: {
+                      background: '#adcff4',
+                      color: '#0862a2'
+                    },
+                    tweets: {
+                      background: '#cde5ff',
+                      color: '#444444',
+                      links: '#0862a2'
+                    }
+                  },
+                  features: {
+                    scrollbar: false,
+                    loop: false,
+                    live: true,
+                    hashtags: true,
+                    timestamp: true,
+                    avatars: false,
+                    behavior: 'default'
+                  }
+                }).render().setUser('Ben_Varim').start();
+                </script>
+
+              </div>
+              <div class="f-facebook size1of2 lastUnit">
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) {return;}
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
+                <div class="fb-like-box" data-href="http://www.facebook.com/benvarim.platformu" data-width="210" data-show-faces="true" data-border-color="#FFF" data-stream="false" data-header="false"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="f-newsletter line">
+      <div class="size2of3 fn-label">
+        BenVarım’daki yeniliklerden haberdar olmak için aylık bültenimize kaydolun:
+      </div>
+      <div class="size1of3">
+        <%= render 'layouts/mailchimp'%>
+      </div>
+    </div>
+
+    <div class="f-bottom line">
+      <div class="size1of3">
+        <div id="footer-logo">benvarim.com</div>
+        <p class="copyright"><small>&copy; Copyright 2010-2011</small></p>
+      </div>
+
+      <div class="size1of3">
+        <div class="line">
+          <div class="size1of2">
+            <ul>
+              <li><%=link_to "Nedir?", :nedir %></li>
+              <li><%=link_to "Nasıl Çalışır?", :nasil_calisir %></li>
+              <li><%=link_to "Sık Sorulan Sorular", :sik_sorulan_sorular %></li>
+              <li><%=link_to "Güvenli Ödeme", :guvenli_odeme %></li>
+            </ul>
+          </div>
+          <div class="size1of2 lastUnit">
+            <ul>
+              <li><%=link_to "Kurumlar", :all_organizations %></li>
+              <li><%=link_to "Projeler", :projects %></li>
+              <li><%=link_to "Sayfalar", :all_pages %></li>
+              <li><%=link_to "Site Haritası", :sitemap %></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="size1of3 lastUnit">
+        <div class="line">
+          <div class="size1of2">
+            <ul>
+              <li><%=link_to "Hakkımızda", :hakkimizda %></li>
+              <li><%=link_to "Kullanım Şartları", :kullanim_sartlari %></li>
+              <li><%=link_to "Gizlilik Politikası", :gizlilik_politikasi %></li>
+              <li><%=link_to "Kariyer", :kariyer %></li>
+            </ul>
+          </div>
+          <div class="size1of2 lastUnit">
+            <ul>
+              <li><%=link_to "İletişim", :new_contact_form %></li>
+              <li>Blog</li>
+              <li>Basın Bültenleri</li>
+              <li>Yeni Kurum Kaydı</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+  </div>
 </div> <!--! end of #footer -->
 
 

@@ -1,47 +1,25 @@
-<div id="main-content">
-  <div class="widget widget-light">
-    <div class="w-inner">
-      <div class="w-title">Hakkımızda</div>
+<div class="page line clearfix" id="hakkimizda">
+  <div class="p-nav size1of4">
+    <ul>
+      <li><%=link_to "Kurucular", :hakkimizda, :class => "#{print_if_selected_tab :home, :hakkimizda}", :id => "pn-hakkimizda"%></li>
+      <li><a href="#">Gönüllüler</a></li>
+      <li><%=link_to "Kariyer", :kariyer %></li>
+      <li><a href="#">Basında BenVarım</a></li>
+      <li><%=link_to "Gizlilik Politikası", :gizlilik_politikasi %></li>
+      <li><%=link_to "Kullanım Şartları", :kullanim_sartlari %></li>
+    </ul>
+  </div><!-- subnav -->
+  <div class="p-content size3of4 lastUnit">
+    <div class="p-inner">
+      <div class="p-summary">
+        <p>BenVarım platformu, Dünya’da nice örneği olan İnternet’ten bağış toplama (online fundraising) sisteminin Türkiye’deki ilk ve tek örneği olarak San Francisco'da ve İstanbul'da yaşayan, dört Türk girişimcisi tarafından 2011 yılında kurulmuştur.</p>
 
-
-      <p>BenVarım platformu 2011 yılında San Francisco ve İstanbul’da yaşayan, dört Türk girişimcisi tarafından kurulmuştur. Kurucular, birer aktivist, gönüllü ve sivil toplum yöneticisi olarak emek verdikleri Türkiye’ye verimli bir internet platformu kazandırmak için bir araya geldiler.</p>
-      <p>BenVarım platformu, Dünya’da nice örneği olan İnternet’ten bağış toplama (online fundraising) sisteminin Türkiye’deki ilk ve tek örneğidir.</p>
-      <p>BenVarım platformu teknolojik altyapı yaratarak, Türkiye’deki tüm sivil toplum kuruluşlarının maddi ve manevi olarak güçlenmesini sağlar.</p>
-      <p>Lütfen bizi Twitter (<a href="http://twitter.com/Ben_Varim" target="_blank">@Ben_Varim</a>) ve <a href="http://www.facebook.com/pages/Ben-Varim/135114429880530" target="_blank">Facebook</a>’ta takip edin.
-      <p>Soru ve önerileriniz için <a href="/iletisim/yeni">iletişim</a> formumuzu kullanabilirsiniz.</p>
-
-
-
-
-
-
-
-      <div class="profile-details clearfix hidden">
-        <div class="profile_pic clearfix">
-          <div class="_pm_container">
-            <div class="_pm_shadow r"></div>
-            <div class="_pm_shadow l"></div>
-            <div class="_pm">
-              <div class="_pm_inner">
-                <img alt="Gerçek Karakuş" class="alt-img" src="/images/about/gercek-karakus.jpeg" width="223" />
-                <div class="img_inner_shadow"></div>
-                <h3>Gerçek Karakuş</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="profile-details">
-        </div>
+        <p>Kurucular, birer aktivist, gönüllü ve sivil toplum yöneticisi olarak emek verdikleri Türkiye’ye verimli bir bağış platformu kazandırmak için biraraya geldiler. Gönüllülerin de katılımıyla her geçen gün büyüyen BenVarım ailesi, sivil toplum kuruluşlarına teknik altyapı sağlayarak, kurumların maddi ve manevi olarak güçlenmesi için çalışmalarını sürdürmektedir.</p>
       </div>
 
-
-
-
-
-
+      <div class="p-details">
+        <%= render 'home/includes/founders'%>
       </div>
     </div>
-</div><!-- end of #main-content -->
-
-<%= render 'layouts/sidebar'%>
+  </div><!-- p-content -->
+</div><!-- .page -->

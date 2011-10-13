@@ -1,3 +1,32 @@
+<div class="p-featured" id="nedir">
+  <div class="container">
+    <div class="line clearfix">
+      <div class="size1of2 pf-video">
+        <div class="pfv-inner">
+
+        </div>
+      </div>
+      <div class="size1of2 lastUnit pf-desc">
+        <div class="pfd-inner">
+          <h1>Daha yaşanır bir dünya için<br/>
+          harekete geçmeye var mısın?</h1>
+          <p>İnandığın derneklerin ve vakıfların projelerini
+          yarattığın bağış sayfaları ile destekle,
+          Facebook ve Twitter üzerinden çevrenle paylaş.
+          Topladığın bağışlar ile projelerin başarıya
+          ulaşmasında pay sahibi olmanın keyfini yaşa...
+          </p>
+          <div class="pf-links">
+            <%=link_to "Nasıl Çalışır?", :nasil_calisir, :class => "rc-top #{print_if_selected_tab :home, :nasil_calisir}", :id => "nav-nasil"%> | <%=link_to "Sık Sorulan Sorular", :sik_sorulan_sorular %>
+          </div>
+          <div class="pf-cta">
+            <%=link_to "Bağış sayfası yarat", :new_page, :class => "button yellow large"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end of .container -->
+</div>
 
 
 <div id="main-content">
@@ -35,4 +64,3 @@
     </div>
 </div><!-- end of #main-content -->
 
-<%= render 'layouts/sidebar'%>

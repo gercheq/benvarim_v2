@@ -61,14 +61,17 @@
     <div id="header">
       <div class="container">
         <div id="header-logo">
-          <%=link_to "benvarim.com", :root%></div>
-        <div id="header-subtitle">Kolay bağış platformu</div>
+          <%=link_to "benvarim.com", :root%>
+        </div>
         <div id="site-nav">
           <ul class="clearfix">
             <li><%=link_to "Anasayfa", :root, :class => "rc-top #{print_if_selected_tab :home, :index}", :id => "nav-anasayfa"%></li>
             <li><%=link_to "Nedir?", :nedir, :class => "rc-top #{print_if_selected_tab :home, :nedir}", :id => "nav-nedir"%></li>
             <li>
               <%=link_to "Nasıl Çalışır?", :nasil_calisir, :class => "rc-top #{print_if_selected_tab :home, :nasil_calisir}", :id => "nav-nasil"%>
+            </li>
+            <li>
+              <%=link_to "Hakkımızda", :hakkimizda, :class => "rc-top #{print_if_selected_tab :home, :hakkimizda}", :id => "nav-hakkimizda"%>
             </li>
             <li>
               <%=link_to "iletişim", :new_contact_form, :class => "rc-top #{print_if_selected_tab :contact_forms, nil}", :id => "nav-iletisim"%>
@@ -86,10 +89,3 @@
 
       </div>
     </div><!-- end of #header -->
-
-
-
-
-
-
-
