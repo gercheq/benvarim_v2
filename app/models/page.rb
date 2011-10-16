@@ -54,6 +54,11 @@ class Page < ActiveRecord::Base
 
   has_friendly_id :friendly_id_with_user, :use_slug => true
 
+  index_map :fields => [:user_id, :project_id, :organization_id, :title, :description, :to_param],
+             :text => :index_text,
+             :human_readable_name => :index_text,
+             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
+
   def collect_ratio
     return 0 if (self.collected == 0 || self.goal == 0)
     return 100 if (self.collected >= self.goal)
@@ -62,6 +67,10 @@ class Page < ActiveRecord::Base
 
   def collect_ratio_str
     "%.0f" % self.collect_ratio
+  end
+
+  def index_text
+    self.user.name + " - " + self.title
   end
 
   def collected_str

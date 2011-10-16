@@ -14,6 +14,15 @@ class BvIndexRebuilder
     Organization.all.each do |o|
       o.re_index
     end
+    puts "will re-index all projects"
+    Project.all.each do |p|
+      p.re_index
+    end
+
+    puts "will re-index all pages"
+    Page.all.each do |p|
+      p.re_index
+    end
     puts "done"
   end
 end

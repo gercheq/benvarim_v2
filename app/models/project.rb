@@ -39,7 +39,9 @@ class Project < ActiveRecord::Base
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
-   index_map :fields => [:title, :description]
+   index_map :fields => [:organization_id, :name, :description, :to_param],
+             :text => :name,
+             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
    # def to_param
    #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]

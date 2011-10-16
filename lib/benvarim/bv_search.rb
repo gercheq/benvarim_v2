@@ -7,6 +7,9 @@ class ActiveRecord::Base
   protected
   @@index_maps = {}
 
+  after_create :index_after_create
+  after_save :index_after_save
+
   public
   def re_index change_map=nil
     #TODO
@@ -41,6 +44,12 @@ class ActiveRecord::Base
         end
       end
     end
+    if change_map[:text]
+      data[:text] = self.send change_map[:text]
+    end
+    if change_map[:human_readable_name]
+      data[:human_readable_name] = self.send change_map[:human_readable_name]
+    end
     add_to_index(data, variables)
   end
 
@@ -55,7 +64,7 @@ class ActiveRecord::Base
     # BvSearchObserver.add_class self.name, index_map
   end
 
-  def after_save
+  def index_after_save
     puts "after save #{self.class.name}"
     puts @@index_maps
     index_map = @@index_maps[self.class.name]
@@ -80,6 +89,16 @@ class ActiveRecord::Base
 
   end
 
+  def index_after_create
+    puts "after create #{self.class.name}"
+    index_map = @@index_maps[self.class.name]
+    if(! index_map)
+      puts "empty index map #{self.class.name}"
+      return
+    end
+    Delayed::Job.enqueue IndexJob.new({:class_name => self.class.name, :id => self.id, :index_map => index_map})
+  end
+
 
   def add_to_index data, variables = nil
     data = data || {}
@@ -95,12 +114,13 @@ class ActiveRecord::Base
     if(!data[:text])
       data[:text] = data[:name]
     end
-    human_readable_name = data[:name]
+    if(!data[:human_readable_name])
+      data[:human_readable_name] = data[:name]
+    end
 
     #replace any tr characters for better ux
     data = data.inject({}) { |h, (k, v)| h[k] = BvSearch.clean_turkish_letters(v); h }
     #human_readable_name may include turkish chars
-    data["human_readable_name"] = human_readable_name
 
     puts "indexing data:#{self.class.name} #{data} #{variables}"
     BvSearch.index(self.class.name, data, variables)
@@ -227,7 +247,7 @@ class BvSearch
   end
 
   def self.create_doc_id class_name, id
-    "#{class_name}-#{data[:id]}"
+    "#{class_name}-#{id}"
   end
   def self.find_by_doc_id doc_id
     begin
