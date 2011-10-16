@@ -244,7 +244,7 @@ $(document).ready(function(){
             var customFormat = function(item){
                 return $("<div></div>")
                     .addClass("result")
-                    .append( $("<span></span>").html(item.human_readable_name) );
+                    .append( $("<a href='/ara/d/" + item.docid + "'></a>").html(item.human_readable_name) );
             }
             var customSetupContainer = function($el) {
                 $el.html("Search results!");
@@ -294,12 +294,5 @@ $(document).ready(function(){
                 window.location = "/ara/d/" + obj.item.id;
             }
         }
-    }
-);
-                
-                
-    
-    
-                                    // $("#search_query").val()    
-    // $("#search_query").trigger("Indextank.AjaxSearch.runQuery", $("#search_query").data("Indextank.AjaxSearch").getDefaultQuery().withQueryString("tttt"))
+    });
 });
