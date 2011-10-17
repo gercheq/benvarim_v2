@@ -58,5 +58,9 @@ Benvarim::Application.configure do
   ENV['FACEBOOK_SECRET'] = "c50d6f39391f55efd2f226a9ead420ad"
 
   #indextank settings
-  ENV['INDEXTANK_PUBLIC_URL'] = 'http://2jean.api.indextank.com'
+  # ENV['INDEXTANK_PUBLIC_URL'] = 'http://2jean.api.indextank.com'
+
+  #indextank settings--indextank does not allow bprods client search so we use y-benvarim's account
+  ENV['INDEXTANK_API_URL'] = 'http://:m8Qc52GryxmiN7@qgx.api.indextank.com'
+  ENV['INDEXTANK_PUBLIC_URL'] = 'http://qgx.api.indextank.com'
 end
