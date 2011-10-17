@@ -11,6 +11,14 @@ module ApplicationHelper
       (controller.action_name == "nedir" || controller.action_name == "index")
   end
 
+  def body_id
+    "i-#{controller.controller_name}-#{controller.action_name}"
+  end
+
+  def body_class
+    "c-#{controller.controller_name}-#{controller.action_name}"
+  end
+
   def human_readable_datetime datetime
     if datetime.nil?
       return '-'
