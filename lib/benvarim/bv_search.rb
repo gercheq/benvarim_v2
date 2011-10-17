@@ -123,9 +123,14 @@ class ActiveRecord::Base
       data[:human_readable_name] = data[:name]
     end
 
+    #reverse effects of tr character mapping
+    human_readable_name = data[:human_readable_name]
+
     #replace any tr characters for better ux
     data = data.inject({}) { |h, (k, v)| h[k] = BvSearch.clean_turkish_letters(v); h }
-    #human_readable_name may include turkish chars
+
+    #reverse effects of tr character mapping
+    data[:human_readable_name] = human_readable_name
 
     puts "indexing data:#{self.class.name} #{data} #{variables}"
     BvSearch.index(self.class.name, data, variables)
