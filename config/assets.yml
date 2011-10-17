@@ -14,15 +14,16 @@ javascripts:
     - public/javascripts/facebox.js
     - public/javascripts/script.js
     - public/javascripts/plugins.js
+    # - public/javascripts/jquery.autocomplete.js
     - public/javascripts/jquery.indextank.ize.js
     - public/javascripts/querybuilder.js
     - public/javascripts/jquery.indextank.ajaxsearch.js
-    - public/javascripts/jquery.indextank.autocomplete.js
+    # - public/javascripts/jquery.indextank.autocomplete.js
     - public/javascripts/jquery.indextank.renderer.js
     - public/javascripts/jquery.benvarim.search.autocomplete.js
     - public/javascripts/jquery.tmpl.min.js
     - public/javascripts/jquery.benvarim.facetsrenderer.js
-    - public/javascripts/jquery.autocomplete.js
+
 
 stylesheets:
   workspace:
