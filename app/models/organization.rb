@@ -13,6 +13,7 @@ class Organization < ActiveRecord::Base
 
   index_map :fields => [:user_id, :name, :description, :website, :to_param],
             :text => :name,
+            :logo => :visible_logo_url,
             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
   has_many :projects
@@ -72,6 +73,10 @@ class Organization < ActiveRecord::Base
 
   def self.available_organizations_simple
     self.available_organizations.collect  do |o| { :value => o.name, :id => o.id} end
+  end
+
+  def visible_logo_url
+     self.logo.file? ? self.logo.file : '/stylesheets/images/logo.gif'
   end
 
   private

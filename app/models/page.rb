@@ -57,6 +57,7 @@ class Page < ActiveRecord::Base
   index_map :fields => [:user_id, :project_id, :organization_id, :title, :description, :to_param],
              :text => :index_text,
              :human_readable_name => :index_text,
+             :logo => :visible_logo_url,
              :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
   def collect_ratio
@@ -97,6 +98,10 @@ class Page < ActiveRecord::Base
   def friendly_id_with_user
     return "#{id}" if self.user == nil
     self.user.friendly_id
+  end
+
+  def visible_logo_url
+    self.logo.file? ? self.logo.file : self.project.visible_logo_url
   end
 
   private

@@ -50,6 +50,9 @@ class ActiveRecord::Base
     if change_map[:human_readable_name]
       data[:human_readable_name] = self.send change_map[:human_readable_name]
     end
+    if change_map[:logo]
+      data[:logo] = self.send change_map[:logo]
+    end
     add_to_index(data, variables)
   end
 

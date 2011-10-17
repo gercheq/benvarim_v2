@@ -61,7 +61,7 @@
                     }                    
                     $inputElm.indextank_AjaxSearch({
                         listeners: listeners,
-                        fields: "name, human_readable_name",
+                        fields: "name, human_readable_name, description, logo",
                         rewriteQuery : function(txt) {
                             var query = "text:\"" + txt + "\"^10 OR description:\"" + txt + "\"";
                             
