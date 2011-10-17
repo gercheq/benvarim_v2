@@ -63,7 +63,12 @@
                         listeners: listeners,
                         fields: "name, human_readable_name, description, logo",
                         rewriteQuery : function(txt) {
-                            var query = "text:\"" + txt + "\"^10 OR description:\"" + txt + "\"";
+                            var words = txt.split(" ");
+                            var query = "text:\"" + txt + "\"^10 OR description:\"" + txt + "\"^9";
+                            $(words).each(function(i,w) {
+                                query += " OR text:\"" + w + "\"";
+                                query += " OR description:\"" + w + "\"";
+                            });
                             
                             return query;
                         }
