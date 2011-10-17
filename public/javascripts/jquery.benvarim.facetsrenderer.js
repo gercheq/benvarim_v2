@@ -27,7 +27,7 @@
                 return base.translations[key];
             }
             return key;
-        }
+        };
         
         base.init = function(){
             base.options = $.extend({},$.Indextank.FacetsRenderer.defaultOptions, options);
