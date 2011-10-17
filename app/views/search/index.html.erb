@@ -8,4 +8,13 @@
 
 <% end %>
 
-<%add_page_specific_script("jquery.benvarim.search.autocomplete")%>
+<% captured = capture do %>
+<script>
+$(document).ready(function(){
+    $("#search_form").bvSearchAutocomplete();
+});
+</script>
+<% end %>
+<%render_at_the_end captured%>
+
+
