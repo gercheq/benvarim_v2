@@ -6,8 +6,9 @@ module ApplicationHelper
     "selected"
   end
 
-  def is_in_home_controller
-    return controller.controller_name == "home"
+  def is_in_homepage
+    controller.controller_name == "home" &&
+      (controller.action_name == "nedir" || controller.action_name == "index")
   end
 
   def human_readable_datetime datetime
