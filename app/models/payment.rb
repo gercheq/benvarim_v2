@@ -5,7 +5,7 @@ class Payment < ActiveRecord::Base
   belongs_to :organization
 
   validate :validate_email
-  validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 500
+  validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 5000
   validates_presence_of :organization_id
 
   validates :name, :presence => true, :length => {:minimum => 3}
