@@ -1,20 +1,12 @@
 <div class="page line clearfix" id="hakkimizda">
   <div class="p-nav size1of4">
-    <ul>
-      <li><%=link_to "Kurucular", :hakkimizda, :class => "#{print_if_selected_tab :home, :hakkimizda}", :id => "pn-hakkimizda"%></li>
-      <li><a href="#">Gönüllüler</a></li>
-      <li><%=link_to "Kariyer", :kariyer, :class => "#{print_if_selected_tab :home, :kariyer}", :id => "pn-kariyer"%></li>
-      <li><a href="#">Basında BenVarım</a></li>
-      <li><%=link_to "Gizlilik Politikası", :gizlilik_politikasi %></li>
-      <li><%=link_to "Kullanım Şartları", :kullanim_sartlari, :class => "#{print_if_selected_tab :home, :kullanim_sartlari}", :id => "pn-kullanim-sartlari"%></li>
-    </ul>
+    <%= render 'home/includes/subnav_nedir'%>
   </div><!-- subnav -->
   <div class="p-content size3of4 lastUnit">
     <div class="p-inner">
       <div class="p-summary">
         <h3>Kullanım Şartları</h3>
       </div>
-
       <div class="p-details">
         <%= render 'home/includes/legal'%>
       </div>
