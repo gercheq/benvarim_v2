@@ -29,6 +29,55 @@
 </div>
 
 
+
+<div class="widget widget-light clearfix" id="featured-charities">
+    <div class="w-inner">
+      <div class="w-title">Destekleyebileceğiniz Kurumlar</div>
+      <a href="http://benvarim.com/kurum/unicef-turkiye-milli-komitesi" id="fc-unicef" title="UNICEF Türkiye Milli Komitesi">UNICEF Türkiye Milli Komitesi</a>
+      <a href="http://benvarim.com/kurum/nesin-vakfi" id="fc-nesin" title="Nesin Vakfı">Nesin Vakfı</a>
+      <a href="http://benvarim.com/kurum/ormana-kalkinma-ve-yardimlasma-vakfi" id="fc-ormana" title="Ormana Vakfı">Ormana Vakfı</a>
+      <!--
+      <a href="http://benvarim.com/kurum/cagdas-yasami-destekleme-dernegi" id="fc-cydd" class="fc-default" title="Çağdaş Yaşamı Destekleme Derneği">Çağdaş Yaşamı Destekleme Derneği</a>
+      -->
+      <a href="http://benvarim.com/kurum/turkish-educational-foundation-abd" id="fc-tef" class="fc-default" title="Turkish Educational Foundation">Turkish Educational Foundation</a>
+      <a href="/kurum/yeni" id="fc-item" class="fc-default" title="Yeni Vakıf ve Dernek Kaydı">Yeni Vakıf ve Dernek Kaydı</a>
+      <!--
+        <a href="#" id="fc-tema" class="opaque" title="TEMA">TEMA</a>
+        <a href="#" id="fc-iksv" class="opaque" title="IKSV">IKSV</a>
+        <a href="#" id="fc-tegv" class="opaque" title="TEGV">TEGV</a>
+        -->
+      <div class="more-link"><a href="/kurumlar">Tüm Kurumları Listele &raquo;</a></div>
+    </div>
+</div>
+
+
+<div id="main-content">
+  <div id="home-stats">
+  <%=render :partial => "projects/list_projects",
+    :locals => {
+      :show_edit_link => false,
+      :projects => @top_projects,
+      :hide_organization_link => true
+    }%>
+
+
+    <% if @top_pages.length > 0 %>
+    <%=render :partial => "pages/list_pages_condensed",
+      :locals => {
+        :title => "En çok bağış toplayanlar",
+        :pages => @top_pages
+      }%>
+    <% end %>
+  </div>
+</div><!-- end of #main-content -->
+
+
+
+
+
+
+
+
 <div id="main-content">
   <div class="widget widget-light">
     <div class="w-inner">
