@@ -1,8 +1,24 @@
-<form id="search_form">
-  <input type="text" name="k" id="search_query">
-</form>
-<div id="search_renderer">
+<div class="widget widget-light widget-kurum" id="list-pages">
+  <div class="w-inner clearfix">
+    <div class="w-content search-page">
+      <form id="search_form">
+        <input type="text"  name="k" id="search_query" value="<%=@keyword%>">
+      </form>
+      <hr/>
+      <div id="facet_renderer" class="search-div">
+      </div>
+      <div id="search_renderer" class="search-div">
+      </div>
+
+    </div>
   </div>
+</div>
+<style>
+.search-page .search-div {
+  float:left;
+  padding: 20px;
+}
+</style>
 <% if @results %>
 <%=debug @results%>
 
@@ -11,7 +27,18 @@
 <% captured = capture do %>
 <script>
 $(document).ready(function(){
-    $("#search_form").bvSearchAutocomplete();
+    $("#search_form").bvSearchAutocomplete({
+      renderer : $("#search_renderer"),
+      format : function(item) {
+        return $.tmpl("<li>${human_readable_name}<a href='/ara/d/${docid}'>${human_readable_name}</a></li>", item);
+      },
+      facetRenderer : $("#facet_renderer"),
+      facetFormat : function(facet) {
+
+      },
+
+
+    });
 });
 </script>
 <% end %>

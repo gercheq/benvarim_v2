@@ -1,8 +1,10 @@
 class SearchController < ApplicationController
   def index
-    # if params['k']
-    #   @results = BvSearch.search params['k']
-    # end
+    if params['k']
+      @keyword = params['k']
+    else
+      @keyword = ""
+    end
   end
 
   def id_redirect

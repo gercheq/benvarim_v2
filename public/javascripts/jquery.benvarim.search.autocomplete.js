@@ -8,12 +8,26 @@
         .append($("<a href='/ara/d/" + item.docid + "'></a>").html(item.human_readable_name));
     };
     var defaultSetupContainer = function($el) {
-        $el.html("Search results!");
+        $el.html("Arama Sonucları");
+    };
+    
+    var defaultSetupFacetContainer = function($el) {
+        $el.html("Kategoriler");
+    };
+    
+    var defaultFacetFormat = function(facet, facetAtrr, facetClass) {
+        return $("<ul/>").append($("<span/>").html(facetAtrr));
     };
     var settings = {
         format: defaultFormat,
         setupContainer: defaultSetupContainer,
-        renderer: null
+        renderer: null,
+        facetRenderer: null,
+        setupFacetContainer : defaultSetupFacetContainer,
+        facetFormat : defaultFacetFormat,
+        runQueryAfterInit : true, //if text is not empty and there is a renderer, sends first query
+        categoryFacetClass : "bv-search-facet",
+        categoryAttr : "bv-category"
     };
     $.fn.bvSearchAutocomplete = function(options) {
         var $this = this;
@@ -29,7 +43,7 @@
                     $.error("form needs to have at least 1 input element.");
                     return;
                 }
-                var inputElm = inputElms[0];
+                var $inputElm = $(inputElms[0]);
                 $that.indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
                 var listeners = [];
                 if (settings.renderer) {
@@ -38,11 +52,24 @@
                         setupContainer: settings.setupContainer
                     });
                     listeners.push(r);
-                }
-                $(inputElm).indextank_AjaxSearch({
-                    listeners: listeners,
-                    fields: "name, human_readable_name"
-                });
+                    if(settings.facetRenderer) {
+                        var fr = $(settings.facetRenderer).indextank_FacetsRenderer( {
+                            format : settings.facetFormat,
+                            setupContainer : settings.setupFacetContainer
+                        });
+                        listeners.push(fr);
+                    }                    
+                    $inputElm.indextank_AjaxSearch({
+                        listeners: listeners,
+                        fields: "name, human_readable_name",
+                        rewriteQuery : function(txt) {
+                            var query = "text:\"" + txt + "\"^10 OR description:\"" + txt + "\"";
+                            
+                            return query;
+                        }
+                    });
+                };
+                
 
                 var searchForm = $("<form></form>");
                 var searchInput = $("<input type='text'>");
@@ -51,7 +78,8 @@
                 var searchDummyRenderer = $("<div/>").indextank_Renderer({format:defaultFormat, setupContainer:defaultSetupContainer});
                 searchInput.indextank_AjaxSearch({
                     listeners: searchDummyRenderer,
-                    fields: "name, human_readable_name"
+                    fields: "name, human_readable_name",
+                    rsLength : 10
                 });
 
                 searchDummyRenderer.bind("Indextank.AjaxSearch.success",
@@ -65,14 +93,14 @@
                             });
                         });
                     }
-                    callback = $(inputElm).data("bv.cb");
+                    callback = $inputElm.data("bv.cb");
                     callback && callback(results);
                 });
                 
-                $(inputElm).autocomplete({
+                $inputElm.autocomplete({
                     source: function(x,callback) {
                         var term = x.term;
-                        $(inputElm).data("bv.cb", callback);
+                        $inputElm.data("bv.cb", callback);
                         searchInput.val(term);
                         searchInput.submit();
                     },
@@ -84,6 +112,30 @@
                         }
                     }
                 });
+                
+                var updateCategories = function() {
+                    var searchBase = $inputElm.data("Indextank.AjaxSearch");
+                    searchBase.defaultQuery.resetCategoryFilters();
+                    if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
+                        var types = $inputElm.attr(settings.categoryAttr).split();
+                        if(types.length) {
+                            searchBase.defaultQuery.withCategoryFilters({
+                                type : types
+                            });
+                        }
+                        
+                    }
+                };
+                updateCategories();
+                $(".bv-search-facet").live("click", function() {
+                    $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
+                    updateCategories();
+                });
+                $inputElm.bind("updateCategory", updateCategories);
+                
+                if(settings.renderer && settings.runQueryAfterInit && $inputElm.val().length > 0) {
+                    $that.submit();
+                }
 
             });
         };

@@ -20,6 +20,8 @@ javascripts:
     - public/javascripts/jquery.indextank.autocomplete.js
     - public/javascripts/jquery.indextank.renderer.js
     - public/javascripts/jquery.benvarim.search.autocomplete.js
+    - public/javascripts/jquery.tmpl.min.js
+    - public/javascripts/jquery.benvarim.facetsrenderer.js
     # - public/javascripts/jquery.autocomplete.js
 
 stylesheets:

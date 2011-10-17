@@ -141,26 +141,6 @@ class BvSearch
     return index.search(self.clean_turkish_letters(query), :fetch => [:id, :title, :name])
   end
 
-  def self.init_test
-    # Obtain an IndexTank client
-    index = get_index
-    begin
-        # Add documents to the index
-        index.document("abc").add({ :text => "some text here" })
-        index.document("def").add({ :text => "some other text" })
-        index.document("ghj").add({ :text => "something else here" })
-
-        # Search the index
-        results = index.search("some")
-
-        print "#{results['matches']} documents found\n"
-        results['results'].each { |doc|
-            print "docid: #{doc['docid']}\n"
-        }
-    rescue
-        print "Error: ",$!,"\n"
-    end
-  end
 
   def self.index class_name, data, variables
     index = get_index

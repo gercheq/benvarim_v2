@@ -55,6 +55,7 @@
                                     .withScoringFunction(base.options.scoringFunction)
                                     .withFetchVariables(base.options.fetchVariables)
                                     .withFetchCategories(base.options.fetchCategories)
+                                    .withCategoryFilters(base.options.categoryFilters)
                                     .withQueryReWriter(base.options.rewriteQuery);
             
             
@@ -161,6 +162,8 @@
         fetchVariables: 'true',
         // fetch all categories,
         fetchCategories: 'true',
+        // added by yigit, to filter by category
+        categoryFilters : {},
         // the default query re-writer is identity
         rewriteQuery: function(q) {return q}
     };

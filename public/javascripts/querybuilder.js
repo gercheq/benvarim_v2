@@ -70,6 +70,9 @@ Query.prototype.withFunctionFilter = function (idx, floor, ceil) {
     return this;
 };
 
+Query.prototype.resetCategoryFilters = function() {
+    this.categoryFilters = null;
+};
 Query.prototype.withCategoryFilters = function (categoryFilters) {
     if (this.categoryFilters == null) {
         this.categoryFilters = {};
