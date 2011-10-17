@@ -68,6 +68,7 @@ class ActiveRecord::Base
   end
 
   def index_after_save
+    return
     puts "after save #{self.class.name}"
     puts @@index_maps
     index_map = @@index_maps[self.class.name]
@@ -93,6 +94,7 @@ class ActiveRecord::Base
   end
 
   def index_after_create
+    return
     puts "after create #{self.class.name}"
     index_map = @@index_maps[self.class.name]
     if(! index_map)
