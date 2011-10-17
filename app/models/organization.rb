@@ -76,7 +76,7 @@ class Organization < ActiveRecord::Base
   end
 
   def visible_logo_url
-     self.logo.file? ? self.logo.file : '/stylesheets/images/logo.gif'
+     self.logo.file? ? self.logo.url(:thumb) : '/stylesheets/images/logo.gif'
   end
 
   private

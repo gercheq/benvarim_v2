@@ -49,7 +49,7 @@ class Project < ActiveRecord::Base
    # end
 
    def visible_logo_url
-     self.logo.file? ? self.logo.file : self.organization.visible_logo_url
+     self.logo.file? ? self.logo.url(:thumb) : self.organization.visible_logo_url
    end
 
    def can_be_donated?

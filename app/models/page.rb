@@ -101,7 +101,7 @@ class Page < ActiveRecord::Base
   end
 
   def visible_logo_url
-    self.logo.file? ? self.logo.file : self.project.visible_logo_url
+    self.logo.file? ? self.logo.url(:thumb) : self.project.visible_logo_url
   end
 
   private
