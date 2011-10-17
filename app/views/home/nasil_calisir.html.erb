@@ -1,37 +1,25 @@
-
 <div class="widget widget-dark" id="page-nasil">
   <div class="w-inner">
   </div>
 </div>
 
+<div class="page line clearfix" id="nasil-calisir">
+  <div class="p-nav size1of4">
+    <%= render 'home/includes/subnav_nasil_calisir'%>
+  </div><!-- subnav -->
+  <div class="p-content size3of4 lastUnit">
+    <div class="p-inner">
+      <div class="p-summary">
+        <p>BenVarım platformu, Dünya’da nice örneği olan İnternet’ten bağış toplama (online fundraising) sisteminin Türkiye’deki ilk ve tek örneği olarak San Francisco'da ve İstanbul'da yaşayan, dört Türk girişimcisi tarafından 2011 yılında kurulmuştur.</p>
 
-<div id="main-content">
-  <div class="widget widget-light">
-    <div class="w-inner">
-      <div class="w-title">Nasıl Çalışır?</div>
+        <p>Kurucular, birer aktivist, gönüllü ve sivil toplum yöneticisi olarak emek verdikleri Türkiye’ye verimli bir bağış platformu kazandırmak için biraraya geldiler. Gönüllülerin de katılımıyla her geçen gün büyüyen BenVarım ailesi, sivil toplum kuruluşlarına teknik altyapı sağlayarak, kurumların maddi ve manevi olarak güçlenmesi için çalışmalarını sürdürmektedir.</p>
+      </div>
 
-
-       <p>“Gönüllü ol, çevrenle paylaş, desteklediğin kurumu yapılan bağışlarla güçlendir!” </p>
-
-       <p>BenVarım’da kolaylıkla yaratacağınız bir sayfa ile akraba ve dostlarınıza en hızlı şekilde ulaşacak; destek olduğunuz sosyal yardım kuruluşu için en hızlı ve en eğlenceli yöntemle bağış toplanmasına aracı olacaksınız.</p>
-         <ol>
-           <li>Gönüllü olarak destekleyeceğiniz bir kurum belirleyin.</li>
-           <li>Bir tanıtım sayfası yarattın, bağış hedefi belirleyin ve çevrenizin ilgisini çekecek bir tanıtım yazısı yazın.</li>
-           <li>Facebook, Twitter, eposta ve blog gibi sosyal internet plaform’ları aracılığıyla, kişiselleştirdiğiniz sayfanızı yakın çevrenizle paylaşın.</li>
-           <li>Akraba, dost ve iş arkadaşlarınızın sizin aracılığınızla yapacağı bağışların hızla artmasını sağlayın. Daha fazla paylaşın, daha fazla bağış toplayın. </li>
-           <li>Topladığınız bağışlar otomatik olarak desteklediğiniz S.T.K.’nın hesabına giderken, yarattığınız sosyal bilinç ile gurur duyun!</li>
-         </ol>
-
-       <p>
-         Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:
-         <%=render :partial => "layouts/quickstart_widget",
-           :locals => {
-             :available_organizations => @available_organizations
-           }
-         %>
-       </p>
-
+      <div class="p-details">
+        <%= render 'home/includes/how_it_works'%>
       </div>
     </div>
-</div><!-- end of #main-content -->
+  </div><!-- p-content -->
+</div><!-- .page -->
+
 

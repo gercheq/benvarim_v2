@@ -69,12 +69,16 @@
 
 .p-summary{
     font-size: 16px;
-    font-style: italic;
+    font-style: normal;
+    font-family: Georgia, Garamond, serif;
     margin: 20px 0;
+    color: #777;
+    margin-bottom: 40px;
 }
 
 .p-summary p{
     line-height: 1.67;
+    margin-bottom: 20px;
 }
 
 
@@ -134,6 +138,7 @@
 
 .pf-desc h1{
   line-height: 1.2;
+  letter-spacing: -0.05em;
   margin-bottom: 30px;
 }
 
