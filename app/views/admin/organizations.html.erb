@@ -1,13 +1,27 @@
-<div class="widget widget-light widget-kurum">
+<%=render 'menu'%>
+<%=render :partial => 'layouts/errors'%>
+<div class="widget-light widget-kurum">
   <div class="w-inner clearfix">
-    <div class="w-content">
+    <div class="">
       <div class="w-title">Tüm Vakıflar ve Dernekler</div>
-      <div class="rows-container" id="donation-pages-container">
+      <div class="" id="donation-pages-container">
         <% @organizations.each do |organization| %>
-          <div class="row clearfix">
+          <div class="clearfix">
             <div class="row-photo clearfix"><%= image_tag organization.logo.url(:thumb) %></div>
             <div class="row-details">
               <h3><%= link_to organization.name, organization %></h3>
+              <p>
+                <% if organization.paypal_info != nil%>
+                  <%= form_tag admin_edit_organization_path(organization) do |f| %>
+                    Paypal Hesabı: <%=label_tag organization.paypal_info.paypal_user%></br>
+                    Kurum Aktif: <%=check_box_tag :active, "1", organization.active%><br/>
+                    <%=submit_tag "Değişikliği kaydet"%>
+                  <% end%>
+                <% else %>
+                  <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a>
+                <% end %>
+
+              </p>
               <p><%= organization.description %></p>
               <p><%= organization.address %></p>
               <p>İletişim Bilgileri:<br/>

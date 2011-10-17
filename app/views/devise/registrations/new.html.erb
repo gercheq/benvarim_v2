@@ -42,12 +42,12 @@
 
       <div class="signup-options" id="signup-with-email">
         <div class="signup-toggle toggle">
-          <p>BenVarım'a isterseniz <a href="#">email ile  giriş yapabilirsiniz</a>.</p>
+          <p>BenVarım'a <a href="#">email ile  giriş</a> yapabilirsin.</p>
         </div>
         <div class="signup-form">
           <% if resource.errors.any? %>
             <div class="msg msg-error" id="error_explanation">
-              <h2>Lütfen aşagıdaki hataları düzeltiniz.</h2>
+              <h2>Lütfen aşağıdaki hataları düzeltiniz.</h2>
               <ul>
               <% resource.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>

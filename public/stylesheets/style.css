@@ -901,7 +901,7 @@ p{
 #footer{
   background: #000d1b url(/images/v2/footer-background.png) repeat-x;
   position:relative;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 #footer-logo{
@@ -950,6 +950,10 @@ p{
     border-radius: 5px;
     padding: 5px;
     width: 236px;
+}
+
+#footer .yellow{
+  color: #ffea00;
 }
 
 /*
@@ -1484,6 +1488,18 @@ blockquote span.quotation{
     border-bottom-right-radius: 5px;
    }
 
+   .rc-tl{
+     -moz-border-radius-topleft: 5px;
+     -webkit-border-top-left-radius: 5px;
+     border-top-left-radius: 5px;
+   }
+
+   .rc-bl{
+     -moz-border-radius-bottomleft: 5px;
+     -webkit-border-bottom-left-radius: 5px;
+     border-bottom-left-radius: 5px;
+   }
+
    /*
    ** Opaque
    */
@@ -1576,13 +1592,14 @@ blockquote span.quotation{
      *  Accordion
      */
 
-    .accordion h3{
+    .accordion h4{
         cursor: pointer;
     }
 
     .accordion-content,
     .accordion p{
         display: none;
+        margin-bottom: 30px;
     }
 
 
@@ -1655,7 +1672,7 @@ blockquote span.quotation{
     }
 
     .pb-value{
-        background: url('images/profile_bar.png') 0 0 repeat-y;
+        background: url('images/profile-bar-green.jpg') 0 0 repeat-y;
         height: 100%;
      }
 
