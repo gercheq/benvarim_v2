@@ -6,7 +6,9 @@ class PaymentMailer < ActionMailer::Base
     @organization = payment.organization
     @project = payment.project
     @page = payment.page
-    @page_owner = @page.user
+    if(@page)
+      @page_owner = @page.user
+    end
     mail(:to => payment.email,
          :subject => "Bağışınız İçin Teşekkür Ederiz - Benvarim.com",
          "X-SMTPAPI" => '{"category": "thanks"}')
