@@ -1,3 +1,4 @@
+<%=render :partial => "email_layouts/header"%>
 Merhaba <%=@user.name%>,
 
 Türkiye'nin ilk internet bağış platformu Benvarim.com'a hoşgeldin!.
@@ -18,7 +19,4 @@ Fikir ve önerilerine çok önem veriyoruz. Seninle iletişimde olmak bizi motiv
 Görüşmek üzere,
 Proje Direktörü
 Levent Baş
-
-Twitter: http://twitter.com/#!/Ben_Varim
-Facebook: http://www.facebook.com/BenVarim.Platformu
-Email: iletisim@benvarim.com
+<%=render :partial => "email_layouts/footer" %>

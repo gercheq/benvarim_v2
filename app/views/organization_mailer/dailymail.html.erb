@@ -1,12 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>
-      Günlük bağış sayfası raporu
-    </title>
-  </head>
-  <body>
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => "Benvarım.com'a Hoşgeldin!"
+  }%>
 
 Merhaba <%=@organization.user.name%>,<br/><br/>
 
@@ -23,11 +18,4 @@ Sayfanın bağış hedefi     : <%=page.goal%> TL<br/>
 <br/><br/>
 
 
-<ul>
-  <li>Twitter: <a href="http://twitter.com/#!/Ben_Varim">@BenVarim</a></li>
-  <li>Facebook: <a href="http://www.facebook.com/BenVarim.Platformu">BenVarim Facebook</a></li>
-  <li>Email: <a href="mailto:iletisim@benvarim.com">iletisim@benvarim.com</a></li>
-</ul>
-
-</body>
-</html>
+<%=render :partial => "email_layouts/footer" %>
