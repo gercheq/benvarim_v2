@@ -10,6 +10,8 @@ class Payment < ActiveRecord::Base
 
   validates :name, :presence => true, :length => {:minimum => 3}
 
+  after_create :after_create_hook
+
   def amount_str
     "%.2f" % self.amount
   end
@@ -33,6 +35,14 @@ class Payment < ActiveRecord::Base
 
   def validate_amount
     self.errors.add "amount", "geçersiz" if self.amount =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  end
+
+  def after_create_hook
+    begin
+      # UserMailer.signup(self).deliver
+      Delayed::Job.enqueue MailJob.new("PaymentMailer", "thanks", self)
+    rescue
+    end
   end
 end
 
