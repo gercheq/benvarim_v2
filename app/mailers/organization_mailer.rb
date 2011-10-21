@@ -2,8 +2,8 @@
 class OrganizationMailer < ActionMailer::Base
   default :from => "iletisim@benvarim.com"
   def dailymail(organization,pages)
-	@organization = organization
-	@pages = pages
+  	@organization = organization
+  	@pages = pages
 
     mail(:to => organization.user.email,
         # :bcc => "team@benvarim.com",
