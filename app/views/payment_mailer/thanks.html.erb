@@ -24,6 +24,14 @@ Facebook, Twitter gibi sosyal ağlarda paylaşabilir,
 <br/>
 Eposta yoluyla çevrene ileterek, bağış yapılmasını rica edebilirsin.
 <br/>
+<%=render :partial => "email_layouts/share_module",
+  :locals => {
+    :page => @page,
+    :organization => @organization,
+    :project => @project
+  }%>
+
+<br/>
 Benvarim.com'a <a href="<%=new_user_registration_path(:only_path => false)%>">kayıt olarak</a>, sen de bağış sayfası oluşturabilir ve desteklediğin kurumların daha fazla bağış toplamasını ve etkin tanıtım yapmasını sağlayabilirsin.
 <br/>
 

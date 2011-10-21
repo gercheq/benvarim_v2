@@ -17,6 +17,14 @@ Yapmış olduğunuz bağış için "<%=@organization.name%>" adına teşekkür e
 Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, sayfayı
 Facebook, Twitter gibi sosyal ağlarda paylaşabilir,
 Eposta yoluyla çevrene ileterek, bağış yapılmasını rica edebilirsin.
+
+<%=render :partial => "email_layouts/share_module",
+  :locals => {
+    :page => @page,
+    :organization => @organization,
+    :project => @project
+  }%>
+
 Benvarim.com'a kayıt olarak (<%=new_user_registration_path(:only_path => false)%>), sen de bağış sayfası oluşturabilir ve desteklediğin kurumların daha fazla bağış toplamasını ve etkin tanıtım yapmasını sağlayabilirsin.
 
 
