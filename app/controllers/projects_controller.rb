@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @top_pages = @project.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     unless @project.can_be_donated?
       flash.now[:error] = "Proje aktif olmadığı için bağış toplayamazsınız."
     end

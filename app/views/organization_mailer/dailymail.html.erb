@@ -1,0 +1,21 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => "Benvarım.com'a Hoşgeldin!"
+  }%>
+
+Merhaba <%=@organization.user.name%>,<br/><br/>
+
+Gün içerisinde <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> isimli kurumunuzda açılmış olan bağış sayfalarını aşağıda görebilirsiniz. <br/><br/>
+
+
+<% @pages.each do |page| %>
+
+Sayfanın ismi             : <%=page.title%><br/>
+Sayfayı açan kullanıcı    : <%=page.user.name%><br/>
+Sayfanın bağış hedefi     : <%=page.goal%> TL<br/>
+
+<% end %>
+<br/><br/>
+
+
+<%=render :partial => "email_layouts/footer" %>
