@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def body_class
-    "c-#{controller.controller_name}-#{controller.action_name}"
+    "c-#{controller.controller_name} c-#{controller.action_name}"
   end
 
   def human_readable_datetime datetime

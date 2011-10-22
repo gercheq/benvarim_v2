@@ -65,11 +65,11 @@
         </div>
         <div id="site-nav">
           <ul class="clearfix">
-            <li><%=link_to "Anasayfa", :root, :class => "rc-top #{print_if_selected_tab :home, :index}", :id => "nav-anasayfa"%></li>
-            <li><%=link_to "Nedir?", :nedir, :class => "rc-top #{print_if_selected_tab :home, :nedir}", :id => "nav-nedir"%></li>
+            <li><%=link_to "Nedir?", :root, :class => "rc-top #{print_if_selected_tab :home, :index}", :id => "nav-anasayfa"%></li>
             <li>
               <%=link_to "Nasıl Çalışır?", :nasil_calisir, :class => "rc-top #{print_if_selected_tab :home, :nasil_calisir}", :id => "nav-nasil"%>
             </li>
+            <li><a href="http://blog.benvarim.com/" class="rc-top">Blog</a></li>
             <li>
               <%=link_to "Hakkımızda", :hakkimizda, :class => "rc-top #{print_if_selected_tab :home, :hakkimizda}", :id => "nav-hakkimizda"%>
             </li>
