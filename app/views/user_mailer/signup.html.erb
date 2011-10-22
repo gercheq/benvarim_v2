@@ -3,23 +3,20 @@
     :title => "Benvarım.com'a Hoşgeldin!"
   }%>
 
-Merhaba <%=@user.name%>,<br/>
+Merhaba <a href="<%=user_path(@user, :only_path => false)%>"><%=@user.name%></a>,<br/>
 
 <br/>
-Türkiye'nin ilk internet bağış platformu <a href="<%=root_path(:only_path => false)%>">Benvarim.com</a>'a hoşgeldin!<br/>
+<a href="<%=root_path(:only_path => false)%>">Benvarim.com</a>'a hoşgeldin! Platformumuzu kullanarak sevdiğin sivil toplum kuruluşlarının kaynak geliştirme ve tanıtım faaliyetlerine destek olabilirsin.<br/>
+
+Sırasıyla yapman gerekenler: <br/>
+<ol>
+  <li><a href="<%=user_path(@user, :only_path => false)%>">Profilini güncelleyip</a> fotoğrafını ekle</li>
+  <li>Desteklediğin kuruluş için <a href="<%= new_page_path(:only_path => false) %>">bağış sayfası oluştur</a></li>
+  <li>Oluşturduğun sayfanı tanıdıklarınla paylaş</li>
+</ol>
 <br/>
-Benvarim.com ile <a href="<%= new_page_path(:only_path => false) %>">gönüllü sayfası oluşturup</a>,
-<ul>
-  <li>Özel bir gününü sevdiklerinle paylaşabilir, </li>
-  <li>Sportif veya sanatsal bir faaliyetini çevrene duyurabilir,</li>
-  <li>Veya sosyal aktivizmin ile destekçisi olduğun vakıf veya derneği güçlendirebilirsin.</li>
-</ul>
-<br/>
-Yöneticisi veya çalışanı olduğun STK'yı <a href="<%= new_organization_path(:only_path => false) %>">sistemimize kayıt edebilirsin.</a><br/>
-<br/>
-Bir hayırsever olarak, <a href="<%= all_pages_path(:only_path => false) %>">gönüllüler</a> aracılığıyla vakıf ve derneklere bağışta bulunabilirsin.<br/>
-<br/>
-Fikir ve önerilerine çok önem veriyoruz. Seninle iletişimde olmak bizi motive ederken, projemizi de güçlendirecek. Lütfen bizi takip et ve dostlarına anlat.<br/>
+Fikir ve önerilerine çok önem veriyoruz. Lütfen <a href="<%=new_contact_form_path(:only_path => false)%>">iletişim formumuzu</a> doldurarak bizimle iletişime geç.<br/>
+Sorularını cevaplandırmak ve sana yardımcı olmak bizi mutlu eder.
 <br/>
 Görüşmek üzere,<br/>
 Proje Direktörü<br/>

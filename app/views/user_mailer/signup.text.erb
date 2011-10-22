@@ -1,22 +1,20 @@
 <%=render :partial => "email_layouts/header"%>
 Merhaba <%=@user.name%>,
 
-Türkiye'nin ilk internet bağış platformu Benvarim.com'a hoşgeldin!.
+Benvarim.com'a hoşgeldin! Platformumuzu kullanarak sevdiğin sivil toplum kuruluşlarının kaynak geliştirme ve tanıtım faaliyetlerine destek olabilirsin.
 
-Benvarim.com ile gönüllü sayfası oluşturup,(<%= new_page_path(:only_path => false) %>),
-  -Özel bir gününü sevdiklerinle paylaşabilir,
-  -Sportif veya sanatsal bir faaliyetini çevrene duyurabilir,
-  -Veya sosyal aktivizmin ile destekçisi olduğun vakıf veya derneği güçlendirebilirsin.
+Sırasıyla yapman gerekenler:
+  1) Profilini güncelleyip fotoğrafını ekle: <%=user_path(@user, :only_path => false)%>
+  2) Desteklediğin kuruluş için bağış sayfası oluştur: <%= new_page_path(:only_path => false) %>
+  3) Oluşturduğun sayfanı tanıdıklarınla paylaş
 
-Yöneticisi veya çalışanı olduğun STK'yı sistemimize kayıt edebilirsin.
-<%= new_organization_path(:only_path => false) %>
-
-Bir hayırsever olarak, gönüllüler aracılığıyla vakıf ve derneklere bağışta bulunabilirsin.
-<%= all_pages_path(:only_path => false) %>
-
-Fikir ve önerilerine çok önem veriyoruz. Seninle iletişimde olmak bizi motive ederken, projemizi de güçlendirecek. Lütfen bizi takip et ve dostlarına anlat.
+Fikir ve önerilerine çok önem veriyoruz. Lütfen iletişim formumuzu doldurarak bizimle iletişime geç.
+<%=new_contact_form_path(:only_path => false)%>
+Sorularını cevaplandırmak ve sana yardımcı olmak bizi mutlu eder.
 
 Görüşmek üzere,
 Proje Direktörü
 Levent Baş
+
 <%=render :partial => "email_layouts/footer" %>
+
