@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class Payment < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   belongs_to :page
   belongs_to :project
   belongs_to :organization
@@ -13,11 +14,11 @@ class Payment < ActiveRecord::Base
   after_create :after_create_hook
 
   def amount_str
-    "%.2f" % self.amount
+    number_with_precision(self.amount, :locale => :tr)
   end
 
   def amount_in_currency_str
-    "%.2f" % self.amount_in_currency
+    number_with_precision(self.amount_in_currency, :locale => :tr)
   end
 
   def human_readable_currency
