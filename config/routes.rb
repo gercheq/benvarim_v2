@@ -31,7 +31,6 @@ Benvarim::Application.routes.draw do
   get "/bagis_sayfasi" => "home#bagis_sayfasi", :as => :bagis_sayfasi
   get "/kurum_sayfasi" => "home#kurum_sayfasi", :as => :kurum_sayfasi
 
-
   get "/sayfalar" => "pages#index", :as => :pages
   get "/sayfalar" => "pages#index", :as => :all_pages#sometimes necessary :/
   post "/sayfa/kaydet" => "pages#create", :as => :pages
@@ -62,6 +61,7 @@ Benvarim::Application.routes.draw do
   get '/sayfa/:page_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_page
   get '/proje/:project_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_project
   get '/kurum/:organization_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_organization
+  get '/proje/:id' => "projects#show", :as => :project
 
 
   devise_for :users, :skip => [:sessions], :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
@@ -101,6 +101,10 @@ Benvarim::Application.routes.draw do
   get '/kurum/:id' => "organizations#show", :as => :organization
   put '/kurum/:id' => "organizations#update", :as => :organization
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
+
+  # search page
+  get 'ara' => "search#index", :as => :search
+  get 'ara/d/:id' => "search#id_redirect", :as => :search_result_redirect
 
   # ADMIN PAGES
   get '/kertenkele' => "admin#index", :as => :admin

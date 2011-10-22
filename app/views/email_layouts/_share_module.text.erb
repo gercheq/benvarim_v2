@@ -1,0 +1,44 @@
+<% if defined?(page) && page != nil%>
+<%=page.title%>
+ | <%=render :partial => "layouts/like_link",
+      :locals => {
+        :url => page_path(page, :only_path => false),
+        :text => "Facebook'ta Paylaş"
+      }%>
+ |  <%=render :partial => "layouts/tweet_link",
+      :locals => {
+        :url => page_path(page, :only_path => false),
+        :text => "Twitter'da Paylaş",
+        :tweet_text => page.title
+      }%>
+<% end %>
+
+<% if defined?(project) && project != nil%>
+<%=project.name%>
+ | <%=render :partial => "layouts/like_link",
+      :locals => {
+        :url => project_path(project, :only_path => false),
+        :text => "Facebook'ta Paylaş"
+      }%>
+ | <%=render :partial => "layouts/tweet_link",
+        :locals => {
+          :url => project_path(project, :only_path => false),
+          :text => "Twitter'da Paylaş",
+          :tweet_text => project.name
+        }%>
+<% end %>
+
+<% if defined?(organization) && organization != nil%>
+<%=organization.name%>
+ | <%=render :partial => "layouts/like_link",
+      :locals => {
+        :url => organization_path(organization, :only_path => false),
+        :text => "Facebook'ta Paylaş"
+      }%>
+ | <%=render :partial => "layouts/tweet_link",
+      :locals => {
+        :url => organization_path(organization, :only_path => false),
+        :text => "Twitter'da Paylaş",
+        :tweet_text => organization.name
+      }%>
+<% end%>

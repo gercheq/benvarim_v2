@@ -39,9 +39,18 @@ class Project < ActiveRecord::Base
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
+   index_map :fields => [:organization_id, :name, :description, :to_param],
+             :text => :name,
+             :logo => :visible_logo_url,
+             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
+
    # def to_param
    #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
    # end
+
+   def visible_logo_url
+     self.logo.file? ? self.logo.url(:thumb) : self.organization.visible_logo_url
+   end
 
    def can_be_donated?
      self.active? && self.organization.can_be_donated?

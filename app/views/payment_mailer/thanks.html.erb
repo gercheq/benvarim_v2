@@ -1,0 +1,42 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => "Bağışınız İçin Teşekkür Ederiz - Benvarim.com"
+  }%>
+
+Sevgili <%=@payment.name%>,<br/>
+<% if @page %>
+
+<%=@page_owner.name%> tarafından <a href="<%=project_path @project, :only_path => false%>"><%=@project.name%></a> için oluşturulan <a href="<%=page_path @page,:only_path => false%>"><%=@page.title%></a> sayfasında yapmış olduğunuz bağış için <a href="<%=organization_path @organization, :only_path => false%>"><%=@organization.name%></a> adına teşekkür ederiz.
+
+<% elsif @project %>
+
+<a href="<%=project_path(@project, :only_path => false)%>"><%=@project.name%></a> projesine yapmış olduğunuz bağış için <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> adına teşekkür ederiz.
+
+<% else #organization%>
+
+Yapmış olduğunuz bağış için <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> adına teşekkür ederiz.
+
+<%end%>
+<br/>
+Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, sayfayı
+<br/>
+Facebook, Twitter gibi sosyal ağlarda paylaşabilir,
+<br/>
+Eposta yoluyla çevrene ileterek, bağış yapılmasını rica edebilirsin.
+<br/>
+<%=render :partial => "email_layouts/share_module",
+  :locals => {
+    :page => @page,
+    :organization => @organization,
+    :project => @project
+  }%>
+
+<br/>
+Benvarim.com'a <a href="<%=new_user_registration_path(:only_path => false)%>">kayıt olarak</a>, sen de bağış sayfası oluşturabilir ve desteklediğin kurumların daha fazla bağış toplamasını ve etkin tanıtım yapmasını sağlayabilirsin.
+<br/>
+
+Sevgilerimizle.
+<br/>
+Benvarim.com Ekibi
+<br/>
+<%=render :partial => "email_layouts/footer"%>

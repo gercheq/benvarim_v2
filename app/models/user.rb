@@ -90,7 +90,8 @@ class User < ActiveRecord::Base
 
   def after_create_hook
     begin
-    	UserMailer.signup(self).deliver
+      # UserMailer.signup(self).deliver
+      Delayed::Job.enqueue MailJob.new("UserMailer", "signup", self)
     rescue
     end
   end

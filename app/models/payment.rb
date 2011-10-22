@@ -1,21 +1,24 @@
 # -*- coding: utf-8 -*-
 class Payment < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   belongs_to :page
   belongs_to :project
   belongs_to :organization
 
   validate :validate_email
-  validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 500
+  validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 5000
   validates_presence_of :organization_id
 
   validates :name, :presence => true, :length => {:minimum => 3}
 
+  after_create :after_create_hook
+
   def amount_str
-    "%.2f" % self.amount
+    number_with_precision(self.amount, :locale => :tr)
   end
 
   def amount_in_currency_str
-    "%.2f" % self.amount_in_currency
+    number_with_precision(self.amount_in_currency, :locale => :tr)
   end
 
   def human_readable_currency
@@ -33,6 +36,14 @@ class Payment < ActiveRecord::Base
 
   def validate_amount
     self.errors.add "amount", "geçersiz" if self.amount =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  end
+
+  def after_create_hook
+    begin
+      # UserMailer.signup(self).deliver
+      Delayed::Job.enqueue MailJob.new("PaymentMailer", "thanks", self)
+    rescue
+    end
   end
 end
 

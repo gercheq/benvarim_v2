@@ -14,8 +14,11 @@ module Benvarim
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib/benvarim/workers)
     config.autoload_paths += %W(#{config.root}/lib/benvarim)
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # config.active_record.observers = :bv_search_observer
 
     config.middleware.use "NoWww"
 

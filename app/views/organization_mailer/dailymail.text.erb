@@ -1,0 +1,14 @@
+<%=render :partial => "email_layouts/header" %>
+Merhaba <%=@organization.user.name%>,
+
+Gün içerisinde <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> isimli kurumunuzda açılmış olan bağış sayfalarını aşağıda görebilirsiniz.
+
+
+<% @pages.each do |page| %>
+
+Sayfanın ismi             : <%=page.title%>
+Sayfayı açan kullanıcı    : <%=page.user.name%>
+Sayfanın bağış hedefi     : <%=page.goal%> TL
+
+<% end %>
+<%=render :partial => "email_layouts/footer" %>

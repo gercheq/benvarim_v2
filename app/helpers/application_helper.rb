@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 module ApplicationHelper
+  @bufferedOutput = ""
   def print_if_selected_tab cont, act
     return "" unless (cont.nil? || cont.to_s == controller.controller_name)
     return "" unless (act.nil? || act.to_s == controller.action_name)
@@ -15,6 +16,15 @@ module ApplicationHelper
       return '-'
     end
     l datetime, :format => :long
+  end
+
+  def render_at_the_end data
+    @bufferedOutput ||= ""
+    @bufferedOutput += data
+  end
+
+  def get_buffered_output
+    @bufferedOutput
   end
 
   def add_page_specific_script script_name

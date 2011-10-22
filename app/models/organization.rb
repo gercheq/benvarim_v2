@@ -7,8 +7,14 @@ class Organization < ActiveRecord::Base
                       :styles => { :medium => "600x600>",
                                    :thumb => "200x200>" }
 
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email
+
+  index_map :fields => [:user_id, :name, :description, :website, :to_param],
+            :text => :name,
+            :logo => :visible_logo_url,
+            :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
   has_many :projects
   has_many :pages
@@ -22,6 +28,7 @@ class Organization < ActiveRecord::Base
   validate :validate_emails
 
   after_create :after_create_hook
+  after_save :after_save_hook
   before_save :before_save_hook
 
   validates :user_id, :presence => true
@@ -46,23 +53,15 @@ class Organization < ActiveRecord::Base
       :description => "#{self.name} için toplanacak genel bağışlar kurumun çeşitli projelerine destek olacaktır."
     })
     p.save
-
-    #create test paypal information
-    # self.paypal_info = PaypalInfo.new(
-    #   {"paypal_id_token"=>"r97EMyFtFL6r3bu1ETAacEQYMUeLw6NusWWsDoKb8ER1-hXdzSQ9RByY2hq",
-    #     "paypal_user"=>"satis_1298099260_biz@benvarim.com",
-    #     "organization_id" => self.id})
-    # self.paypal_info.save!
-
   end
 
   def before_save_hook
     # self.active = true
   end
 
-  # def to_param
-  #   "#{id}-#{name.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]
-  # end
+  def after_save_hook
+    puts "obj after save"
+  end
 
   def can_be_donated?
     self.active?
@@ -76,6 +75,9 @@ class Organization < ActiveRecord::Base
     self.available_organizations.collect  do |o| { :value => o.name, :id => o.id} end
   end
 
+  def visible_logo_url
+     self.logo.file? ? self.logo.url(:thumb) : '/stylesheets/images/logo.gif'
+  end
 
   private
     def sanitize_description_html

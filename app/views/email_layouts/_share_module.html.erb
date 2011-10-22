@@ -1,0 +1,61 @@
+<table>
+
+<% if defined?(page) && page != nil%>
+<tr>
+  <td><%=page.title%> </td>
+  <td> <%=render :partial => "layouts/like_link",
+      :locals => {
+        :url => page_path(page, :only_path => false),
+        :text => "Facebook'ta Paylaş"
+      }%>
+  </td>
+  <td> <%=render :partial => "layouts/tweet_link",
+      :locals => {
+        :url => page_path(page, :only_path => false),
+        :text => "Twitter'da Paylaş",
+        :tweet_text => page.title
+      }%>
+  </td>
+</tr>
+<% end %>
+
+<% if defined?(project) && project != nil%>
+<tr>
+  <td><%=project.name%></td>
+  <td><%=render :partial => "layouts/like_link",
+      :locals => {
+        :url => project_path(project, :only_path => false),
+        :text => "Facebook'ta Paylaş"
+      }%>
+  </td>
+  <td>
+    <%=render :partial => "layouts/tweet_link",
+        :locals => {
+          :url => project_path(project, :only_path => false),
+          :text => "Twitter'da Paylaş",
+          :tweet_text => project.name
+        }%>
+  </td>
+</tr>
+<% end %>
+
+<% if defined?(organization) && organization != nil%>
+<tr>
+  <td><%=organization.name%></td>
+  <td><%=render :partial => "layouts/like_link",
+      :locals => {
+        :url => organization_path(organization, :only_path => false),
+        :text => "Facebook'ta Paylaş"
+      }%>
+  </td>
+  <td><%=render :partial => "layouts/tweet_link",
+      :locals => {
+        :url => organization_path(organization, :only_path => false),
+        :text => "Twitter'da Paylaş",
+        :tweet_text => organization.name
+      }%>
+  </td>
+</tr>
+<% end%>
+
+</table>

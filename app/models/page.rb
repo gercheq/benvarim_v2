@@ -25,8 +25,8 @@
 #  cached_slug       :string(255)
 #
 
-
 class Page < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
@@ -49,10 +49,16 @@ class Page < ActiveRecord::Base
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
   validate :organization_and_project_active_validation
 
-  validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 100000
+  validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000000
   validates_numericality_of :collected, :greater_than_or_equal_to => 0
 
   has_friendly_id :friendly_id_with_user, :use_slug => true
+
+  index_map :fields => [:user_id, :project_id, :organization_id, :title, :description, :to_param],
+             :text => :index_text,
+             :human_readable_name => :index_text,
+             :logo => :visible_logo_url,
+             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
   def collect_ratio
     return 0 if (self.collected == 0 || self.goal == 0)
@@ -64,12 +70,16 @@ class Page < ActiveRecord::Base
     "%.0f" % self.collect_ratio
   end
 
+  def index_text
+    self.user.name + " - " + self.title
+  end
+
   def collected_str
-    "%.2f" % self.collected
+    number_with_precision(self.collected, :locale => :tr)
   end
 
   def goal_str
-    "%.2f" % self.goal
+    number_with_precision(self.goal, :locale => :tr)
   end
 
   def can_be_donated?
@@ -88,6 +98,10 @@ class Page < ActiveRecord::Base
   def friendly_id_with_user
     return "#{id}" if self.user == nil
     self.user.friendly_id
+  end
+
+  def visible_logo_url
+    self.logo.file? ? self.logo.url(:thumb) : self.project.visible_logo_url
   end
 
   private
