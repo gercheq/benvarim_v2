@@ -5,7 +5,7 @@
     var defaultFormat = function(item) {
         return $("<div></div>")
         .addClass("result")
-        .append($("<a href='/ara/d/" + item.docid + "'></a>").html(item.human_readable_name));
+        .append($("<a href='" + settings.urlPrefix + item.docid + "'></a>").html(item.human_readable_name));
     };
     var defaultSetupContainer = function($el) {
         $el.html("Arama Sonucları");
@@ -27,7 +27,8 @@
         facetFormat : defaultFacetFormat,
         runQueryAfterInit : true, //if text is not empty and there is a renderer, sends first query
         categoryFacetClass : "bv-search-facet",
-        categoryAttr : "bv-category"
+        categoryAttr : "bv-category",
+        urlPrefix : "/ara/d/"
     };
     $.fn.bvSearchAutocomplete = function(options) {
         var $this = this;
@@ -113,7 +114,7 @@
                     select : function(event, obj) {
                         event.preventDefault();
                         if(obj && obj.item && obj.item.id) {
-                            window.location = "/ara/d/" + obj.item.id;
+                            window.location = settings.urlPrefix + obj.item.id;
                         }
                     }
                 });
