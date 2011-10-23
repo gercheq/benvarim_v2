@@ -12,7 +12,7 @@
               <p><%= link_to page.organization.name, page.organization %> &raquo; <%= link_to page.project.name, page.project %>  &raquo; <%= link_to page.user.name, page.user %></p>
 
               <div class="condense-200">
-                <%= page.description %>
+                <%=truncate(page.description, :length => 200) %>
               </div>
 
               <div class="progress-bar-container clearfix">
@@ -56,7 +56,7 @@
         <% unless user_signed_in? && current_user.pages.length > 0 %>
           <%= link_to 'Ben de bağış sayfası yaratmak istiyorum!', new_page_path, :class=>"green button super" %>
         <% else %>
-          <%= link_to 'Ben de bağış sayfası yaratmak istiyorum!', new_page_path, :class=>"green button super" %>
+          <%= link_to 'Gönüllü ol, bağış sayfası oluştur!', new_page_path, :class=>"green button super" %>
         <% end %>
       </div>
 

@@ -1,0 +1,97 @@
+<div id="featured-content-2" class="clearfix">
+    <div class="fc-left rc-left">
+      <div class="fc-inner" id="fc-inner-individual">
+        <div class="steps rc clearfix">
+          <div class="step s-first" id="step-1">
+            <div class="s-number">1.</div>
+            <div class="s-content">Desteklemek istediğiniz vakıf ya da derneği seçin ve bağış sayfanızı oluşturun.</div>
+          </div>
+
+          <div class="step" id="step-2">
+            <div class="s-number">2.</div>
+            <div class="s-content">Bağış sayfanızı Facebook, Twitter ve diğer sosyal ağlar üzerinden aileniz ve yakın çevreniz ile paylaşın.</div>
+          </div>
+
+          <div class="step" id="step-3">
+            <div class="s-number">3.</div>
+            <div class="s-content">Topladığınız bağışlar otomatik olarak desteklediğiniz vakıf ya da dernek hesabına aktarılsın.</div>
+          </div>
+        </div> <!-- end of steps -->
+
+        <div class="campaign-form-container">
+          <h2>Gönüllü olmak istiyorum:</h2>
+          <%=render :partial => "layouts/quickstart_widget",
+            :locals => {
+              :available_organizations => @available_organizations
+            }
+          %>
+        </div>
+      </div><!-- end of .fc-inner -->
+      <div class="fc-inner" id="fc-inner-nonprofit">
+        <h2>Yeni Dernek ve Vakıf Kaydı</h2>
+        <p>Siz de çalıştığınız kurumu sosyal medya aracılığıyla daha da güçlendirmek, sesinizi geniş kitlelere ulaştırmak ve daha fazla bağış toplamak istiyorsanız hemen BenVarım.com'a üyelik başvurusu yapın.</p>
+
+         <%=link_to "Yeni Vakıf ve Dernek Kaydı", :new_organization, :class => "button super yellow button-primary no-margin"%>
+
+      </div>
+    </div>
+
+    <div class="fc-right">
+      <div class="profile profile-individual rc-right">
+        <div class="fc-inner">
+          <h3>Gönüllü olmak istiyorum:</h3>
+          <p>Benvarım’a üye olun, bağış sayfanızı yaratın, desteklediğiniz vakıf ve dernek için anında bağış toplamaya başlayın.</p>
+        </div>
+      </div>
+
+      <div class="profile profile-nonprofit opaque rc-right">
+        <div class="fc-inner">
+          <h3>Yeni Dernek <span class="amp">&amp;</span> Vakıf Kaydı:</h3>
+          <p>Organizasyonunuz için internet üzerinden bağış toplamak istiyorsanız, lütfen bizimle iletişime geçiniz.</p>
+        </div>
+      </div>
+
+    </div>
+</div><!-- end of #featured-content -->
+
+
+<div class="widget widget-light clearfix" id="featured-charities">
+    <div class="w-inner">
+      <div class="w-title">Destekleyebileceğiniz Kurumlar</div>
+      <a href="http://benvarim.com/kurum/unicef-turkiye-milli-komitesi" id="fc-unicef" title="UNICEF Türkiye Milli Komitesi">UNICEF Türkiye Milli Komitesi</a>
+      <a href="http://benvarim.com/kurum/nesin-vakfi" id="fc-nesin" title="Nesin Vakfı">Nesin Vakfı</a>
+      <a href="http://benvarim.com/kurum/ormana-kalkinma-ve-yardimlasma-vakfi" id="fc-ormana" title="Ormana Vakfı">Ormana Vakfı</a>
+      <!--
+      <a href="http://benvarim.com/kurum/cagdas-yasami-destekleme-dernegi" id="fc-cydd" class="fc-default" title="Çağdaş Yaşamı Destekleme Derneği">Çağdaş Yaşamı Destekleme Derneği</a>
+      -->
+      <a href="http://benvarim.com/kurum/turkish-educational-foundation-abd" id="fc-tef" class="fc-default" title="Turkish Educational Foundation">Turkish Educational Foundation</a>
+      <a href="/kurum/yeni" id="fc-item" class="fc-default" title="Yeni Vakıf ve Dernek Kaydı">Yeni Vakıf ve Dernek Kaydı</a>
+      <!--
+        <a href="#" id="fc-tema" class="opaque" title="TEMA">TEMA</a>
+        <a href="#" id="fc-iksv" class="opaque" title="IKSV">IKSV</a>
+        <a href="#" id="fc-tegv" class="opaque" title="TEGV">TEGV</a>
+        -->
+      <div class="more-link"><a href="/kurumlar">Tüm Kurumları Listele &raquo;</a></div>
+    </div>
+</div>
+
+
+<div id="main-content">
+  <div id="home-stats">
+  <%=render :partial => "projects/list_projects",
+    :locals => {
+      :show_edit_link => false,
+      :projects => @top_projects,
+      :hide_organization_link => true
+    }%>
+
+
+    <% if @top_pages.length > 0 %>
+    <%=render :partial => "pages/list_pages_condensed",
+      :locals => {
+        :title => "En çok bağış toplayanlar",
+        :pages => @top_pages
+      }%>
+    <% end %>
+  </div>
+</div><!-- end of #main-content -->

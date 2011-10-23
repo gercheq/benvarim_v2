@@ -11,7 +11,10 @@
         <div class="row-details">
           <h3><%= page.title %></h3>
           <div class="bagis-miktari"><%= page.collected_str%> <span>TL</span></div>
-          <blockquote class=""><span class="quotation">“ </span> <%= page.description %></blockquote>
+          <blockquote class="">
+            <span class="quotation">“ </span>
+            <%=truncate(page.description, :length => 100) %>
+          </blockquote>
         </div>
       </div><!-- end of .row -->
     <% end %>
@@ -19,7 +22,7 @@
       <% if @organization %>
         <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
       <% else %>
-        <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", :new_page, :class => "button green large"%>
+        <%=link_to "Gönüllü ol, bağış sayfası oluştur!", :new_page, :class => "button green large"%>
       <% end %>
     </div><!-- end of .row -->
     </div>

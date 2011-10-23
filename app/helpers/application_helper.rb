@@ -13,11 +13,19 @@ module ApplicationHelper
   end
 
   def body_id
-    "i-#{controller.controller_name}-#{controller.action_name}"
+    id = "i-#{controller.controller_name}-#{controller.action_name}"
+    if(controller.controller_name == "pages" && controller.action_name == "show" && @page != nil)
+      id += "-#{@page.id}"
+    end
+    id
   end
 
   def body_class
-    "c-#{controller.controller_name} c-#{controller.action_name}"
+    classes = "c-#{controller.controller_name} c-#{controller.action_name}"
+    if(controller.controller_name == "pages" && controller.action_name == "show" && @page != nil)
+      classes += " c-org-#{@page.organization.id}"
+    end
+    classes
   end
 
   def human_readable_datetime datetime

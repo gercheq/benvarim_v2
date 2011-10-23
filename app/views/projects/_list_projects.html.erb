@@ -18,7 +18,7 @@
             </div>
             <div class="row-details">
               <h3><%= link_to project.name, project %></h3>
-              <p><%=truncate(project.description, :length => 200) %></p>
+              <p><%=truncate(project.description, :length => 300) %></p>
               <% unless (defined?(hide_organization_link) && hide_organization_link == true)%>
                 <p><%= link_to project.organization.name, project.organization%></p>
               <% end %>

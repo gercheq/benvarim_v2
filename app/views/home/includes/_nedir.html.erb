@@ -1,0 +1,90 @@
+<div class="p-featured" id="nedir">
+  <div class="container">
+    <div class="line clearfix">
+      <div class="size1of2 pf-video">
+        <div class="pfv-inner">
+          <iframe src="http://player.vimeo.com/video/29056779?title=0&amp;byline=0&amp;portrait=0" width="100%" height="100%" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
+        </div>
+      </div>
+      <div class="size1of2 lastUnit pf-desc">
+        <div class="pfd-inner">
+          <h1>Daha yaşanır bir dünya için<br/>
+          harekete geçmeye var mısın?</h1>
+          <p>İnandığın derneklerin ve vakıfların projelerini
+          yarattığın bağış sayfaları ile destekle,
+          Facebook ve Twitter üzerinden çevrenle paylaş.
+          Topladığın bağışlar ile projelerin başarıya
+          ulaşmasında pay sahibi olmanın keyfini yaşa...
+          </p>
+          <div class="pf-links">
+            <%=link_to "Nasıl Çalışır?", :nasil_calisir, :class => "rc-top #{print_if_selected_tab :home, :nasil_calisir}", :id => "nav-nasil"%> | <%=link_to "Sık Sorulan Sorular", :sik_sorulan_sorular %>
+          </div>
+          <div class="pf-cta">
+            <%=link_to "Gönüllü ol, bağış sayfanı yarat", :new_page, :class => "button yellow large"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end of .container -->
+</div>
+
+<div class="container">
+
+  <div class="widget widget-light clearfix" id="featured-charities">
+      <div class="w-inner">
+        <div class="w-title">Destekleyebileceğiniz Kurumlar</div>
+        <a href="http://benvarim.com/kurum/unicef-turkiye-milli-komitesi" id="fc-unicef" title="UNICEF Türkiye Milli Komitesi">UNICEF Türkiye Milli Komitesi</a>
+        <a href="http://benvarim.com/kurum/nesin-vakfi" id="fc-nesin" title="Nesin Vakfı">Nesin Vakfı</a>
+        <a href="http://benvarim.com/kurum/ormana-kalkinma-ve-yardimlasma-vakfi" id="fc-ormana" title="Ormana Vakfı">Ormana Vakfı</a>
+        <!--
+        <a href="http://benvarim.com/kurum/cagdas-yasami-destekleme-dernegi" id="fc-cydd" class="fc-default" title="Çağdaş Yaşamı Destekleme Derneği">Çağdaş Yaşamı Destekleme Derneği</a>
+        -->
+        <a href="http://benvarim.com/kurum/turkish-educational-foundation-abd" id="fc-tef" class="fc-default" title="Turkish Educational Foundation">Turkish Educational Foundation</a>
+        <a href="/kurum/yeni" id="fc-item" class="fc-default" title="Yeni Vakıf ve Dernek Kaydı">Yeni Vakıf ve Dernek Kaydı</a>
+        <!--
+          <a href="#" id="fc-tema" class="opaque" title="TEMA">TEMA</a>
+          <a href="#" id="fc-iksv" class="opaque" title="IKSV">IKSV</a>
+          <a href="#" id="fc-tegv" class="opaque" title="TEGV">TEGV</a>
+          -->
+        <div class="more-link"><a href="/kurumlar">Tüm Kurumları Listele &raquo;</a></div>
+      </div>
+  </div>
+
+
+  <div class="line">
+    <div class="size1of2">
+      <%=render :partial => "projects/list_projects",
+        :locals => {
+          :show_edit_link => false,
+          :projects => @top_projects,
+          :hide_organization_link => true
+        }%>
+    </div>
+    <div class="size1of2 lastUnit">
+       <% if @top_pages.length > 0 %>
+        <%=render :partial => "pages/list_pages_condensed",
+          :locals => {
+            :title => "En çok bağış toplayanlar",
+            :pages => @top_pages
+          }%>
+        <% end %>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <div id="home-stats">
+
+
+
+
+    </div>
+  </div><!-- end of #main-content -->
+
+
+
+</div>
+
+
+
+
+
