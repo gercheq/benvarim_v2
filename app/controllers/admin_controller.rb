@@ -2,22 +2,25 @@
 class AdminController < ApplicationController
   before_filter :authenticate_admin!
   def impersonate
-    if params[:username]
+    if params[:k]
       user = nil
-      begin
-        user = User.find params[:username]
-      rescue
-        puts  "error"
-      end
-
-      if !user
-        user = User.find_by_email params[:username]
+      obj = BvSearch.find_by_doc_id params[:k]
+      if obj
+        #try to find user
+        if obj.is_a?(User)
+          user = obj
+        else
+          begin
+            user = obj.send("user")
+          rescue
+          end
+        end
       end
       if user
         flash[:notice] = user.name + "adına giriş yapıldı!"
         sign_out current_user
         sign_in_and_redirect user, :event => :authentication
-      elsif
+      else
         flash.now[:notice] = "kullanıcı bulunamadı, buyuk kucuk harf vs hepsi onemli!"
       end
 
