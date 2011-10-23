@@ -1,56 +1,15 @@
-<p>“Gönüllü ol, çevrenle paylaş, desteklediğin kurumu yapılan bağışlarla güçlendir!” </p>
+<div class="nedir-item">
+<h3>1) Gönüllü</h3>
+<p>Hemen sayfanızı yaratın ve gönülllüsü olduğunuz sivil toplum kuruluşu projelerini, facebook, twitter, eposta ve blog’unuz ile sosyal ağınıza duyurun.</p>
+<%=render :partial => "layouts/quickstart_widget",
+:locals => {
+  :available_organizations => @available_organizations
+}
+%>
+</div>
 
-<p>BenVarım’da kolaylıkla yaratacağınız bir sayfa ile akraba ve dostlarınıza en hızlı şekilde ulaşacak; destek olduğunuz sosyal yardım kuruluşu için en hızlı ve en eğlenceli yöntemle bağış toplanmasına aracı olacaksınız.</p>
-  <ol>
-    <li>Gönüllü olarak destekleyeceğiniz bir kurum belirleyin.</li>
-    <li>Bir tanıtım sayfası yarattın, bağış hedefi belirleyin ve çevrenizin ilgisini çekecek bir tanıtım yazısı yazın.</li>
-    <li>Facebook, Twitter, eposta ve blog gibi sosyal internet plaform’ları aracılığıyla, kişiselleştirdiğiniz sayfanızı yakın çevrenizle paylaşın.</li>
-    <li>Akraba, dost ve iş arkadaşlarınızın sizin aracılığınızla yapacağı bağışların hızla artmasını sağlayın. Daha fazla paylaşın, daha fazla bağış toplayın. </li>
-    <li>Topladığınız bağışlar otomatik olarak desteklediğiniz S.T.K.’nın hesabına giderken, yarattığınız sosyal bilinç ile gurur duyun!</li>
-  </ol>
-
-<p>
-  Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:
-  <%=render :partial => "layouts/quickstart_widget",
-    :locals => {
-      :available_organizations => @available_organizations
-    }
-  %>
-</p>
-
-
-
-<div id="main-content">
-  <div class="widget widget-light">
-    <div class="w-inner">
-      <div class="w-title">Nedir?</div>
-
-
-        <p>BenVarım, sosyal sorumluluk projeleri için bağış ve tanıtım platformudur.</p>
-
-        <p>Gönüllüsü olduğunuz vakıf veya derneğin, bağış kampanyasına katılarak kendinize bir web sayfası yaratabilirsiniz.  BenVarım ile, sosyal ağınızda bulunan arkadaş, akraba ve diğer gönüllülere kolayca ulaşacak ve daha fazla bağış toplanmasına aracı olacaksınız.</p>
-
-        <p>BenVarım, vakıf ve derneklerin seslerini daha geniş kitlelere ulaştırır.</p>
-
-        <p>BenVarım’ı iki şekilde kullanabilirsiniz:</p>
-
-        <div class="nedir-item">
-        <h3>1) GÖNÜLLÜ</h3>
-        <p>Hemen sayfanızı yaratın ve gönülllüsü olduğunuz sivil toplum kuruluşu projelerini, facebook, twitter, eposta ve blog’unuz ile sosyal ağınıza duyurun.</p>
-        <%=render :partial => "layouts/quickstart_widget",
-        :locals => {
-          :available_organizations => @available_organizations
-        }
-        %>
-        </div>
-
-        <div class="nedir-item">
-        <h3>2)	VAKIF veya DERNEK</h3>
-        <p>BenVarım’da kullanıcı adınızı yaratın ve proje ile kampanyalarınızı kolayca internet ortamına taşıyın. Gönüllülerinizin sosyal ağlarına kolayca ulaşarak hızlıca bağış toplamaya başlayın.</p>
-        <p><%=link_to "Yeni Vakıf ve Dernek Kaydı", :new_organization, :class => "button large green button-primary no-margin"%>
-        </p>
-        </div>
-
-      </div>
-    </div>
-</div><!-- end of #main-content -->
+<div class="nedir-item">
+<h3>2)	Vakıf veya Dernek</h3>
+<p>BenVarım’da kullanıcı adınızı yaratın ve proje ile kampanyalarınızı kolayca internet ortamına taşıyın. Gönüllülerinizin sosyal ağlarına kolayca ulaşarak hızlıca bağış toplamaya başlayın.</p>
+<p><%=link_to "Yeni Vakıf ve Dernek Kaydı", :new_organization, :class => "button large green button-primary no-margin"%></p>
+</div>

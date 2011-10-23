@@ -1238,6 +1238,15 @@ blockquote span.quotation{
     width: 114px;
 }
 
+#fc-tegv{
+    background: url('../images/logo-tegv.png') top center;
+    width: 114px;
+}
+
+#fc-bugday{
+    background: url('../images/logo-bugday.png') top center;
+    width: 114px;
+}
 
 #featured-charities .opaque {
       filter: alpha(opacity=20);
