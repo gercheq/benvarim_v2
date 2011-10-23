@@ -22,6 +22,7 @@ Benvarim::Application.routes.draw do
   get "/hakkimizda" => "home#hakkimizda", :as => :hakkimizda
   get "/gizlilik_politikasi" => "home#gizlilik_politikasi", :as => :gizlilik_politikasi
   get "/kariyer" => "home#kariyer", :as => :kariyer
+  get "/basinda_benvarim" => "home#basinda_benvarim", :as => :basinda_benvarim
 
 
 

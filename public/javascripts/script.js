@@ -57,7 +57,7 @@ function init_registration(){
 // FAQ
 //
 function init_accordion(){
-  $('.accordion h3').click(function(){
+  $('.accordion h4').click(function(){
     $(this).next().slideToggle();
   })
 };

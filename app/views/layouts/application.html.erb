@@ -1,11 +1,15 @@
 <%= render 'layouts/header'%>
 
 <div id="content" class="clearfix">
-  <div class="container">
-    <%#render :partial => 'layouts/errors'%>
-
+  <% if is_in_home_controller %>
     <%= yield %>
-  </div>
+  <% else %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  <% end %>
+
+
 </div><!-- end of #container -->
 
 

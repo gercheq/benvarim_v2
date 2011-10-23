@@ -1,9 +1,9 @@
 <div class="form-links">
   <%- if controller_name != 'sessions' %>
-    <%= link_to "Daha önce kayıt olduysanız, lütfen giriş yapınız.", new_session_path(resource_name) %>
+    <%= link_to "Daha önce kayıt olduysan, giriş yapabilirsin.", new_session_path(resource_name) %>
   <% end -%>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "Daha önce kayıt olmadıysan, hemen ücretsiz kayıt ol!", new_user_registration_path %>
+    <%= link_to "Daha önce kayıt olmadıysan, hemen ücretsiz kaydol!", new_user_registration_path %>
   <% end -%>
 
 </div>

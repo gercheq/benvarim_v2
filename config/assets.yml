@@ -32,4 +32,5 @@ stylesheets:
     - public/stylesheets/facebox.css
     - public/stylesheets/buttons.css
     - public/stylesheets/grids.css
+    - public/stylesheets/page.css
     - public/stylesheets/login-registration.css

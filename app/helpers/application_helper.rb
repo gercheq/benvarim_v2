@@ -7,6 +7,10 @@ module ApplicationHelper
     "selected"
   end
 
+  def is_in_home_controller
+    return controller.controller_name == "home"
+  end
+
   def human_readable_datetime datetime
     if datetime.nil?
       return '-'
