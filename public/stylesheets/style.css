@@ -1650,6 +1650,7 @@ blockquote span.quotation{
       margin-bottom: 0;
       font-style: italic;
       font-size: 18px;
+      margin-right: 30px;
     }
 
     .comment-bubble h6,
@@ -1658,17 +1659,14 @@ blockquote span.quotation{
       float: left;
     }
 
-    .share-options {
-      float: right;
-    }
 
     .share-options ul{
      list-style: none;
+     margin-left:0 ;
     }
 
     .share-options li {
      float: left;
-     margin-left: 10px;
      height: 20px;
      line-height: 20px;
      font-size: 12px;
