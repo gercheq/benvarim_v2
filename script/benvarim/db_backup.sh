@@ -20,8 +20,7 @@ curl -o latest.dump `heroku pgbackups:url --app bprod`;
 #email it
 echo "emailing backup"
 uuencode latest.dump benvarim_prod | mail -s "db backup $now" iletisim@benvarim.com
-echo "importing packup to local postgres"
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -U benvarim -d benvarim latest.dump
+sh restore.sh
 #delete it
 echo "moving backup w/ today's date"
 # rm -rf latest.dump
