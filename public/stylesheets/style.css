@@ -743,7 +743,7 @@ p{
 .search-loading  input,
 .search-loading  input:focus,
 .search-loading  input:active {
-  background: #ecf5ff url('../images/search-loading.gif') no-repeat 250px 4px;
+  background: #ecf5ff url('/stylesheets/images/search-loading.gif') no-repeat 250px 4px;
 
 }
 
