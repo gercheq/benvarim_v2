@@ -712,6 +712,7 @@ p{
 .un-search{
   float: left;
   margin-right: 10px;
+  display:none;
 }
 
 .un-search input{
@@ -1786,6 +1787,28 @@ blockquote span.quotation{
       float: right;
     }
 
+
+    /*
+     * PROGRESS BAR - SMALL
+     */
+    .pb-small {
+      width: 206px;
+      font-size: 11px;
+      height: 20px;
+    }
+
+    .pb-small .pb-value{
+        background: url('images/progress_bar_small.png') 0 0 repeat-y;
+        height: 100%;
+     }
+     .pb-small .pb-hedef {
+       display: none;
+     }
+
+     .pb-small .pb-toplanan,
+     .pb-small .pb-hedef{
+       line-height: 26px;
+     }
 
 
     /*

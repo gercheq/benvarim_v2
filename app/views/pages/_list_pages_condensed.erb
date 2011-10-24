@@ -10,11 +10,32 @@
         </div>
         <div class="row-details">
           <h3><%= page.title %></h3>
-          <div class="bagis-miktari"><%= page.collected_str%> <span>TL</span></div>
           <blockquote class="">
             <span class="quotation">“ </span>
             <%=truncate(page.description, :length => 100) %>
           </blockquote>
+
+          <div class="pb-container-small clearfix">
+            <div class="progress-bar rc clearfix pb-small">
+              <div class="pb-value rc" style="width: <%= page.collect_ratio_str%>%;">
+                <div class="pb-reflection rc"></div>
+                <div class="pb-hedef">HEDEF: <b><%= page.goal_str %> TL</b></div>
+                <div class="pb-toplanan">
+                  <% if page.collected < 1 && page.active? %>
+                    İlk bağış yapan sen ol!
+                  <% else %>
+                    Toplanan: <b><%= page.collected_str %> TL</b>
+                  <% end%>
+                </div>
+              </div>
+            </div>
+            <% if page.can_be_donated? %>
+            <div class="pb-action">
+              <%=link_to "Destekle", page, :class => "yellow button small no-margin"  %>
+            </div>
+            <% end %>
+          </div><!-- .pb-container-small -->
+
         </div>
       </div><!-- end of .row -->
     <% end %>
