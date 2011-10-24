@@ -698,23 +698,55 @@ p{
 #utility-nav{
   cursor:pointer;
   background:#2e6093 url('images/utility_background.jpg') repeat-x scroll 0 0;
-  position:absolute; right:0; bottom: -1px;
-  z-index:10;
-  height: 20px;
-  position:absolute; top:5px; right:0;
-  padding: 5px 15px;
-  opacity: .8;
+  z-index: 10;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  padding: 0 10px 8px 5px ;
   color: #EEE;
   width: auto;
-  text-align: left;}
+  text-align: left;
+  height: 25px;
+}
+
+.un-search{
+  float: left;
+  margin-right: 10px;
+}
+
+.un-search input{
+  border: 1px solid #6eaeef;
+  -moz-box-shadow: 0 0 5px #00264d inset;
+  -webkit-box-shadow: 0 0 5px #00264d inset;
+  box-shadow: 0 0 5px #00264d inset;
+  color: #6d93bc;
+  line-height: 16px;
+  height: 16px;
+  padding: 5px 8px;
+  font-size: 12px;
+  padding-right: 30px;
+  width: 200px;
+  background: #ecf5ff url('../images/v2/search-icon.png') no-repeat 210px 2px;
+}
+
+.un-login-registration{
+  float: right;
+  line-height: 24px;
+}
+
+.un-search input:focus,
+.un-search input:active{
+  background: #FFF url('../images/v2/search-icon.png') no-repeat 210px 2px;
+}
 
 
 #utility-nav a{
-  color:#FFF;
-  height:16px;
-  line-height:16px;
+  color: #FFF;
+  height: 28px;
+  line-height: 28px;
   text-transform: capitalize;
-  font-weight: bold;
+  font-weight: normal;
+  padding: 5px;
 }
 
 

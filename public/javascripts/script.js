@@ -73,11 +73,7 @@ $(document).ready(function(){
 
   init_registration();
 
-
-
   init_accordion();
-
-
 
   fadeInOrder( $("#step-1") );
 
@@ -153,6 +149,10 @@ $(document).ready(function(){
 	});
 
 
+
+  $('.pfv-inner').click(function(){
+    $(this).html('<iframe src="http://player.vimeo.com/video/29056779?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933&amp;autoplay=1" width="100%" height="100%" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>');
+  });
 
   /*
   $('.truncate-short').truncatable({
@@ -236,7 +236,7 @@ $("a.popup").click(function(e) {
 $(document).ready(function(){
     // // let the form be 'indextank-aware'
     //  $("#search_form").indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
-    //          
+    //
     //          var customFormat = function(item){
     //              return $("<div></div>")
     //                  .addClass("result")
@@ -245,22 +245,22 @@ $(document).ready(function(){
     //          var customSetupContainer = function($el) {
     //              $el.html("Search results!");
     //          }
-    //  
+    //
     //  var r = $("#search_renderer").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
     //  $("#search_query").indextank_AjaxSearch({listeners: r,
     //      fields: "name, human_readable_name",
     //      rewriteQuery : function(t) {return t;}});
-    //  
+    //
     //  //keep it global for testing
     //  searchForm = $("<form></form>");
     //  searchInput = $("<input type='text'>");
     //  searchForm.append(searchInput);
     //  searchForm.indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
     //  searchDummyRenderer = $("<div/>").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
-    //  
+    //
     //  searchInput.indextank_AjaxSearch({listeners: searchDummyRenderer,
     //      fields: "name, human_readable_name"});
-    //      
+    //
     //  var searchCb = function(e, data) {
     //      var results = [];
     //      if(data && data.results) {
@@ -273,15 +273,15 @@ $(document).ready(function(){
     //      }
     //      callback = $("#search_query").data("bv.cb");
     //      callback && callback(results);
-    //  };   
-    //  searchDummyRenderer.bind("Indextank.AjaxSearch.success", searchCb); 
+    //  };
+    //  searchDummyRenderer.bind("Indextank.AjaxSearch.success", searchCb);
     //  $("#search_query").autocomplete({
     //      source: function(x,callback) {
     //          var term = x.term;
     //          $("#search_query").data("bv.cb", callback);
     //          searchInput.val(term);
     //          searchInput.submit();
-    //          
+    //
     //      },
     //      minLength: 1,
     //      select : function(event, obj) {

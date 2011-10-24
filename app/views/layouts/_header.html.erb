@@ -81,11 +81,18 @@
         </div>
 
         <div id="utility-nav" class="rc-bottom">
+          <div class="un-search">
+            <form id="un-search-form" action="/ara/">
+              <input type="text" class="rc" name="k" id="search_query" value="<%=@keyword%>">
+            </form>
+          </div>
+          <div class="un-login-registration">
             <% if user_signed_in? %>
               Merhaba, <%= link_to (current_user.name ? current_user.name : current_user.email), user_path(current_user) %> | <%= link_to "Çıkış", destroy_user_session_path %>
             <% else %>
             	<%= link_to "Giriş", new_user_session_path %> |	<%= link_to "Kayıt", new_user_registration_path %>
             <% end %>
+          </div>
         </div>
 
       </div>
