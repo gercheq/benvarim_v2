@@ -209,27 +209,6 @@ $(document).ready(function(){
 });
 
 
-setTimeout(function(){
-  $.facebox.settings.closeImage = '/stylesheets/images/closelabel.png';
-  $.facebox.settings.loadingImage = '/stylesheets/images/loading.gif';
-  //
-  $('a[rel*=facebox]').facebox();
-}, 100);
-
-$(".more-link").live("click", function() {
-    // debugger;
-    var that = this;
-    $(that).html("<img src='/images/ajax-loader.gif'>");
-    $.ajax({
-        type: "GET",
-        url: $(that).attr("url"),
-        cache: false,
-        success: function(html){
-            $(that).before(html);
-            $(that).remove();
-        }
-    });
-});
 
 function popupCenter(url, width, height, name) {
   var left = (screen.width/2)-(width/2);
@@ -237,68 +216,33 @@ function popupCenter(url, width, height, name) {
   return window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
 }
 
-$("a.popup").click(function(e) {
-  popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
-  e.stopPropagation(); return false;
-});
-
 //indextank search autocomplete codes
 $(document).ready(function(){
-    // // let the form be 'indextank-aware'
-    //  $("#search_form").indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
-    //
-    //          var customFormat = function(item){
-    //              return $("<div></div>")
-    //                  .addClass("result")
-    //                  .append( $("<a href='/ara/d/" + item.docid + "'></a>").html(item.human_readable_name) );
-    //          }
-    //          var customSetupContainer = function($el) {
-    //              $el.html("Search results!");
-    //          }
-    //
-    //  var r = $("#search_renderer").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
-    //  $("#search_query").indextank_AjaxSearch({listeners: r,
-    //      fields: "name, human_readable_name",
-    //      rewriteQuery : function(t) {return t;}});
-    //
-    //  //keep it global for testing
-    //  searchForm = $("<form></form>");
-    //  searchInput = $("<input type='text'>");
-    //  searchForm.append(searchInput);
-    //  searchForm.indextank_Ize(Bv.Config.Search.publicApiUrl, Bv.Config.Search.indexName);
-    //  searchDummyRenderer = $("<div/>").indextank_Renderer({format: customFormat, setupContainer:customSetupContainer});
-    //
-    //  searchInput.indextank_AjaxSearch({listeners: searchDummyRenderer,
-    //      fields: "name, human_readable_name"});
-    //
-    //  var searchCb = function(e, data) {
-    //      var results = [];
-    //      if(data && data.results) {
-    //          $(data.results).each(function(i, obj) {
-    //              results.push({
-    //                  id : obj.docid,
-    //                  label : obj.human_readable_name
-    //                  });
-    //          });
-    //      }
-    //      callback = $("#search_query").data("bv.cb");
-    //      callback && callback(results);
-    //  };
-    //  searchDummyRenderer.bind("Indextank.AjaxSearch.success", searchCb);
-    //  $("#search_query").autocomplete({
-    //      source: function(x,callback) {
-    //          var term = x.term;
-    //          $("#search_query").data("bv.cb", callback);
-    //          searchInput.val(term);
-    //          searchInput.submit();
-    //
-    //      },
-    //      minLength: 1,
-    //      select : function(event, obj) {
-    //          event.preventDefault();
-    //          if(obj && obj.item && obj.item.id) {
-    //              window.location = "/ara/d/" + obj.item.id;
-    //          }
-    //      }
-    //  });
+    $("a.popup").click(function(e) {
+      popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
+      e.stopPropagation(); return false;
+    });
+
+    setTimeout(function(){
+      $.facebox.settings.closeImage = '/stylesheets/images/closelabel.png';
+      $.facebox.settings.loadingImage = '/stylesheets/images/loading.gif';
+      //
+      $('a[rel*=facebox]').facebox();
+    }, 100);
+
+    $(".more-link").live("click", function() {
+        // debugger;
+        var that = this;
+        $(that).html("<img src='/images/ajax-loader.gif'>");
+        $.ajax({
+            type: "GET",
+            url: $(that).attr("url"),
+            cache: false,
+            success: function(html){
+                $(that).before(html);
+                $(that).remove();
+            }
+        });
+    });
+    
 });

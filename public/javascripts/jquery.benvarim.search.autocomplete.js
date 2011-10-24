@@ -88,19 +88,19 @@
                 });
 
                 searchDummyRenderer.bind("Indextank.AjaxSearch.success",
-                function(e, data) {
-                    var results = [];
-                    if (data && data.results) {
-                        $(data.results).each(function(i, obj) {
-                            results.push({
-                                id: obj.docid,
-                                label: obj.human_readable_name
+                    function(e, data) {
+                        var results = [];
+                        if (data && data.results) {
+                            $(data.results).each(function(i, obj) {
+                                results.push({
+                                    id: obj.docid,
+                                    label: obj.human_readable_name
+                                });
                             });
-                        });
-                    }
-                    callback = $inputElm.data("bv.cb");
-                    callback && callback(results);
-                });
+                        }
+                        callback = $inputElm.data("bv.cb");
+                        callback && callback(results);
+                    });
 
                 $inputElm.autocomplete({
                     source: function(x,callback) {
@@ -121,28 +121,29 @@
                 if(settings.renderer) {
 
 
-                var updateCategories = function() {
-                    var searchBase = $inputElm.data("Indextank.AjaxSearch");
-                    searchBase.defaultQuery.resetCategoryFilters();
-                    if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
-                        var types = $inputElm.attr(settings.categoryAttr).split();
-                        if(types.length) {
-                            searchBase.defaultQuery.withCategoryFilters({
-                                type : types
-                            });
+                    var updateCategories = function() {
+                        var searchBase = $inputElm.data("Indextank.AjaxSearch");
+                        searchBase.defaultQuery.resetCategoryFilters();
+                        if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
+                            var types = $inputElm.attr(settings.categoryAttr).split();
+                            if(types.length) {
+                                searchBase.defaultQuery.withCategoryFilters({
+                                    type : types
+                                });
+                            }
+
                         }
-
-                    }
-                };
-                updateCategories();
-                $(".bv-search-facet").live("click", function() {
-                    $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
+                    };
                     updateCategories();
-                });
-                $inputElm.bind("updateCategory", updateCategories);
+                    $(".bv-search-facet").live("click", function() {
+                        $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
+                        updateCategories();
+                    });
+                    $inputElm.bind("updateCategory", updateCategories);
 
-                if(settings.renderer && settings.runQueryAfterInit && $inputElm.val().length > 0) {
-                    $that.submit();
+                    if(settings.renderer && settings.runQueryAfterInit && $inputElm.val().length > 0) {
+                        $that.submit();
+                    }
                 }
 
             });
