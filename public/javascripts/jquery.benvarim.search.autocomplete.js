@@ -60,6 +60,7 @@
                         });
                         listeners.push(fr);
                     }                    
+                    
                     $inputElm.indextank_AjaxSearch({
                         listeners: listeners,
                         fields: "name, human_readable_name, description, logo",
@@ -70,11 +71,12 @@
                                 query += " OR text:\"" + w + "\"";
                                 query += " OR description:\"" + w + "\"";
                             });
-                            
+
                             return query;
                         }
                     });
                 };
+                
                 
 
                 var searchForm = $("<form></form>");
@@ -119,25 +121,28 @@
                     }
                 });
                 
-                var updateCategories = function() {
-                    var searchBase = $inputElm.data("Indextank.AjaxSearch");
-                    searchBase.defaultQuery.resetCategoryFilters();
-                    if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
-                        var types = $inputElm.attr(settings.categoryAttr).split();
-                        if(types.length) {
-                            searchBase.defaultQuery.withCategoryFilters({
-                                type : types
-                            });
-                        }
+                if(settings.renderer) {
+                    var updateCategories = function() {
+                        var searchBase = $inputElm.data("Indextank.AjaxSearch");
+                        searchBase.defaultQuery.resetCategoryFilters();
+                        if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
+                            var types = $inputElm.attr(settings.categoryAttr).split();
+                            if(types.length) {
+                                searchBase.defaultQuery.withCategoryFilters({
+                                    type : types
+                                });
+                            }
                         
-                    }
-                };
-                updateCategories();
-                $(".bv-search-facet").live("click", function() {
-                    $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
+                        }
+                    };
                     updateCategories();
-                });
-                $inputElm.bind("updateCategory", updateCategories);
+                    $(".bv-search-facet").live("click", function() {
+                        $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
+                        updateCategories();
+                    });
+                    $inputElm.bind("updateCategory", updateCategories);
+                }
+                
                 
                 if(settings.renderer && settings.runQueryAfterInit && $inputElm.val().length > 0) {
                     $that.submit();

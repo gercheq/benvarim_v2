@@ -194,6 +194,13 @@ $(document).ready(function(){
 	});
 */
 
+    $("#un-search-form").bvSearchAutocomplete({
+      renderer : null,
+      format : null,
+      facetRenderer : null,
+      facetFormat : null
+    });
+
 
 
 });
