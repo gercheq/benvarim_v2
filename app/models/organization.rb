@@ -49,7 +49,7 @@ class Organization < ActiveRecord::Base
   def after_create_hook
     #create default project
     p = self.projects.build({
-      :name => "Genel Bağış",
+      :name => "#{self.name} - Genel Bağış",
       :description => "#{self.name} için toplanacak genel bağışlar kurumun çeşitli projelerine destek olacaktır."
     })
     p.save
