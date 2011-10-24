@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.all
+    @pages = Page.order("collected desc")
   end
 
   def my_pages
