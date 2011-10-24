@@ -255,5 +255,7 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $(['/stylesheets/images/search-loading.gif']).preload();
 
 });
