@@ -729,6 +729,12 @@ p{
   background: #ecf5ff url('../images/v2/search-icon.png') no-repeat 250px 2px;
 }
 
+.search-loading  .un-search input{
+  background: #ecf5ff url('images/search-loading.gif') no-repeat 250px 2px;
+
+}
+
+
 .un-login-registration{
   float: right;
   line-height: 24px;
