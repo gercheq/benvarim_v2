@@ -729,10 +729,6 @@ p{
   background: #ecf5ff url('../images/v2/search-icon.png') no-repeat 250px 2px;
 }
 
-.search-loading  input{
-  background: #ecf5ff url('../images/search-loading.gif') no-repeat 250px 4px;
-
-}
 
 
 .un-login-registration{
@@ -745,6 +741,12 @@ p{
   background: #FFF url('../images/v2/search-icon.png') no-repeat 250px 2px;
 }
 
+.search-loading  input,
+.search-loading  input:focus,
+.search-loading  input:active {
+  background: #ecf5ff url('../images/search-loading.gif') no-repeat 250px 4px;
+
+}
 
 #utility-nav a{
   color: #FFF;
