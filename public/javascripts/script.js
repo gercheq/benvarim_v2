@@ -95,6 +95,9 @@ $(document).ready(function(){
   $('.row').hover(  function(){ $(this).addClass('row-hover'); },
                     function(){ $(this).removeClass('row-hover'); });
 
+
+
+
   // Trigger link in the row element, if user clicks on the row
   $('.row').click(function(){
     var url = $(this).find('a').attr('href');
