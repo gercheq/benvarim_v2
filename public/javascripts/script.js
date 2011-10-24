@@ -202,7 +202,7 @@ $(document).ready(function(){
       format : null,
       facetRenderer : null,
       facetFormat : null,
-      searchingClass : "search-loading"
+      autocompleteSearchingClass : "search-loading"
     });
 
 

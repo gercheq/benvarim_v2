@@ -30,7 +30,7 @@
         categoryAttr : "bv-category",
         urlPrefix : "/ara/d/",
         loadingIcon : null,
-        searchingClass : null
+        autocompleteSearchingClass : null
     };
     $.fn.bvSearchAutocomplete = function(options) {
         var $this = this;
@@ -92,21 +92,6 @@
                                 settings.loadingIcon.hide();
                             });
                     }
-                    if(settings.searchingClass) {
-                        $inputElm.bind("Indextank.AjaxSearch.success",
-                            function() {
-                                $that.removeClass(settings.searchingClass);
-                            });
-                        $inputElm.bind("Indextank.AjaxSearch.searching",
-                            function() {
-                                $that.addClass(settings.searchingClass);
-                            });
-                        $inputElm.bind("Indextank.AjaxSearch.failure",
-                            function() {
-                                $that.removeClass(settings.searchingClass);
-                            });
-                    }
-                    
                 };
                 
                 
@@ -136,6 +121,21 @@
                         callback = $inputElm.data("bv.cb");
                         callback && callback(results);
                     });
+                    
+                if(settings.autocompleteSearchingClass) {
+                    searchInput.bind("Indextank.AjaxSearch.success",
+                        function() {
+                            $that.removeClass(settings.autocompleteSearchingClass);
+                        });
+                    searchInput.bind("Indextank.AjaxSearch.searching",
+                        function() {
+                            $that.addClass(settings.autocompleteSearchingClass);
+                        });
+                    searchInput.bind("Indextank.AjaxSearch.failure",
+                        function() {
+                            $that.removeClass(settings.autocompleteSearchingClass);
+                        });
+                }
 
                 $inputElm.autocomplete({
                     source: function(x,callback) {
