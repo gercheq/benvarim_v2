@@ -28,7 +28,8 @@
         runQueryAfterInit : true, //if text is not empty and there is a renderer, sends first query
         categoryFacetClass : "bv-search-facet",
         categoryAttr : "bv-category",
-        urlPrefix : "/ara/d/"
+        urlPrefix : "/ara/d/",
+        loadingIcon : null
     };
     $.fn.bvSearchAutocomplete = function(options) {
         var $this = this;
@@ -60,6 +61,7 @@
                         });
                         listeners.push(fr);
                     }
+                    
                     $inputElm.indextank_AjaxSearch({
                         listeners: listeners,
                         fields: "name, human_readable_name, description, logo",
@@ -74,7 +76,26 @@
                             return query;
                         }
                     });
+                    
+                    if(settings.loadingIcon) {
+                        $inputElm.bind("Indextank.AjaxSearch.success",
+                            function() {
+                                settings.loadingIcon.hide();
+                            });
+                        $inputElm.bind("Indextank.AjaxSearch.searching",
+                            function() {
+                                settings.loadingIcon.show();
+                            });
+                        $inputElm.bind("Indextank.AjaxSearch.failure",
+                            function() {
+                                settings.loadingIcon.hide();
+                            });
+                    }
+                    
+                    
                 };
+                
+                
 
                 var searchForm = $("<form></form>");
                 var searchInput = $("<input type='text'>");
@@ -119,8 +140,6 @@
                 });
 
                 if(settings.renderer) {
-
-
                     var updateCategories = function() {
                         var searchBase = $inputElm.data("Indextank.AjaxSearch");
                         searchBase.defaultQuery.resetCategoryFilters();

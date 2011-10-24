@@ -116,9 +116,11 @@
                             data.searcher = base.$el;
                             // notify our listeners
                             base.options.listeners.trigger("Indextank.AjaxSearch.success", data);
+                            base.$el.trigger("Indextank.AjaxSearch.success");
                             },
                 error: function( jqXHR, textStatus, errorThrown) {
                             base.options.listeners.trigger("Indextank.AjaxSearch.failure");
+                            base.$el.trigger("Indextank.AjaxSearch.failure");
                 }
             } );
         } 

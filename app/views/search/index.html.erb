@@ -1,6 +1,6 @@
 <div class="widget widget-light widget-kurum" id="list-pages">
   <div class="w-inner clearfix">
-    <div class="w-title">Arama Sonuçları</div>
+    <div class="w-title">Arama Sonuçları <img id="search-loading-icon" style="display:none" src='/images/ajax-loader.gif'></div>
     <div class="w-content search-page">
       <form id="search_form" style="display:none;">
         <input type="text"  name="k" id="search_query" value="<%=@keyword%>">
@@ -15,24 +15,20 @@
   </div>
 </div>
 
-
-<% if @results %>
-<%=debug @results%>
-
-<% end %>
-
 <% captured = capture do %>
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
     $("#search_form").bvSearchAutocomplete({
       renderer : $("#search_renderer"),
       format : function(item) {
-        return $.tmpl("<div class='row clearfix'><div class='row-photo clearfix'><a href='/ara/d/${docid}'><img src='${logo}'></a></div><div class='row-details'><h3><a href='/ara/d/${docid}'>${human_readable_name}</a></h3><p>${description}</p></div></div>", item);
+        var tmpl = "<div class='row clearfix'><div class='row-photo clearfix'><a href='/ara/d/" + item.docid + "'><img src='" + item.logo+ "'></a></div><div class='row-details'><h3><a href='/ara/d/" + item.docid + "'>" + item.human_readable_name + "</a></h3><p>"+item.description+"</p></div></div>";
+        return $(tmpl);
       },
       facetRenderer : $("#facet_renderer"),
       facetFormat : function(facet) {
 
-      }
+      },
+      loadingIcon : $("#search-loading-icon")
 
 
     });

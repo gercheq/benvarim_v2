@@ -11,7 +11,7 @@ javascripts:
     - public/javascripts/jquery-ui.min.js
     - public/javascripts/jquery.cookie.js
     - public/javascripts/jquery.condense.js
-    - public/javascripts/facebox.js
+    # - public/javascripts/jquery.tmpl.min.js
     - public/javascripts/plugins.js
     # - public/javascripts/jquery.autocomplete.js
     - public/javascripts/jquery.indextank.ize.js
@@ -20,8 +20,9 @@ javascripts:
     # - public/javascripts/jquery.indextank.autocomplete.js
     - public/javascripts/jquery.indextank.renderer.js
     - public/javascripts/jquery.benvarim.search.autocomplete.js
-    - public/javascripts/jquery.tmpl.min.js
+
     - public/javascripts/jquery.benvarim.facetsrenderer.js
+    - public/javascripts/facebox.js
     - public/javascripts/script.js
 
 
