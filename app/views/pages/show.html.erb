@@ -100,8 +100,8 @@
                   <!--<%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>-->
                 </div><!-- end of .row -->
               <% else %>
-                <p><%= @page.user.name%> ilk destekçisini bekliyor. İlk bağış yapan sen ol!</p>
-                <%=link_to "İlk bağış yapan ben olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin", :rel => "facebox"%>
+                <p><%= @page.user.name%> ilk destekçisini bekliyor.</p>
+                <%=link_to "İlk bağış yapan sen ol!", donate_popup_for_page_path(@page), :class => "yellow button no-margin", :rel => "facebox"%>
               <% end %>
 
 
