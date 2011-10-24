@@ -223,12 +223,22 @@ $(document).ready(function(){
       e.stopPropagation(); return false;
     });
 
+    /*
     setTimeout(function(){
       $.facebox.settings.closeImage = '/stylesheets/images/closelabel.png';
       $.facebox.settings.loadingImage = '/stylesheets/images/loading.gif';
       //
       $('a[rel*=facebox]').facebox();
-    }, 100);
+    }, 1000);
+    */
+
+
+
+    $.facebox.settings.closeImage = '/stylesheets/images/closelabel.png';
+    $.facebox.settings.loadingImage = '/stylesheets/images/loading.gif';
+
+    $('a[rel*=facebox]').facebox();
+
 
     $(".more-link").live("click", function() {
         // debugger;
@@ -244,5 +254,5 @@ $(document).ready(function(){
             }
         });
     });
-    
+
 });

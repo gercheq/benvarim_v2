@@ -2396,6 +2396,13 @@ blockquote span.quotation{
 }
 
 
+.ui-autocomplete{
+  -moz-box-shadow: 0 5px 5px #AAA;
+  -webkit-box-shadow: 0 5px 5px #AAA;
+  box-shadow: 0 5px 5px #AAA;
+
+}
+
 
 
 /*
