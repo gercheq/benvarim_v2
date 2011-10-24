@@ -41,12 +41,12 @@
     <% end %>
     <div class="row row-action">
       <% if defined?(link_to_pages) && link_to_pages == true%>
-        <%=link_to "Tüm Sayfalar", all_pages_path, :class => "green button large" %>
+        <%=link_to "Tüm bağış sayfalarını görüntüle", all_pages_path, :class => "show-all" %>
       <% else %>
         <% if @organization %>
-          <%=link_to "Ben de bağış sayfası yaratmak istiyorum!", new_page_for_organization_path(@organization), :class => "green button large" %>
+          <%=link_to "Gönüllü ol, bağış sayfanı yarat!", new_page_for_organization_path(@organization), :class => "green button large" %>
         <% else %>
-          <%=link_to "Gönüllü ol, bağış sayfası oluştur!", :new_page, :class => "button green large"%>
+          <%=link_to "Gönüllü ol, bağış sayfanı yarat!", :new_page, :class => "button green large"%>
         <% end %>
       <% end %>
     </div><!-- end of .row -->
