@@ -201,7 +201,8 @@ $(document).ready(function(){
       renderer : null,
       format : null,
       facetRenderer : null,
-      facetFormat : null
+      facetFormat : null,
+      searchingClass : "search-loading"
     });
 
 

@@ -726,9 +726,8 @@ p{
   font-size: 12px;
   padding-right: 30px;
   width: 240px;
-  background: #ecf5ff url('../images/v2/search-icon.png') no-repeat 250px 2px;
+  background: #ecf5ff url('/stylesheets/images/v2/search-icon.png') no-repeat 250px 2px;
 }
-
 
 
 .un-login-registration{

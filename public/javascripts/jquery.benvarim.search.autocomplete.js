@@ -29,7 +29,8 @@
         categoryFacetClass : "bv-search-facet",
         categoryAttr : "bv-category",
         urlPrefix : "/ara/d/",
-        loadingIcon : null
+        loadingIcon : null,
+        searchingClass : null
     };
     $.fn.bvSearchAutocomplete = function(options) {
         var $this = this;
@@ -91,7 +92,20 @@
                                 settings.loadingIcon.hide();
                             });
                     }
-                    
+                    if(settings.searchingClass) {
+                        $inputElm.bind("Indextank.AjaxSearch.success",
+                            function() {
+                                $that.removeClass(settings.searchingClass);
+                            });
+                        $inputElm.bind("Indextank.AjaxSearch.searching",
+                            function() {
+                                $that.addClass(settings.searchingClass);
+                            });
+                        $inputElm.bind("Indextank.AjaxSearch.failure",
+                            function() {
+                                $that.removeClass(settings.searchingClass);
+                            });
+                    }
                     
                 };
                 
