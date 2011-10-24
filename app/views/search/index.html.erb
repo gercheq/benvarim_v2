@@ -1,10 +1,10 @@
 <div class="widget widget-light widget-kurum" id="list-pages">
   <div class="w-inner clearfix">
+    <div class="w-title">Arama Sonuçları</div>
     <div class="w-content search-page">
-      <form id="search_form">
+      <form id="search_form" style="display:none;">
         <input type="text"  name="k" id="search_query" value="<%=@keyword%>">
       </form>
-      <hr/>
 
       <div id="facet_renderer" class="search-div">
       </div>
@@ -14,12 +14,8 @@
     </div>
   </div>
 </div>
-<style>
-.search-page .search-div {
-  float:left;
-  padding: 20px;
-}
-</style>
+
+
 <% if @results %>
 <%=debug @results%>
 

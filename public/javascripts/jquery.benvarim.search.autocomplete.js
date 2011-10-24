@@ -8,13 +8,13 @@
         .append($("<a href='" + settings.urlPrefix + item.docid + "'></a>").html(item.human_readable_name));
     };
     var defaultSetupContainer = function($el) {
-        $el.html("Arama Sonucları");
+        $el.html("");
     };
-    
+
     var defaultSetupFacetContainer = function($el) {
         $el.html("Kategoriler");
     };
-    
+
     var defaultFacetFormat = function(facet, facetAtrr, facetClass) {
         return $("<ul/>").append($("<span/>").html(facetAtrr));
     };
@@ -59,8 +59,7 @@
                             setupContainer : settings.setupFacetContainer
                         });
                         listeners.push(fr);
-                    }                    
-                    
+                    }
                     $inputElm.indextank_AjaxSearch({
                         listeners: listeners,
                         fields: "name, human_readable_name, description, logo",
@@ -76,8 +75,6 @@
                         }
                     });
                 };
-                
-                
 
                 var searchForm = $("<form></form>");
                 var searchInput = $("<input type='text'>");
@@ -104,7 +101,7 @@
                     callback = $inputElm.data("bv.cb");
                     callback && callback(results);
                 });
-                
+
                 $inputElm.autocomplete({
                     source: function(x,callback) {
                         var term = x.term;
@@ -120,30 +117,30 @@
                         }
                     }
                 });
-                
+
                 if(settings.renderer) {
-                    var updateCategories = function() {
-                        var searchBase = $inputElm.data("Indextank.AjaxSearch");
-                        searchBase.defaultQuery.resetCategoryFilters();
-                        if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
-                            var types = $inputElm.attr(settings.categoryAttr).split();
-                            if(types.length) {
-                                searchBase.defaultQuery.withCategoryFilters({
-                                    type : types
-                                });
-                            }
-                        
+
+
+                var updateCategories = function() {
+                    var searchBase = $inputElm.data("Indextank.AjaxSearch");
+                    searchBase.defaultQuery.resetCategoryFilters();
+                    if($inputElm.attr(settings.categoryAttr) && $inputElm.attr(settings.categoryAttr) != "") {
+                        var types = $inputElm.attr(settings.categoryAttr).split();
+                        if(types.length) {
+                            searchBase.defaultQuery.withCategoryFilters({
+                                type : types
+                            });
                         }
-                    };
+
+                    }
+                };
+                updateCategories();
+                $(".bv-search-facet").live("click", function() {
+                    $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
                     updateCategories();
-                    $(".bv-search-facet").live("click", function() {
-                        $inputElm.attr(settings.categoryAttr, this.attr(settings.categoryAttr));
-                        updateCategories();
-                    });
-                    $inputElm.bind("updateCategory", updateCategories);
-                }
-                
-                
+                });
+                $inputElm.bind("updateCategory", updateCategories);
+
                 if(settings.renderer && settings.runQueryAfterInit && $inputElm.val().length > 0) {
                     $that.submit();
                 }

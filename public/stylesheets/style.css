@@ -712,7 +712,6 @@ p{
 .un-search{
   float: left;
   margin-right: 10px;
-  display:none;
 }
 
 .un-search input{
@@ -726,8 +725,8 @@ p{
   padding: 5px 8px;
   font-size: 12px;
   padding-right: 30px;
-  width: 200px;
-  background: #ecf5ff url('../images/v2/search-icon.png') no-repeat 210px 2px;
+  width: 240px;
+  background: #ecf5ff url('../images/v2/search-icon.png') no-repeat 250px 2px;
 }
 
 .un-login-registration{
@@ -737,7 +736,7 @@ p{
 
 .un-search input:focus,
 .un-search input:active{
-  background: #FFF url('../images/v2/search-icon.png') no-repeat 210px 2px;
+  background: #FFF url('../images/v2/search-icon.png') no-repeat 250px 2px;
 }
 
 
@@ -2378,6 +2377,26 @@ blockquote span.quotation{
 .scribd_iframe_embed{
   height: 600px !important;
 }
+
+#indextank-available-facets {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #DDD;
+  height: 20px;
+}
+
+#indextank-available-facets dt,
+#indextank-available-facets dd{
+  float: left;
+  margin-right: 10px;
+}
+
+#indextank-available-facets dt {
+  font-weight: bold;
+}
+
+
+
 
 /*
 ** FACEBOX HACKS

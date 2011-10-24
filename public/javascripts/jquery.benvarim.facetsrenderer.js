@@ -2,33 +2,33 @@
    if(!$.Indextank){
         $.Indextank = new Object();
     };
-    
+
     $.Indextank.FacetsRenderer = function(el, options){
         // To avoid scope issues, use 'base' instead of 'this'
         // to reference this class from internal events and functions.
         var base = this;
-        
+
         // Access to jQuery and DOM versions of element
         base.$el = $(el);
         base.el = el;
-        
+
         // Add a reverse reference to the DOM object
         base.$el.data("Indextank.FacetsRenderer", base);
-        
+
         base.translations = {
             "Organization" : "Kurum",
             "Project" : "Proje",
             "Page" : "Sayfa",
             "type" : "Kategoriler"
         };
-        
+
         base.translate = function(key) {
             if(base.translations[key]) {
                 return base.translations[key];
             }
             return key;
         };
-        
+
         base.init = function(){
             base.options = $.extend({},$.Indextank.FacetsRenderer.defaultOptions, options);
 
@@ -37,10 +37,10 @@
                 base.$el.html("");
 
                 var queriedFacets = data.query.categoryFilters || {};
-                
+
                 var $selectedFacetsContainer = $("<ul/>").attr("id", "indextank-selected-facets");
                 var $availableFacetsContainer = $("<div/>").attr("id", "indextank-available-facets");
-                
+
                 $.each( data.facets, function (catName, values){
                     if (catName in queriedFacets) {
                         var $selectedFacet = base.renderSelectedFacet(queriedFacets, catName, data);
@@ -50,22 +50,23 @@
                         $availableFacetsContainer.append($availableFacet);
                     }
                 });
-                
+
                 var $facetsContent = $("<div/>").append($selectedFacetsContainer, $availableFacetsContainer);
-                var $facetsTitle = $("<h3/>").text("Filtrele");
+                // var $facetsTitle = $("<h3/>").text("Filtrele");
+                var $facetsTitle = $("<h3/>").text("");
 
                 base.$el.append($facetsTitle, $facetsContent);
 
             });
         };
-        
+
         base.renderSelectedFacet = function(queriedFacets, categoryName, data) {
             // Render selected facet as a <li/> and return it
             $item = $("<li/>");
             console.log(queriedFacets, categoryName, data);
             $selectedCategory = $("<span/>").append(
                 $("<a/>").attr("href","#")
-                    .append($("<span/>").text(base.translate(queriedFacets[categoryName]) + " x")) 
+                    .append($("<span/>").text(base.translate(queriedFacets[categoryName]) + " x"))
                     .click(function(){
                         // ensure query data has something on it
                         var query = data.query.clone();
@@ -84,7 +85,7 @@
 
         base.renderAvailableFacet = function(queriedFacets, categoryName, categoryValues, data) {
             // Render available facet as a <dl> (definition list) and return it
-            
+
             $facetContainer = $("<div/>");
             $availableFacet = $("<dl/>");
             $facetContainer.append($availableFacet);
@@ -133,9 +134,9 @@
                     })
                 );
 
-                if (idx < base.options.showableFacets) { 
+                if (idx < base.options.showableFacets) {
                     $availableFacet.append(dd);
-                } else { 
+                } else {
                     $extraValues.append(dd);
                 }
             });
@@ -149,11 +150,11 @@
     $.Indextank.FacetsRenderer.defaultOptions = {
         showableFacets: 4
     };
-    
+
     $.fn.indextank_FacetsRenderer = function(options){
         return this.each(function(){
             (new $.Indextank.FacetsRenderer(this, options));
         });
     };
-    
+
 })(jQuery);
