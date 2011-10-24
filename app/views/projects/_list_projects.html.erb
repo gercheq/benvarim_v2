@@ -33,6 +33,10 @@
         <div class="row-action">
           <%= link_to 'Yeni bağış projesi oluştur!', new_project_for_organization_path(organization), :class=>"green button super" %>
         </div>
+      <% elsif defined?(link_to_organizations) && link_to_organizations == true %>
+        <div class="row-action">
+          <%= link_to 'Tüm Kurumlar', all_organizations_path, :class=>"green button super" %>
+        </div>
       <% end %>
 
     </div>

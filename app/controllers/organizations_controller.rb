@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
   uses_tiny_mce
   def index
-    @organizations = Organization.all
+    @organizations = Organization.order("active desc, logo_updated_at desc")
   end
 
   def show
