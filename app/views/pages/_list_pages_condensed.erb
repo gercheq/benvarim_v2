@@ -9,7 +9,7 @@
           <p><%=link_to page.user.name, page%></p>
         </div>
         <div class="row-details">
-          <h3><%= page.title %></h3>
+          <h3><%=link_to page.title, page %></h3>
           <blockquote class="">
             <span class="quotation">“ </span>
             <%=truncate(page.description, :length => 140) %>

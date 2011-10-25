@@ -585,6 +585,7 @@ a:hover{ text-decoration: underline; }
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
   margin-bottom: 15px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -2409,6 +2410,13 @@ blockquote span.quotation{
 
 }
 
+
+#i-home-kariyer .p-content ul{
+  margin-bottom: 20px;
+}
+#i-home-kariyer .p-content li{
+  margin-bottom: 10px;
+}
 
 
 /*
