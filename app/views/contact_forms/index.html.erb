@@ -1,1 +1,21 @@
-<%=link_to "bize ulaşim",new_contact_form_path%>
+<div id="main-content">
+  <div class="widget widget-light" id="w-iletisim">
+    <div class="w-inner">
+      <div class="w-title">İletişim</div>
+        <p class="msg msg-success">Mesajınız bize ulaştı. Teşekkürler.</p>
+    </div>
+  </div>
+    <table style="color:white; font-size:10px;" id="info_table">
+      <tr><td>Sahibi:</td><td>Levent Baş</td></tr>
+      <tr><td>Posta adresi:</td><td>49 Ramona st, San Francisco, CA, ABD</td></tr>
+      <tr><td>E-Posta:</td><td>iletisim@benvarim.com</td></tr>
+      <tr><td>Telefon:</td><td>532 644 04 32</td></tr>.
+    </table>
+
+</div>
+<style>
+#info_table td {
+  padding:5px;
+}
+</style>
+<%= render 'layouts/sidebar'%>
