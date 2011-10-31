@@ -1,13 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>
-      Günlük bağış raporu
-    </title>
-  </head>
-  <body>
-
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => "Günlük bağış raporu"
+  }%>
 Merhaba <%=@page.user.name%>,<br/><br/>
 
 Gün içerisinde <a href="<%=page_path(@page, :only_path => false)%>"><%=@page.title%></a> isimli sayfanıza yapılmış olan bağışları aşağıda görebilirsiniz. <br/><br/>
@@ -17,20 +11,13 @@ Gün içerisinde <a href="<%=page_path(@page, :only_path => false)%>"><%=@page.t
 
 İsim   : <%=payment.name%><br/>
 Not    : <%=payment.note%><br/>
-Miktar : <%=payment.amount%> TL<br/><br/>
+Miktar : <%=payment.amount_in_currency_str%> <%=payment.currency_sign%><br/><br/>
 
 <% toplam += payment.amount %>
 <% end %>
 <br/><br/>
 
-Toplam: <%= toplam %> TL<br/>
-Bu güne kadar yapılan toplam bağış: <%=@page.collected%> TL<br/>
+Toplam: <%=number_with_precision(toplam, :locale => :tr)%> TL <br/>
+Bu güne kadar yapılan toplam bağış: <%=@page.collected_str%> TL<br/>
 
-<ul>
-  <li>Twitter: <a href="http://twitter.com/#!/Ben_Varim">@BenVarim</a></li>
-  <li>Facebook: <a href="http://www.facebook.com/BenVarim.Platformu">Ben Varım Facebok</a></li>
-  <li>Email: <a href="mailto:iletisim@benvarim.com">iletisim@benvarim.com</a></li>
-</ul>
-
-</body>
-</html>
+<%=render :partial => "email_layouts/footer" %>
