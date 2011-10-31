@@ -10,7 +10,7 @@ class PaymentMailer < ActionMailer::Base
       @page_owner = @page.user
     end
     mail(:to => payment.email,
-        :bcc => "yigit@benvarim.com",
+        :bcc => "team@benvarim.com",
          :subject => "Bağışınız İçin Teşekkür Ederiz - Benvarim.com",
          "X-SMTPAPI" => '{"category": "thanks"}')
   end
