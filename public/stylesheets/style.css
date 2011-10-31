@@ -989,7 +989,11 @@ p{
 .f-newsletter input[type=text]{
     border-radius: 5px;
     padding: 5px;
-    width: 236px;
+    width: 230px;
+}
+
+.f-newsletter #mc-embedded-subscribe{
+  float: right;
 }
 
 #footer .yellow{
@@ -1211,7 +1215,7 @@ blockquote span.quotation{
 #featured-charities a {
     height: 80px;
     display: inline-block;
-    margin: 10px 20px;
+    margin: 10px;
     text-indent: -999em;
     background-repeat: no-repeat;
 }
@@ -1245,6 +1249,12 @@ blockquote span.quotation{
 #fc-tegv {
     background: url('../images/logo-tegv.jpg') top center;
     width: 82px;
+}
+
+
+#fc-tog {
+    background: url('../images/logo-tog.jpg') top center;
+    width: 100px;
 }
 
 #fc-ormana {
