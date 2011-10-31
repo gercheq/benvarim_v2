@@ -1,30 +1,36 @@
 # -*- coding: utf-8 -*-
 class OrganizationMailer < ActionMailer::Base
+  add_template_helper(EmailHelper)
   default :from => "iletisim@benvarim.com"
-  def dailymail(organization,pages)
+  def dailymail(name, email, organization, pages, payments)
   	@organization = organization
   	@pages = pages
-
-    mail(:to => organization.user.email,
-        # :bcc => "team@benvarim.com",
-        :subject => "Benvarim - %s isimli kurumunuza bugün yapılan bağışlar" % [organization.name],
-        "X-SMTPAPI" => '{"category": "dailypage"}')
-
+  	@payments = payments
+  	@name = name
+  	@email =email
+  	mail(:to => email,
+         :bcc => "team@benvarim.com",
+         :subject => "Benvarim.com günlük özet - #{organization.name}",
+         "X-SMTPAPI" => '{"category": "organization"}')
   end
 
-  def send_daily_page_emails
+  def send_daily_mail
     now = Time.now.in_time_zone("Istanbul")
-    self.send_page_email_for_days((now - 1.day),now)
+    self.send_daily_mail_for_days((now - 1.day),now)
   end
-  def send_page_email_for_days(start_date, end_date)
-    query = Organization.joins(:pages).where("pages.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
-    query.each do |organization|
+  def send_daily_mail_for_days(start_date, end_date)
+    pagesQuery = Organization.includes(:pages).where("pages.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+    paymentQuery = Organization.includes(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+    organizations = pagesQuery + paymentQuery
+    organizations.each do |organization|
       pages = organization.pages.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
-      if pages.length
-        self.daily_page_mail(organization, pages).deliver
+      payments = organization.payments.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+      if pages.length || payments.length
+        OrganizationMailer.dailymail(organization.user.name, organization.user.email, organization, pages, payments).deliver
+        if organization.user.email != organization.contact_email
+          OrganizationMailer.dailymail(organization.contact_name, organization.contact_email, organization, pages, payments).deliver
+        end
       end
     end
   end
-
-
 end

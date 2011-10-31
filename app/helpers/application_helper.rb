@@ -172,5 +172,4 @@ module ApplicationHelper
       "vakıf, vakif, dernek, kurum, yardım, yardımsever, bağışçı, yardim, STK, sivil toplum, sosyal proje, aktivite, bağış, bagis, gönüllü, maraton,
       fundraising, koşu, kolay bağış, platform, benvarim, ben varim, benvarım, ben varım, benvarim.com"
   end
-
 end
