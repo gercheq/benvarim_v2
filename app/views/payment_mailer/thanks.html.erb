@@ -3,9 +3,8 @@
     :title => "Bağışınız İçin Teşekkür Ederiz - Benvarim.com"
   }%>
 
-Sevgili <%=@payment.name%>,<br/>
+Sevgili <%=@payment.name%>,<br/><br/>
 <% if @page %>
-
 <%=@page_owner.name%> tarafından <a href="<%=project_path @project, :only_path => false%>"><%=@project.name%></a> için oluşturulan <a href="<%=page_path @page,:only_path => false%>"><%=@page.title%></a> sayfasında yapmış olduğunuz bağış için <a href="<%=organization_path @organization, :only_path => false%>"><%=@organization.name%></a> adına teşekkür ederiz.
 
 <% elsif @project %>
@@ -17,6 +16,9 @@ Sevgili <%=@payment.name%>,<br/>
 Yapmış olduğunuz bağış için <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> adına teşekkür ederiz.
 
 <%end%>
+<br/>
+
+Bağışınız, <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> banka hesaplarına güvenle ulaşmıştır.
 <br/>
 Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, sayfayı
 <br/>

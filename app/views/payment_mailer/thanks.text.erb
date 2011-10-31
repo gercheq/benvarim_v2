@@ -1,6 +1,7 @@
 <%=render :partial => "email_layouts/header" %>
 
 Sevgili <%=@payment.name%>,
+
 <% if @page %>
 
 <%=@page_owner.name%> tarafından "<%=@project.name%>" için oluşturulan "<%=@page.title%>" sayfasında yapmış olduğunuz bağış için "<%=@organization.name%>" adına teşekkür ederiz.
@@ -12,6 +13,8 @@ Sevgili <%=@payment.name%>,
 <% else #organization%>
 
 Yapmış olduğunuz bağış için "<%=@organization.name%>" adına teşekkür ederiz.
+
+Bağışınız, <%=@organization.name%> banka hesaplarına güvenle ulaşmıştır.
 
 <%end%>
 Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, sayfayı
