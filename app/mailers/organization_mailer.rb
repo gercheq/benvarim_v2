@@ -21,7 +21,7 @@ class OrganizationMailer < ActionMailer::Base
   def send_daily_mail_for_days(start_date, end_date)
     pagesQuery = Organization.includes(:pages).where("pages.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
     paymentQuery = Organization.includes(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
-    organizations = pagesQuery + paymentQuery
+    organizations = (pagesQuery + paymentQuery).uniq
     organizations.each do |organization|
       pages = organization.pages.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
       payments = organization.payments.where("created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))

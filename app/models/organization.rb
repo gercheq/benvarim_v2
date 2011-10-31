@@ -79,6 +79,15 @@ class Organization < ActiveRecord::Base
      self.logo.file? ? self.logo.url(:thumb) : '/stylesheets/images/logo.gif'
   end
 
+  def hash
+    "org#{self.id}".hash
+  end
+
+  def eql?(other)
+    self.hash == other.hash
+  end
+
+
   private
     def sanitize_description_html
       unless self.description_html.nil?
