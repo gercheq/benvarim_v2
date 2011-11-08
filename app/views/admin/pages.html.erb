@@ -1,0 +1,52 @@
+<%=render 'menu'%>
+<%=render :partial => 'layouts/errors'%>
+<div class="widget widget-light widget-kurum" id="list-pages">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Tüm Bağış Sayfaları</div>
+
+      <div class="rows-container" id="donation-pages-container">
+        <% @pages.each do |page| %>
+          <div class="">
+            <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %>
+            <!-- edit start -->
+            <%= form_tag admin_edit_page_path(page) do |f| %>
+              Sayfa Aktif: <%=check_box_tag :active, "1", page.active%><br/>
+              <%=submit_tag "Değişikliği kaydet"%>
+            <% end%>
+            <!-- edit end -->
+
+            </div>
+            <div class="row-details">
+              <h3><%= link_to page.title, page %></h3>
+              <p><%= link_to page.organization.name, page.organization %> &raquo; <%= link_to page.project.name, page.project %>  &raquo; <%= link_to page.user.name, page.user %></p>
+
+              <div class="condense-200">
+                <%=truncate(page.description, :length => 200) %>
+              </div>
+
+              <div class="progress-bar-container clearfix">
+
+                <div class="progress-bar rc clearfix">
+                  <div class="pb-value rc" style="width: <%=page.collect_ratio_str%>%;">
+                    <div class="pb-reflection rc"></div>
+                    <div class="pb-hedef">HEDEF: <b><%= page.goal_str %> TL</b></div>
+                    <div class="pb-toplanan">
+                    <% if page.collected < 1 && page.active? %>
+                      İlk bağış yapan sen ol!
+                    <% else %>
+                      Toplanan: <b><%= page.collected_str %> TL</b>
+                    <% end%>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end of .progress-bar-container -->
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div><!-- end of .widget -->
+
+

@@ -84,6 +84,7 @@ Benvarim::Application.routes.draw do
 
 
   get '/projeler' => "projects#index", :as => :projects
+  get '/projeler' => "projects#index", :as => :all_projects
   post '/projeler' =>  "projects#create", :as => :projects
   get '/proje/yeni' => "projects#new", :as => :new_project
   get '/proje/:id/duzenle' => "projects#edit", :as => :edit_project
