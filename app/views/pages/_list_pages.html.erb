@@ -1,7 +1,7 @@
 <div class="widget widget-light widget-kurum" id="list-pages">
   <div class="w-inner clearfix">
     <div class="w-content">
-      <div class="w-title">Aktif Bağış Sayfaları</div>
+      <div class="w-title">Tüm Bağış Sayfaları</div>
 
       <div class="rows-container" id="donation-pages-container">
         <% @pages.each do |page| %>
@@ -43,9 +43,6 @@
 
               <% if @show_edit_link %>
                 <p><%= link_to 'Düzenle', edit_page_path(page) %></p>
-              <% end %>
-              <% if @show_destroy_link %>
-                <p><%= link_to 'Sil', page, :confirm => 'Emin misiniz?', :method => :delete %></p>
               <% end %>
             </div>
           </div>

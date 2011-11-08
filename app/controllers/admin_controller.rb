@@ -31,6 +31,30 @@ class AdminController < ApplicationController
     @organizations = Organization.all
   end
 
+  def pages
+    @pages = Page.order("created_at DESC")
+  end
+
+  def edit_page
+    page = Page.find params[:id]
+    active = params[:active]
+
+    if active && page.active
+      flash[:notice] = "e zaten #{page.title} aktif :/"
+    elsif !active && !page.active
+      flash[:notice] = "e zaten #{page.title} pasif :/"
+    elsif active
+      page.active = true
+      page.save!
+      flash[:notice] = "#{page.title} aktiflendi, hayirli ugurlu olsun."
+    else
+      page.active = false
+      page.save!
+      flash[:notice] = "#{page.title} kapatildi, cok uzuldum :("
+    end
+    redirect_to :action => :pages
+  end
+
   def edit_organization
     org = Organization.find params[:id]
     active = params[:active]

@@ -109,9 +109,11 @@ Benvarim::Application.routes.draw do
   # ADMIN PAGES
   get '/kertenkele' => "admin#index", :as => :admin
   post '/kertenkele/kurum/:id/duzenle' => "admin#edit_organization", :as => :admin_edit_organization
+  post '/kertenkele/sayfa/:id/duzenle' => "admin#edit_page", :as => :admin_edit_page
   get '/kertenkele/impersonate/:k' => "admin#impersonate", :as => :admin_impersonate
   get '/kertenkele/impersonate' => "admin#impersonate", :as => :admin_impersonate
   get '/kertenkele/kurumlar' => "admin#organizations", :as => :admin_organizations
+  get '/kertenkele/sayfalar' => "admin#pages", :as => :admin_pages
 
 
 
