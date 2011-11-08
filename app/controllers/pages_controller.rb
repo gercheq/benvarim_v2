@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.order("collected desc")
+    @pages = Page.where("active").order("updated_at desc")
   end
 
   def my_pages
