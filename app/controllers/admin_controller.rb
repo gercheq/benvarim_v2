@@ -45,7 +45,7 @@ class AdminController < ApplicationController
       flash[:notice] = "e zaten #{page.title} pasif :/"
     elsif active
       page.active = true
-      page.save!
+      page.save
       flash[:notice] = "#{page.title} aktiflendi, hayirli ugurlu olsun."
     else
       page.active = false

@@ -47,7 +47,7 @@ class Page < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :title, :length => { :minimum => 5, :maximum => 240 }
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
-  validate :organization_and_project_active_validation
+  validate :organization_and_project_active_validation, :on => :create
 
   validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000000
   validates_numericality_of :collected, :greater_than_or_equal_to => 0
