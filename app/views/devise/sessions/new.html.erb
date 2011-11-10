@@ -66,7 +66,7 @@
 
              <% if devise_mapping.rememberable? -%>
                <div class="field field-checkbox clearfix remember-me">
-                 <%= f.check_box :remember_me %>
+                 <%= f.check_box :remember_me, :checked => true %>
                  <%= f.label :remember_me %>
 
                  <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
