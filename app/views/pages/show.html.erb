@@ -165,10 +165,13 @@
 
 <%= render 'layouts/sidebar_kurum'%>
 
-<div class="dialog">
+<a href="http://google.com" class="dialog-trigger button yellow" data-dialog="#dialog-postbagis">
+  Post Bagis Popup'ini goster
+</a>
+
+<div class="dialog" id="dialog-postbagis" title="Paylaştıkça artan tat">
   <div class="d-header">
     <div class="dh-title">İşte burası başlık!</div>
-    <div class="dh-subtitle">Başlıkta anlatılan şeyi güzel güzel yapın, sakın ha es geçmeyin. Bizi üzmeyin.</div>
   </div><!-- .d-header -->
 
   <div class="d-content">
@@ -176,6 +179,6 @@
   </div><!-- .d-content -->
 
   <div class="d-footer">
-    <a class="button yellow">Hemen buton bas</a>
+    <a class="button yellow">Hemen butona bas</a>
   </div><!-- .d-footer -->
 </div><!-- .d-dialog -->

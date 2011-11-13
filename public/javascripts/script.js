@@ -163,9 +163,16 @@ $(document).ready(function(){
   //
   // Dialog global initialization
   //
-  $('.dialog').dialog(function(){
-    modal: true
-    title: "Baslik"
+  $('.dialog').dialog({
+    modal: true,
+    width: 400,
+    autoOpen: false
+  });
+
+  $('.dialog-trigger').live('click', function(e){
+    e.preventDefault();
+    var target_dialog = $(this).attr('data-dialog');
+    $(target_dialog).dialog('open');
   });
 
 
