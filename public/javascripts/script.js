@@ -152,19 +152,24 @@ $(document).ready(function(){
 	});
 
 
-
+  //
+  // Homepage Video
+  //
   $('.pfv-inner').click(function(){
     $(this).html('<iframe src="http://player.vimeo.com/video/29056779?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933&amp;autoplay=1" width="100%" height="100%" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>');
   });
 
-  /*
-  $('.truncate-short').truncatable({
-    limit: 600,
-    more: ' devamını göster &raquo; ',
-    less: false,
-    hideText: '[sakla]'
+
+  //
+  // Dialog global initialization
+  //
+  $('.dialog').dialog(function(){
+    modal: true
+    title: "Baslik"
   });
-  */
+
+
+
 
 	//
 	// Tabs
@@ -255,7 +260,7 @@ $(document).ready(function(){
             }
         });
     });
-    
+
     $(['/stylesheets/images/search-loading.gif']).preload();
 
 });
