@@ -166,6 +166,8 @@ $(document).ready(function(){
   $('.dialog').dialog({
     modal: true,
     width: 400,
+    show: "fade",
+    hide: "fade",
     autoOpen: false
   });
 
@@ -184,7 +186,7 @@ $(document).ready(function(){
 	$( "#tabs" ).tabs({
 		cookie: {
 			// store cookie for a day, without, it would be a session cookie
-			expires: 1
+			expires: 3
 		}
 	});
 
