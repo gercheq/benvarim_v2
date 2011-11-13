@@ -1,0 +1,109 @@
+/*  
+Skin Name: Black
+Version: 1.0
+Description: Skin for iTheme2
+*/
+
+body {
+	color: #aaa;
+}
+a {
+	color: #97dffc;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #fff;
+}
+input[type=text], input[type=password], textarea {
+	background: #444;
+	border-color: #555;
+}
+
+/************************************************************************************
+PANEL BACKGROUND STYLES
+*************************************************************************************/
+#header-slider, #content, .widget {
+	background: #222;
+	border: solid 1px #323232;
+}
+
+/************************************************************************************
+MAIN NAVIGATION
+*************************************************************************************/
+#nav-bar {
+	border: solid 1px #000;
+	background: #000 url(images/nav-bar-bg.png) repeat-x;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4b4b4b), to(#151515));
+	background: -moz-linear-gradient(top,  #4b4b4b,  #151515);
+	background: linear-gradient(-90deg, #4b4b4b, #151515);
+}
+#main-nav li {
+	border-color: #000;
+}
+#main-nav .home a {
+	background-position: -41px center;
+}
+
+/************************************************************************************
+CONTENT
+*************************************************************************************/
+/* post title */
+.post-title, .post-title a {
+	color: #fff;
+}
+
+/* commentlist */
+.commentlist {
+	border-color: #222;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+.commentwrap {
+	background: #2f2f2f;
+}
+.commentlist .commententry {
+	border-color: #222;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.1);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,.1);
+	box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+
+
+/************************************************************************************
+SIDEBAR
+*************************************************************************************/
+.widgettitle {
+	color: #fff;
+	border-top: solid 1px #989898;
+	border-bottom: solid 1px #000;
+	background: #3e3e3e url(images/widgettitle-bg.png) repeat-x;
+	background: -webkit-gradient(linear, left top, left bottom, from(#757575), to(#3e3e3e));
+	background: -moz-linear-gradient(top,  #757575,  #3e3e3e);
+	background: linear-gradient(-90deg, #757575, #3e3e3e);
+	text-shadow: 0 -1px 0 rgba(0,0,0,.7);
+}
+.widget li {
+	border-color: #333;
+}
+
+
+
+/************************************************************************************
+IMAGE STYLES
+*************************************************************************************/
+img.alignleft, img.aligncenter, img.alignright, img.alignnone, .wp-caption img,
+.widget .feature-posts-list .post-img,
+.widget .flickr_badge_image img,
+.commentlist .avatar,
+.recent-comments-list .avatar,
+#body .gallery img,
+.attachment img,
+.post-image img,
+.feature-img,
+.post-img
+{
+	background: #333;
+	border: solid 1px #444;
+}
+
+
