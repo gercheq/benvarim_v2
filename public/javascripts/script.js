@@ -152,19 +152,33 @@ $(document).ready(function(){
 	});
 
 
-
+  //
+  // Homepage Video
+  //
   $('.pfv-inner').click(function(){
     $(this).html('<iframe src="http://player.vimeo.com/video/29056779?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933&amp;autoplay=1" width="100%" height="100%" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>');
   });
 
-  /*
-  $('.truncate-short').truncatable({
-    limit: 600,
-    more: ' devamını göster &raquo; ',
-    less: false,
-    hideText: '[sakla]'
+
+  //
+  // Dialog global initialization
+  //
+  $('.dialog').dialog({
+    modal: true,
+    width: 400,
+    show: "fade",
+    hide: "fade",
+    autoOpen: false
   });
-  */
+
+  $('.dialog-trigger').live('click', function(e){
+    e.preventDefault();
+    var target_dialog = $(this).attr('data-dialog');
+    $(target_dialog).dialog('open');
+  });
+
+
+
 
 	//
 	// Tabs
@@ -172,7 +186,7 @@ $(document).ready(function(){
 	$( "#tabs" ).tabs({
 		cookie: {
 			// store cookie for a day, without, it would be a session cookie
-			expires: 1
+			expires: 3
 		}
 	});
 
@@ -255,7 +269,7 @@ $(document).ready(function(){
             }
         });
     });
-    
+
     $(['/stylesheets/images/search-loading.gif']).preload();
 
 });
