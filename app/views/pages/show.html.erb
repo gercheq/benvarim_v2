@@ -97,7 +97,6 @@
 
                 <div class="row center">
                   <%=link_to "Ben de destek olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin large", :rel => "facebox"%>
-                  <!--<%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>-->
                 </div><!-- end of .row -->
               <% else %>
                 <p><%= @page.user.name%> ilk destekçisini bekliyor.</p>
@@ -164,3 +163,24 @@
 </div><!-- end of #main-content -->
 
 <%= render 'layouts/sidebar_kurum'%>
+
+<% if @post_donate %>
+  <!-- post bagis -->
+  <div id="sharebox" class="share-options">
+    <ul class="clearfix">
+      <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>" >Tweet</a></li>
+      <li style="margin-right: 10px"><span  class='st_email_hcount' displayText='Email'></span></li>
+      <li style="width:60px; margin-right: 10px"><g:plusone size="medium"></g:plusone></li>
+      <li><fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like></li>
+    </ul>
+  </div>
+
+  <% captured = capture do %>
+  <script>
+  $(document).ready(function(){
+      jQuery.facebox({ div: '#sharebox' })
+  });
+  </script>
+  <% end %>
+  <%render_at_the_end captured%>
+<% end %>
