@@ -115,6 +115,7 @@ Benvarim::Application.routes.draw do
   get '/kertenkele/impersonate' => "admin#impersonate", :as => :admin_impersonate
   get '/kertenkele/kurumlar' => "admin#organizations", :as => :admin_organizations
   get '/kertenkele/sayfalar' => "admin#pages", :as => :admin_pages
+  get '/kertenkele/epostalar' => "admin#export_emails", :as => :export_emails
 
 
 
