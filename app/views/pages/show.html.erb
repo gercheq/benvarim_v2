@@ -34,7 +34,7 @@
 <div id="fb-root"></div>
           <div class="share-options">
             <ul class="clearfix">
-              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>" >Tweet</a></li>
+              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a></li>
               <li style="margin-right: 10px"><span  class='st_email_hcount' displayText='Email'></span></li>
               <li style="width:60px; margin-right: 10px"><g:plusone size="medium"></g:plusone></li>
               <% if @show_fb_like_send %>
@@ -163,22 +163,47 @@
 </div><!-- end of #main-content -->
 
 <%= render 'layouts/sidebar_kurum'%>
+<a class="dialog-trigger button yellow" data-dialog="#dialog-postbagis">
+  Post Bagis Popup'ini goster
+</a>
+
 
 <% if @post_donate %>
-  <!-- post bagis -->
-  <div id="sharebox" class="share-options">
-    <ul class="clearfix">
-      <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>" >Tweet</a></li>
-      <li style="margin-right: 10px"><span  class='st_email_hcount' displayText='Email'></span></li>
-      <li style="width:60px; margin-right: 10px"><g:plusone size="medium"></g:plusone></li>
-      <li><fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like></li>
-    </ul>
-  </div>
+
+  <div class="dialog" id="dialog-postbagis" title="Bağışınız İçin Teşekkürler">
+    <div class="d-header">
+      <div class="dh-title">Aşağıdaki butonları kullanarak arkadaşlarını da bağış yapmaya davet et!</div>
+    </div><!-- .d-header -->
+
+    <div class="d-content">
+      <table>
+        <tr>
+          <td>
+            <a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a>
+          </td>
+          <td>
+            <span  class='st_email_hcount' displayText='Email'></span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <g:plusone size="medium"></g:plusone>
+          </td>
+          <td>
+            <fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like>
+          </td>
+        </tr>
+      </table>
+    </div><!-- .d-content -->
+
+    <div class="d-footer">
+    </div><!-- .d-footer -->
+  </div><!-- .d-dialog -->
 
   <% captured = capture do %>
   <script>
   $(document).ready(function(){
-      jQuery.facebox({ div: '#sharebox' })
+      $("#dialog-postbagis").dialog('open');
   });
   </script>
   <% end %>

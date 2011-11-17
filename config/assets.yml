@@ -8,7 +8,8 @@ javascript_compressor:  yui         # (yui, closure)
 
 javascripts:
   workspace:
-    - public/javascripts/jquery-ui.min.js
+    # gets included separately in _footer.html.erb
+    # public/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js
     - public/javascripts/jquery.cookie.js
     - public/javascripts/jquery.condense.js
     - public/javascripts/jquery.tmpl.min.js
@@ -21,7 +22,6 @@ javascripts:
     - public/javascripts/jquery.indextank.renderer.js
     - public/javascripts/jquery.benvarim.preload.js
     - public/javascripts/jquery.benvarim.search.autocomplete.js
-
     - public/javascripts/jquery.benvarim.facetsrenderer.js
     - public/javascripts/facebox.js
     - public/javascripts/script.js
@@ -31,7 +31,8 @@ javascripts:
 stylesheets:
   workspace:
     - public/stylesheets/style.css
-    - public/stylesheets/jquery-ui-1.8.8.custom.css
+    # - public/stylesheets/jquery-ui-1.8.8.custom.css
+    - public/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css
     - public/stylesheets/facebox.css
     - public/stylesheets/buttons.css
     - public/stylesheets/grids.css
