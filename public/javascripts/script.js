@@ -63,6 +63,18 @@ function init_accordion(){
 };
 
 
+function equalHeight(group) {
+	var tallest = 0;
+	group.each(function() {
+		var thisHeight = $(this).height();
+		if(thisHeight > tallest) {
+			tallest = thisHeight;
+		}
+	});
+	group.height(tallest);
+}
+
+
 
 
 /*
@@ -158,6 +170,13 @@ $(document).ready(function(){
   $('.pfv-inner').click(function(){
     $(this).html('<iframe src="http://player.vimeo.com/video/29056779?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933&amp;autoplay=1" width="100%" height="100%" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>');
   });
+
+
+  //
+  // Homepage Equalize Columns
+  //
+  var cols = $('.column .widget');
+  equalHeight(cols);
 
 
   //
