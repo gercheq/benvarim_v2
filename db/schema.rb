@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926060019) do
+ActiveRecord::Schema.define(:version => 20111118144751) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -114,8 +114,9 @@ ActiveRecord::Schema.define(:version => 20110926060019) do
     t.datetime "updated_at"
     t.float    "amount"
     t.integer  "organization_id"
-    t.string   "currency",           :default => "TRY"
+    t.string   "currency",              :default => "TRY"
     t.float    "amount_in_currency"
+    t.integer  "predefined_payment_id", :default => 0
   end
 
   create_table "paypal_infos", :force => true do |t|
@@ -125,6 +126,18 @@ ActiveRecord::Schema.define(:version => 20110926060019) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency",        :default => "TRY"
+  end
+
+  create_table "predefined_payments", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "disabled"
+    t.boolean  "deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "amount"
+    t.integer  "priority",    :default => 0
   end
 
   create_table "projects", :force => true do |t|
@@ -139,9 +152,10 @@ ActiveRecord::Schema.define(:version => 20110926060019) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.float    "collected",         :default => 0.0
-    t.boolean  "active",            :default => true
+    t.float    "collected",              :default => 0.0
+    t.boolean  "active",                 :default => true
     t.string   "cached_slug"
+    t.boolean  "accepts_random_payment", :default => true
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
@@ -179,8 +193,9 @@ ActiveRecord::Schema.define(:version => 20110926060019) do
     t.float    "amount"
     t.integer  "payment_id"
     t.integer  "organization_id"
-    t.string   "currency",           :default => "TRY"
+    t.string   "currency",              :default => "TRY"
     t.float    "amount_in_currency"
+    t.integer  "predefined_payment_id", :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -189,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20110926060019) do
     t.date     "birthday"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

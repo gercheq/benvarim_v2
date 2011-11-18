@@ -1,31 +1,10 @@
-# == Schema Information
-# Schema version: 20110409205016
-#
-# Table name: projects
-#
-#  id                :integer         not null, primary key
-#  name              :string(255)
-#  start_time        :datetime
-#  end_time          :datetime
-#  description       :text
-#  organization_id   :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  logo_file_name    :string(255)
-#  logo_content_type :string(255)
-#  logo_file_size    :integer
-#  logo_updated_at   :datetime
-#  collected         :float           default(0.0)
-#  active            :boolean         default(TRUE)
-#  cached_slug       :string(255)
-#
-
 # -*- coding: utf-8 -*-
 class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :tmp_payments
   has_many :payments
   has_many :pages
+  has_many :predefined_payments
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
@@ -56,3 +35,26 @@ class Project < ActiveRecord::Base
      self.active? && self.organization.can_be_donated?
    end
 end
+
+# == Schema Information
+#
+# Table name: projects
+#
+#  id                     :integer         not null, primary key
+#  name                   :string(255)
+#  start_time             :datetime
+#  end_time               :datetime
+#  description            :text
+#  organization_id        :integer
+#  created_at             :datetime
+#  updated_at             :datetime
+#  logo_file_name         :string(255)
+#  logo_content_type      :string(255)
+#  logo_file_size         :integer
+#  logo_updated_at        :datetime
+#  collected              :float           default(0.0)
+#  active                 :boolean         default(TRUE)
+#  cached_slug            :string(255)
+#  accepts_random_payment :boolean         default(TRUE)
+#
+

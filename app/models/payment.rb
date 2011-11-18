@@ -47,21 +47,23 @@ class Payment < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: payments
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  note               :text
-#  email              :string(255)
-#  page_id            :integer
-#  project_id         :integer
-#  created_at         :datetime
-#  updated_at         :datetime
-#  amount             :float
-#  organization_id    :integer
-#  currency           :string(255)     default("TRY")
-#  amount_in_currency :float
+#  id                    :integer         not null, primary key
+#  name                  :string(255)
+#  note                  :text
+#  email                 :string(255)
+#  page_id               :integer
+#  project_id            :integer
+#  created_at            :datetime
+#  updated_at            :datetime
+#  amount                :float
+#  organization_id       :integer
+#  currency              :string(255)     default("TRY")
+#  amount_in_currency    :float
+#  predefined_payment_id :integer         default(0)
 #
 

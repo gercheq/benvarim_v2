@@ -200,6 +200,7 @@ tr:
         end_time: "bitiş zamanı"
         description: "tanıtım sayfası"
         organization_id: "kurum"
+        accepts_random_payment: "bağış miktarı"
       tmp_payment:
         name : "İsminiz"
         email : "e-posta"

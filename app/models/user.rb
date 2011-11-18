@@ -97,6 +97,7 @@ class User < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: users
@@ -107,6 +108,7 @@ end
 #  birthday             :date
 #  email                :string(255)     default(""), not null
 #  encrypted_password   :string(128)     default(""), not null
+#  password_salt        :string(255)     default(""), not null
 #  reset_password_token :string(255)
 #  remember_token       :string(255)
 #  remember_created_at  :datetime

@@ -1,3 +1,5 @@
+<%=debug params%>
+
 <%= form_for @project, :html => { :multipart => true } do |f| %>
   <% if @project.errors.any? %>
     <div class="msg-error msg">
@@ -41,12 +43,114 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+    <%= f.label :accepts_random_payment %>
+    <span>
+      <%= f.check_box :accepts_random_payment %> Gönüllüler seçebilsin
+    </span>
+  </div>
+  <div class="field">
+    <label for="predefined_payments">Öntanımlı ödeme seçenekleri</label>
+    <div>
+      <%
+      @currency_str = "TL"
+      if @project.organization.paypal_info
+        @currency_str = @organization.paypal_info.currency_str
+      end
+      %>
+      <table style="width:400px">
+        <thead>
+          <th>Açıklama</th><th>Miktar (<%=@currency_str%>)</th><th>Gizle</th><th>Sil</th>
+        </thead>
+        <tbody id="predefined_payments">
+        </tbody>
+      </table>
+      <div id="pp-control-panel">
+        <a href="" id="new_predefined_payment">Yeni seçenek ekle</a>
+      </div>
+      <% predefined_row = capture do %>
+        <tr id="${uiid}" data-pp-id="${id}">
+          <td>
+            <input class="pp-name" type="text" name="predefined[][name]" value="${name}">
+          </td>
+          <td>
+            <input class="pp-amount" type="text" name="predefined[][amount]" value="${amount}">
+          </td>
+          <td>
+            <input class="pp-disabled" type="checkbox" style="width:50px" name="predefined[][disabled]"
+            {{if disabled}}
+                    checked
+            {{/if}}
+            >
+          </td>
+          <td>
+            <a href="" class="pp-delete" data-pp-uiid="${uiid}">sil</a>
+          </td>
+        </tr>
+      <% end %>
+      <%
+      predefined_row = predefined_row.split("\n").join(" ")
+      %>
+
+      <% captured = capture do %>
+      <script type="text/javascript">
+        var rowTemplate = '<%=raw predefined_row%>';
+        var ppUiid = 1;
+        $("#new_predefined_payment").click(function() {
+          try {
+            $.tmpl(rowTemplate, {name:"hebele", disabled:true, uiid : "pp-uiid-" + (ppUiid ++), id:3}).appendTo( "#predefined_payments" );
+          }catch(e){
+          }
+          return false;
+        });
+        $(".pp-delete").live("click", function() {
+          try {
+            var trId = $(this).attr("data-pp-uiid");
+            if(!trId) {
+              return false;
+            }
+            var tr = $("#"+trId);
+            if(!tr || tr.length < 1) {
+              return false;
+            }
+            if(!!tr.attr("data-pp-id") == false || confirm("bu seçenegi silmek istediğinizden emin misiniz? (bu ana kadar bu seçeneğe yapılan bağışlar korunacaktır)")) {
+              tr.remove();
+              return false;
+            }
+          } catch(e) {
+          }
+          return false;
+
+        })
+      </script>
+      <style>
+      #predefined_payments td {
+        text-align:center;
+        vertical-align:middle;
+      }
+      #predefined_payments input {
+        width:150px;
+      }
+      #predefined_payments .pp-amount,.pp-disabled {
+        width:50px;
+      }
+
+      #pp-control-panel {
+        float:right;
+      }
+      </style>
+      <% end %>
+      <%render_at_the_end captured%>
+
+
+
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit :kaydet, :class=>"button yellow super button-primary" %>
   </div>
 </div>
 <% end %>
-
 <style type="text/css" media="screen">
   .project-form label {
     width: 130px;
@@ -56,4 +160,3 @@
     width: 400px;
   }
 </style>
-
