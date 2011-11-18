@@ -34,7 +34,7 @@
 <div id="fb-root"></div>
           <div class="share-options">
             <ul class="clearfix">
-              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>" >Tweet</a></li>
+              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a></li>
               <li style="margin-right: 10px"><span  class='st_email_hcount' displayText='Email'></span></li>
               <li style="width:60px; margin-right: 10px"><g:plusone size="medium"></g:plusone></li>
               <% if @show_fb_like_send %>
@@ -97,7 +97,6 @@
 
                 <div class="row center">
                   <%=link_to "Ben de destek olmak istiyorum.", donate_popup_for_page_path(@page), :class => "yellow button no-margin large", :rel => "facebox"%>
-                  <!--<%=link_to "Ben de bağış kampanyası düzenlemek istiyorum!", new_page_for_project_path(@page.project), :class => "green button super"%>-->
                 </div><!-- end of .row -->
               <% else %>
                 <p><%= @page.user.name%> ilk destekçisini bekliyor.</p>
@@ -164,21 +163,49 @@
 </div><!-- end of #main-content -->
 
 <%= render 'layouts/sidebar_kurum'%>
-
-<a href="http://google.com" class="dialog-trigger button yellow" data-dialog="#dialog-postbagis">
+<a class="dialog-trigger button yellow" data-dialog="#dialog-postbagis">
   Post Bagis Popup'ini goster
 </a>
 
-<div class="dialog" id="dialog-postbagis" title="Paylaştıkça artan tat">
-  <div class="d-header">
-    <div class="dh-title">İşte burası başlık!</div>
-  </div><!-- .d-header -->
 
-  <div class="d-content">
-    <p>Burası içerik kısmı</p>
-  </div><!-- .d-content -->
+<% if @post_donate %>
 
-  <div class="d-footer">
-    <a class="button yellow">Hemen butona bas</a>
-  </div><!-- .d-footer -->
-</div><!-- .d-dialog -->
+  <div class="dialog" id="dialog-postbagis" title="Bağışınız İçin Teşekkürler">
+    <div class="d-header">
+      <div class="dh-title">Aşağıdaki butonları kullanarak arkadaşlarını da bağış yapmaya davet et!</div>
+    </div><!-- .d-header -->
+
+    <div class="d-content">
+      <table>
+        <tr>
+          <td>
+            <a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a>
+          </td>
+          <td>
+            <span  class='st_email_hcount' displayText='Email'></span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <g:plusone size="medium"></g:plusone>
+          </td>
+          <td>
+            <fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like>
+          </td>
+        </tr>
+      </table>
+    </div><!-- .d-content -->
+
+    <div class="d-footer">
+    </div><!-- .d-footer -->
+  </div><!-- .d-dialog -->
+
+  <% captured = capture do %>
+  <script>
+  $(document).ready(function(){
+      $("#dialog-postbagis").dialog('open');
+  });
+  </script>
+  <% end %>
+  <%render_at_the_end captured%>
+<% end %>

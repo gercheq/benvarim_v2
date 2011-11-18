@@ -42,6 +42,9 @@ class PagesController < ApplicationController
     @payments = fetch_payments_page
 
     @show_fb_like_send = (@page.id > 9 || params[:fb]) ? true : false
+
+    # @post_donate = flash[:success] == true || params[:pd] == "1"
+    @post_donate = params[:pd] == "1"
   end
 
   def fetch_payments_page(start=nil)
