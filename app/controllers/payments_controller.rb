@@ -20,12 +20,20 @@ class PaymentsController < ApplicationController
     @tmp_payment.project_id = @project.id if @project
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
+    add_predefined_payments
 
     if params[:popup]
       render :layout => false
     end
 
   end
+
+  def add_predefined_payments
+    @predefined_payments = []
+    if @project
+      @predefined_payments = @project.predefined_payments.where("NOT deleted AND NOT disabled").order("amount DESC")
+    end
+   end
 
   def create
     puts params

@@ -41,7 +41,7 @@
             <div class="line">
               <div class="f-twitter size1of2">
                 <!-- we need to defer this widget, slows down the site js because site JS waits for this one to load :/-->
-                <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+                <!-- <script src="http://widgets.twimg.com/j/2/widget.js"></script>
                 <script>
                 if (window.TWTR) {
                   new TWTR.Widget({
@@ -73,7 +73,7 @@
                     }
                   }).render().setUser('Ben_Varim').start();
                 }
-                </script>
+                </script> -->
 
               </div>
               <div class="f-facebook size1of2 lastUnit">
@@ -169,12 +169,7 @@ Bv.Config = {
 </script>
 
 <!-- Javascript at the bottom for fast page loading -->
-
-<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-
-<script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.1.6.4.min.js"%3E%3C/script%3E'))</script>
-
+<script src="/javascripts/jquery.1.6.4.min.js"></script>
 
 <!-- scripts concatenated and minified via ant build script-->
 <script type="text/javascript" src="/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js"></script>

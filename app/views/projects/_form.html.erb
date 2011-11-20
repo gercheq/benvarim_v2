@@ -1,6 +1,7 @@
-<%=debug params%>
+
 
 <%= form_for @project, :html => { :multipart => true } do |f| %>
+<%=debug f.methods%>
   <% if @project.errors.any? %>
     <div class="msg-error msg">
       <h2>Lütfen bu <%=@project.errors.count%> hatayı düzeltiniz</h2>
@@ -72,7 +73,7 @@
       <%
       @currency_str = "TL"
       if @project.organization.paypal_info
-        @currency_str = @organization.paypal_info.currency_str
+        @currency_str = @project.organization.paypal_info.currency
       end
       %>
       <table style="width:400px">

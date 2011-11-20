@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118144751) do
+ActiveRecord::Schema.define(:version => 20111120130406) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20111118144751) do
     t.datetime "updated_at"
     t.integer  "amount"
     t.integer  "priority",    :default => 0
+    t.integer  "count",       :default => 0
+    t.float    "collected",   :default => 0.0
   end
 
   create_table "projects", :force => true do |t|

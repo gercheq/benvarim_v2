@@ -36,8 +36,27 @@
 
       <div class="field">
       <%=label_tag "Bağış miktarı:"%>
-      <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.human_readable_currency%>
+      <% if @predefined_payments.length > 0%>
+        <div id="payment_options">
+          <% @predefined_payments.each do |pp| %>
+            <%=radio_button_tag "tmp_payment[predefined_payment_id]", pp.id%> <%="#{pp.amount} #{@tmp_payment.currency_sign} #{pp.name}"%><br/>
+          <% end %>
+          <% if @project.accepts_random_payment?%>
+            <%=radio_button_tag "tmp_payment[predefined_payment_id]", "-1"%> Diğer: <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%>
+          <% end %>
+        </div>
+      <% else %>
+        <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.human_readable_currency%>
+      <% end %>
       </div>
+      <style>
+      #payment_options input[type=text] {
+        width:50px;
+      }
+      #payment_options input[type=radio] {
+        width:10px;
+      }
+      </style>
 
       <div class="field">
       <%=label_tag "Notunuz:"%>
