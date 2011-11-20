@@ -17,6 +17,7 @@ var mc_custom_error_style = '';
 		</div>
 </form>
 </div>
+<% captured_mailchimp = capture do %>
 <script type="text/javascript">
 var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='text';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='text';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';fnames[14]='MMERGE14';ftypes[14]='text';fnames[15]='MMERGE15';ftypes[15]='text';
 try {
@@ -184,4 +185,6 @@ function mce_success_cb(resp){
 }
 
 </script>
+<% end %>
+<%render_at_the_end captured_mailchimp%>
 <!--End mc_embed_signup-->
