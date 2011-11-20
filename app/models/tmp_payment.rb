@@ -5,6 +5,7 @@ class TmpPayment < ActiveRecord::Base
   belongs_to :project
   belongs_to :payment
   belongs_to :organization
+  belongs_to :predefined_payment
 
   validate :validate_email
   validate :active_validation

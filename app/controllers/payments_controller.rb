@@ -56,12 +56,25 @@ class PaymentsController < ApplicationController
     @tmp_payment.project_id = @project.id if @project
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
+    #make sure if there is a predefined payment id, it is valid!
+    if @tmp_payment.predefined_payment_id && @tmp_payment.predefined_payment_id > 0
+      pp = PredefinedPayment.find @tmp_payment.predefined_payment_id
+      if pp.project_id != @tmp_payment.project_id
+        flash[:error] = "Seçilen ödeme bu projeye ait değil"
+        return redirect_to @page if @page
+        return redirect_to @project if @project
+        return redirect_to @organization if @organization
+      end
+      @tmp_payment.amount = pp.amount
+    end
+
 
     if @tmp_payment.save
       #goto paypal!
       redirect_to paypal_url(@tmp_payment)
     else
       puts @tmp_payment.errors
+      add_predefined_payments
       render :new
     end
   end
@@ -235,6 +248,7 @@ class PaymentsController < ApplicationController
         page = @tmp_payment.page
         organization = @tmp_payment.organization
         project = @tmp_payment.project
+        predefined_payment = @tmp_payment.predefined_payment
 
         @payment = Payment.new attributes
         @payment.save!
@@ -255,6 +269,12 @@ class PaymentsController < ApplicationController
         unless project.nil?
           project.collected += @tmp_payment.amount
           project.save!
+        end
+
+        unless predefined_payment.nil?
+          predefined_payment.collected += @tmp_payment.amount
+          predefined_payment.count += 1
+          predefined_payment.save!
         end
       end
       return true

@@ -1,3 +1,5 @@
+<%=debug @tmp_payment%>
+
 <div class="one-column">
   <div class="widget widget-light" id="w-yeni-kayit">
     <div class="w-inner">
@@ -39,10 +41,10 @@
       <% if @predefined_payments.length > 0%>
         <div id="payment_options">
           <% @predefined_payments.each do |pp| %>
-            <%=radio_button_tag "tmp_payment[predefined_payment_id]", pp.id%> <%="#{pp.amount} #{@tmp_payment.currency_sign} #{pp.name}"%><br/>
+            <%=radio_button_tag "tmp_payment[predefined_payment_id]", pp.id, (@tmp_payment.predefined_payment_id == pp.id ? "selected" : nil)%> <%="#{pp.amount} #{@tmp_payment.currency_sign} #{pp.name}"%><br/>
           <% end %>
           <% if @project.accepts_random_payment?%>
-            <%=radio_button_tag "tmp_payment[predefined_payment_id]", "-1"%> Diğer: <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%>
+            <%=radio_button_tag "tmp_payment[predefined_payment_id]", "0", (@tmp_payment.predefined_payment_id == 0 ? "selected" : nil)%> Diğer: <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%>
           <% end %>
         </div>
       <% else %>
