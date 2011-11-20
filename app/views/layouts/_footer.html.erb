@@ -166,25 +166,28 @@ Bv.Config = {
 };
 </script>
 
-<!-- Share part -->
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-
 <!-- Javascript at the bottom for fast page loading -->
 
 <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+<script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.1.6.4.min.js"%3E%3C/script%3E'))</script>
+
+
+<!-- scripts concatenated and minified via ant build script-->
+<script type="text/javascript" src="/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js"></script>
+<%= include_javascripts :workspace %>
+<%=raw get_buffered_output%>
+<!-- Share part -->
+<script src="http://connect.facebook.net/tr_TR/all.js#xfbml=1"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
   {lang: 'tr'}
 </script>
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 
-<script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.1.4.3.min.js"%3E%3C/script%3E'))</script>
-
-
-<!-- scripts concatenated and minified via ant build script-->
-<script type="text/javascript" src="/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js"></script>
-<%= include_javascripts :workspace %>
 
 <!-- end concatenated and minified scripts-->
 
@@ -207,7 +210,6 @@ s.parentNode.insertBefore(g, s);
 })(document, 'script');
 </script>
 
-<%=raw get_buffered_output%>
 
 </body>
 </html>

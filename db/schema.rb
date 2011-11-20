@@ -132,8 +132,8 @@ ActiveRecord::Schema.define(:version => 20111118144751) do
     t.integer  "project_id"
     t.string   "name"
     t.string   "description"
-    t.boolean  "disabled"
-    t.boolean  "deleted"
+    t.boolean  "disabled",    :default => false
+    t.boolean  "deleted",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "amount"

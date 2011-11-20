@@ -1,13 +1,34 @@
 <%=debug params%>
 
 <%= form_for @project, :html => { :multipart => true } do |f| %>
-  <% if @project.errors.any? %>
+  <%
+  errorsArr = []
+  error_cnt = 0
+  if @project.errors.any?
+    errorsArr += [@project.errors]
+    error_cnt += @project.errors.count
+  end
+  if @predefined_payments && @predefined_payments.length
+    @predefined_payments.each do |pp|
+      if pp.errors.any?
+        errorsArr += [pp.errors]
+        error_cnt += pp.errors.count
+      end
+    end
+  end
+  %>
+
+  <% if error_cnt > 0 %>
+  <%=debug errorsArr %>
+
     <div class="msg-error msg">
-      <h2>Lütfen bu <%=@project.errors.count%> hatayı düzeltiniz</h2>
+      <h2>Lütfen aşağıdaki <%=error_cnt%> hatayı düzeltiniz</h2>
 
       <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% errorsArr.each do |errors| %>
+        <% errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       <% end %>
       </ul>
     </div>
@@ -71,6 +92,7 @@
       <% predefined_row = capture do %>
         <tr id="${uiid}" data-pp-id="${id}">
           <td>
+            <input type="hidden" name="predefined[][id]" value="${id}">
             <input class="pp-name" type="text" name="predefined[][name]" value="${name}">
           </td>
           <td>
@@ -81,7 +103,7 @@
             {{if disabled}}
                     checked
             {{/if}}
-            >
+            />
           </td>
           <td>
             <a href="" class="pp-delete" data-pp-uiid="${uiid}">sil</a>
@@ -96,9 +118,9 @@
       <script type="text/javascript">
         var rowTemplate = '<%=raw predefined_row%>';
         var ppUiid = 1;
-        $("#new_predefined_payment").click(function() {
+        $("#new_predefined_payment").live("click",function() {
           try {
-            $.tmpl(rowTemplate, {name:"hebele", disabled:true, uiid : "pp-uiid-" + (ppUiid ++), id:3}).appendTo( "#predefined_payments" );
+            $.tmpl(rowTemplate, {name:"", disabled:false, uiid : "pp-uiid-" + (ppUiid ++), id:null}).appendTo( "#predefined_payments" );
           }catch(e){
           }
           return false;
@@ -115,13 +137,29 @@
             }
             if(!!tr.attr("data-pp-id") == false || confirm("bu seçenegi silmek istediğinizden emin misiniz? (bu ana kadar bu seçeneğe yapılan bağışlar korunacaktır)")) {
               tr.remove();
+              //if it is already existing, mark it as deleted
+              if(!!tr.attr("data-pp-id") == true) {
+                $.tmpl('<input type="hidden" name="deleted_predefined[]" value="${id}"/>', {id : tr.attr("data-pp-id")}).appendTo("#predefined_payments");
+              }
+
               return false;
             }
           } catch(e) {
           }
           return false;
 
-        })
+        });
+        <% if @predefined_payments %>
+          <% @predefined_payments.each do |pp| %>
+            $.tmpl(rowTemplate, {name:"<%=pp.name.sub("\"", "\\\"")%>", amount: <%=pp.amount%>,disabled:<%=pp.disabled%>, uiid : "pp-uiid-" + (ppUiid ++), id:<%=pp.id%>}).appendTo( "#predefined_payments" );
+          <% end %>
+        <% end %>
+        <% if @deleted_predefineds %>
+          <% @deleted_predefineds.each do |pp_id| %>
+            $.tmpl('<input type="hidden" name="deleted_predefined[]" value="<%=pp_id%>"/>', {}).appendTo("#predefined_payments");
+          <% end %>
+        <% end %>
+
       </script>
       <style>
       #predefined_payments td {

@@ -41,6 +41,7 @@ class ProjectsController < ApplicationController
         [org.name, org.id]
       end
     end
+    @predefined_payments = []
   end
 
   def edit
@@ -49,6 +50,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz."
       redirect_to @project
     end
+    @predefined_payments = @project.predefined_payments.where("NOT deleted")
   end
 
   def create
@@ -60,9 +62,25 @@ class ProjectsController < ApplicationController
       #we create it
       @project = Project.new(params[:project])
     end
-    if @project.save
-      redirect_to(@project, :success => 'Proje yaratıldı.')
-    else
+    @predefined_payments = Array.new
+    predefineds = params[:predefined] || []
+    predefineds.each do |pp_data|
+      #set disabled first
+      pp_data[:disabled] = "on" == pp_data[:disabled]
+      ppRecord = nil
+      ppRecord = @project.predefined_payments.build(pp_data)
+      @predefined_payments += [ppRecord]
+    end
+    begin
+      Project.transaction do
+        @predefined_payments.each do |ppRecord|
+          ppRecord.save!
+        end
+        #save the project at the end for validations
+        @project.save!
+        redirect_to(@project, :success => 'Proje yaratıldı.')
+      end
+    rescue
       if @organization
         # @project.organization = @organization
       else
@@ -81,9 +99,42 @@ class ProjectsController < ApplicationController
       redirect_to @project
     end
 
-    if @project.update_attributes(params[:project])
-      redirect_to(@project, :success => 'Proje kaydedildi.')
-    else
+    @predefined_payments = Array.new
+    predefineds = params[:predefined] || []
+    predefineds.each do |pp_data|
+      #set disabled first
+      pp_data[:disabled] = "on" == pp_data[:disabled]
+      ppRecord = nil
+      if pp_data[:id] && pp_data[:id].blank? == false #existing record
+        ppRecord = @project.predefined_payments.find pp_data[:id]
+        ppRecord.update_attributes pp_data
+      else
+        ppRecord = @project.predefined_payments.build(pp_data)
+      end
+      @predefined_payments += [ppRecord]
+    end
+
+    @deleted_predefineds = params[:deleted_predefined] || []
+
+    begin
+      Project.transaction do
+        @predefined_payments.each do |ppRecord|
+          if ppRecord.new_record?
+            ppRecord.save!
+          else
+            ppRecord.save!
+          end
+        end
+        @deleted_predefineds.each do |pp_id|
+          ppRecord = @project.predefined_payments.find pp_id
+          ppRecord.deleted = true
+          ppRecord.save!
+        end
+        #save the project at the end
+        @project.update_attributes!(params[:project])
+        return redirect_to(@project, :success => 'Proje kaydedildi.')
+      end
+    rescue
       render :action => "edit"
     end
   end

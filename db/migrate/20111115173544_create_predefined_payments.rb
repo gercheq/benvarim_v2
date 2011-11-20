@@ -4,8 +4,8 @@ class CreatePredefinedPayments < ActiveRecord::Migration
       t.integer :project_id
       t.string :name
       t.string :description
-      t.boolean :disabled
-      t.boolean :deleted
+      t.boolean :disabled, :default => false
+      t.boolean :deleted, :default => false
 
       t.timestamps
     end

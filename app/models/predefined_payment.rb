@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 class PredefinedPayment < ActiveRecord::Base
+  attr_accessible :name, :description, :disabled, :deleted, :amount, :priority
+  belongs_to :project
+  validates :name, :length => { :minimum => 1, :maximum => 100 }
+  validates_numericality_of :amount, :greater_than_or_equal_to => 1
 end
 
 

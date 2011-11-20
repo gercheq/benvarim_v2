@@ -213,6 +213,12 @@ tr:
         email : "e-posta"
         note : "not"
         amount : "miktar"
+      predefined_payment:
+        name : "Açıklama"
+        description: "Tanım"
+        amount : "Miktar"
+        disabled : "Gizli"
+        deleted : "Silinmiş"
   previous: "Önceki"
   next: "Sonraki"
 

@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
    validates :organization_id, :presence => true
    validates :name, :length => { :minimum => 5, :maximum => 100 }
    validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
+   validate :validate_payment_options
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
@@ -33,6 +34,12 @@ class Project < ActiveRecord::Base
 
    def can_be_donated?
      self.active? && self.organization.can_be_donated?
+   end
+
+   def validate_payment_options
+     if self.accepts_random_payment == false && (!self.predefined_payments || self.predefined_payments.where("NOT DELETED").length < 1)
+       self.errors.add "accepts_random_payment", "en az bir ödeme seçeneği olmalı"
+     end
    end
 end
 
