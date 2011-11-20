@@ -210,34 +210,36 @@
 
       <script src="http://widgets.twimg.com/j/2/widget.js"></script>
       <script>
-      new TWTR.Widget({
-        version: 2,
-        type: 'profile',
-        rpp: 3,
-        interval: 5000,
-        width: 'auto',
-        height: 300,
-        theme: {
-          shell: {
-            background: '#2b4c6c',
-            color: '#ffffff'
+      if(window.TWTR) {
+        new TWTR.Widget({
+          version: 2,
+          type: 'profile',
+          rpp: 3,
+          interval: 5000,
+          width: 'auto',
+          height: 300,
+          theme: {
+            shell: {
+              background: '#2b4c6c',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#2b4c6c',
+              color: '#ffffff',
+              links: '#00aeff'
+            }
           },
-          tweets: {
-            background: '#2b4c6c',
-            color: '#ffffff',
-            links: '#00aeff'
+          features: {
+            scrollbar: false,
+            loop: true,
+            live: false,
+            hashtags: true,
+            timestamp: true,
+            avatars: false,
+            behavior: 'default'
           }
-        },
-        features: {
-          scrollbar: false,
-          loop: true,
-          live: false,
-          hashtags: true,
-          timestamp: true,
-          avatars: false,
-          behavior: 'default'
-        }
-      }).render().setUser('Ben_Varim').start();
+        }).render().setUser('Ben_Varim').start();
+      }
       </script>
 
     </div>

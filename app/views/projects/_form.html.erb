@@ -1,34 +1,13 @@
 <%=debug params%>
 
 <%= form_for @project, :html => { :multipart => true } do |f| %>
-  <%
-  errorsArr = []
-  error_cnt = 0
-  if @project.errors.any?
-    errorsArr += [@project.errors]
-    error_cnt += @project.errors.count
-  end
-  if @predefined_payments && @predefined_payments.length
-    @predefined_payments.each do |pp|
-      if pp.errors.any?
-        errorsArr += [pp.errors]
-        error_cnt += pp.errors.count
-      end
-    end
-  end
-  %>
-
-  <% if error_cnt > 0 %>
-  <%=debug errorsArr %>
-
+  <% if @project.errors.any? %>
     <div class="msg-error msg">
-      <h2>Lütfen aşağıdaki <%=error_cnt%> hatayı düzeltiniz</h2>
+      <h2>Lütfen bu <%=@project.errors.count%> hatayı düzeltiniz</h2>
 
       <ul>
-      <% errorsArr.each do |errors| %>
-        <% errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
@@ -64,12 +43,29 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
-  <div class="field">
-    <%= f.label :accepts_random_payment %>
-    <span>
-      <%= f.check_box :accepts_random_payment %> Gönüllüler seçebilsin
-    </span>
-  </div>
+
+  <!-- hide this for new records, creates a problem in validation -->
+  <% if @project.new_record? == false%>
+    <div class="field">
+      <%= f.label :accepts_random_payment %>
+      <span>
+        <%= f.check_box :accepts_random_payment %> Gönüllüler seçebilsin
+      </span>
+    </div>
+  <% end %>
+  <% if @predefined_payments %>
+    <% @predefined_payments.each do |pp| %>
+      <% if pp.errors.any? %>
+        <div class="msg-error msg">
+          <ul>
+          <% pp.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
   <div class="field">
     <label for="predefined_payments">Öntanımlı ödeme seçenekleri</label>
     <div>

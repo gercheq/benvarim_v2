@@ -38,7 +38,7 @@ class Project < ActiveRecord::Base
 
    def validate_payment_options
      if self.accepts_random_payment == false && (!self.predefined_payments || self.predefined_payments.where("NOT DELETED").length < 1)
-       self.errors.add "accepts_random_payment", "en az bir ödeme seçeneği olmalı"
+       self.errors.add "öntanımlı ödemelerde", "en az bir ödeme seçeneği olmalı ya da gönüllüler bağış miktarını seçebilsin şıkkı işaretlenmeli"
      end
    end
 end

@@ -40,37 +40,39 @@
             <h3>Bizi Twitter ve Facebook'ta takip edin!</h3>
             <div class="line">
               <div class="f-twitter size1of2">
-
+                <!-- we need to defer this widget, slows down the site js because site JS waits for this one to load :/-->
                 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
                 <script>
-                new TWTR.Widget({
-                  version: 2,
-                  type: 'profile',
-                  rpp: 6,
-                  interval: 5000,
-                  width: 210,
-                  height: 207,
-                  theme: {
-                    shell: {
-                      background: '#adcff4',
-                      color: '#0862a2'
+                if (window.TWTR) {
+                  new TWTR.Widget({
+                    version: 2,
+                    type: 'profile',
+                    rpp: 6,
+                    interval: 5000,
+                    width: 210,
+                    height: 207,
+                    theme: {
+                      shell: {
+                        background: '#adcff4',
+                        color: '#0862a2'
+                      },
+                      tweets: {
+                        background: '#cde5ff',
+                        color: '#444444',
+                        links: '#0862a2'
+                      }
                     },
-                    tweets: {
-                      background: '#cde5ff',
-                      color: '#444444',
-                      links: '#0862a2'
+                    features: {
+                      scrollbar: false,
+                      loop: false,
+                      live: true,
+                      hashtags: true,
+                      timestamp: true,
+                      avatars: false,
+                      behavior: 'default'
                     }
-                  },
-                  features: {
-                    scrollbar: false,
-                    loop: false,
-                    live: true,
-                    hashtags: true,
-                    timestamp: true,
-                    avatars: false,
-                    behavior: 'default'
-                  }
-                }).render().setUser('Ben_Varim').start();
+                  }).render().setUser('Ben_Varim').start();
+                }
                 </script>
 
               </div>
