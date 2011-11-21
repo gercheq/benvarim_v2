@@ -24,7 +24,9 @@ javascripts:
     - public/javascripts/jquery.benvarim.search.autocomplete.js
     - public/javascripts/jquery.benvarim.facetsrenderer.js
     - public/javascripts/facebox.js
+    - public/javascripts/jquery.lazyloadjs-0.9.js
     - public/javascripts/script.js
+
 
 
 
@@ -33,6 +35,7 @@ stylesheets:
     - public/stylesheets/style.css
     # - public/stylesheets/jquery-ui-1.8.8.custom.css
     - public/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css
+    - public/stylesheets/uploader.css
     - public/stylesheets/facebox.css
     - public/stylesheets/buttons.css
     - public/stylesheets/grids.css
