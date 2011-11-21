@@ -1193,6 +1193,7 @@ blockquote span.quotation{
 
 .row-action{
   text-align: center;
+  padding: 20px 0;
 }
 
 
@@ -1598,7 +1599,9 @@ blockquote span.quotation{
     ** Errors
     */
 
-    .msg{
+    .msg,
+    #mce-error-response,
+    #mce-success-response {
       background-color: #FFFF99;
       border: 1px solid #FF9900;
       margin-bottom: 30px;
@@ -1616,7 +1619,8 @@ blockquote span.quotation{
 
     .widget-form .msg{ margin-top:-20px;}
 
-    .msg-error {
+    .msg-error,
+    #mce-error-response {
       background-color:#FFFF99;
       background-image:url(images/icon_error.png);
       border:1px solid #FF9900;
@@ -1633,6 +1637,7 @@ blockquote span.quotation{
       border: 1px solid #FF9900;
     }
 
+    #mce-success-response,
     .msg-success {
       background-color:#CCFFCC;
       background-image:url(images/icon_success.png);
@@ -1646,6 +1651,16 @@ blockquote span.quotation{
 
     .msg h2 {
         font-size: 18px;
+    }
+
+    #mce-error-response,
+    #mce-success-response{
+      font-size: 12px;
+      padding: 5px;
+      margin: 10px 0;
+      background-repeat: no-repeat;
+      padding-left: 50px;
+      color: #444;
     }
 
     /*

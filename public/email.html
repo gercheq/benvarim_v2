@@ -1,0 +1,654 @@
+<html>
+<head>
+<title></title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<style type="text/css">
+/* Mobile-specific Styles */
+@media only screen and (max-device-width: 480px) {
+table[class=w0], td[class=w0] { width: 0 !important; }
+table[class=w10], td[class=w10], img[class=w10] { width:10px !important; }
+table[class=w15], td[class=w15], img[class=w15] { width:5px !important; }
+table[class=w30], td[class=w30], img[class=w30] { width:10px !important; }
+table[class=w60], td[class=w60], img[class=w60] { width:10px !important; }
+table[class=w125], td[class=w125], img[class=w125] { width:80px !important; }
+table[class=w130], td[class=w130], img[class=w130] { width:55px !important; }
+table[class=w140], td[class=w140], img[class=w140] { width:90px !important; }
+table[class=w160], td[class=w160], img[class=w160] { width:180px !important; }
+table[class=w170], td[class=w170], img[class=w170] { width:100px !important; }
+table[class=w180], td[class=w180], img[class=w180] { width:80px !important; }
+table[class=w195], td[class=w195], img[class=w195] { width:80px !important; }
+table[class=w220], td[class=w220], img[class=w220] { width:80px !important; }
+table[class=w240], td[class=w240], img[class=w240] { width:180px !important; }
+table[class=w255], td[class=w255], img[class=w255] { width:185px !important; }
+table[class=w275], td[class=w275], img[class=w275] { width:135px !important; }
+table[class=w280], td[class=w280], img[class=w280] { width:135px !important; }
+table[class=w300], td[class=w300], img[class=w300] { width:140px !important; }
+table[class=w325], td[class=w325], img[class=w325] { width:95px !important; }
+table[class=w360], td[class=w360], img[class=w360] { width:140px !important; }
+table[class=w410], td[class=w410], img[class=w410] { width:180px !important; }
+table[class=w470], td[class=w470], img[class=w470] { width:200px !important; }
+table[class=w580], td[class=w580], img[class=w580] { width:280px !important; }
+table[class=w640], td[class=w640], img[class=w640] { width:300px !important; }
+table[class=hide], td[class=hide], img[class=hide], p[class=hide], span[class=hide], .hide { display:none !important; }
+table[class=h0], td[class=h0] { height: 0 !important; }
+p[class=footer-content-left] { text-align: center !important; }
+#headline p { font-size: 30px !important; }
+ }
+/* Client-specific Styles */
+#outlook a { padding: 0; }	/* Force Outlook to provide a "view in browser" button. */
+body { width: 100% !important; }
+.ReadMsgBody { width: 100%; }
+.ExternalClass { width: 100%; display:block !important; } /* Force Hotmail to display emails at full width */
+/* Reset Styles */
+/* Add 100px so mobile switch bar doesn't cover street address. */
+html, body { background-color: #CDE5FF; margin: 0; padding: 0; }
+img { height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; }
+br, strong br, b br, em br, i br { line-height:100%; }
+h1, h2, h3, h4, h5, h6 { line-height: 100% !important; -webkit-font-smoothing: antialiased; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #0862A2; }
+h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {	color: #777 !important; }
+a{ color: #0862a2;}
+a:hover{  color: #318fd1 !important;}
+/* Preferably not the same color as the normal header link color.  There is limited support for psuedo classes in email clients, this was added just for good measure. */
+h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: 777 !important; }
+/* Preferably not the same color as the normal header link color. There is limited support for psuedo classes in email clients, this was added just for good measure. */
+table td, table tr { border-collapse: collapse; }
+.yshortcuts, .yshortcuts a, .yshortcuts a:link,.yshortcuts a:visited, .yshortcuts a:hover, .yshortcuts a span {
+color: black; text-decoration: none !important; border-bottom: none !important; background: none !important;
+}	/* Body text color for the New Yahoo.  This example sets the font of Yahoo's Shortcuts to black. */
+#background-table { background-color: #c8dcfa; }
+/* Webkit Elements */
+#header { border-radius:6px 6px 0px 0px; -moz-border-radius: 6px 6px 0px 0px; -webkit-border-radius:6px 6px 0px 0px; -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #888888; padding-bottom:0; }
+#header a { font-weight: bold; color: #318FD1; text-decoration: none;}
+#footer { border-radius:0px 0px 6px 6px; -moz-border-radius: 0px 0px 6px 6px; -webkit-border-radius:0px 0px 6px 6px; -webkit-font-smoothing: antialiased; }
+#simple-content-row  {
+  background: #FFFFFF url(email-footer-bckgrnd.png) repeat-x bottom left;
+  min-height: 202px;
+}
+
+/* Fonts and Content */
+body { font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; }
+.header-content, .footer-content-left, .footer-content-right { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; }
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes on header and footer. */
+.header-content { font-size: 12px; color: #888888; }
+.header-content a { font-weight: bold; color: #0862A2; text-decoration: none; }
+#headline { color: #0862A2; font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; font-size: 32px; text-align: left; margin-top:0px;  margin-bottom: 0;}
+#headline a { color: #0862A2; text-decoration: none; }
+
+
+#subheadline { color: #AAA; font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; font-size: 18px; text-align: left; margin-top:10px; margin-bottom:10px; }
+#subheadline a { color: #0862A2; text-decoration: none; }
+
+.article-title { font-size: 18px; line-height:24px; color: #000000; font-weight:bold; margin-top:0px; margin-bottom:18px; }
+.article-title a { color: #0862A2; text-decoration: none; }
+.article-content { font-size: 15px; line-height: 22px; color: #444444; margin-top: 0px; margin-bottom: 18px; }
+.article-content a { color: #0862A2; font-weight:bold; text-decoration:none; }
+.article-content ol, .article-content ul { margin-top:0px; margin-bottom:18px; margin-left:19px; padding:0; }
+.article-content li { font-size: 13px; line-height: 18px; color: #444444; }
+.article-content li a { color: #0862A2; text-decoration:underline; }
+.footer-content-left { font-size: 12px; line-height: 15px; color: #ffffff; margin-top: 0px; margin-bottom: 15px; }
+.footer-content-left a { color: #0862A2; font-weight: bold; text-decoration: none; }
+.footer-content-right { font-size: 11px; line-height: 16px; color: #ffffff; margin-top: 0px; margin-bottom: 15px; }
+.footer-content-right a { color: #0862A2; font-weight: bold; text-decoration: none; }
+#footer { background-color: #000000; color: #ffffff; box-shadow: 0 2px 2px #666; }
+#footer a { color: #318FD1; text-decoration: none; font-weight: bold; }
+#footer a:hover{ color: #B4D9F3;}
+#permission-reminder { white-space: pre-wrap; }
+#street-address { color: #ffffff; white-space: pre-wrap; }
+
+
+
+
+/*
+** Buttons
+*/
+.button, .button:visited {
+	background: #222 url(images/overlay.png) repeat-x;
+	display: inline-block;
+	padding: 7px 10px 6px;
+	color: #fff;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+ }
+
+.button:hover	{
+  background-color: #111; color: #fff !important; 	border-bottom: 1px solid rgba(0,0,0,0.25) !important; text-decoration: none !important;}
+.button:active { top: 1px; color: #FFF !important; }
+.small.button, .small.button:visited { font-size: 11px}
+.button, .button:visited,
+.medium.button, .medium.button:visited {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.67;
+  color: #FFF  !important;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
+
+.large.button, .large.button:visited {
+  font-size:16px;
+  letter-spacing: 0.1em;
+  padding:12px 30px 10px;}
+
+.super.button, .super.button:visited {
+  font-size: 18px;
+  padding: 10px 30px 8px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	line-height:22px; }
+
+.pink.button, .magenta.button:visited		{ background-color: #e22092; }
+.pink.button:hover							{ background-color: #c81e82; }
+.green.button, .green.button:visited		{ background-color: #91bd09; }
+.green.button:hover						    { background-color: #749a02; }
+.red.button, .red.button:visited			{ background-color: #e62727; }
+.red.button:hover							{ background-color: #cf2525; }
+.orange.button, .orange.button:visited		{ background-color: #ff5c00; }
+.orange.button:hover						{ background-color: #d45500; }
+.blue.button, .blue.button:visited		    { background-color: #2981e4; }
+.blue.button:hover							{ background-color: #2575cf; }
+.yellow.button, .yellow.button:visited		{
+  background-color: #ffb515;
+  background-image: url(images/button_yellow.png) repeat-x;
+  border: 1px solid #ffa03c;
+  text-shadow: 0 -1px 1px #FF9900;
+	-moz-box-shadow: 0 1px 1px rgba(160,90,20,0.6);
+	-webkit-box-shadow: 0 1px 1px rgba(160,90,20,0.6); }
+.yellow.button:hover { background-color: #fc9200; }
+
+
+/* more classes */
+.right.button{ float: right !important;}
+.no-margin.button { margin:0 !important;}
+
+/* BUTTON EXCEPTIONS */
+#sidebar .button{
+  display:block;
+  margin:0 auto;
+  text-align:center;
+}
+
+ #featured-content .button{ margin:0;}
+
+
+
+/*
+** Rounded corners
+*/
+.rc{
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.rc-top{
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-left-radius:5px;
+    -moz-border-radius-topright:5px;
+    -webkit-border-top-right-radius:5px;
+}
+
+.rc-bottom{
+  -moz-border-radius-bottomleft:5px;
+  -webkit-border-bottom-left-radius:5px;
+  -moz-border-radius-bottomright:5px;
+  -webkit-border-bottom-right-radius:5px;
+}
+
+
+.rc-left{
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
+
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  }
+
+.rc-right{
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+ }
+
+ .rc-tl{
+   -moz-border-radius-topleft: 5px;
+   -webkit-border-top-left-radius: 5px;
+   border-top-left-radius: 5px;
+ }
+
+ .rc-bl{
+   -moz-border-radius-bottomleft: 5px;
+   -webkit-border-bottom-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+ }
+
+ /*
+ ** Opaque
+ */
+ .opaque{
+   filter: alpha(opacity=70);
+   -moz-opacity: 0.7;
+   -webkit-opacity: 0.7;
+   opacity: 0.7;
+ }
+
+ /*
+ ** Beautiful &
+ */
+.amp{
+  font-family: 'Baskerville', 'Warnock Pro', 'Goudy Old Style', Palatino, 'Book Antiqua', Garamond, Georgia, 'Times New Roman';
+  font-style: italic;
+ }
+
+  /*
+  ** Shadows
+  */
+  .inset-shadow{
+    -moz-box-shadow: inset 0 0 5px 5px #274461;
+    -webkit-box-shadow:  inset 0 0 5px 5px #274461;
+    box-shadow:  inset 0 0 5px 5px #274461;
+  }
+
+  .shadow{
+    -moz-box-shadow: 0 0 5px 5px #2b4b6c;
+    -webkit-box-shadow:  0 0 5px 5px #2b4b6c;
+    box-shadow: 0 0 5px 5px #2b4b6c;
+  }
+
+
+  /*
+  ** Errors
+  */
+
+  .msg{
+    background-color: #FFFF99;
+    border: 1px solid #FF9900;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 15px;
+    padding-left: 50px;
+    /* Rounded  Corners */
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-position:12px 10px;
+    background-repeat:no-repeat;
+    text-align: left;  }
+
+  .widget-form .msg{ margin-top:-20px;}
+
+  .msg-error {
+    background-color:#FFFF99;
+    background-image:url(images/icon_error.png);
+    border:1px solid #FF9900;
+  }
+
+  .msg-notice {
+    background-color:#FFFFFF;
+    background-image:url(images/icon_info.gif);
+    border: 1px solid #0A3663;
+  }
+  .msg-alert {
+    background-color:#FFFF99;
+    background-image:url(images/icon_alert.png);
+    border: 1px solid #FF9900;
+  }
+
+  .msg-success {
+    background-color:#CCFFCC;
+    background-image:url(images/icon_success.png);
+    border:1px solid #006600;
+  }
+
+  .error, .notice, .success {
+    margin-bottom:10px;
+    padding:5px 10px;
+  }
+
+  .msg h2 {
+      font-size: 18px;
+  }
+
+
+
+
+
+
+
+
+/*
+ * Copyright 2011 Red Beacon, Inc. - All Rights Reserved
+ *
+ * This code, and all derivative work, is the exclusive property of
+ * Red Beacon, Inc. and may not be used without Red Beacon, Inc.'s
+ * authorization.
+ *
+ * Authors: Gercek Karakus, Ian Langworth
+ *
+ * Sample Markup:
+ *
+ * <div class="line">
+ *   <div class="size1of4">
+ *     <h3>1/4</h3>
+ *     <p>Lorem ipsum dolor sit amet...</p>
+ *   </div>
+ *   <div class="size1of4">
+ *     <h3>1/4</h3>
+ *     <p>Lorem ipsum dolor sit amet...</p>
+ *   </div>
+ *   <div class="size1of2 lastUnit">
+ *     <h3>1/2</h3>
+ *     <p>Lorem ipsum dolor sit amet...</p>
+ *   </div>
+ * </div>
+ */
+/*********************************************************************
+ * GRID - based on OOCSS https://github.com/stubbornella/oocss/wiki/Lines-&-Grids
+ * (please note that we don't have .unit classes in our markup)
+ ******************************************************************** */
+/* line 33 */
+.line:after,
+.lastUnit:after {
+  clear: both;
+  content: " x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x ";
+  display: block;
+  font-size: xx-large;
+  height: 0 !important;
+  line-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* line 45 */
+.line {
+  *zoom: 1;
+}
+
+/* line 48 */
+.unit,
+.size1of2,
+.size1of3,
+.size2of3,
+.size1of4,
+.size2of4,
+.size3of4,
+.size1of5,
+.size2of5,
+.size3of5,
+.size4of5 {
+  float: left;
+}
+
+/* line 61 */
+.size1of1 {
+  float: none;
+}
+
+/* line 64 */
+.size1of2 {
+  width: 50%;
+}
+
+/* line 67 */
+.size1of3 {
+  width: 33.333%;
+}
+
+/* line 70 */
+.size2of3 {
+  width: 66.667%;
+}
+
+/* line 73 */
+.size1of4 {
+  width: 25%;
+}
+
+/* line 76 */
+.size2of4 {
+  width: 50%;
+}
+
+/* line 79 */
+.size3of4 {
+  width: 75%;
+}
+
+/* line 82 */
+.size1of5 {
+  width: 20%;
+}
+
+/* line 85 */
+.size2of5 {
+  width: 40%;
+}
+
+/* line 88 */
+.size3of5 {
+  width: 60%;
+}
+
+/* line 91 */
+.size4of5 {
+  width: 80%;
+}
+
+/* line 94 */
+.lastUnit {
+  display: table-cell;
+  float: none;
+  width: auto;
+  *display: block;
+  *zoom: 1;
+  _position: relative;
+  _left: -3px;
+  _margin-right: -3px;
+}
+
+
+/*
+ *  TOOLS
+ *
+ *
+ */
+
+.main-content{
+  padding: 30px;
+
+  border-radius:6px 6px 0px 0px;
+  -moz-border-radius: 6px 6px 0px 0px;
+  -webkit-border-radius:6px 6px 0px 0px;
+  -webkit-font-smoothing: antialiased;
+  background-color: #FFFFFF;
+
+}
+
+#header{
+  margin-bottom: 2em;
+}
+#headline { margin-bottom: .5em;}
+#subheadline { margin-bottom: 0;}
+
+#content{
+  text-align:left;
+  margin: 0 0 2em;
+  padding: 0; }
+
+#content-footer{
+}
+
+
+.align-center{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.call-to-action{
+  margin: 30px auto;
+  text-align: center;
+  display: block;
+}
+
+
+
+
+
+
+.img-left,
+.img-right{
+  float: left;
+  margin: 0 20px 20px 0;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.img-right{
+  float: right;
+  margin: 0 0 20px 20px;
+}
+
+
+
+
+
+
+
+
+/*
+ * Email specific styles
+ *
+ *
+ *
+ */
+
+
+
+.social-links {
+  padding: 10px 0 10px 30px;
+}
+
+</style>
+<meta content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" name="SKYPE_TOOLBAR">
+<link type="text/css" rel="stylesheet" media="screen,projection" href="https://css.createsend1.com/css/editorButtons.min.css?h=D1AFBC29">
+<script type="text/javascript">parent.inherit(window)(parent.CS.Editor.templateReady);</script>
+</head>
+<body>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" id="background-table">
+<tbody>
+<tr>
+	<td bgcolor="#CDE5FF" align="center">
+		<table width="640" cellspacing="0" cellpadding="0" border="0" class="w640">
+		<tbody>
+		<tr>
+			<td width="640" height="20" class="w640">
+				<img src="http://benvarim.com/images/v2/footer-logo.png" height="37px" width="172px" style="padding: 20px 0 10px">
+			</td>
+		</tr>
+		<tr>
+			<td width="640" bgcolor="#fcfcfc" align="center" class="w640 main-content" >
+        <div id="header">
+  				<div id="headline">
+  					<a>Baslik!</a>
+  				</div>
+
+  				<div align="center" id="subheadline">
+  				  Neler olup bitiyor?
+  				</div>
+        </div> <!-- #header -->
+
+				<div id="content">
+				  <p>Content</p>
+				</div> <!-- #content -->
+
+				<div align="left" id="content-footer">
+					Sevgiler,<br/><img src="images/benvarim-platformu.png" width="177" height="24" style="padding-top: 5px"/>
+			  </div><!-- #footer -->
+
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td width="640" height="15" bgcolor="#ffffff" class="w640">
+			</td>
+		</tr>
+		<tr>
+			<td width="640" class="w640">
+				<table width="640" cellspacing="0" cellpadding="0" border="0" bgcolor="#000D1B" class="w640" id="footer" style="font-size:12px">
+				<tbody>
+				<tr>
+					<td width="60" class="hide w0">
+					</td>
+					<td valign="top" height="16" class="hide w0">
+					</td>
+				</tr>
+				<tr>
+				  <td>
+          <div class="line align-center social-links ">
+            <div class="size1of2" style="font-size: 14px;">
+					    <img src="http://benvarim.com/images/social_media_mini_icons/png/facebook.png" style="display:inline-block; margin-right: 5px; line-height: 16px; vertical-align: top; font-size: 14px;"/><a href="http://www.facebook.com/BenVarim.Platformu" >Facebook'ta beğen: BenVarım Platformu</a>
+            </div>
+            <div class="size1of2 lastUnit" style="font-size: 14px;">
+					    <img src="http://benvarim.com/images/social_media_mini_icons/png/twitter.png"  style="display:inline-block; margin-right: 5px; line-height: 16px; vertical-align: top;"/><a href="http://twitter.com/Ben_Varim">Twitter'da takip et: @Ben_Varim</a>
+            </div>
+            </td>
+				</tr>
+				<tr>
+					<td width="60" class="hide w0">
+					</td>
+					<td valign="top" height="16" class="hide w0">
+					</td>
+				</tr>
+				</tbody>
+				</table>
+			</td>
+		</tr>
+
+
+
+
+
+
+		<tr  style="text-align: center; font-size: 13px;">
+		  <td width="30" class="w30">
+			</td>
+			<td width="160" height="16" class="w160 h0">
+			</td>
+			<td width="160" height="16" class="w160 w0">
+			</td>
+			<td width="30" class="w30">
+			</td>
+		</tr>
+		<tr>
+			<td width="640" height="60" class="w640" style="text-align: center; font-size: 13px;">
+	      <a href="http://benvarim.com" target="_blank">http://benvarim.com</a><br/>
+	      <p>Daha iyi yarınlar yaratmak adına gösterdiğiniz çaba için teşekkür ederiz.</p>
+	      <p><a href="http://benvarim.com/guvenli_odeme" target="_blank">%100 Güvenli Ödeme Sistemi</a> | <a href="http://benvarim.com/sik_sorulan_sorular" target="_blank">Sık sorulan sorular</a> | <a href="http://benvarim.com/gizlilik_politikasi" target="_blank">Gizlilik Politikası</a> | <a href="http://benvarim.com/iletisim/yeni" target="_blank">Bize ulaşın</a></p>
+        <p><br/></p>
+	    </td>
+		</tr>
+		</tbody>
+		</table>
+	</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
