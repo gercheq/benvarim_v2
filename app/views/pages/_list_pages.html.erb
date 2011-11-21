@@ -3,7 +3,7 @@
     <div class="w-content">
       <div class="w-title">Tüm Bağış Sayfaları</div>
 
-      <div class="rows-container" id="donation-pages-container">
+      <div class="rows-container clearfix" id="donation-pages-container">
         <% @pages.each do |page| %>
           <div class="row clearfix">
             <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %></div>
