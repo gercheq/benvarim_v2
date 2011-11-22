@@ -14,6 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_or_create_by_fb_connect fb_connect
     if @user && @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+      @user.remember_me = true
       sign_in_and_redirect @user, :event => :authentication
       if "popup" == params[:state]
         #instead of redirect, redirect opener
