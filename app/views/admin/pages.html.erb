@@ -19,7 +19,7 @@
             </div>
             <div class="row-details">
               <h3><%= link_to page.title, page %></h3>
-              <p><%= link_to page.organization.name, page.organization %> &raquo; <%= link_to page.project.name, page.project %>  &raquo; <%= link_to page.user.name, page.user %></p>
+              <p><%= link_to page.organization.name, page.organization %> &raquo; <%= link_to page.project.name, page.project %>  &raquo; <%= link_to page.user.name, page.user %> <br/><b><%=page.user.email%></b></p>
 
               <div class="condense-200">
                 <%=truncate(page.description, :length => 200) %>
