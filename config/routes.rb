@@ -7,6 +7,7 @@ Benvarim::Application.routes.draw do
 
 
 
+
   post "iletisim" => "contact_forms#create", :as => :new_contact_form
   get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
   get "iletisim" => "contact_forms#index", :as => :contact_forms
@@ -23,6 +24,8 @@ Benvarim::Application.routes.draw do
   get "/gizlilik_politikasi" => "home#gizlilik_politikasi", :as => :gizlilik_politikasi
   get "/kariyer" => "home#kariyer", :as => :kariyer
   get "/basinda_benvarim" => "home#basinda_benvarim", :as => :basinda_benvarim
+
+
 
 
 

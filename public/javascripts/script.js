@@ -88,6 +88,59 @@ function equalHeight(group) {
 }
 
 
+/*
+ * Assumes that $container has the markup below
+ *
+
+<div class="benvarim-gallery">
+  <div class="bg-item">
+    <div class="bg-image"></div>
+    <div class="bg-container"></div>
+  </div>
+  ...
+</div>
+ */
+function init_benvarim_gallery($container){ }
+
+
+
+
+
+
+function init_lazy_load_facebook(){
+
+  // lazyload for facebook
+  $('.fb-like-box').lazyloadjs(function() {
+    var d = document;
+    var s = 'script';
+    var id = 'facebook-jssdk';
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  });
+
+}
+
+
+
+function init_footer(){
+  var url = "/footer_container.html";
+  $('.footer-dynamic').load(url);
+  $.get(url,function(data){
+
+    init_lazy_load_facebook();
+    //init_lazy_load_twitter();
+
+    //var content = eval(data);
+    //console.log(data);
+    //$('.footer-dynamic').html(content);
+  });
+
+
+}
+
 
 
 /*
@@ -188,8 +241,8 @@ $(document).ready(function(){
   //
   // Homepage Equalize Columns
   //
-  var cols = $('.column .widget');
-  equalHeight(cols);
+  //var cols = $('.column .widget');
+  //equalHeight(cols);
 
 
   //
@@ -250,6 +303,9 @@ $(document).ready(function(){
       facetFormat : null,
       autocompleteSearchingClass : "search-loading"
     });
+
+
+    init_footer();
 
 
 
