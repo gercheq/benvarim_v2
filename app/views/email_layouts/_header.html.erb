@@ -1,9 +1,111 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>
-      <%=title%>
-    </title>
-  </head>
-  <body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html style="background-color: #CDE5FF; margin: 0; padding: 0;">
+<head>
+  <title>
+    <%=title%>
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script type="text/javascript">parent.inherit(window)(parent.CS.Editor.templateReady);</script>
+</head>
+<body style="width: 100% !important; font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; background-color: #CDE5FF; margin: 0; padding: 0;" bgcolor="#CDE5FF">
+<style type="text/css">
+.cs-it-wrap:hover span.cs-button-block { -webkit-box-shadow: inset 0 2px 3px rgba(0,0,0,0.1),0 0 5px #75B85E !important; -moz-box-shadow: inset 0 2px 3px rgba(0,0,0,0.1),0 0 5px rgba(40,193,255,0.4) !important; box-shadow: inset 0 2px 3px rgba(0,0,0,0.1),0 0 5px #75B85E !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; borde-radius: 3px !important; }
+.cs-fl-wrap:hover~span.cs-button-block { -webkit-box-shadow: inset 0 2px 3px rgba(0,0,0,0.1),0 0 5px #75B85E !important; -moz-box-shadow: inset 0 2px 3px rgba(0,0,0,0.1),0 0 5px rgba(40,193,255,0.4) !important; box-shadow: inset 0 2px 3px rgba(0,0,0,0.1),0 0 5px #75B85E !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; borde-radius: 3px !important; }
+span.cs-button-block span.cs-edit-content-button:hover { background-position: -30px -166px !important; }
+span.cs-button-block span.cs-edit-content-button:active { background-position: -30px -195px !important; }
+span.cs-button-block span.cs-edit-content-button.cs-edit-rounded:hover { background-position: -30px -59px !important; }
+span.cs-button-block span.cs-edit-content-button.cs-edit-rounded:active { background-position: -30px -88px !important; }
+span.cs-button-block span.cs-delete-content-button:hover { background-position: -30px -380px !important; }
+span.cs-button-block span.cs-delete-content-button:active { background-position: -30px -409px !important; }
+span.cs-button-block span.cs-move-content-handle:hover { background-position: -30px -487px !important; }
+span.cs-button-block span.cs-move-content-handle:active { background-position: -30px -516px !important; }
+span.cs-button-block span.cs-add-new-button:hover { background-position: -30px -594px !important; }
+span.cs-button-block span.cs-add-new-button:active { background-position: -30px -623px !important; }
+span.cs-button-block span.cs-add-new-button-rounded:hover { background-position: -30px -915px !important; }
+span.cs-button-block span.cs-add-new-button-rounded:active { background-position: -30px -944px !important; }
+span.cs-button-block span.cs-add-new-dropdown:hover { background-position: -30px -701px !important; }
+span.cs-button-block span.cs-add-new-dropdown:active { background-position: -30px -730px !important; }
+span.cs-button-block span.cs-add-new-dropdown-rounded:hover { background-position: -30px -1022px !important; }
+span.cs-button-block span.cs-add-new-dropdown-rounded:active { background-position: -30px -1051px !important; }
+span.cs-button-block span.cs-add-new-dropdown.cs-active:hover { background-position: -30px -808px !important; }
+span.cs-button-block span.cs-add-new-dropdown.cs-active:active { background-position: -30px -837px !important; }
+span.cs-button-block span.cs-add-new-dropdown-rounded.cs-active:hover { background-position: -30px -1129px !important; }
+span.cs-button-block span.cs-add-new-dropdown-rounded.cs-active:active { background-position: -30px -1158px !important; }
+ul.cs-button-drop:before { content: "." !important; text-indent: -9999px !important; width: 18px !important; height: 9px !important; display: block !important; position: absolute !important; top: -9px !important; right: 10px !important; background: url('https://css.createsend1.com/img/topPoint.png') no-repeat 0 0 !important; z-index: 999999 !important; }
+ul.cs-button-drop li:hover>a:hover { color: #fff !important; text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important; background-color: #3aacec !important; background-image: linear-gradient(top,#39acec,#4cbefe 5%,#279ada) !important; -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
+ul.cs-button-drop li:active>a { line-height: 25px !important; padding-top: 1px !important; }
+ul.cs-button-drop li.cs-first-row>a:hover { list-style-type: none !important; -webkit-border-top-left-radius: 4px !important; -moz-border-radius-topleft: 4px !important; border-top-left-radius: 4px !important; -webkit-border-top-right-radius: 4px !important; -moz-border-radius-topright: 4px !important; border-top-right-radius: 4px !important; }
+ul.cs-button-drop li.cs-last-row>a:hover { list-style-type: none !important; -webkit-border-bottom-left-radius: 4px !important; -moz-border-radius-bottomleft: 4px !important; border-bottom-left-radius: 4px !important; -webkit-border-bottom-right-radius: 4px !important; -moz-border-radius-bottomright: 4px !important; border-bottom-right-radius: 4px !important; }
+h1 a:active { color: #777 !important; }
+h2 a:active { color: #777 !important; }
+h3 a:active { color: #777 !important; }
+h4 a:active { color: #777 !important; }
+h5 a:active { color: #777 !important; }
+h6 a:active { color: #777 !important; }
+a:hover { color: #318fd1 !important; }
+h1 a:visited { color: 777 !important; }
+h2 a:visited { color: 777 !important; }
+h3 a:visited { color: 777 !important; }
+h4 a:visited { color: 777 !important; }
+h5 a:visited { color: 777 !important; }
+h6 a:visited { color: 777 !important; }
+.yshortcuts a:visited { color: black !important; text-decoration: none !important; border-bottom: none !important; background: none !important; }
+.yshortcuts a:hover { color: black !important; text-decoration: none !important; border-bottom: none !important; background: none !important; }
+#footer a:hover { color: #B4D9F3 !important; }
+.button:visited { background: #222 url(images/overlay.png) repeat-x !important; display: inline-block !important; padding: 7px 10px 6px !important; color: #fff !important; text-decoration: none !important; -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important; -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.2) !important; -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2) !important; text-shadow: 0 -1px 1px rgba(0,0,0,0.25) !important; border-bottom: 1px solid rgba(0,0,0,0.25) !important; position: relative !important; cursor: pointer !important; }
+.button:hover { background-color: #111 !important; color: #fff !important; border-bottom: 1px solid rgba(0,0,0,0.25) !important; text-decoration: none !important; }
+.button:active { top: 1px !important; color: #FFF !important; }
+.small.button:visited { font-size: 11px !important; }
+.button:visited { font-size: 13px !important; font-weight: bold !important; line-height: 1.67 !important; color: #FFF !important; text-shadow: 0 -1px 1px rgba(0,0,0,0.25) !important; }
+.medium.button:visited { font-size: 13px !important; font-weight: bold !important; line-height: 1.67 !important; color: #FFF !important; text-shadow: 0 -1px 1px rgba(0,0,0,0.25) !important; }
+.large.button:visited { font-size: 16px !important; letter-spacing: 0.1em !important; padding: 12px 30px 10px !important; }
+.super.button:visited { font-size: 18px !important; padding: 10px 30px 8px !important; -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important; line-height: 22px !important; }
+.magenta.button:visited { background-color: #e22092 !important; }
+.pink.button:hover { background-color: #c81e82 !important; }
+.green.button:visited { background-color: #91bd09 !important; }
+.green.button:hover { background-color: #749a02 !important; }
+.red.button:visited { background-color: #e62727 !important; }
+.red.button:hover { background-color: #cf2525 !important; }
+.orange.button:visited { background-color: #ff5c00 !important; }
+.orange.button:hover { background-color: #d45500 !important; }
+.blue.button:visited { background-color: #2981e4 !important; }
+.blue.button:hover { background-color: #2575cf !important; }
+.yellow.button:visited { background-color: #ffb515 !important; background-image: url(images/button_yellow.png) repeat-x !important; border: 1px solid #ffa03c !important; text-shadow: 0 -1px 1px #FF9900 !important; -moz-box-shadow: 0 1px 1px rgba(160,90,20,0.6) !important; -webkit-box-shadow: 0 1px 1px rgba(160,90,20,0.6) !important; }
+.yellow.button:hover { background-color: #fc9200 !important; }
+.line:after { clear: both !important; content: " x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x " !important; display: block !important; font-size: xx-large !important; height: 0 !important; line-height: 0 !important; overflow: hidden !important; visibility: hidden !important; }
+.lastUnit:after { clear: both !important; content: " x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x " !important; display: block !important; font-size: xx-large !important; height: 0 !important; line-height: 0 !important; overflow: hidden !important; visibility: hidden !important; }
+></style>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" id="background-table" style="background-color: #c8dcfa;" bgcolor="#c8dcfa"><tbody><tr style="border-collapse: collapse;">
+<td bgcolor="#CDE5FF" align="center" style="border-collapse: collapse;">
+		<table width="640" cellspacing="0" cellpadding="0" border="0" class="w640" style="width: 640px !important;"><tbody>
+<tr style="border-collapse: collapse;">
+<td width="640" height="20" class="w640" style="width: 300px !important; border-collapse: collapse;">
+				<img src="http://benvarim.com/images/v2/footer-logo.png" height="48px" width="159px" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; padding: 20px 0 10px;" title="benvarim.com">
+</td>
+		</tr>
+<tr style="border-collapse: collapse;">
+<td width="640" bgcolor="#fcfcfc" align="center" class="w640 main-content" style="border-collapse: collapse; border-radius: 6px 6px 0px 0px; -moz-border-radius: 6px 6px 0px 0px; -webkit-border-radius: 6px 6px 0px 0px; -webkit-font-smoothing: antialiased; background-color: #FFFFFF; padding: 30px;">
+        <div id="header" style="border-radius: 6px 6px 0px 0px; -moz-border-radius: 6px 6px 0px 0px; -webkit-border-radius: 6px 6px 0px 0px; -webkit-font-smoothing: antialiased; color: #888888; padding-bottom: 0; margin-bottom: 2em; background-color: #FFFFFF;">
+  				<div id="headline" style="color: #0862A2; font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; font-size: 32px; text-align: left; margin-top: 0px; margin-bottom: .5em;" align="left">
+  					<a style="color: #0862A2; font-weight: bold; text-decoration: none;"><%=title%></a>
+  				</div>
+          <% if defined? subtitle%>
+  				<div align="center" id="subheadline" style="color: #AAA; font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; font-size: 18px; text-align: left; margin-top: 10px; margin-bottom: 0;">
+  				  <%= subtitle %>
+  				</div>
+  				<% end %>
+        </div> <!-- #header -->
+
+				<div id="content" style="text-align: left; margin: 0 0 2em; padding: 0;" align="left">
+
+
+
+
+
+
+
+
+
+
+
+
