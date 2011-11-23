@@ -1,0 +1,19 @@
+<%=render 'menu'%>
+<%=render :partial => 'layouts/errors'%>
+<div id="main-content">
+  <div class="widget widget-light" id="w-iletisim">
+    <div class="w-inner">
+      <div class="w-title">emails!</div>
+        <% @emails.each do |email| %>
+          <%=email%><br/>
+        <% end %>
+
+    </div>
+  </div>
+</div>
+<style>
+#info_table td {
+  padding:5px;
+}
+</style>
+<%= render 'layouts/sidebar'%>
