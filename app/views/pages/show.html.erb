@@ -165,30 +165,54 @@
 <%= render 'layouts/sidebar_kurum'%>
 <% if @post_donate %>
 
-  <div class="dialog" id="dialog-postbagis" title="Bağışınız İçin Teşekkürler">
+  <div class="dialog" id="dialog-postbagis" title="Teşekkürler!">
     <div class="d-header">
-      <div class="dh-title">Aşağıdaki butonları kullanarak arkadaşlarını da bağış yapmaya davet et!</div>
+      <div class="dh-title">
+        Bağışınız kuruma güvenli bir şekilde ulaşmıştır. Daha fazla destek toplamak için lütfen sevdiklerinle paylaşmayı ihmal etme.
+      </div>
+
+      <p class="small"><%= image_tag @page.organization.logo.url(:thumb) %> <%=@page.organization.description[0..200]%>... <%= link_to "devamı »", @page.organization%></p>
+
     </div><!-- .d-header -->
 
     <div class="d-content">
-      <table>
-        <tr>
-          <td>
+
+
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '116309391796241',
+            status     : true,
+            cookie     : true,
+            xfbml      : true
+          });
+
+          FB.ui({ method: 'feed',
+              message: 'Facebook for Websites is super-cool'});
+        };
+
+        (function(d){
+           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           d.getElementsByTagName('head')[0].appendChild(js);
+         }(document));
+      </script>
+
+
             <a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a>
-          </td>
-          <td>
+
+
             <span  class='st_email_hcount' displayText='Email'></span>
-          </td>
-        </tr>
-        <tr>
-          <td>
+
+
             <g:plusone size="medium"></g:plusone>
-          </td>
-          <td>
+
+
             <fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like>
-          </td>
-        </tr>
-      </table>
+
+
     </div><!-- .d-content -->
 
     <div class="d-footer">
@@ -197,6 +221,63 @@
 
   <% captured = capture do %>
   <script>
+
+  // FB.ui(
+  //    {
+  //      method: 'feed',
+  //      name: 'Facebook Dialogs',
+  //      link: 'http://benvarim.com/',
+  //      picture: 'http://benvarim.com/f8.jpg',
+  //      caption: 'Reference Documentation',
+  //      description: 'Dialogs provide a simple, consistent interface for applications to interface with users.',
+  //      message: 'Facebook Dialogs are easy!'
+  //    },
+  //    function(response) {
+  //      if (response && response.post_id) {
+  //        alert('Post was published.');
+  //      } else {
+  //        alert('Post was not published.');
+  //      }
+  //    }
+  //  );
+
+      //
+      // FB.ui({
+      //    method: 'permissions.request',
+      //    'perms': 'user_birthday,user_relationship_details,read_stream',
+      //    'display': 'iframe'
+      //   },
+      //   function(response) {
+      //     // check response.perms that it has all the required permissions...  if so, continue to next page.
+      //     // TODO should be a better way to do this since UI checks perms
+      //
+      //     if (response.perms != null && isSetProperSubset(permissions.split(","), response.perms.split(","))) {
+      //       top.location.href = "http://apps.facebook.com/fbdevwiki/"+nextUrl;
+      //     }
+      //   }
+      // );
+      //
+      // function isSetProperSubset(subset, superset) {
+      //   // first check lengths
+      //   if (subset.length > superset.length) {
+      //     return false;
+      //   }
+      //
+      //   var lookup = {};
+      //
+      //   for (var j in superset) {
+      //     lookup[superset[j]] = superset[j];
+      //   }
+      //
+      //   for (var i in subset) {
+      //     if (typeof lookup[subset[i]] == 'undefined') {
+      //       return false;
+      //     }
+      //   }
+      //   return true;
+      // }
+
+
   $(document).ready(function(){
       $("#dialog-postbagis").dialog('open');
   });
