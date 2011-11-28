@@ -231,7 +231,7 @@ $(document).ready(function(){
   //
   $('.dialog').dialog({
     modal: true,
-    width: 400,
+    width: 600,
     show: "fade",
     hide: "fade",
     autoOpen: false

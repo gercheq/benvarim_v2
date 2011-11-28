@@ -34,7 +34,7 @@
 <div id="fb-root"></div>
           <div class="share-options">
             <ul class="clearfix">
-              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a></li>
+              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>">Tweet</a></li>
               <li style="margin-right: 10px"><span  class='st_email_hcount' displayText='Email'></span></li>
               <li style="width:60px; margin-right: 10px"><g:plusone size="medium"></g:plusone></li>
               <% if @show_fb_like_send %>
@@ -201,13 +201,13 @@
       </script>
 
 
-            <a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a>
+            <a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %>">Tweet</a>
 
 
             <span  class='st_email_hcount' displayText='Email'></span>
 
 
-            <g:plusone size="medium"></g:plusone>
+            <g:plusone size="large"></g:plusone>
 
 
             <fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like>

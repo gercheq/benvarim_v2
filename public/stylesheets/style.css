@@ -108,9 +108,9 @@ html { overflow-y: scroll; }
 
 
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
-a:hover, a:active { outline: none; }
+a:hover, a:active { outline: none;  cursor: pointer;}
 
-a, a:active, a:visited { color: #0862A2; }
+a, a:active, a:visited { color: #0862A2; cursor: pointer;}
 a:hover { color: #318fd1; }
 
 
@@ -2432,7 +2432,7 @@ blockquote span.quotation{
   -moz-box-shadow: 0 5px 5px #AAA;
   -webkit-box-shadow: 0 5px 5px #AAA;
   box-shadow: 0 5px 5px #AAA;
-
+  max-width: 526px;
 }
 
 
