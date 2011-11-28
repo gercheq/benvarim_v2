@@ -76,7 +76,7 @@
         @currency_str = @project.organization.paypal_info.currency
       end
       %>
-      <table style="width:400px">
+      <table>
         <thead>
           <th>Açıklama</th><th>Miktar (<%=@currency_str%>)</th><th>Gizle</th><th>Sil</th>
         </thead>
@@ -84,7 +84,7 @@
         </tbody>
       </table>
       <div id="pp-control-panel">
-        <a href="" id="new_predefined_payment">Yeni seçenek ekle</a>
+        <a href="" id="new_predefined_payment">+ Yeni seçenek ekle</a>
       </div>
       <% predefined_row = capture do %>
         <tr id="${uiid}" data-pp-id="${id}">
@@ -132,7 +132,7 @@
             if(!tr || tr.length < 1) {
               return false;
             }
-            if(!!tr.attr("data-pp-id") == false || confirm("bu seçenegi silmek istediğinizden emin misiniz? (bu ana kadar bu seçeneğe yapılan bağışlar korunacaktır)")) {
+            if(!!tr.attr("data-pp-id") == false || confirm("Bu seçeneği silmek istediğinizden emin misiniz? (Şimdiye kadar bu seçeneğe yapılmış olan bağışlar korunacak, fakat bu seçenek kontrol panelinden silinecektir.)")) {
               tr.remove();
               //if it is already existing, mark it as deleted
               if(!!tr.attr("data-pp-id") == true) {
@@ -159,19 +159,32 @@
 
       </script>
       <style>
+      th {
+        padding: 3px;
+      }
+      #predefined_payments tr {
+      }
       #predefined_payments td {
         text-align:center;
         vertical-align:middle;
+        padding-bottom: 5px;
       }
       #predefined_payments input {
-        width:150px;
+        width:300px;
       }
       #predefined_payments .pp-amount,.pp-disabled {
         width:50px;
       }
 
+      #predefined_payments input[type=checkbox] {
+        max-width: 20px;
+        margin: 0 auto;
+      }
+
       #pp-control-panel {
-        float:right;
+        display: inline-block;
+        margin-left: 130px;
+        margin-top: 5px;
       }
       </style>
       <% end %>
