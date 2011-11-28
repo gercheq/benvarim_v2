@@ -566,3 +566,56 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .ui-progressbar { height:2em; text-align: left; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+
+
+
+
+
+
+
+
+
+
+/*
+ * CUSTOM BENVARIM STYLES
+ *
+ *
+ *
+ *
+ */
+
+
+/*
+ * UI DIALOG
+ */
+.ui-dialog {
+  padding: 30px;
+  overflow: visible;
+}
+
+.ui-dialog .ui-dialog-title {
+  margin: 0;
+  font-size: 32px;
+  color: #0A3663;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  position: absolute;
+  right: -25px;
+  top: -15px;
+}
+.ui-dialog .ui-icon-closethick {
+  background-image: url(images/ui-icons_454545_256x240.png);
+}
+
+.d-header {
+  font-size: 16px;
+}
+
+.ui-dialog .ui-dialog-content {
+  overflow: visible;
+}
+
+.dh-title {
+  line-height: 1.5;
+}
