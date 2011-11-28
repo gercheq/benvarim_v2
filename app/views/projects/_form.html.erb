@@ -72,7 +72,7 @@
     <div>
       <%
       @currency_str = "TL"
-      if @project.organization.paypal_info
+      if @project.organization && @project.organization.paypal_info
         @currency_str = @project.organization.paypal_info.currency
       end
       %>
