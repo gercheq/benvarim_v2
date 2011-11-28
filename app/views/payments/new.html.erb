@@ -39,26 +39,24 @@
       <div class="field">
       <%=label_tag "Bağış miktarı:"%>
       <% if @predefined_payments.length > 0%>
-        <div id="payment_options">
+        <ul class="radio-group" id="payment_options">
           <% @predefined_payments.each do |pp| %>
-            <%=radio_button_tag "tmp_payment[predefined_payment_id]", pp.id, (@tmp_payment.predefined_payment_id == pp.id ? "selected" : nil)%> <%="#{pp.amount} #{@tmp_payment.currency_sign} #{pp.name}"%><br/>
+            <li>
+              <%=radio_button_tag "tmp_payment[predefined_payment_id]", pp.id, (@tmp_payment.predefined_payment_id == pp.id ? "selected" : nil)%>
+              <label for="tmp_payment_predefined_payment_id_<%= pp.id %>"><%="#{pp.amount} #{@tmp_payment.currency_sign} - #{pp.name}"%></label>
+            </li>
           <% end %>
           <% if @project.accepts_random_payment?%>
-            <%=radio_button_tag "tmp_payment[predefined_payment_id]", "0", (@tmp_payment.predefined_payment_id == 0 ? "selected" : nil)%> Diğer: <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%>
+            <li class="other">
+              <%=radio_button_tag "tmp_payment[predefined_payment_id]", "0", (@tmp_payment.predefined_payment_id == 0 ? "selected" : nil)%>
+              <label for="tmp_payment_predefined_payment_id_0">Diğer: <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%></label>
+            </li>
           <% end %>
-        </div>
+        </ul>
       <% else %>
         <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.human_readable_currency%>
       <% end %>
       </div>
-      <style>
-      #payment_options input[type=text] {
-        width:50px;
-      }
-      #payment_options input[type=radio] {
-        width:10px;
-      }
-      </style>
 
       <div class="field">
       <%=label_tag "Notunuz:"%>
