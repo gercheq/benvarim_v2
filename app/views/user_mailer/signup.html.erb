@@ -1,12 +1,12 @@
 <%=render :partial => "email_layouts/header",
   :locals => {
-    :title => "Benvarım.com'a Hoşgeldin!"
+    :title => "BenVarım'a Hoşgeldin!"
   }%>
 
 Merhaba <a href="<%=user_path(@user, :only_path => false)%>"><%=@user.name%></a>,<br/>
 
 <br/>
-<a href="<%=root_path(:only_path => false)%>">Benvarim.com</a>'a hoşgeldin! Platformumuzu kullanarak sevdiğin sivil toplum kuruluşlarının kaynak geliştirme ve tanıtım faaliyetlerine destek olabilirsin.<br/>
+<a href="<%=root_path(:only_path => false)%>">BenVarım</a>'a hoşgeldin! İnandığın sivil toplum kuruluşları için bağış sayfanı yaratıp, sosyal medya üzerinden kolayca dilediğin kadar destek toplayabilirsin.<br/>
 
 Sırasıyla yapman gerekenler: <br/>
 <ol>
@@ -15,9 +15,7 @@ Sırasıyla yapman gerekenler: <br/>
   <li>Oluşturduğun sayfanı tanıdıklarınla paylaş</li>
 </ol>
 <br/>
-Fikir ve önerilerine çok önem veriyoruz. Lütfen <a href="<%=new_contact_form_path(:only_path => false)%>">iletişim formumuzu</a> doldurarak bizimle iletişime geç.<br/>
-Sorularını cevaplandırmak ve sana yardımcı olmak bizi mutlu eder.
+Fikir ve önerilerine çok önem veriyoruz. Bize her zaman <a href="<%=new_contact_form_path(:only_path => false)%>">iletişim formunu</a> doldurarak ulaşabilirsin.<br/>
 <br/>
-
 
 <%=render :partial => "email_layouts/footer" %>

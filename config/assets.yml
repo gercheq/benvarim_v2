@@ -24,7 +24,7 @@ javascripts:
     - public/javascripts/jquery.benvarim.search.autocomplete.js
     - public/javascripts/jquery.benvarim.facetsrenderer.js
     - public/javascripts/facebox.js
-    - public/javascripts/jquery.lazyloadjs-0.9.js
+    # public/javascripts/jquery.lazyloadjs-0.9.js
     - public/javascripts/script.js
 
 

@@ -31,19 +31,7 @@
         <div class="comment-bubble rc clearfix">
           <h1><%= @page.title %></h1>
           <h6><%= @page.user.name%></h6>
-<div id="fb-root"></div>
-          <div class="share-options">
-            <ul class="clearfix">
-              <li><a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a></li>
-              <li style="margin-right: 10px"><span  class='st_email_hcount' displayText='Email'></span></li>
-              <li style="width:60px; margin-right: 10px"><g:plusone size="medium"></g:plusone></li>
-              <% if @show_fb_like_send %>
-                <li><fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like></li>
-              <% else %>
-                <li><a  target="_blank" name="fb_share" type="button_count">Facebook'ta Paylaş</a></li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render 'pages/share_options'%>
         </div><!-- .comment-bubble -->
 
 
@@ -165,30 +153,17 @@
 <%= render 'layouts/sidebar_kurum'%>
 <% if @post_donate %>
 
-  <div class="dialog" id="dialog-postbagis" title="Bağışınız İçin Teşekkürler">
+  <div class="dialog" id="dialog-postbagis" title="Teşekkürler!">
     <div class="d-header">
-      <div class="dh-title">Aşağıdaki butonları kullanarak arkadaşlarını da bağış yapmaya davet et!</div>
+      <div class="dh-title">
+        Bağışınız kuruma güvenli bir şekilde ulaşmıştır. Daha fazla destek olmak için lütfen sevdiklerinizle paylaşın!
+      </div>
     </div><!-- .d-header -->
 
-    <div class="d-content">
-      <table>
-        <tr>
-          <td>
-            <a href="http://twitter.com/share?via=ben_varim" class="twitter-share-button" data-count="horizontal" data-text="<%= @page.title %> #ogretmenlergunu">Tweet</a>
-          </td>
-          <td>
-            <span  class='st_email_hcount' displayText='Email'></span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <g:plusone size="medium"></g:plusone>
-          </td>
-          <td>
-            <fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like>
-          </td>
-        </tr>
-      </table>
+    <div class="d-content ">
+
+      <%= render 'pages/share_options'%>
+
     </div><!-- .d-content -->
 
     <div class="d-footer">
@@ -196,9 +171,11 @@
   </div><!-- .d-dialog -->
 
   <% captured = capture do %>
-  <script>
+  <script type="text/javascript">
   $(document).ready(function(){
-      $("#dialog-postbagis").dialog('open');
+      var $dialog = $("#dialog-postbagis");
+      $dialog.dialog( "option", "width", 500 );
+      $dialog.dialog('open');
   });
   </script>
   <% end %>
