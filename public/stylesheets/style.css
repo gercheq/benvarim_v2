@@ -108,9 +108,9 @@ html { overflow-y: scroll; }
 
 
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
-a:hover, a:active { outline: none; }
+a:hover, a:active { outline: none;  cursor: pointer;}
 
-a, a:active, a:visited { color: #0862A2; }
+a, a:active, a:visited { color: #0862A2; cursor: pointer;}
 a:hover { color: #318fd1; }
 
 
@@ -1778,6 +1778,16 @@ blockquote span.quotation{
     }
 
 
+    .dialog .share-options {
+      padding: 10px;
+      border: 1px solid #CDE5FF;
+      background: #EBF4FF;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+
     /*
     ** Progress Bar
     */
@@ -2473,7 +2483,7 @@ blockquote span.quotation{
   -moz-box-shadow: 0 5px 5px #AAA;
   -webkit-box-shadow: 0 5px 5px #AAA;
   box-shadow: 0 5px 5px #AAA;
-
+  max-width: 526px;
 }
 
 
@@ -2550,6 +2560,35 @@ blockquote span.quotation{
     font-size: 14px;
     margin: 20px 0 10px;
 }
+
+
+
+
+
+
+
+
+/*
+ * Dialogs
+ *
+ */
+
+#dialog-postbagis {
+
+}
+
+.organization-fundraiser-details {
+  clear: both;
+  margin-top: 30px;
+}
+
+.organization-fundraiser-details img {
+  max-width: 150px;
+  float: left;
+}
+
+
+
 
 
 

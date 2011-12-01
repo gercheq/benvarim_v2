@@ -60,9 +60,9 @@
 .ui-widget .ui-widget { font-size: 1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1em; }
 .ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #222222; }
-.ui-widget-content a { color: #222222; }
+.ui-widget-content a { color: #0862A2; }
 .ui-widget-header { border: 1px solid #aaaaaa; background: #cccccc url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold; }
-.ui-widget-header a { color: #222222; }
+.ui-widget-header a { color: #0862A2; }
 
 /* Interaction states
 ----------------------------------*/
@@ -566,3 +566,56 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .ui-progressbar { height:2em; text-align: left; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+
+
+
+
+
+
+
+
+
+
+/*
+ * CUSTOM BENVARIM STYLES
+ *
+ *
+ *
+ *
+ */
+
+
+/*
+ * UI DIALOG
+ */
+.ui-dialog {
+  padding: 30px;
+  overflow: visible;
+}
+
+.ui-dialog .ui-dialog-title {
+  margin: 0;
+  font-size: 32px;
+  color: #0A3663;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  position: absolute;
+  right: -25px;
+  top: -15px;
+}
+.ui-dialog .ui-icon-closethick {
+  background-image: url(images/ui-icons_454545_256x240.png);
+}
+
+.d-header {
+  font-size: 16px;
+}
+
+.ui-dialog .ui-dialog-content {
+  overflow: visible;
+}
+
+.dh-title {
+  line-height: 1.5;
+}
