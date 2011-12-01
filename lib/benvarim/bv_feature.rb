@@ -17,7 +17,7 @@ class BvFeature
   # end
   def self.has_predefined_payments organization
     #hacky for now :)
-    if Rails.env.is_production?
+    if Rails.env == "production"
       return organization.id == 16
     else
       return organization.id % 2 == 1 #why, dunno :)
