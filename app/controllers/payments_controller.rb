@@ -65,7 +65,7 @@ class PaymentsController < ApplicationController
         return redirect_to @project if @project
         return redirect_to @organization if @organization
       end
-      @tmp_payment.amount = pp.amount
+      @tmp_payment.amount_in_currency = pp.amount
     end
 
 
