@@ -188,8 +188,8 @@ tr:
       contact_form:
         name : 'Ad, Soyad'
         city : 'Yaşadığınız Şehir'
-        phone : 'Telefon Numaranız'
-        email : "Eposta"
+        phone : 'Telefon Numarası'
+        email : "E-posta"
         organization : "Gönüllüsü olduğunuz Sivil Toplum Kurulusu"
         organization_role : "Göreviniz"
         other : "Notlar"
