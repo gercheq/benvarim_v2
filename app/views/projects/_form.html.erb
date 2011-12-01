@@ -56,133 +56,135 @@
       <% end %>
     <% end %>
   <% end %>
-  <div class="field">
-    <label for="predefined_payments">Öntanımlı ödeme seçenekleri</label>
-    <div>
-      <%
-      @currency_str = "TL"
-      if @project.organization && @project.organization.paypal_info
-        @currency_str = @project.organization.paypal_info.currency
-      end
-      %>
-      <table>
-        <thead>
-          <th>Açıklama</th><th>Miktar (<%=@currency_str%>)</th><th>Gizle</th><th>Sil</th>
-        </thead>
-        <tbody id="predefined_payments">
-        </tbody>
-      </table>
-      <div id="pp-control-panel">
-        <a href="" id="new_predefined_payment">+ Yeni seçenek ekle</a>
-      </div>
-      <% predefined_row = capture do %>
-        <tr id="${uiid}" data-pp-id="${id}">
-          <td>
-            <input type="hidden" name="predefined[][id]" value="${id}">
-            <input class="pp-name" type="text" name="predefined[][name]" value="${name}">
-          </td>
-          <td>
-            <input class="pp-amount" type="text" name="predefined[][amount]" value="${amount}">
-          </td>
-          <td>
-            <input class="pp-disabled" type="checkbox" style="width:50px" name="predefined[][disabled]"
-            {{if disabled}}
-                    checked
-            {{/if}}
-            />
-          </td>
-          <td>
-            <a href="" class="pp-delete" data-pp-uiid="${uiid}">sil</a>
-          </td>
-        </tr>
-      <% end %>
-      <%
-      predefined_row = predefined_row.split("\n").join(" ")
-      %>
+  <% if BvFeature.has_predefined_payments @project.organization %>
+    <div class="field">
+      <label for="predefined_payments">Öntanımlı ödeme seçenekleri</label>
+      <div>
+        <%
+        @currency_str = "TL"
+        if @project.organization && @project.organization.paypal_info
+          @currency_str = @project.organization.paypal_info.currency
+        end
+        %>
+        <table>
+          <thead>
+            <th>Açıklama</th><th>Miktar (<%=@currency_str%>)</th><th>Gizle</th><th>Sil</th>
+          </thead>
+          <tbody id="predefined_payments">
+          </tbody>
+        </table>
+        <div id="pp-control-panel">
+          <a href="" id="new_predefined_payment">+ Yeni seçenek ekle</a>
+        </div>
+        <% predefined_row = capture do %>
+          <tr id="${uiid}" data-pp-id="${id}">
+            <td>
+              <input type="hidden" name="predefined[][id]" value="${id}">
+              <input class="pp-name" type="text" name="predefined[][name]" value="${name}">
+            </td>
+            <td>
+              <input class="pp-amount" type="text" name="predefined[][amount]" value="${amount}">
+            </td>
+            <td>
+              <input class="pp-disabled" type="checkbox" style="width:50px" name="predefined[][disabled]"
+              {{if disabled}}
+                      checked
+              {{/if}}
+              />
+            </td>
+            <td>
+              <a href="" class="pp-delete" data-pp-uiid="${uiid}">sil</a>
+            </td>
+          </tr>
+        <% end %>
+        <%
+        predefined_row = predefined_row.split("\n").join(" ")
+        %>
 
-      <% captured = capture do %>
-      <script type="text/javascript">
-        var rowTemplate = '<%=raw predefined_row%>';
-        var ppUiid = 1;
-        $("#new_predefined_payment").live("click",function() {
-          try {
-            $.tmpl(rowTemplate, {name:"", disabled:false, uiid : "pp-uiid-" + (ppUiid ++), id:null}).appendTo( "#predefined_payments" );
-          }catch(e){
-          }
-          return false;
-        });
-        $(".pp-delete").live("click", function() {
-          try {
-            var trId = $(this).attr("data-pp-uiid");
-            if(!trId) {
-              return false;
+        <% captured = capture do %>
+        <script type="text/javascript">
+          var rowTemplate = '<%=raw predefined_row%>';
+          var ppUiid = 1;
+          $("#new_predefined_payment").live("click",function() {
+            try {
+              $.tmpl(rowTemplate, {name:"", disabled:false, uiid : "pp-uiid-" + (ppUiid ++), id:null}).appendTo( "#predefined_payments" );
+            }catch(e){
             }
-            var tr = $("#"+trId);
-            if(!tr || tr.length < 1) {
-              return false;
-            }
-            if(!!tr.attr("data-pp-id") == false || confirm("Bu seçeneği silmek istediğinizden emin misiniz? (Şimdiye kadar bu seçeneğe yapılmış olan bağışlar korunacak, fakat bu seçenek kontrol panelinden silinecektir.)")) {
-              tr.remove();
-              //if it is already existing, mark it as deleted
-              if(!!tr.attr("data-pp-id") == true) {
-                $.tmpl('<input type="hidden" name="deleted_predefined[]" value="${id}"/>', {id : tr.attr("data-pp-id")}).appendTo("#predefined_payments");
+            return false;
+          });
+          $(".pp-delete").live("click", function() {
+            try {
+              var trId = $(this).attr("data-pp-uiid");
+              if(!trId) {
+                return false;
               }
+              var tr = $("#"+trId);
+              if(!tr || tr.length < 1) {
+                return false;
+              }
+              if(!!tr.attr("data-pp-id") == false || confirm("Bu seçeneği silmek istediğinizden emin misiniz? (Şimdiye kadar bu seçeneğe yapılmış olan bağışlar korunacak, fakat bu seçenek kontrol panelinden silinecektir.)")) {
+                tr.remove();
+                //if it is already existing, mark it as deleted
+                if(!!tr.attr("data-pp-id") == true) {
+                  $.tmpl('<input type="hidden" name="deleted_predefined[]" value="${id}"/>', {id : tr.attr("data-pp-id")}).appendTo("#predefined_payments");
+                }
 
-              return false;
+                return false;
+              }
+            } catch(e) {
             }
-          } catch(e) {
-          }
-          return false;
+            return false;
 
-        });
-        <% if @predefined_payments %>
-          <% @predefined_payments.each do |pp| %>
-            $.tmpl(rowTemplate, {name:"<%=pp.name.sub("\"", "\\\"")%>", amount: "<%=pp.amount%>",disabled:<%=pp.disabled%>, uiid : "pp-uiid-" + (ppUiid ++), id:"<%=pp.id%>"}).appendTo( "#predefined_payments" );
+          });
+          <% if @predefined_payments %>
+            <% @predefined_payments.each do |pp| %>
+              $.tmpl(rowTemplate, {name:"<%=pp.name.sub("\"", "\\\"")%>", amount: "<%=pp.amount%>",disabled:<%=pp.disabled%>, uiid : "pp-uiid-" + (ppUiid ++), id:"<%=pp.id%>"}).appendTo( "#predefined_payments" );
+            <% end %>
           <% end %>
-        <% end %>
-        <% if @deleted_predefineds %>
-          <% @deleted_predefineds.each do |pp_id| %>
-            $.tmpl('<input type="hidden" name="deleted_predefined[]" value="<%=pp_id%>"/>', {}).appendTo("#predefined_payments");
+          <% if @deleted_predefineds %>
+            <% @deleted_predefineds.each do |pp_id| %>
+              $.tmpl('<input type="hidden" name="deleted_predefined[]" value="<%=pp_id%>"/>', {}).appendTo("#predefined_payments");
+            <% end %>
           <% end %>
+
+        </script>
+        <style>
+        th {
+          padding: 3px;
+        }
+        #predefined_payments tr {
+        }
+        #predefined_payments td {
+          text-align:center;
+          vertical-align:middle;
+          padding-bottom: 5px;
+        }
+        #predefined_payments input {
+          width:300px;
+        }
+        #predefined_payments .pp-amount,.pp-disabled {
+          width:50px;
+        }
+
+        #predefined_payments input[type=checkbox] {
+          max-width: 20px;
+          margin: 0 auto;
+        }
+
+        #pp-control-panel {
+          display: inline-block;
+          margin-left: 130px;
+          margin-top: 5px;
+        }
+        </style>
         <% end %>
-
-      </script>
-      <style>
-      th {
-        padding: 3px;
-      }
-      #predefined_payments tr {
-      }
-      #predefined_payments td {
-        text-align:center;
-        vertical-align:middle;
-        padding-bottom: 5px;
-      }
-      #predefined_payments input {
-        width:300px;
-      }
-      #predefined_payments .pp-amount,.pp-disabled {
-        width:50px;
-      }
-
-      #predefined_payments input[type=checkbox] {
-        max-width: 20px;
-        margin: 0 auto;
-      }
-
-      #pp-control-panel {
-        display: inline-block;
-        margin-left: 130px;
-        margin-top: 5px;
-      }
-      </style>
-      <% end %>
-      <%render_at_the_end captured%>
+        <%render_at_the_end captured%>
 
 
 
+      </div>
     </div>
-  </div>
+  <% end #end of predefined payments %>
   <div class="actions">
     <%= f.submit :kaydet, :class=>"button yellow super button-primary" %>
   </div>
