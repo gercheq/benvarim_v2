@@ -62,6 +62,7 @@ class ProjectsController < ApplicationController
       #we create it
       @project = Project.new(params[:project])
     end
+    @project.accepts_random_payment = true
     @predefined_payments = Array.new
     predefineds = params[:predefined] || []
     predefineds.each do |pp_data|
@@ -98,6 +99,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Sadece yöneticisi olduğunuz kurumların projelerini düzenleyebilirsiniz."
       redirect_to @project
     end
+    @project.accepts_random_payment = true
 
     @predefined_payments = Array.new
     predefineds = params[:predefined] || []
