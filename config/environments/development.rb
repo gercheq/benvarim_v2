@@ -38,6 +38,9 @@ Benvarim::Application.configure do
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_CURRENCY'] = 'USD'
+  #these user and id token are used in db import script to update paypal user data.
+  ENV['PAYPAL_SANDBOX_USER']= 'satis_1298099260_biz@benvarim.com'
+  ENV['PAYPAL_ID_TOKEN'] = 'r97EMyFtFL6r3bu1ETAacEQYMUeLw6NusWWsDoKb8ER1-hXdzSQ9RByY2hq'
 
   #facebook settings
   ENV['FACEBOOK_APP_ID'] = "137649746329130"

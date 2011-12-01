@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 task :clean_emails_from_local_db => :environment do
+  if Rails.env.production?
+    puts "cannot clean emails on production"
+    return
+  end
   puts "cleaning user emails #{User.all.length}"
   User.all.each do |u|
     u.email = "dummy-u-#{u.to_param}@benvarim.com"
@@ -31,4 +35,18 @@ task :clean_emails_from_local_db => :environment do
     puts p.email
   end
   puts "done!"
+end
+
+task :update_paypal_infos_with_sandbox => :environment do
+  if Rails.env.production?
+    puts "cannot change paypal info w/ sandbox in production"
+    return
+  end
+  puts "updating paypal infos with environment"
+  PaypalInfo.all.each do |pp|
+    pp.paypal_user = ENV['PAYPAL_SANDBOX_USER']
+    pp.paypal_id_token = ENV['PAYPAL_ID_TOKEN']
+    pp.currency = ENV['PAYPAL_CURRENCY']
+    pp.save
+  end
 end
