@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class Organization < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => "/:class/:attachment/:id/:style/resim.:extension",
                       :storage => :s3,
@@ -53,6 +54,10 @@ class Organization < ActiveRecord::Base
       :description => "#{self.name} için toplanacak genel bağışlar kurumun çeşitli projelerine destek olacaktır."
     })
     p.save
+  end
+
+  def collected_str
+    number_with_precision(self.collected, :locale => :tr)
   end
 
   def before_save_hook
