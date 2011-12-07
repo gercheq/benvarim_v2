@@ -36,7 +36,7 @@
 
       <div class="field">
       <%=label_tag "Bağış miktarı:"%>
-      <% if BvFeature.has_predefined_payments(@project.organization) && @predefined_payments.length > 0%>
+      <% if @project && BvFeature.has_predefined_payments(@project.organization) && @predefined_payments.length > 0%>
         <ul class="radio-group" id="payment_options">
           <% @predefined_payments.each do |pp| %>
             <li>
