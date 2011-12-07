@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111120130406) do
+ActiveRecord::Schema.define(:version => 20111123082101) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(:version => 20111120130406) do
   end
 
   add_index "fb_connects", ["user_id"], :name => "index_fb_connects_on_user_id", :unique => true
+
+  create_table "kvdbs", :id => false, :force => true do |t|
+    t.string   "key",        :limit => 128
+    t.text     "value"
+    t.datetime "expires"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organizations", :force => true do |t|
     t.integer  "user_id"
@@ -206,7 +214,6 @@ ActiveRecord::Schema.define(:version => 20111120130406) do
     t.date     "birthday"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
