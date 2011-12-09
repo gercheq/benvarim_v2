@@ -18,7 +18,7 @@ class BvFeature
   def self.has_predefined_payments organization
     #hacky for now :)
     if Rails.env == "production"
-      t = [16,22, 9] #unicef, tegv, bugday
+      t = [16,22, 9, 6] #unicef, tegv, bugday, tef
       return t.include? organization.id
     else
       return organization.id % 2 == 1 #why, dunno :)
