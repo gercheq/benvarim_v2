@@ -15,6 +15,7 @@ Benvarim::Application.routes.draw do
   get "/nasil_calisir" => "home#nasil_calisir", :as => :nasil_calisir
   get "/nedir" => "home#nedir", :as => :nedir
   get "/iletisim" => "home#iletisim", :as => :iletisim
+  get "/bakim" => "home#maintenance", :as => :maintenance
 
   # STATIK SAYFALAR
   get "/sik_sorulan_sorular" => "home#sik_sorulan_sorular", :as => :sik_sorulan_sorular
