@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
+  before_filter :check_maintenance
   protect_from_forgery
 protected
   def require_organization
@@ -14,5 +15,18 @@ protected
     unless ["yboyar@gmail.com", "baslevent@gmail.com", "gercekk@gmail.com", "melis.okan@gmail.com"].include? current_user.email
       redirect_to root_url
     end
+  end
+
+  def check_maintenance
+    if self.controller_name == "home" && self.action_name == "maintenance"
+      return
+    end
+    start_time = Time.utc(2011, 12, 13, 21, 55)
+    end_time = Time.utc(2011, 12, 13, 23)
+    now = Time.now.in_time_zone("UTC")
+    if now > start_time && now < end_time
+      redirect_to maintenance_url
+    end
+    #
   end
 end
