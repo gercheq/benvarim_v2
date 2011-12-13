@@ -21,8 +21,8 @@ protected
     if self.controller_name == "home" && self.action_name == "maintenance"
       return
     end
-    start_time = Time.utc(2011, 12, 13, 21, 55)
-    end_time = Time.utc(2011, 12, 13, 23)
+    start_time = Time.utc(2011, 12, 13, 20, 55)
+    end_time = Time.utc(2011, 12, 13, 22)
     now = Time.now.in_time_zone("UTC")
     if now > start_time && now < end_time
       redirect_to maintenance_url
