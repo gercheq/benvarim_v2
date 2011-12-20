@@ -15,6 +15,10 @@ class HomeController < ApplicationController
     render :layout => false
   end
 
+  def paypal
+    render :layout => false
+  end
+
   def nasil_calisir
     @selected_tab = "nav-nedir"
     @available_organizations = Organization.available_organizations_simple
