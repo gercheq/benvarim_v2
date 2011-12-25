@@ -31,4 +31,12 @@ class UserMailer < ActionMailer::Base
       end
     end
   end
+
+  def new_page(page)
+    @user = page.user
+    @page = page
+    mail(:to => @user.email,
+         :subject => "Bağış Sayfanın Başarıya Ulaşmasını Dileriz",
+         "X-SMTPAPI" => '{"category": "newpage"}')
+  end
 end

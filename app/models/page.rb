@@ -54,6 +54,8 @@ class Page < ActiveRecord::Base
 
   has_friendly_id :friendly_id_with_user, :use_slug => true
 
+  after_create :after_create_hook
+
   index_map :fields => [:user_id, :project_id, :organization_id, :title, :description, :to_param],
              :text => :index_text,
              :human_readable_name => :index_text,
@@ -102,6 +104,13 @@ class Page < ActiveRecord::Base
 
   def visible_logo_url
     self.logo.file? ? self.logo.url(:thumb) : self.project.visible_logo_url
+  end
+
+  def after_create_hook
+    begin
+      Delayed::Job.enqueue MailJob.new("UserMailer", "new_page", self)
+    rescue
+    end
   end
 
   private
