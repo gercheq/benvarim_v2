@@ -269,8 +269,8 @@ $(document).ready(function(){
   //
   // Homepage Equalize Columns
   //
-  var cols = $('.column .widget');
-  equalHeight(cols);
+  // var cols = $('.column .widget');
+  // equalHeight(cols);
 
 
   //
