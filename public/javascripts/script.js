@@ -131,7 +131,11 @@ function init_benvarim_gallery($container){ }
 // Currently active on page, project and organization forms
 //
 function init_tooltips() {
-    $('.tooltip-trigger').tooltip({
+
+    //
+    // Bağış Sayfası Yarat Tooltipleri
+    //
+    $('#i-pages-new .tooltip-trigger').tooltip({
     	// place tooltip on the right edge
     	position: "center right",
 
@@ -145,8 +149,12 @@ function init_tooltips() {
 
     });
 
+    //
+    // Hakkimizda Profil Tooltip
+    //
+    $('#i-home-hakkimizda .profile_pic').click(function(){
 
-    $('#page_description_html')
+    });
 
 }
 

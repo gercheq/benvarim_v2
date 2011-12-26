@@ -2146,10 +2146,6 @@ blockquote span.quotation{
 
 }
 
-
-
-
-
 #i-home-sik_sorulan_sorular .ui-tabs-panel{
   border:none;
   padding: 20px 10px 0;
@@ -2159,11 +2155,14 @@ blockquote span.quotation{
 /*************************************************************************************
 ** PROFILE
 *************************************************************************************/
+.team-profile{
+  margin: 0 0 30px 30px;
+}
 
 .profile {
-    margin: 15px 0;
-    clear: both;
+    margin: 15px 15px;
     float: left;
+    cursor: pointer;
 }
 
 .pr-details {
@@ -2171,7 +2170,7 @@ blockquote span.quotation{
 }
 
 .p-name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -2193,7 +2192,7 @@ blockquote span.quotation{
 ._pm_container ._pm {
     position: relative;
     background-color: white;
-    padding: 8px 8px 32px;
+    padding: 8px 8px 8px;
     border-style: solid;
     border-width: 1px;
     border-color: #DDD #CACACA #ACACAC;
@@ -2242,6 +2241,16 @@ blockquote span.quotation{
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+
+._pm_details {
+  margin: 10px 0 5px;
+}
+
+._pm_details .p-title {
+  margin-bottom:0;
+  color: #0862A2;
+}
+
 
 ._pm_inner img {
     -webkit-transition: opacity .3s linear;
@@ -2496,6 +2505,10 @@ blockquote span.quotation{
 }
 #i-home-kariyer .p-content li{
   margin-bottom: 10px;
+}
+
+#i-home-hakkimizda .ui-dialog-title{
+  display: none;
 }
 
 
