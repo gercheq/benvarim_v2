@@ -585,7 +585,7 @@ a:hover{ text-decoration: underline; }
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
   margin-bottom: 15px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "MuseoSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -2541,6 +2541,16 @@ blockquote span.quotation{
     margin-right: 0 !important;
 }
 
+#w-yeni-kayit .paypal-desc {
+  border-top: 1px solid #DDD;
+  margin: 30px 0;
+  padding-top: 30px;
+}
+
+#w-yeni-kayit .paypal-desc  img{
+  float: left;
+  margin-right: 20px;
+}
 
 
 #organization_website{

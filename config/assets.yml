@@ -34,6 +34,7 @@ javascripts:
 
 stylesheets:
   workspace:
+    - public/stylesheets/typography.css
     - public/stylesheets/style.css
     # - public/stylesheets/jquery-ui-1.8.8.custom.css
     - public/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css
