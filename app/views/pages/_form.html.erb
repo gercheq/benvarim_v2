@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :organization_id %>
     <% unless @page.organization.nil? %>
@@ -33,25 +34,32 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_area :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :logo %>
-    <% unless @page.new_record?%>
-      <%= image_tag @page.logo.url(:thumb) %>
-    <% end %>
-    <%= f.file_field :logo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description_html, :class => :mceEditor %>
+    <%= f.text_area :title, :class => :"tooltip-trigger",  :title => "<h3>Doğru bir bağış sayfası başlığı:</h3>
+    <ul>
+      <li>Kısa ve öz olmalı,</li>
+      <li>Seni ve amacını yansıtmalı,</li>
+      <li>Çevreni harekete geçirmeye yönelik olmalıdır.</li>
+    </ul>"%>
   </div>
 
   <div class="field">
     <%= f.label :goal %>
-    <%= f.text_field :goal %> TL
+    <%= f.text_field :goal, :class => "tooltip-trigger", :title => "<p>Toplayabileceğinizi düşündüğünüz, amaca uygun ve gerçekçi hedefler belirleyin.</p><p><small><em>Hedefinizi daha sonra değiştirebilirsiniz.</em></small></p>" %> TL
+  </div>
+
+  <div class="field">
+    <%= f.label :Açıklama %>
+    <%= f.text_area :description_html, :class => " tooltip-trigger", :title => "<h3>Tüm detayları paylaşmanın vakti!</h3><p>İçinizden geldiği gibi uzun uzun yazın. Bu sayfayı neden oluşturduğunuzu insanlara olanca içtenliğinizle anlatın ki daha fazla bağış toplansın.</p>
+    <p>Sürecin tamamen şeffaf ve kolay olduğunu belirtin ve insanları harekete geçirecek bir sesleniş ile açıklamanızı sonlandırın.</p>
+    " %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Fotoğraf %>
+    <% unless @page.new_record?%>
+      <%= image_tag @page.logo.url(:thumb) %>
+    <% end %>
+    <%= f.file_field :logo %>
   </div>
 
   <div class="actions">

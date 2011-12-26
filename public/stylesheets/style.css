@@ -2457,6 +2457,10 @@ blockquote span.quotation{
 /*
 * HACKS
 */
+
+#page_title {
+  height: 60px;
+}
 .scribd_iframe_embed{
   height: 600px !important;
 }

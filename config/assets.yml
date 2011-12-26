@@ -25,6 +25,8 @@ javascripts:
     - public/javascripts/jquery.benvarim.facetsrenderer.js
     - public/javascripts/facebox.js
     # public/javascripts/jquery.lazyloadjs-0.9.js
+    - public/javascripts/jquerytools/src/tooltip/tooltip.js
+    - public/javascripts/jquerytools/src/tooltip/tooltip.slide.js
     - public/javascripts/script.js
 
 
@@ -41,3 +43,4 @@ stylesheets:
     - public/stylesheets/grids.css
     - public/stylesheets/page.css
     - public/stylesheets/login-registration.css
+    - public/stylesheets/tooltips.css
