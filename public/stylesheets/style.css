@@ -2152,7 +2152,7 @@ blockquote span.quotation{
 
 #i-home-sik_sorulan_sorular .ui-tabs-panel{
   border:none;
-  padding: 20px 0 0;
+  padding: 20px 10px 0;
 }
 
 
@@ -2535,7 +2535,9 @@ blockquote span.quotation{
 }
 
 
-
+.field .page-photo-label {
+  line-height: 1.25;
+}
 
 
 .condense_control_more{

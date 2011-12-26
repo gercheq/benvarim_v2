@@ -136,12 +136,18 @@ function init_tooltips() {
     	position: "center right",
 
     	// a little tweaking of the position
-    	offset: [-2, 5],
+    	offset: [-2, 10],
 
     	// use the built-in fadeIn/fadeOut effect
-    	effect: "fade"
+    	effect: "fade",
+
+    	layout: "<div class='tooltip'><div class='tooltip-arrow-border'></div><div class='tooltip-arrow'></div></div>"
 
     });
+
+
+    $('#page_description_html')
+
 }
 
 
