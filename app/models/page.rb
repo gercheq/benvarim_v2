@@ -68,6 +68,10 @@ class Page < ActiveRecord::Base
     return (self.collected / self.goal) * 100
   end
 
+  def did_reach_goal?
+    return self.collected >= self.goal
+  end
+
   def collect_ratio_str
     "%.0f" % self.collect_ratio
   end

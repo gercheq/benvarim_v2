@@ -30,9 +30,12 @@ task :clean_emails_from_local_db => :environment do
 
   puts "cleaning tmp payment emails"
   TmpPayment.all.each do |p|
-    p.email = "dummy-tp-#{p.id}@benvarim.com"
-    p.save!
-    puts p.email
+    begin
+      p.email = "dummy-tp-#{p.id}@benvarim.com"
+      p.save!
+      puts p.email
+    rescue
+    end
   end
   puts "done!"
 end

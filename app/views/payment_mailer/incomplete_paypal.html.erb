@@ -1,0 +1,32 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => ""
+  }%>
+Sevgili <%=@tmp_payment.name%>,<br/>
+<br/>
+<% if @page %>
+
+<%=@page_owner.name%> tarafından "<%=@project.name%>" için oluşturulan "<%=@page.title%>" sayfasına bağış yapmak istediğini ancak bağışını tamamlayamadığını farkettik.<br/>
+
+<% elsif @project %>
+
+"<%=@project.name%>" projesine bağış yapmak istediğini ancak bağışını tamamlayamadığını farkettik.<br/>
+
+<% else #organization%>
+
+"<%=@organization.name%>" kurumuna bağış yapmak istediğini ancak bağışını tamamlayamadığını farkettik.<br/>
+
+<%end%>
+<br/>
+Benvarim bağışlar için 100% güvenli ödeme sistemi PayPal'ı kullanmaktadır. PayPal hakkında daha fazla bilgiye
+<a href="<%=paypal_path(nil, :only_path => false)%>">bu adresten</a> ulaşabilirsin.<br/>
+<br/>
+Yarım kalan bağışını <a href="<%=payment_retry_path(@tmp_payment, @tmp_payment.retry_key, :only_path => false)%>">bu adresi</a> tıklayarak güvenle tamamlayabilirsin.<br/>
+<br/>
+Eğer kredi kartınızla ilgili bir problem yaşıyorsan lütfen bizimle <a href="<%=new_contact_form_path(nil, :only_path => false)%>">iletişime geç</a>.<br/>
+
+<br/>
+Sevgilerimizle.<br/>
+Benvarim.com Ekibi<br/>
+
+<%=render :partial => "email_layouts/footer"%>

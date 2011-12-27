@@ -49,6 +49,7 @@ Benvarim::Application.routes.draw do
   get "/bagislar/:id/:start" => "pages#partial_payments", :as => :partial_payments
 
   post '/bagis/kontrol' => 'payments#ipn_handler' , :as => :paypal_ipn
+  get '/bagis/tekrar/:id/:retrykey' => 'payments#tmp_payment_retry', :as => :payment_retry
 
   get '/sayfa/:page_id/bagis' => "payments#new", :as => :donate_for_page
   get '/kurum/:organization_id/bagis' => "payments#new", :as => :donate_for_organization

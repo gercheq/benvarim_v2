@@ -11,7 +11,7 @@ class OrganizationMailer < ActionMailer::Base
   	mail(:to => email,
          :bcc => "team@benvarim.com",
          :subject => "Benvarim.com günlük özet - #{organization.name}",
-         "X-SMTPAPI" => '{"category": "organization"}')
+         "X-SMTPAPI" => '{"category": "organization_dailymail"}')
   end
 
   def send_daily_mail

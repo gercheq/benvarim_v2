@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => user.email,
          :subject => "Benvarim.com'a Hoşgeldin!",
-         "X-SMTPAPI" => '{"category": "welcome"}')
+         "X-SMTPAPI" => '{"category": "user_signup"}')
   end
 
   def dailymail(page,payments)
@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
     mail(:to => page.user.email,
         :bcc => "team@benvarim.com",
         :subject => "Benvarim - %s isimli sayfanıza bugün yapılan bağışlar" % [page.title],
-        "X-SMTPAPI" => '{"category": "daily"}')
+        "X-SMTPAPI" => '{"category": "user_daily"}')
   end
 
   def send_daily_payment_emails
@@ -37,6 +37,33 @@ class UserMailer < ActionMailer::Base
     @page = page
     mail(:to => @user.email,
          :subject => "Bağış Sayfanın Başarıya Ulaşmasını Dileriz",
-         "X-SMTPAPI" => '{"category": "newpage"}')
+         "X-SMTPAPI" => '{"category": "user_newpage"}')
+  end
+
+  def send_inactivity_for_days(now, period)
+    start_date = now - period.day
+    end_date = now
+    donated_during_period = Page.includes(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+    donated_before_period = Page.includes(:payments).where("payments.created_at between ? and ?", (start_date - 1.day).strftime('%Y-%m-%d'), start_date.strftime('%Y-%m-%d'))
+    pages = donated_during_period - donated_before_period
+    pages.each do |p|
+      if(p.can_be_donated? && p.did_reach_goal? == false)
+        Delayed::Job.enqueue MailJob.new("UserMailer", "page_inactivity", p)
+      end
+    end
+  end
+
+  def send_5_days_inactivity_email
+    now = Time.now.in_time_zone("Istanbul")
+    UserMailer.send_inactivity_for_days(now, 5)
+  end
+
+  def page_inactivity page
+    @page = page
+    @user = page.user
+    mail(:to => @user.email,
+         :bcc => "team@benvarim.com",
+         :subject => "Bağış sayfanı tekrar canlandırmak için yapman gerekenler",
+         "X-SMTPAPI" => '{"category": "user_pageinactivity"}')
   end
 end

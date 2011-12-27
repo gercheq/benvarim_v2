@@ -79,6 +79,28 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def tmp_payment_retry
+    tmp_payment = TmpPayment.find(params[:id])
+    if tmp_payment.payment != nil || !tmp_payment.can_be_completed? || tmp_payment.retry_key != params[:retrykey]
+      if tmp_payment.payment
+        flash[:success] = "Bağış yapıldı! Teşekkürler!"
+      end
+      return redirect_to tmp_payment.page if tmp_payment.page
+      return redirect_to tmp_payment.project if tmp_payment.project
+      return redirect_to tmp_payment.organization if tmp_payment.organization
+      return redirect_to root_path #wtf
+    end
+    #duplicate tmp payment not to have problems if user completes twice, screws data, we know :/
+    @new_payment = TmpPayment.new(tmp_payment.attributes.merge({:created_at => nil, :updated_at => nil}))
+    if @new_payment.save
+      #goto paypal!
+      redirect_to paypal_url(@new_payment)
+    else
+      flash[:error] = "Beklenmedik bir hata oluştu, lütfen tekrar deneyiniz"
+      redirect_to :root
+    end
+  end
+
   def ipn_handler
     #bunu kullanarak kurum verifikasyonu yapabiriliz.
     #sonucta paypali ayarladiklarindan emin olmaliyiz.

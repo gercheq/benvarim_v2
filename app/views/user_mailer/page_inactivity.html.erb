@@ -1,0 +1,20 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => ""
+  }%>
+Merhaba <%=@user.name%>,<br/>
+<br/>
+Benvarim.com'da oluşturduğun bağış sayfası ve topladığın bağışlar için tebrik ederiz.<br/>
+Dileriz sayfada oluşturduğun bağış hedefi en kısa zamanda başarıya ulaşır.<br/>
+<br/>
+Sayfanın son günlerde bağış toplayamadığını farkettik ve onu tekrar canlandırmak için yapman gerekenlerle ilgili bir e-posta atmak istedik.<br/>
+Sayfanın başarılı olması için, birkaç altın kural var. Öncelikle yakın çevrenden bağış yapacağına emin olduğun kişilerden bağış istemek faydalı olur.<br/>
+En önemlisi, düzenli aralıklarla sayfanı paylaşmak ve çevrene duyurmak.<br/>
+Yılmadan paylaşmaya, bağış istemeye devam ettikçe, bağış hedefine ulaşacaksın.<br/>
+<br/>
+Ekte linkini verdiğimiz video ve birkaç blog linklerinin yardımcı olacağına inanıyoruz.<br/>
+<a href="http://blog.benvarim.com/gonullu-bagis-sayfasi-nasil-hazirlanir/">Gönüllü sayfası nasıl hazırlanır? </a><br/>
+<a href="http://vimeo.com/33775867">Bağış sayfanızla başarıyla ulaşmanın sırları</a><br/>
+<a href="<%=page_url(@page)%>">Sayfanı görüntüle ve paylaş!<a/>
+
+<%=render :partial => "email_layouts/footer" %>
