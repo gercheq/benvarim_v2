@@ -3,12 +3,7 @@ class ContactFormsController < ApplicationController
   # GET /contact_forms
   # GET /contact_forms.xml
   def index
-    @contact_forms = ContactForm.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @contact_forms }
-    end
+    redirect_to :new_contact_form
   end
   # GET /contact_forms/new
   # GET /contact_forms/new.xml
