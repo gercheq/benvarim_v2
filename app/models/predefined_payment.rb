@@ -7,6 +7,7 @@ class PredefinedPayment < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: predefined_payments
@@ -15,11 +16,13 @@ end
 #  project_id  :integer
 #  name        :string(255)
 #  description :string(255)
-#  disabled    :boolean
-#  deleted     :boolean
+#  disabled    :boolean         default(FALSE)
+#  deleted     :boolean         default(FALSE)
 #  created_at  :datetime
 #  updated_at  :datetime
 #  amount      :integer
 #  priority    :integer         default(0)
+#  count       :integer         default(0)
+#  collected   :float           default(0.0)
 #
 

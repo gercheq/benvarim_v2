@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :payments
   has_many :pages
   has_many :predefined_payments
+  before_validation :sanitize_description_html
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
@@ -39,6 +40,12 @@ class Project < ActiveRecord::Base
    def validate_payment_options
      if self.accepts_random_payment == false && (!self.predefined_payments || self.predefined_payments.where("NOT DELETED").length < 1)
        self.errors.add "öntanımlı ödemelerde", "en az bir ödeme seçeneği olmalı ya da gönüllüler bağış miktarını seçebilsin şıkkı işaretlenmeli"
+     end
+   end
+
+   def sanitize_description_html
+     unless self.description_html.nil?
+       self.description = Sanitize.clean(self.description_html).gsub("&#13;", "")
      end
    end
 end
