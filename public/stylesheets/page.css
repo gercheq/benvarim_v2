@@ -75,7 +75,8 @@
 .p-summary{
     font-size: 16px;
     font-style: normal;
-    font-family: Georgia, Garamond, serif;
+    font-family:   Helvetica, sans-serif;
+    font-weight: 300;
     margin: 20px 0;
     color: #777;
     margin-bottom: 40px;
@@ -140,12 +141,21 @@
 
 /* right column contains desc */
 .pf-desc{
+  padding-top: 10px;
 }
+
 
 .pfd-inner{
   margin-left: 30px;
+  background: url('images/cta-anasayfa.png') 0 0 no-repeat;
+  padding-top: 254px;
+  width: 449px;
 }
 
+.pf-desc h1,
+.pf-desc p{
+  display: none;
+}
 
 .pf-desc h1{
   line-height: 1.2;
@@ -154,9 +164,10 @@
 }
 
 .pf-desc p{
-  font-family: Georgia, Garamond, serif;
+  font-family: "Gotham Rounded", Helvetica, sans-serif;
+  font-weight: 300;
   color: #999;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   margin-bottom: 15px;
 

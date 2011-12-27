@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :organization_id %>
     <% unless @page.organization.nil? %>
@@ -33,25 +34,33 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_area :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :logo %>
-    <% unless @page.new_record?%>
-      <%= image_tag @page.logo.url(:thumb) %>
-    <% end %>
-    <%= f.file_field :logo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description_html, :class => :mceEditor %>
+    <%= f.text_area :title, :class => :"tooltip-trigger",  :title => "<h3>En can alıcı sözün buraya!</h3>
+    <p>Başlık, sosyal medya paylaşımlarında görünecektir. Doğru bir bağış sayfası başlığı:</p>
+    <ul>
+      <li>Kısa ve öz olmalı,</li>
+      <li>Seni ve amacını yansıtmalı,</li>
+      <li>Çevreni harekete geçirmeye yönelik olmalıdır.</li>
+    </ul>"%>
   </div>
 
   <div class="field">
     <%= f.label :goal %>
-    <%= f.text_field :goal %> TL
+    <%= f.text_field :goal, :value => "", :class => "tooltip-trigger", :title => "<h3>Daha iyi yarınlar için hedef belirle!</h3><p>Toplayabileceğini düşündüğün, amacına uygun ve gerçekçi bir miktar belirlemek gelecek bağışları olumlu yönde etkileyecektir.</p>" %> TL
+  </div>
+
+  <div class="field">
+    <%= f.label :Açıklama %>
+    <%= f.text_area :description_html, :class => " tooltip-trigger", :title => "<h3>Tüm detayları paylaşma vakti!</h3><p>İçinden geldiği gibi uzun uzun yaz. Bu sayfayı neden oluşturduğunu insanlara olanca içtenliğinle anlat ki daha fazla bağış toplansın.</p>
+    <p>Sürecin tamamen şeffaf ve kolay olduğunu belirtmeyi unutma ve insanları harekete geçirecek bir sesleniş ile açıklamanı sonlandır.</p>
+    " %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Açıklama Fotoğrafı", :class => "page-photo-label" %>
+    <% unless @page.new_record?%>
+      <%= image_tag @page.logo.url(:thumb) %>
+    <% end %>
+    <%= f.file_field :logo %>
   </div>
 
   <div class="actions">

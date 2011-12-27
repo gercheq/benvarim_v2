@@ -87,9 +87,9 @@ Bv.Config = {
 
 <!-- Javascript at the bottom for fast page loading -->
 <script src="/javascripts/jquery.1.6.4.min.js"></script>
+<script type="text/javascript" src="/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js"></script>
 
 <!-- scripts concatenated and minified via ant build script-->
-<script type="text/javascript" src="/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js"></script>
 <%= include_javascripts :workspace %>
 <%=raw get_buffered_output%>
 <!-- Share part -->
@@ -101,15 +101,8 @@ Bv.Config = {
 </script>
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-
-
 <!-- end concatenated and minified scripts-->
 
-
-<!--[if lt IE 7 ]>
-<%= javascript_include_tag "libs/dd_belatedpng" %>
-<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
-<![endif]-->
 
 <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
 change the UA-XXXXX-X to be your site's ID -->

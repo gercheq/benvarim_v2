@@ -180,7 +180,7 @@ tr:
         organization_id: "kurum"
         project_id: "proje"
         title: "başlık"
-        description: "içerik"
+        description: "Açıklama"
         start_time: "başlangıç tarihi"
         end_time: "bitiş tarihi"
         goal: "Hedef"

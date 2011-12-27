@@ -1,0 +1,126 @@
+/*
+ * jQueryTools Tooltip Syles
+ *
+ *
+ * Author: Gercek Karakus
+ */
+
+.tooltip{
+   padding: 10px;
+   font-size: 14px;
+   width: 300px;
+   -webkit-border-radius: 5px;
+   -khtml-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   display: none;
+   border: 1px solid #CCC;
+   background: #e5e5e5;
+   color: #444;
+   text-shadow: 0px 1px 0px #FFF;
+   line-height: 1.5;
+   position:relative;
+}
+
+.tooltip-inner {
+  border:1px solid #FFF;
+}
+
+.tooltip-alert{
+   background: #ffffdd;
+   border: 1px solid #ffdd66;
+}
+
+.tooltip h3{
+   font-weight: bold;
+   margin-bottom: 10px;
+   font-size: 15px;
+}
+
+.tooltip p{
+ margin-bottom: 10px;
+}
+
+.tooltip ul{
+}
+
+.tooltip li{
+  margin-bottom: 5px;
+}
+
+.tooltip-info a{
+ color: #7BC0F0;
+}
+
+.tooltip-info a:hover{
+ color: #b3ddfb;
+}
+
+
+/*
+ * Different Tooltip Sizes:
+ *
+ */
+.tooltip-xlarge {
+  width: 400px;
+}
+
+.tooltip-xlarge h3 {
+  font-size: 15px;
+}
+
+.tooltip-large {
+  width: 300px;
+}
+
+.tooltip-medium{
+  width: 200px;
+}
+
+.tooltip-small{
+  width: 100px;
+}
+
+
+/* Tooltip More Description */
+.tooltip-more {
+ height: 20px;
+ margin-left: 0;
+ width: auto;
+ cursor: pointer;
+ font-size: 9px;
+ color: #0862A2;
+ border: 1px solid #CCC;
+ border-radius: 20px;
+ padding: 1px 4px;
+ vertical-align: top;
+ background-color: white;
+ font-weight: normal;
+}
+
+
+
+
+
+.tooltip-arrow-border {
+  border-color: transparent  #CCC transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  top: 40%;
+  left:-21px;
+}
+.tooltip-arrow {
+  border-color: transparent #e5e5e5 transparent transparent ;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  top: 40%;
+  left:-20px;
+}
+
+

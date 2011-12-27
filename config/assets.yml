@@ -25,6 +25,8 @@ javascripts:
     - public/javascripts/jquery.benvarim.facetsrenderer.js
     - public/javascripts/facebox.js
     # public/javascripts/jquery.lazyloadjs-0.9.js
+    - public/javascripts/jquerytools/src/tooltip/tooltip.js
+    - public/javascripts/jquerytools/src/tooltip/tooltip.slide.js
     - public/javascripts/script.js
 
 
@@ -32,6 +34,7 @@ javascripts:
 
 stylesheets:
   workspace:
+    - public/stylesheets/typography.css
     - public/stylesheets/style.css
     # - public/stylesheets/jquery-ui-1.8.8.custom.css
     - public/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css
@@ -41,3 +44,4 @@ stylesheets:
     - public/stylesheets/grids.css
     - public/stylesheets/page.css
     - public/stylesheets/login-registration.css
+    - public/stylesheets/tooltips.css

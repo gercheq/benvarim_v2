@@ -2146,32 +2146,32 @@ blockquote span.quotation{
 
 }
 
-
-
-
-
 #i-home-sik_sorulan_sorular .ui-tabs-panel{
   border:none;
-  padding: 20px 0 0;
+  padding: 20px 10px 0;
 }
 
 
 /*************************************************************************************
 ** PROFILE
 *************************************************************************************/
+.team-profile{
+  margin: 0 0 30px 30px;
+}
 
 .profile {
-    margin: 15px 0;
-    clear: both;
+    margin: 15px 15px;
     float: left;
+    cursor: pointer;
 }
 
 .pr-details {
     margin-left: 190px;
+    font-size: 16px;
 }
 
 .p-name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -2193,7 +2193,7 @@ blockquote span.quotation{
 ._pm_container ._pm {
     position: relative;
     background-color: white;
-    padding: 8px 8px 32px;
+    padding: 8px 8px 8px;
     border-style: solid;
     border-width: 1px;
     border-color: #DDD #CACACA #ACACAC;
@@ -2242,6 +2242,16 @@ blockquote span.quotation{
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+
+._pm_details {
+  margin: 10px 0 5px;
+}
+
+._pm_details .p-title {
+  margin-bottom:0;
+  color: #0862A2;
+}
+
 
 ._pm_inner img {
     -webkit-transition: opacity .3s linear;
@@ -2457,6 +2467,10 @@ blockquote span.quotation{
 /*
 * HACKS
 */
+
+#page_title {
+  height: 60px;
+}
 .scribd_iframe_embed{
   height: 600px !important;
 }
@@ -2494,6 +2508,10 @@ blockquote span.quotation{
   margin-bottom: 10px;
 }
 
+#i-home-hakkimizda .ui-dialog-title{
+  display: none;
+}
+
 
 /*
 ** FACEBOX HACKS
@@ -2524,6 +2542,16 @@ blockquote span.quotation{
     margin-right: 0 !important;
 }
 
+#w-yeni-kayit .paypal-desc {
+  border-top: 1px solid #DDD;
+  margin: 30px 0;
+  padding-top: 30px;
+}
+
+#w-yeni-kayit .paypal-desc  img{
+  float: left;
+  margin-right: 20px;
+}
 
 
 #organization_website{
@@ -2531,7 +2559,9 @@ blockquote span.quotation{
 }
 
 
-
+.field .page-photo-label {
+  line-height: 1.25;
+}
 
 
 .condense_control_more{

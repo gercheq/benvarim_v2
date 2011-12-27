@@ -125,6 +125,40 @@ function init_benvarim_gallery($container){ }
 
 
 
+//
+// Tooltips
+//
+// Currently active on page, project and organization forms
+//
+function init_tooltips() {
+
+    //
+    // Bağış Sayfası Yarat Tooltipleri
+    //
+    $('#i-pages-new .tooltip-trigger').tooltip({
+    	// place tooltip on the right edge
+    	position: "center right",
+
+    	// a little tweaking of the position
+    	offset: [-2, 10],
+
+    	// use the built-in fadeIn/fadeOut effect
+    	effect: "fade",
+
+    	layout: "<div class='tooltip'><div class='tooltip-arrow-border'></div><div class='tooltip-arrow'></div></div>"
+
+    });
+
+    //
+    // Hakkimizda Profil Tooltip
+    //
+    $('#i-home-hakkimizda .profile_pic').click(function(){
+
+    });
+
+}
+
+
 function init_footer(){
   var url = "/footer_container.html";
   $('.footer-dynamic').load(url);
@@ -235,8 +269,8 @@ $(document).ready(function(){
   //
   // Homepage Equalize Columns
   //
-  //var cols = $('.column .widget');
-  //equalHeight(cols);
+  // var cols = $('.column .widget');
+  // equalHeight(cols);
 
 
   //
@@ -270,38 +304,19 @@ $(document).ready(function(){
 	});
 
 
- /*
-  *  condensedLength: Target length of condensed element. Default: 200
-  *  minTrail: Minimun length of the trailing text. Default: 20
-  *  delim: Delimiter used for finding the break point. Default: " " - {space}
-  *  moreText: Text used for the more control. Default: [more]
-  *  lessText: Text used for the less control. Default: [less]
-  *  ellipsis: Text added to condensed element. Default:  ( ... )
-  *  moreSpeed: Animation Speed for expanding. Default: "normal"
-  *  lessSpeed: Animation Speed for condensing. Default: "normal"
-  *  easing: Easing algorith. Default: "linear"
+
+  $("#un-search-form").bvSearchAutocomplete({
+    renderer : null,
+    format : null,
+    facetRenderer : null,
+    facetFormat : null,
+    autocompleteSearchingClass : "search-loading"
+  });
 
 
-	$('.condense-200').condense({
-	  condensedLength: 200,
-	  moreText: "Devamını Göster",
-	  lessText: "",
-	  ellipsis: ""
-	});
-*/
+  init_tooltips();
 
-    $("#un-search-form").bvSearchAutocomplete({
-      renderer : null,
-      format : null,
-      facetRenderer : null,
-      facetFormat : null,
-      autocompleteSearchingClass : "search-loading"
-    });
-
-
-    init_footer();
-
-
+  init_footer();
 
 });
 
