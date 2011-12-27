@@ -585,7 +585,7 @@ a:hover{ text-decoration: underline; }
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
   margin-bottom: 15px;
-  font-family: "MuseoSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1{

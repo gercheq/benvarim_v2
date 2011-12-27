@@ -141,12 +141,21 @@
 
 /* right column contains desc */
 .pf-desc{
+
 }
+
 
 .pfd-inner{
   margin-left: 30px;
+  background: url('images/cta-anasayfa.png') 0 0 no-repeat;
+  padding-top: 254px;
+  width: 449px;
 }
 
+.pf-desc h1,
+.pf-desc p{
+  display: none;
+}
 
 .pf-desc h1{
   line-height: 1.2;
