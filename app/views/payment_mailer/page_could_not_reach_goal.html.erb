@@ -1,0 +1,17 @@
+<%=render :partial => "email_layouts/header",
+:locals => {
+  :title => ""
+}%>
+
+Merhaba <%=@payment.name%>,<br/>
+
+<%=@page.user.name%> tarafından Benvarim.com'da oluşturulan <a href="<%=page_path(@page, :only_path => false)%>"><%=@page.title%></a> isimli sayfaya <%=distance_of_time_in_words_to_now(@payment.created_at)%> önce
+yaptığın bağış için teşekkürler.<br/>
+<br/>
+Sayfa bu güne kadar <%=@page.collected_str%> TL topladı ve ne yazık ki hedeflediği <%=@page.goal_str%> TL'ye henüz ulaşamadı.<br/>
+<br/>
+Sayfanın hedefine ulaşmasına katkıda bulunmak için biraz daha bağış yapabilir ya da sayfayı Facebook ve Twitter'da paylaşabilirsin!<br/>
+<br/>
+Senden ricamız aşağıdaki linke tıklayarak bu güzel projeye biraz daha katkıda bulunman.<br/>
+<a href="<%=page_path(@page, :only_path => false)%>"><%=@page.title%></a>
+<%=render :partial => "email_layouts/footer" %>
