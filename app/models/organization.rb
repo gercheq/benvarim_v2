@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 class Organization < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+
+  acts_as_taggable
+
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => "/:class/:attachment/:id/:style/resim.:extension",
                       :storage => :s3,
@@ -12,7 +15,7 @@ class Organization < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email
 
-  index_map :fields => [:user_id, :name, :description, :website, :to_param],
+  index_map :fields => [:user_id, :name, :description, :website, :to_param, :visible_tags, :hidden_tags],
             :text => :name,
             :logo => :visible_logo_url,
             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}

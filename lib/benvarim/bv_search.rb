@@ -56,6 +56,13 @@ class ActiveRecord::Base
     add_to_index(data, variables)
   end
 
+  def visible_tags
+    self.tag_list_on(:visible).join(",")
+  end
+  def hidden_tags
+    self.tag_list_on(:hidden).join(",")
+  end
+
   protected
   def self.index_map index_map
     if(!index_map[:fields])
@@ -108,6 +115,9 @@ class ActiveRecord::Base
     end
     if(!data[:text])
       data[:text] = data[:name]
+    end
+    if data[:visible_tags]
+      data[:text] += " " + data[:visible_tags]
     end
     if(!data[:human_readable_name])
       data[:human_readable_name] = data[:name]

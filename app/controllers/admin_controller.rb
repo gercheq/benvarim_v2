@@ -58,21 +58,21 @@ class AdminController < ApplicationController
   def edit_organization
     org = Organization.find params[:id]
     active = params[:active]
-
-    if active && org.active
-      flash[:notice] = "e zaten #{org.name} aktif :/"
-    elsif !active && !org.active
-      flash[:notice] = "e zaten #{org.name} pasif :/"
-    elsif active
-      org.active = true
-      org.save!
-      flash[:notice] = "#{org.name} aktiflendi, hayirli ugurlu olsun."
-    else
-      org.active = false
-      org.save!
-      flash[:notice] = "#{org.name} kapatildi, cok uzuldum :("
+    org.set_tag_list_on(:hidden, params[:hidden_tags])
+    org.set_tag_list_on(:visible, params[:visible_tags])
+    org.active = active == true
+    org.save!
+    flash[:notice] = "değişiklikler kaydedildi"
+    respond_to do |format|
+      format.html {redirect_to :action => :organizations}
+      format.json { render :json => {
+        :name => org.name,
+        :active => org.active?,
+        :visible_tags => org.visible_tags,
+        :hidden_tags => org.hidden_tags
+        } }
     end
-    redirect_to :action => :organizations
+
   end
 
   def export_emails

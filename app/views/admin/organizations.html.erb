@@ -11,16 +11,17 @@
             <div class="row-details">
               <h3><%= link_to organization.name, organization %></h3>
               <p>
-                <% if organization.paypal_info != nil%>
-                  <%= form_tag admin_edit_organization_path(organization) do |f| %>
-                    Paypal Hesabı: <%=label_tag organization.paypal_info.paypal_user%></br>
-                    Kurum Aktif: <%=check_box_tag :active, "1", organization.active%><br/>
-                    <%=submit_tag "Değişikliği kaydet"%>
-                  <% end%>
-                <% else %>
-                  <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a>
-                <% end %>
-
+                  <%= form_tag (admin_edit_organization_path(organization) + ".json"), :class => "org_form" do |f| %>
+                    <% if organization.paypal_info != nil%>
+                      Paypal Hesabı: <%=label_tag organization.paypal_info.paypal_user%></br>
+                      Kurum Aktif: <%=check_box_tag :active, "1", organization.active%><br/>
+                    <% else %>
+                      <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a><br/>
+                    <% end %>
+                    Gizli Etiketler: <%=text_field_tag :hidden_tags, organization.tag_list_on(:hidden).join(","), :style => "width:600px"%><br/>
+                    Görünür Etiketler: <%=text_field_tag :visible_tags,  organization.tag_list_on(:visible).join(","), :style => "width:600px"%><br/>
+                    <%=submit_tag "Değişikliği kaydet", :class => "submit_org"%>
+                  <% end %>
               </p>
               <p><%= organization.description %></p>
               <p><%= organization.address %></p>
@@ -55,4 +56,39 @@
 </div>
 
 
+<% captured = capture do %>
+<script>
+$(document).ready(function(){
+    $(".org_form").submit(function(event) {
+      event.preventDefault();
+      var $form = $( this );
+      $form.hide();
+      
+      var url = $form.attr( 'action' );
+      $.post( url, $form.serialize(),
+          function( data ) {
+            $form.show();
+            if(!data) {
+              alert("hata, tekrar dene");
+            } else if(data.err) {
+              alert(data.err);
+            } else if(data.name) {
+              if(data.hidden_tags) {
+                $form.find("input[name=hidden_tags]").attr("value",data.hidden_tags)
+              }
+              if(data.visible_tags) {
+                $form.find("input[name=visible_tags]").attr("value",data.visible_tags)
+              }
+              alert(data.name + " kaydedildi");
+            } else {
+              alert("wtf?");
+            }
+
+          }
+        );
+    });
+});
+</script>
+<% end %>
+<%render_at_the_end captured%>
 
