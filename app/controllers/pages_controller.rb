@@ -140,7 +140,7 @@ class PagesController < ApplicationController
     @include_more_link = true
     @page = Page.find(params[:id])
     if !@page.can_be_donated?
-      flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız."
+      flash.now[:error] = @page.cant_be_donated_reason
     end
     puts params[:start]
     @payments = fetch_payments_page params[:start]
