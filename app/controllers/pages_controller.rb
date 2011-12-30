@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     if !@page.can_be_donated?
-      flash.now[:error] = "Sayfa aktif olmadığı için bağış yapamazsınız."
+      flash.now[:error] = @page.cant_be_donated_reason
     end
     @include_more_link = params[:paginate] ? true : false
     @payments = fetch_payments_page
@@ -95,6 +95,7 @@ class PagesController < ApplicationController
   end
 
   def create
+    parse_end_time
     @page = current_user.pages.build(params[:page])
     if @page.save
       redirect_to(@page, :success => 'Bağış sayfası yaratıldı.')
@@ -106,6 +107,7 @@ class PagesController < ApplicationController
   end
 
   def update
+    parse_end_time
     @page = current_user.pages.find(params[:id])
     if @page.update_attributes(params[:page])
       redirect_to(@page, :success => 'Bağış sayfası güncellendi.')
@@ -113,6 +115,24 @@ class PagesController < ApplicationController
       add_organization_list
       add_project_list (@page.organization.nil? ? nil : @page.organization)
       render :action => "edit"
+    end
+  end
+
+  def parse_end_time
+    if !params[:page]
+      return
+    end
+    #save the project at the end
+    any_empty = false
+    for i in (1..3)
+      if params[:page]["end_time(#{i}i)"] == ""
+        any_empty = true
+      end
+    end
+    if any_empty
+      for i in (1..3)
+        params[:page]["end_time(#{i}i)"] = ""
+      end
     end
   end
 

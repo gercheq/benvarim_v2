@@ -69,7 +69,14 @@ class Organization < ActiveRecord::Base
   end
 
   def can_be_donated?
-    self.active?
+    return self.cant_be_donated_reason == nil
+  end
+
+  def cant_be_donated_reason
+    if self.active?
+      return nil
+    end
+    return "Kurum bilgileri Benvarim.com tarafından henüz onaylanmadığı için bağış yapamazsınız"
   end
 
   def self.available_organizations

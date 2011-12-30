@@ -51,6 +51,7 @@ class Page < ActiveRecord::Base
 
   validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000000
   validates_numericality_of :collected, :greater_than_or_equal_to => 0
+  validate :validate_end_time
 
   has_friendly_id :friendly_id_with_user, :use_slug => true
 
@@ -89,8 +90,21 @@ class Page < ActiveRecord::Base
   end
 
   def can_be_donated?
-    self.active? && self.project.can_be_donated?
+    self.active? && (self.end_time.nil? || self.end_time > Time.now) && self.project.can_be_donated?
   end
+
+  def cant_be_donated_reason
+    return "Sayfa aktif olmadığı için bağış yapamazsınız" unless self.active?
+    return "Sayfanın süresi dolduğu için bağış yapamazsınız" unless (self.end_time.nil? || self.end_time > Time.now)
+    return self.project.cant_be_donated_reason
+  end
+
+  def validate_end_time
+    # don't validate for now
+     # if self.end_time_changed? && !self.end_time.nil? && Time.now > self.end_time
+     #   self.errors.add "end_time", "bugünden önce olamaz."
+     # end
+   end
 
   # def to_param
   #   "#{id}-#{title.downcase.gsub('ö','o').gsub('ı','i').gsub('ğ','g').gsub('ş','s').gsub('ü','u').gsub(/[^a-z0-9]+/i, '-')}"[0..30]

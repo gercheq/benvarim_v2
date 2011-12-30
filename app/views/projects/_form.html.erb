@@ -1,3 +1,5 @@
+<%=debug @params%>
+
 <%= form_for @project, :html => { :multipart => true } do |f| %>
   <% if @project.errors.any? %>
     <div class="msg-error msg">
@@ -36,6 +38,10 @@
       <% end %>
     <% end %>
     <%= f.file_field :logo %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %>
+    <%= f.date_select :end_time, :include_blank => true, :start_year=>2011%>
   </div>
   <div class="field">
     <%= f.label :description %>

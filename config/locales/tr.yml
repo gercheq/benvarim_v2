@@ -31,6 +31,12 @@ tr:
     pm: "öğleden sonra"
 
   datetime:
+    prompts:
+      day : 'gün'
+      month : 'ay'
+      year : 'yıl'
+      hour: 'saat'
+      minute : 'dakika'
     distance_in_words:
       half_a_minute: 'yarım dakika'
       less_than_x_seconds:

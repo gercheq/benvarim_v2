@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
     @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     @projects = @organization.projects
     if !@organization.can_be_donated?
-      flash.now[:error] = "Kurum bilgileri Benvarım.com tarafından henüz onaylanmadığı için bağış yapamazsınız."
+      flash.now[:error] = @organization.cant_be_donated_reason
     end
   end
 

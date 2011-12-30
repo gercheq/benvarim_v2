@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @top_pages = @project.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     unless @project.can_be_donated?
-      flash.now[:error] = "Proje aktif olmadığı için bağış toplayamazsınız."
+      flash.now[:error] = @project.cant_be_donated_reason
     end
   end
 
@@ -77,6 +77,7 @@ class ProjectsController < ApplicationController
         @predefined_payments.each do |ppRecord|
           ppRecord.save!
         end
+        parse_end_time
         #save the project at the end for validations
         @project.save!
         redirect_to(@project, :success => 'Proje yaratıldı.')
@@ -121,23 +122,37 @@ class ProjectsController < ApplicationController
     begin
       Project.transaction do
         @predefined_payments.each do |ppRecord|
-          if ppRecord.new_record?
-            ppRecord.save!
-          else
-            ppRecord.save!
-          end
+          ppRecord.save!
         end
         @deleted_predefineds.each do |pp_id|
           ppRecord = @project.predefined_payments.find pp_id
           ppRecord.deleted = true
           ppRecord.save!
         end
-        #save the project at the end
+        parse_end_time
         @project.update_attributes!(params[:project])
         return redirect_to(@project, :success => 'Proje kaydedildi.')
       end
     rescue
       render :action => "edit"
+    end
+  end
+
+  def parse_end_time
+    if !params[:project]
+      return
+    end
+    #save the project at the end
+    any_empty = false
+    for i in (1..3)
+      if params[:project]["end_time(#{i}i)"] == ""
+        any_empty = true
+      end
+    end
+    if any_empty
+      for i in (1..3)
+        params[:project]["end_time(#{i}i)"] = ""
+      end
     end
   end
 

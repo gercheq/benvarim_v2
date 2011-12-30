@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
    validates :name, :length => { :minimum => 5, :maximum => 100 }
    validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
    validate :validate_payment_options
+   validate :validate_end_time
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
@@ -34,7 +35,13 @@ class Project < ActiveRecord::Base
    end
 
    def can_be_donated?
-     self.active? && self.organization.can_be_donated?
+     return self.cant_be_donated_reason == nil
+   end
+
+   def cant_be_donated_reason
+     return "Proje aktif olmadığı için bağış yapamazsınız." unless self.active?
+     return "Projenin süresi dolduğu için bağış yapamazsınız." unless (self.end_time.nil? || self.end_time > Time.now)
+     return self.organization.cant_be_donated_reason
    end
 
    def validate_payment_options
@@ -47,6 +54,12 @@ class Project < ActiveRecord::Base
      unless self.description_html.nil?
        self.description = Sanitize.clean(self.description_html).gsub("&#13;", "")
      end
+   end
+
+   def validate_end_time
+     # if self.end_time_changed? && !self.end_time.nil? && Time.now > self.end_time
+     #   self.errors.add "end_time", "bugünden önce olamaz."
+     # end
    end
 end
 
