@@ -42,7 +42,7 @@ class PaymentMailer < ActionMailer::Base
   def page_could_not_reach_goal payment
     @page = payment.page
     @payment = payment
-    mail(:to => "yboyar@gmail.com",
+    mail(:to => payment.email,
          :subject => "#{@page.title} isimli sayfanın son durumu - Benvarim.com",
          "X-SMTPAPI" => '{"category": "payment_goal_not_reached"}')
   end
