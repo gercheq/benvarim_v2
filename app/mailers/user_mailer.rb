@@ -45,7 +45,7 @@ class UserMailer < ActionMailer::Base
     end_date = now
     donated_during_period = Page.includes(:payments).where("payments.created_at between ? and ?", start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
     donated_before_period = Page.includes(:payments).where("payments.created_at between ? and ?", (start_date - 1.day).strftime('%Y-%m-%d'), start_date.strftime('%Y-%m-%d'))
-    pages = donated_during_period - donated_before_period
+    pages = donated_before_period - donated_during_period
     pages.each do |p|
       if(p.can_be_donated? && p.did_reach_goal? == false)
         Delayed::Job.enqueue MailJob.new("UserMailer", "page_inactivity", p)
