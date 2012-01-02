@@ -20,8 +20,8 @@ class Organization < ActiveRecord::Base
             :logo => :visible_logo_url,
             :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}
 
-  has_many :projects
-  has_many :pages
+  has_many :projects, :dependent => :delete_all
+  has_many :pages, :dependent => :delete_all
   has_many :payments
   belongs_to :user
   has_one :paypal_info

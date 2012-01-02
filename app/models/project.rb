@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :tmp_payments
   has_many :payments
-  has_many :pages
+  has_many :pages, :dependent => :delete_all
   has_many :predefined_payments
   before_validation :sanitize_description_html
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
