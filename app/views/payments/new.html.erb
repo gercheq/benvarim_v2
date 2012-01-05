@@ -47,7 +47,8 @@
           <% if @project.accepts_random_payment?%>
             <li class="other">
               <%=radio_button_tag "tmp_payment[predefined_payment_id]", "0", (@tmp_payment.predefined_payment_id == 0 ? "selected" : nil)%>
-              <label for="tmp_payment_predefined_payment_id_0">Diğer: <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%></label>
+              <label for="tmp_payment_predefined_payment_id_0">Diğer: </label>
+	      <%=text_field_tag "tmp_payment[amount_in_currency]", @tmp_payment.amount_in_currency, :class=> "text-field"%><%=@tmp_payment.currency_sign%>
             </li>
           <% end %>
         </ul>
