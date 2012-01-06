@@ -21,6 +21,7 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = current_user.organizations.build(params[:organization])
+    @organization.set_tag_list_on(:visible, params[:visible_tags])
     if @organization.save
       redirect_to(@organization, :success => "Sivil Toplum Kuruluşu yaratıldı.")
     else
@@ -36,7 +37,7 @@ class OrganizationsController < ApplicationController
   def update
     @organization = current_user.organizations.find(params[:id])
     redirect_to :action => :new if @organization.nil?
-
+    @organization.set_tag_list_on(:visible, params[:visible_tags])
     if @organization.update_attributes(params[:organization])
       redirect_to(@organization, :success => 'Bigiler başarıyla kaydedildi.')
     else

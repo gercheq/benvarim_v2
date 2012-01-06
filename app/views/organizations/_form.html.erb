@@ -32,6 +32,11 @@
           <%= f.text_field :email, :class=> "text-field" %>
         </div>
         <div class="field">
+          <%= f.label "Etiketler" %>
+          <%=text_field_tag :visible_tags,  @organization.tag_list_on(:visible).join(","), :class=> "text-field"%>
+          <br/>Etikletleri aralarına birer virgül koyarak ayırınız (örn: eğitim, kız çocukları, sağlık)
+        </div>
+        <div class="field">
           <%= f.label :phone %>
           <%= f.text_field :phone, :class=> "text-field" %>
         </div>
