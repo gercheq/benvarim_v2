@@ -1,0 +1,36 @@
+<%=render 'menu'%>
+<div id="main-content">
+  <div class="widget widget-light" id="w-iletisim">
+    <div class="w-inner">
+      <div class="w-title">Stats</div>
+        <table border="1" class="stats-table">
+          <tr>
+            <th>Ay</th>
+            <th>Toplam (TL)</th>
+            <th>Bağış Sayısı</th>
+            <th>Uniq Kurum</th>
+            <th>Uniq Proje</th>
+            <th>Uniq Sayfa</th>
+          </tr>
+          <% @monthly_payments.each do |p| %>
+            <tr>
+              <td><%=p[0]%></td>
+              <td><%=number_with_precision(p[1], :locale => :tr)%> TL</td>
+              <td><%=p[2]%></td>
+              <td><%=p[3]%></td>
+              <td><%=p[4]%></td>
+              <td><%=p[5]%></td>
+            </tr>
+          <% end %>
+        </table>
+
+    </div>
+  </div>
+</div>
+<style>
+.stats-table td,th {
+  padding: 5px;
+  border: 1px solid black;
+}
+</style>
+<%= render 'layouts/sidebar'%>

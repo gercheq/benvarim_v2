@@ -87,4 +87,10 @@ class AdminController < ApplicationController
 
   end
 
+  def stats
+    @monthly_payments = Payment.connection.execute("select to_char(created_at, 'YYYY-MM') as month, sum(amount), count(*), count(DISTINCT(organization_id)), count(DISTINCT(project_id)), count(DISTINCT(page_id)) from payments group by month order by month desc").values;
+    total_payments = Payment.connection.execute("select 'toplam', sum(amount), count(*), count(DISTINCT(organization_id)), count(DISTINCT(project_id)), count(DISTINCT(page_id)) from payments").values;
+    @monthly_payments = total_payments + @monthly_payments
+  end
+
 end
