@@ -6,6 +6,9 @@ class Project < ActiveRecord::Base
   has_many :pages, :dependent => :delete_all
   has_many :predefined_payments
   before_validation :sanitize_description_html
+
+  acts_as_taggable
+
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
@@ -21,7 +24,7 @@ class Project < ActiveRecord::Base
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
-   index_map :fields => [:organization_id, :name, :description, :to_param],
+   index_map :fields => [:organization_id, :name, :description, :visible_tags, :to_param],
              :text => :name,
              :logo => :visible_logo_url,
              :variables => { BvSearch::VAR_CAN_BE_DONATED => :can_be_donated?, BvSearch::VAR_COLLECTED => :collected}

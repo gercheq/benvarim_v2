@@ -44,6 +44,11 @@
     <%= f.date_select :end_time, :include_blank => true, :start_year=>2011%>
   </div>
   <div class="field">
+    <%= f.label "Etiketler" %>
+    <%=text_field_tag :visible_tags,  @project.tag_list_on(:visible).join(","), :class=> "text-field"%>
+    <br/>Etikletleri aralarına birer virgül koyarak ayırınız (örn: eğitim, kız çocukları, sağlık)
+  </div>
+  <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description_html, :class => :mceEditor %>
   </div>

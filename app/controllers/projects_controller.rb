@@ -79,6 +79,7 @@ class ProjectsController < ApplicationController
         end
         parse_end_time
         #save the project at the end for validations
+        @project.set_tag_list_on(:visible, params[:visible_tags])
         @project.save!
         redirect_to(@project, :success => 'Proje yaratıldı.')
       end
@@ -130,6 +131,7 @@ class ProjectsController < ApplicationController
           ppRecord.save!
         end
         parse_end_time
+        @project.set_tag_list_on(:visible, params[:visible_tags])
         @project.update_attributes!(params[:project])
         return redirect_to(@project, :success => 'Proje kaydedildi.')
       end
