@@ -57,10 +57,9 @@ class AdminController < ApplicationController
 
   def edit_organization
     org = Organization.find params[:id]
-    active = params[:active]
     org.set_tag_list_on(:hidden, params[:hidden_tags])
     org.set_tag_list_on(:visible, params[:visible_tags])
-    org.active = active == true
+    org.active = params[:active] == "1"
     org.save!
     flash[:notice] = "değişiklikler kaydedildi"
     respond_to do |format|
