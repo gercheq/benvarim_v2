@@ -18,6 +18,8 @@
                     <% else %>
                       <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a><br/>
                     <% end %>
+                    Kurum Sahibi: <div id="org-user-<%=organization.id%>"><%=link_to organization.user.name, organization.user%> | <a class="change-org-user" org-id="<%=organization.id%>">Değiştir</a></div>
+                    <input name="uid" value="<%=organization.user.id%>" type="hidden" id="org-user-hidden-input-<%=organization.id%>"/>
                     Gizli Etiketler: <%=text_field_tag :hidden_tags, organization.tag_list_on(:hidden).join(","), :style => "width:600px"%><br/>
                     Görünür Etiketler: <%=text_field_tag :visible_tags,  organization.tag_list_on(:visible).join(","), :style => "width:600px"%><br/>
                     <%=submit_tag "Değişikliği kaydet", :class => "submit_org"%>
@@ -27,9 +29,6 @@
               <p><%= organization.address %></p>
               <p>İletişim Bilgileri:<br/>
                 <table border="1">
-                  <tr>
-                    <td>Ekleyen:</td><td><%=link_to organization.user.name, organization.user%></td></tr>
-                  <tr>
                     <td>Kurum Telefon:</td><td><%=organization.phone%></td></tr>
                   <tr>
                     <td>(kontakt) Ad Soyad:</td><td><%=organization.contact_name%></td></tr>
@@ -63,7 +62,7 @@ $(document).ready(function(){
       event.preventDefault();
       var $form = $( this );
       $form.hide();
-      
+
       var url = $form.attr( 'action' );
       $.post( url, $form.serialize(),
           function( data ) {
@@ -87,8 +86,33 @@ $(document).ready(function(){
           }
         );
     });
+
+    $(".change-org-user").live("click", function() {
+      org_id = $(this).attr("org-id");
+      var div = $("#org-user-" + org_id);
+      if(!div) {
+        alert("ilgili div-i bulamadim, yigit'e haber ver :)");
+        return;
+      }
+      div.html("<img src='/images/ajax-loader.gif'>");
+      Bv.Admin.loadUsers(function(users) {
+        if(!users) {
+          return;
+        }
+        var inp = $("<input/>").autocomplete({
+                  source : users,
+                  select : function(c, ui) {
+                    console.log(ui);
+                    $("#org-user-hidden-input-" + org_id).val(ui.item.id);
+                  }
+                })
+        div.html("").append(inp);
+        // div.append(inp);
+      });
+    })
 });
 </script>
 <% end %>
 <%render_at_the_end captured%>
+<%add_page_specific_script "bv.admin"%>
 

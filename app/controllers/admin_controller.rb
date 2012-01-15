@@ -55,11 +55,28 @@ class AdminController < ApplicationController
     redirect_to :action => :pages
   end
 
+  def user_list
+    users = User.connection.execute("SELECT id, id||'- '||name as label FROM users ORDER BY name ASC")
+    respond_to do |format|
+      format.json {
+        render :json => {
+          :users => users.collect do |u| u end
+        }
+      }
+    end
+  end
+
   def edit_organization
     org = Organization.find params[:id]
     org.set_tag_list_on(:hidden, params[:hidden_tags])
     org.set_tag_list_on(:visible, params[:visible_tags])
     org.active = params[:active] == "1"
+    if params[:uid]
+      u = User.find_by_id params[:uid]
+      if u
+        org.user = u
+      end
+    end
     org.save!
     flash[:notice] = "değişiklikler kaydedildi"
     respond_to do |format|
@@ -68,7 +85,10 @@ class AdminController < ApplicationController
         :name => org.name,
         :active => org.active?,
         :visible_tags => org.visible_tags,
-        :hidden_tags => org.hidden_tags
+        :hidden_tags => org.hidden_tags,
+        :uid => org.user.id,
+        :user_name => org.user.name
+
         } }
     end
 

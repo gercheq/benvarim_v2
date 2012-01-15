@@ -123,6 +123,7 @@ Benvarim::Application.routes.draw do
   get '/kertenkele/sayfalar' => "admin#pages", :as => :admin_pages
   get '/kertenkele/epostalar' => "admin#export_emails", :as => :export_emails
   get '/kertenkele/stats' => "admin#stats", :as => :admin_stats
+  get '/kertenkele/user_list' => "admin#user_list", :as  => :user_list
 
 
 
