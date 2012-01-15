@@ -11,15 +11,19 @@
             <th>Uniq Kurum</th>
             <th>Uniq Proje</th>
             <th>Uniq Sayfa</th>
+            <th>Yeni Kullanıcı</th>
+            <th>Yeni Facebook Connect</th>
           </tr>
           <% @monthly_payments.each do |p| %>
             <tr>
               <td><%=p[0]%></td>
-              <td><%=number_with_precision(p[1], :locale => :tr)%> TL</td>
+              <td><%=number_with_precision(p[1], :locale => :tr)%>TL</td>
               <td><%=p[2]%></td>
               <td><%=p[3]%></td>
               <td><%=p[4]%></td>
               <td><%=p[5]%></td>
+              <td><%=@new_users[p[0]] ? @new_users[p[0]] : 0%></td>
+              <td><%=@fb_connects[p[0]] ? @fb_connects[p[0]] : 0%></td>
             </tr>
           <% end %>
         </table>
