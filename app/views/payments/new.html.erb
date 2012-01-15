@@ -26,7 +26,8 @@
       <% end %>
       <div class="field">
       <%=label_tag "Ad Soyad:"%>
-      <%=text_field_tag "tmp_payment[name]", @tmp_payment.name, :class=> "text-field"%>
+      <%=text_field_tag "tmp_payment[name]", @tmp_payment.name, :class=> "text-field"%><span class="tooltip-trigger" title="Bu kutucugu isaretlediginizde, isminizi web sayfasi ziyaretcilerinden gizleyebilirsiniz. Bagis sayfasi sahibi, isminizi gorebilecektir.">Gizle</span>
+      <%=check_box_tag "tmp_payment[hide_name]", "1", @tmp_payment.hide_name, :style => "width: 25px; margin-top:10px; margin-bottom:10px", :class => "tooltip-trigger", :title => "Bu kutucugu isaretlediginizde, isminizi web sayfasi ziyaretcilerinden gizleyebilirsiniz. Bagis sayfasi sahibi, isminizi gorebilecektir." %>
       </div>
 
       <div class="field">

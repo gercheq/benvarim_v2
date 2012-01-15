@@ -76,6 +76,8 @@ class TmpPayment < ActiveRecord::Base
 end
 
 
+
+
 # == Schema Information
 #
 # Table name: tmp_payments
@@ -94,5 +96,6 @@ end
 #  currency              :string(255)     default("TRY")
 #  amount_in_currency    :float
 #  predefined_payment_id :integer         default(0)
+#  hide_name             :boolean         default(FALSE)
 #
 

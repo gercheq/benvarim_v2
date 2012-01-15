@@ -135,7 +135,7 @@ function init_tooltips() {
     //
     // Bağış Sayfası Yarat Tooltipleri
     //
-    $('#i-pages-new .tooltip-trigger').tooltip({
+    $('.tooltip-trigger').tooltip({
     	// place tooltip on the right edge
     	position: "center right",
 

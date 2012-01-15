@@ -6,7 +6,8 @@ payments.each do |payment|%>
     <% if payment.note? %>
       <blockquote><span class="quotation">“</span> <%=payment.note%></blockquote>
     <% end %>
-    <div class="bagisci"><%=payment.name%> - <%=payment.created_at.in_time_zone("Istanbul").to_formatted_s(:simple) %>  </div>
+    <div class="bagisci"><%=(show_hidden_names || !payment.hide_name) ? payment.name : ("(Gizli Bağışçı)")%> <%=raw ((show_hidden_names && payment.hide_name) ? "<span class='tooltip-trigger' title='Bağışçı isminin gizlenmesini istemiş. Bu durumda isim sadece size gösteriliyor.'>(Gizli Bağışçı)</span>" : "")%>
+     - <%=payment.created_at.in_time_zone("Istanbul").to_formatted_s(:simple) %>  </div>
   </div><!-- end of .row -->
 <%
 last = payment

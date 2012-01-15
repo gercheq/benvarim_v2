@@ -66,6 +66,7 @@ class Project < ActiveRecord::Base
    end
 end
 
+
 # == Schema Information
 #
 # Table name: projects
@@ -86,5 +87,6 @@ end
 #  active                 :boolean         default(TRUE)
 #  cached_slug            :string(255)
 #  accepts_random_payment :boolean         default(TRUE)
+#  description_html       :text
 #
 
