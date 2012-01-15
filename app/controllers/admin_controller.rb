@@ -91,12 +91,16 @@ class AdminController < ApplicationController
     total_payments = Payment.connection.execute("select 'toplam', sum(amount), count(*), count(DISTINCT(organization_id)), count(DISTINCT(project_id)), count(DISTINCT(page_id)) from payments").values
     @monthly_payments = total_payments + @monthly_payments
     new_users = User.connection.execute("select to_char(created_at, 'YYYY-MM') as month, count(*) from users group by month order by month desc").values
+    total_users = User.connection.execute("select 'toplam', count(*) from users").values
+    new_users = new_users + total_users
     @new_users = {}
     new_users.each do |n|
       @new_users[n[0]] = n[1]
     end
 
     fb_connects = FbConnect.connection.execute("select to_char(created_at, 'YYYY-MM') as month, count(*) from fb_connects group by month order by month desc").values
+    total_fb_connects = User.connection.execute("select 'toplam', count(*) from fb_connects").values
+    fb_connects = fb_connects + total_fb_connects
     @fb_connects = {}
     fb_connects.each do |f|
       @fb_connects[f[0]] = f[1]
