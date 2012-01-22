@@ -1,0 +1,44 @@
+<div class="widget widget-light widget-kurum ">
+  <div class="w-inner clearfix">
+    <div class="w-content">
+      <div class="w-title">Destekleyebileceğiniz projeler</div>
+      <div class="rows-container clearfix" id="donation-pages-container">
+        <%
+        org_ids = []
+        %>
+
+        <% projects.each do |project| %>
+          <div class="row clearfix">
+            <div class="row-photo clearfix">
+              <% if project.logo.file? %>
+                <%= image_tag project.logo.url(:thumb) %>
+              <% else %>
+                <%= image_tag project.organization.logo.url(:thumb) %>
+              <% end %>
+            </div>
+            <div class="row-details">
+              <h3><%= link_to project.name, project %></h3>
+              <p><%=truncate(project.description, :length => 300) %></p>
+              <% unless (defined?(hide_organization_link) && hide_organization_link == true)%>
+                <p><%= link_to project.organization.name, project.organization%></p>
+              <% end %>
+            </div>
+          </div>
+          <%
+          org_ids << project.organization_id
+          %>
+        <% end %>
+      </div>
+      <% if (defined?(organization) && current_user == organization.user) %>
+        <div class="row row-action">
+          <%= link_to 'Yeni bağış projesi oluştur!', new_project_for_organization_path(organization), :class=>"green button super" %>
+        </div>
+      <% elsif defined?(link_to_organizations) && link_to_organizations == true %>
+        <div class="row row-action">
+          <%= link_to 'Tüm projeleri görüntüle', all_projects_path, :class=>"show-all" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div><!-- end of .widget -->

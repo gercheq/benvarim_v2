@@ -1,0 +1,24 @@
+<div class="p-item">
+  <div class="pi-img">
+    <% if project.logo.file? %>
+      <%= image_tag project.logo.url(:thumb) %>
+    <% else %>
+      <%= image_tag project.organization.logo.url(:thumb) %>
+    <% end %>
+  </div>
+  <h3 class="pi-title">
+    <%= link_to project.name, project %><
+  </h3>
+  <div class="pi-summary">
+    <p><%=truncate(project.description, :length => 300) %></p>
+    <% unless (defined?(hide_organization_link) && hide_organization_link == true)%>
+      <p><%= link_to project.organization.name, project.organization%></p>
+    <% end %>
+  </div>
+</div>
+
+
+
+  <%
+  org_ids << project.organization_id
+  %>
