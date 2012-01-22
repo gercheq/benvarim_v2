@@ -5,7 +5,13 @@ class ProjectsController < ApplicationController
   uses_tiny_mce
 
   def index
-    @projects = Project.all
+    tag = params[:tag]
+    if tag
+      @projects = Project.tagged_with tag
+    else
+      @projects = Project.all
+    end
+
   end
 
   def by_organization

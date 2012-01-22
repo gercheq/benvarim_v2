@@ -2,11 +2,10 @@
   <li>
     <a href="#one-cikanlar" class="selected">Öne Çıkanlar</a>
   </li>
-  <li>
-    <a href="#egitim">Eğitim</a>
-  </li>
-
-  <li>
-    <a href="#saglik">Sağlık</a>
-  </li>
+  <% tags = ["Eğitim", "Sağlık"]%>
+  <% tags.each do |t| %>
+    <li>
+      <%=link_to t,projects_by_tag_path(t)%>
+    </li>
+  <% end %>
 </ul>
