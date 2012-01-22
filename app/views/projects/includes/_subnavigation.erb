@@ -1,11 +1,11 @@
 <ul>
   <li>
-    <a href="#one-cikanlar" class="selected">Öne Çıkanlar</a>
+    <%=link_to "Öne Çıkanlar", projects_path, :class => (!@tag ? 'selected' : '')%>
   </li>
   <% tags = ["Eğitim", "Sağlık"]%>
   <% tags.each do |t| %>
     <li>
-      <%=link_to t,projects_by_tag_path(t)%>
+      <%=link_to t,projects_by_tag_path(t), :class => (@tag == t ? 'selected' : '')%>
     </li>
   <% end %>
 </ul>

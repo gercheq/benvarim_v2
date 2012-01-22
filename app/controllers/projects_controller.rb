@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.all
     end
+    @tag = tag
 
   end
 
