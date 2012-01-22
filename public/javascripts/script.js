@@ -171,6 +171,24 @@ function init_footer(){
 
 
 
+function init_vertical_align(){
+  var $items = $('.p-item');
+  $items.each(function(){
+    $this = $(this)
+
+    var $img_container = $this.find('.pi-img');
+    var $img = $img_container.find('img');
+
+    var margin_top = ($img_container.height() - $img.height())/2;
+    $img.css('margin-top',margin_top);
+  });
+
+
+}
+
+
+
+
 /*
 ** DOM READY
 */
@@ -188,6 +206,10 @@ $(document).ready(function(){
   });
 
   setup_search();
+
+
+
+
 
   //  Custom Form Styles
   // $("select, :radio, :checkbox").uniform();

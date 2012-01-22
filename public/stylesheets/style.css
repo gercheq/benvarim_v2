@@ -2278,6 +2278,8 @@ blockquote span.quotation{
     opacity: 1;
     -ms-filter: "alpha(opacity=100)";
     filter: alpha(opacity=100);
+    min-width: 150px;
+    min-height: 150px;
 }
 
 .profile_pic h3{
