@@ -1,0 +1,117 @@
+<%=render 'menu'%>
+<%= form_tag (admin_edit_featured_path + ".json"), :id => "edit_form" do |f| %>
+  <%=hidden_field "act",:action%>
+  <%=hidden_field "act",:doc_id%>
+<% end%>
+
+<div class="widget-light widget-kurum">
+  <div class="w-inner clearfix">
+    <div class="">
+      <h3>Featured Projeler</h3>
+      <div id="featured-projects-list">
+      </div>
+      Yeni Ekle:
+      <input type="text" id="featured-projects-inp"/><br/>
+      <h3>Featured Kurumlar</h3>
+      <div id="featured-organizations-list">
+      </div>
+      Yeni Ekle:
+      <input type="text" id="featured-organizations-inp"/><br/>
+    </div>
+    <hr/>
+  </div>
+</div>
+<% captured = capture do %>
+  <script>
+  $(document).ready(function(){
+    var form = $("#edit_form");
+    
+    var renderFeaturedProjects = function(projects) {
+      var html = "<ol>";
+      $(projects).each(function(ind, p) {
+        // console.log(p);
+        html += "<li class='featured-project'><a href='/ara/d/Project-" + p.id + "' target='_blank'>" + p.name + "</a> | <a p-id='" + p.id + "'  class='delete-featured-project'>X</a></li>";
+      });
+      html += "</ol>";
+      $("#featured-projects-list").html(html);
+    };
+    
+    var renderFeaturedOrganizations = function(organizations) {
+      var html = "<ol>";
+      $(organizations).each(function(ind, o) {
+        // console.log(p);
+        html += "<li class='featured-organization'><a href='/ara/d/Organization-" + o.id + "' target='_blank'>" + o.name + "</a> | <a o-id='" + o.id + "'  class='delete-featured-organization'>X</a></li>";
+      });
+      html += "</ol>";
+      $("#featured-organizations-list").html(html);
+    };
+    
+    var submit = function(action, type, id) {
+      $("#act_action").val(action);
+      $("#act_doc_id").val(type + "-" + id);
+      var $form = $(form);
+      var url = $form.attr( 'action' );
+      $("#featured-organizations-list").html("<img src='/images/ajax-loader.gif'/>");
+      $("#featured-projects-list").html("<img src='/images/ajax-loader.gif'/>");
+      
+      $.post( url, $form.serialize(),
+          function( data ) {
+            if(!data) {
+              alert("Hata, refresh pls");
+              return;
+            }
+            var featured_projects = $(data.projects).map(function(ind, pp) {
+              return pp.project;
+            });
+            var featured_organizations = $(data.organizations).map(function(ind, oo) {
+              return oo.organization;
+            });
+            renderFeaturedProjects(featured_projects);
+            renderFeaturedOrganizations(featured_organizations);
+          });
+    };
+    
+    Bv.Admin.loadProjects(function(projects) {
+      if(!projects) {
+        alert("projeleri yukleyemedim, refresh");
+        return;
+      }
+      $("#featured-projects-inp").autocomplete({
+                source : projects,
+                select : function(c, ui) {
+                  console.log(ui);
+                  submit("add", "Project", ui.item.id);
+                }
+              });
+      $(".delete-featured-project").live('click', function() {
+        console.log($(this).attr("p-id"));
+        submit("delete", "Project", $(this).attr("p-id"));
+      });
+    });
+    
+    Bv.Admin.loadOrganizations(function(organizations) {
+      if(!organizations) {
+        alert("organizasyonlari yukleyemedim, refresh");
+        return;
+      }
+      $("#featured-organizations-inp").autocomplete({
+                source : organizations,
+                select : function(c, ui) {
+                  console.log(ui);
+                  submit("add", "Organization", ui.item.id);
+                }
+              });
+      $(".delete-featured-organization").live('click', function() {
+        console.log($(this).attr("o-id"));
+        submit("delete", "Organization", $(this).attr("o-id"));
+      });
+    });
+    
+    submit(null, null, null);
+
+
+
+  });
+  </script>
+<% end %>
+<%render_at_the_end captured%>

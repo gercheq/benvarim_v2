@@ -124,7 +124,12 @@ Benvarim::Application.routes.draw do
   get '/kertenkele/sayfalar' => "admin#pages", :as => :admin_pages
   get '/kertenkele/epostalar' => "admin#export_emails", :as => :export_emails
   get '/kertenkele/stats' => "admin#stats", :as => :admin_stats
-  get '/kertenkele/user_list' => "admin#user_list", :as  => :user_list
+  get '/kertenkele/user_list' => "admin#user_list", :as  => :admin_user_list
+  get '/kertenkele/project_list' => "admin#project_list", :as  => :admin_project_list
+  get '/kertenkele/organization_list' => "admin#organization_list", :as  => :admin_organization_list
+  get '/kertenkele/featured' => "admin#featured", :as => :admin_featured
+  post '/kertenkele/edit_featured' => "admin#edit_featured", :as => :admin_edit_featured
+
 
 
 

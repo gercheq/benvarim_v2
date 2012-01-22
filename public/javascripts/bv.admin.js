@@ -1,19 +1,33 @@
 Bv.Admin = {
     users : null,
+    projects : null,
+    organizations : null,
     loadUsers : function(callback) {
-        if(this.users != null) {
-            callback(this.users);
+        this._load("user", callback);
+    },
+    loadProjects : function(callback) {
+        this._load("project", callback);
+    },
+    loadOrganizations : function(callback) {
+        this._load("organization", callback);
+    },
+    _load : function(type, callback) {
+        var types = type + "s";
+        var that = this;
+        if(this[types] != null) {
+            callback(this[types]);
             return;
         }
-        var that = this;
-        $.get("/kertenkele/user_list.json", {}, function(data) {
-            if(!data || !data.users) {
-                alert("Kullanıcıları yükleyemedim");
+        
+        $.get("/kertenkele/" + type + "_list.json", {}, function(data) {
+            if(!data || !data[types]) {
+                alert(types + " yükleyemedim");
                 callback(null);
                 return;
             }
-            that.users = data.users;
-            callback(that.users);
+            that[types] = data[types];
+            callback(that[types]);
         });
     }
+    
 };

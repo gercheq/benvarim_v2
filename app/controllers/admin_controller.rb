@@ -66,6 +66,60 @@ class AdminController < ApplicationController
     end
   end
 
+  def project_list
+    projects = Project.connection.execute("SELECT id, cached_slug as label FROM projects ORDER BY cached_slug ASC").collect do |p| p end
+    respond_to do |format|
+      format.json {
+        render :json => {
+          :projects => projects
+        }
+      }
+    end
+  end
+
+  def organization_list
+    organizations = Organization.connection.execute("SELECT id, cached_slug as label FROM organizations ORDER BY cached_slug ASC").collect do |o| o end
+    respond_to do |format|
+      format.json {
+        render :json => {
+          :organizations => organizations
+        }
+      }
+    end
+  end
+
+  def featured
+  end
+
+  def edit_featured
+    act =  params[:act]
+    errors = Array.new
+    if act && act[:doc_id] && act[:action]
+      # do changes
+      obj = BvSearch.find_by_doc_id act[:doc_id]
+      if obj
+        if act[:action] == "delete"
+          obj.tag_list_on(:hidden).delete "featured"
+          obj.save!
+        elsif act[:action] == "add"
+          obj.tag_list_on(:hidden).add "featured"
+          obj.save!
+        end
+      end
+    end
+
+    projects = Project.tagged_with("featured").select("projects.id, name, cached_slug")
+    organizations = Organization.tagged_with("featured").select("organizations.id, name, cached_slug")
+    respond_to do |format|
+      format.json {
+        render :json => {
+          :projects => projects,
+          :organizations => organizations
+        }
+      }
+    end
+  end
+
   def edit_organization
     org = Organization.find params[:id]
     org.set_tag_list_on(:hidden, params[:hidden_tags])
@@ -91,7 +145,6 @@ class AdminController < ApplicationController
 
         } }
     end
-
   end
 
   def export_emails
