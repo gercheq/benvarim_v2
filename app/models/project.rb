@@ -82,6 +82,9 @@ class Project < ActiveRecord::Base
      number_with_precision(self.goal, :locale => :tr)
    end
 
+   def self.featureds
+     Project.tagged_with("featured")
+   end
 
    def validate_end_time
      # if self.end_time_changed? && !self.end_time.nil? && Time.now > self.end_time

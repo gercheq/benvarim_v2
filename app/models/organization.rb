@@ -102,6 +102,10 @@ class Organization < ActiveRecord::Base
     self.hash == other.hash
   end
 
+  def self.featureds
+    Organization.tagged_with("featured")
+  end
+
 
   private
     def sanitize_description_html

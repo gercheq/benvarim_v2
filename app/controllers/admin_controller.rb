@@ -108,8 +108,8 @@ class AdminController < ApplicationController
       end
     end
 
-    projects = Project.tagged_with("featured").select("projects.id, name, cached_slug")
-    organizations = Organization.tagged_with("featured").select("organizations.id, name, cached_slug")
+    projects = Project.featureds.select("projects.id, name, cached_slug")
+    organizations = Organization.featureds.select("organizations.id, name, cached_slug")
     respond_to do |format|
       format.json {
         render :json => {
