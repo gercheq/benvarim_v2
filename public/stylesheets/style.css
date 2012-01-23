@@ -572,7 +572,7 @@ div.uploader input {
  }
 
 body{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "museo-sans-rounded-1","museo-sans-rounded-2", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -585,7 +585,7 @@ a:hover{ text-decoration: underline; }
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
   margin-bottom: 15px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "museo-sans-rounded-1","museo-sans-rounded-2", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -840,7 +840,7 @@ p{
   width: 40px;
   font-weight: 300;
   margin-right: 5px;
-  font-family: "Gotham Rounded", "Gotham", "Helvetica Neue", Helvetica, sans-serif ;
+  font-family: "museo-sans-rounded-1","museo-sans-rounded-2", "Helvetica Neue", Helvetica, sans-serif ;
   color: #a4b1cb;}
 
 .s-content{
@@ -1366,7 +1366,7 @@ blockquote span.quotation{
   fieldset textarea,
   fieldset select,
   .selector {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "museo-sans-rounded-1","museo-sans-rounded-2", Helvetica, Arial, sans-serif;
     color: #444;
     width: 458px;
     padding: 5px;
@@ -1961,6 +1961,8 @@ blockquote span.quotation{
     ** Widget Customizations
     */
 
+
+
     .widget-liste blockquote {
         line-height: 1.5;
         margin-bottom: 10px;
@@ -2154,6 +2156,15 @@ blockquote span.quotation{
   border:none;
   padding: 20px 10px 0;
 }
+
+
+
+
+
+
+
+
+
 
 
 /*************************************************************************************
@@ -2628,7 +2639,6 @@ blockquote span.quotation{
     font-size: 14px;
     margin: 20px 0 10px;
 }
-
 
 
 
