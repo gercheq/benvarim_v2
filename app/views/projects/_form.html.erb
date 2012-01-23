@@ -1,5 +1,3 @@
-<%=debug @params%>
-
 <%= form_for @project, :html => { :multipart => true } do |f| %>
   <% if @project.errors.any? %>
     <div class="msg-error msg">
@@ -42,6 +40,10 @@
   <div class="field">
     <%= f.label :end_time %>
     <%= f.date_select :end_time, :include_blank => true, :start_year=>2011%>
+  </div>
+  <div class="field">
+    <%= f.label :goal %>
+    <%= f.text_field :goal, :class => "tooltip-trigger", :title => "<h3>Daha iyi yarınlar için hedef belirle!</h3><p>Toplayabileceğini düşündüğün, amacına uygun ve gerçekçi bir miktar belirlemek gelecek bağışları olumlu yönde etkileyecektir.</p>" %> TL
   </div>
   <div class="field">
     <%= f.label "Etiketler" %>

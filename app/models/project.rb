@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
    validates :description, :presence => true, :length => {:minimum => 20, :maximum => 10000}
    validate :validate_payment_options
    validate :validate_end_time
+   validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000000, :allow_nil => true
 
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
@@ -59,12 +60,36 @@ class Project < ActiveRecord::Base
      end
    end
 
+   def collect_ratio
+     return 0 if (self.collected == 0 || self.goal == 0)
+     return 100 if (self.collected >= self.goal)
+     return (self.collected / self.goal) * 100
+   end
+
+   def did_reach_goal?
+     return self.collected >= self.goal
+   end
+
+   def collect_ratio_str
+     "%.0f" % self.collect_ratio
+   end
+
+   def collected_str
+     number_with_precision(self.collected, :locale => :tr)
+   end
+
+   def goal_str
+     number_with_precision(self.goal, :locale => :tr)
+   end
+
+
    def validate_end_time
      # if self.end_time_changed? && !self.end_time.nil? && Time.now > self.end_time
      #   self.errors.add "end_time", "bugünden önce olamaz."
      # end
    end
 end
+
 
 
 # == Schema Information
@@ -88,5 +113,6 @@ end
 #  cached_slug            :string(255)
 #  accepts_random_payment :boolean         default(TRUE)
 #  description_html       :text
+#  goal                   :float
 #
 

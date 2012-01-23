@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111082510) do
+ActiveRecord::Schema.define(:version => 20120122235409) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20120111082510) do
     t.string   "contact_phone"
     t.string   "contact_email"
     t.string   "cached_slug"
+    t.string   "facebook_url"
+    t.string   "twitter_handle"
   end
 
   add_index "organizations", ["cached_slug"], :name => "index_organizations_on_cached_slug", :unique => true
@@ -168,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20120111082510) do
     t.string   "cached_slug"
     t.boolean  "accepts_random_payment", :default => true
     t.text     "description_html"
+    t.float    "goal"
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true

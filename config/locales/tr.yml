@@ -171,6 +171,8 @@ tr:
         contact_title: "Görevi"
         contact_phone: "Telefon"
         contact_email: "E-posta"
+        twitter_handle: "Twitter Kullanıcı Adı"
+        facebook_url: "Facebook Url"
 
       user:
         email: "e-posta"
@@ -202,6 +204,7 @@ tr:
       project:
         name : "bağış kampanyası"
         logo : "logo"
+        goal : "hedef"
         start_time: "başlangıç zamanı"
         end_time: "bitiş zamanı"
         description: "tanıtım sayfası"

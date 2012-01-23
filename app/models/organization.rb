@@ -13,7 +13,7 @@ class Organization < ActiveRecord::Base
 
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email
+  attr_accessible :name, :address, :description_html, :logo, :website, :email, :phone, :contact_name, :contact_title, :contact_phone, :contact_email, :facebook_url, :twitter_handle
 
   index_map :fields => [:user_id, :name, :description, :website, :to_param, :visible_tags, :hidden_tags],
             :text => :name,
@@ -111,6 +111,7 @@ class Organization < ActiveRecord::Base
     end
 end
 
+
 # == Schema Information
 #
 # Table name: organizations
@@ -136,5 +137,7 @@ end
 #  contact_phone     :string(255)
 #  contact_email     :string(255)
 #  cached_slug       :string(255)
+#  facebook_url      :string(255)
+#  twitter_handle    :string(255)
 #
 
