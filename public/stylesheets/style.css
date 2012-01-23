@@ -2519,6 +2519,12 @@ blockquote span.quotation{
 }
 
 
+
+#projects .p-inner {
+  min-height: 300px;
+}
+
+
 /*
 ** FACEBOX HACKS
 */
