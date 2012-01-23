@@ -8,7 +8,8 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
+    @top_pages = @organization.pages.order("pages.collected DESC").limit(5)
+    # @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     @projects = @organization.projects
     # DISABLING ERROR MESSAGES ON ORGANIZATION PAGES FOR NOW
     # MIGHT BE RENABLED IN THE FUTURE
