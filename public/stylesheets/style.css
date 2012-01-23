@@ -2355,6 +2355,32 @@ blockquote span.quotation{
 ** BAGIS SAYFASI
 *************************************************************************************/
 
+.widget-page {
+  position: relative;
+}
+
+.ribbon {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 155px;
+  height: 146px;
+  background: url('images/ribbon-success.png') no-repeat 0 0;
+}
+
+.page-active .ribbon {
+  display: none;
+}
+
+.page-deactive .ribbon{
+  display: block;
+}
+
+
+
+
+
+
 /*
  * Custom Organizations
  */

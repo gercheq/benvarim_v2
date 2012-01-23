@@ -1,6 +1,7 @@
 <%=render :partial => 'layouts/errors'%>
 
 <div class="widget widget-light widget-page <%=@page.can_be_donated? ? 'page-active' : 'page-deactive'%>">
+  <% if @page.did_reach_goal? %><div class="ribbon r-successful"></div><% end %>
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="fullcontent-left">
