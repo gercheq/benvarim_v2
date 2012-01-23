@@ -1,6 +1,6 @@
 <%=render :partial => 'layouts/errors'%>
 
-<div class="widget widget-light widget-kurum ">
+<div class="widget widget-light widget-page <%=@page.can_be_donated? ? 'page-active' : 'page-deactive'%>">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="fullcontent-left">

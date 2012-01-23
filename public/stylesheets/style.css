@@ -1820,12 +1820,16 @@ blockquote span.quotation{
 
     }
 
+    .page-deactive .progress-bar {
+      width: 99%;
+    }
+
     #list-pages .progress-bar{
         width: 525px;
     }
 
     .pb-value{
-        background: url('images/profile_bar_2.jpg') 0 0 repeat-y;
+        background: #9fe04e url('images/profile_bar_2.jpg') 0 0 repeat-y;
         height: 100%;
      }
 
