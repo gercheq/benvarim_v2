@@ -9,6 +9,14 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
 
+  <!-- http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html#SplitSnippet -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21493934-1']);
+    _gaq.push(['_trackPageview']);
+  </script>
+
+
   <%= include_tiny_mce_if_needed %>
   <%= csrf_meta_tag %>
 
