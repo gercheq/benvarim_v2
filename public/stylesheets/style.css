@@ -412,7 +412,6 @@ div.selector {
 
 div.selector select {
   min-width: 190px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   border: solid 1px #fff;
 }
@@ -2377,14 +2376,6 @@ blockquote span.quotation{
   width: 155px;
   height: 146px;
   background: url('images/ribbon-success.png') no-repeat 0 0;
-}
-
-.page-active .ribbon {
-  display: none;
-}
-
-.page-deactive .ribbon{
-  display: block;
 }
 
 

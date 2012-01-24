@@ -55,7 +55,7 @@
 
           <% if @page.can_be_donated? %>
             <div class="pb-action">
-              <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
+              <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin button-donate", :rel => "facebox"%>
             </div>
           <% end %>
         </div><!-- end of .progress-bar-container -->

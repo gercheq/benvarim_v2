@@ -170,7 +170,6 @@ function init_footer(){
 }
 
 
-
 function init_vertical_align(){
   var $items = $('.p-item');
   $items.each(function(){
@@ -185,6 +184,33 @@ function init_vertical_align(){
 
 
 }
+
+
+//
+// Page Tracking
+//
+
+// _trackEvent(category, action, opt_label, opt_value, opt_noninteraction)
+  // category (required): The name you supply for the group of objects you want to track.
+  // action (required): A string that is uniquely paired with each category, and commonly used to define the type of user interaction for the web object.
+  // label (optional): An optional string to provide additional dimensions to the event data.
+  // value (optional): An integer that you can use to provide numerical data about the user event.
+  // non-interaction (optional): A boolean that when set to true, indicates that the event hit will not be used in bounce-rate calculation.
+
+
+function init_tracking(){
+
+  // How many times donate button is clicked and how many people went to Paypal from the lightbox
+  $('.button-donate').click(function(){
+    _gaq.push(['_trackEvent', 'category-payment', 'payment-through-paypal', 'donation lightbox triggerred', 'value-1'])
+  });
+
+  $('.button-send-to-paypal').live('click',function(){
+    _gaq.push(['_trackEvent', 'category-payment', 'payment-through-paypal', 'user sent to paypal to finish transaction', 'value-1'])
+  });
+}
+
+
 
 
 
@@ -206,6 +232,9 @@ $(document).ready(function(){
   });
 
   setup_search();
+
+  init_tracking();
+
 
 
 
