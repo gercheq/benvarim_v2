@@ -33,9 +33,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @top_pages = @project.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
-    unless @project.can_be_donated?
-      flash.now[:error] = @project.cant_be_donated_reason
-    end
+    # unless @project.can_be_donated?
+    #   flash.now[:error] = @project.cant_be_donated_reason
+    # end
   end
 
   def new

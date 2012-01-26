@@ -39,6 +39,21 @@
           </p>
         <% end %>
 
+
+        <% if @organization.facebook_url %>
+          <p class="org-url outlink">
+            <%=link_to "Facebook: #{@organization.name}", "http://facebook.com/#{@organization.facebook_url}", :target => "_blank"%>
+          </p>
+        <% end %>
+
+        <% if @organization.twitter_handle %>
+          <p class="org-url outlink">
+            <%=link_to "Twitter: http://twitter.com/#{@organization.twitter_handle}", "http://twitter.com/#{@organization.twitter_handle}", :target => "_blank"%>
+          </p>
+        <% end %>
+
+
+
         <%if @organization.collected? %>
         <div class="toplam-bagis">
           Bugüne kadar toplanan bağış miktarı: <%= @organization.collected_str %> <small>TL</small>
@@ -55,7 +70,7 @@
   </div>
 </div><!-- end of .widget -->
 <div id="main-content">
-  <%=render :partial => "projects/list_projects",
+  <%=render :partial => "projects/list_projects_condensed",
     :locals => {
       :show_edit_link => false,
       :projects => @projects,

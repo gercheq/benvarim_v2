@@ -8,11 +8,14 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
+    @top_pages = @organization.pages.order("pages.collected DESC").limit(5)
+    # @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
     @projects = @organization.projects
-    if !@organization.can_be_donated?
-      flash.now[:error] = @organization.cant_be_donated_reason
-    end
+    # DISABLING ERROR MESSAGES ON ORGANIZATION PAGES FOR NOW
+    # MIGHT BE RENABLED IN THE FUTURE
+    # if !@organization.can_be_donated?
+    #   flash.now[:error] = @organization.cant_be_donated_reason
+    # end
   end
 
   def new

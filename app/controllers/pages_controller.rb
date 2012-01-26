@@ -35,9 +35,9 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
-    if !@page.can_be_donated?
-      flash.now[:error] = @page.cant_be_donated_reason
-    end
+    # if !@page.can_be_donated?
+    #   flash.now[:error] = @page.cant_be_donated_reason
+    # end
     @include_more_link = params[:paginate] ? true : false
     @payments = fetch_payments_page
 

@@ -1,6 +1,7 @@
 <%=render :partial => 'layouts/errors'%>
 
-<div class="widget widget-light widget-kurum ">
+<div class="widget widget-light widget-page <%=@page.can_be_donated? ? 'page-active' : 'page-deactive'%>">
+  <% if @page.did_reach_goal? %><div class="ribbon r-successful"></div><% end %>
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="fullcontent-left">
@@ -54,7 +55,7 @@
 
           <% if @page.can_be_donated? %>
             <div class="pb-action">
-              <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin", :rel => "facebox"%>
+              <%=link_to "Bağış Yap", donate_popup_for_page_path(@page), :class => "yellow button super no-margin button-donate", :rel => "facebox"%>
             </div>
           <% end %>
         </div><!-- end of .progress-bar-container -->

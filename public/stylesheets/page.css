@@ -1,5 +1,4 @@
 .page{
-
 }
 
 .p-inner{
@@ -81,7 +80,6 @@
 .p-summary{
     font-size: 16px;
     font-style: normal;
-    font-family:   Helvetica, sans-serif;
     font-weight: 300;
     margin: 20px 0;
     color: #777;
@@ -170,7 +168,6 @@
 }
 
 .pf-desc p{
-  font-family: "Gotham Rounded", Helvetica, sans-serif;
   font-weight: 300;
   color: #999;
   font-size: 16px;
@@ -289,6 +286,9 @@
 .pi-more {
 
 }
+
+
+
 
 
 

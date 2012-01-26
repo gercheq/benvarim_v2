@@ -412,7 +412,6 @@ div.selector {
 
 div.selector select {
   min-width: 190px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   border: solid 1px #fff;
 }
@@ -572,7 +571,7 @@ div.uploader input {
  }
 
 body{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "museo-sans-rounded-1","museo-sans-rounded-2", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -585,7 +584,7 @@ a:hover{ text-decoration: underline; }
 h1, h2, h3, h4, h5, h6 {
   color: #0a3663;
   margin-bottom: 15px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "museo-sans-rounded-1","museo-sans-rounded-2", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -840,7 +839,7 @@ p{
   width: 40px;
   font-weight: 300;
   margin-right: 5px;
-  font-family: "Gotham Rounded", "Gotham", "Helvetica Neue", Helvetica, sans-serif ;
+  font-family: "museo-sans-rounded-1","museo-sans-rounded-2", "Helvetica Neue", Helvetica, sans-serif ;
   color: #a4b1cb;}
 
 .s-content{
@@ -1366,7 +1365,7 @@ blockquote span.quotation{
   fieldset textarea,
   fieldset select,
   .selector {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "museo-sans-rounded-1","museo-sans-rounded-2", Helvetica, Arial, sans-serif;
     color: #444;
     width: 458px;
     padding: 5px;
@@ -1820,12 +1819,16 @@ blockquote span.quotation{
 
     }
 
+    .page-deactive .progress-bar {
+      width: 99%;
+    }
+
     #list-pages .progress-bar{
         width: 525px;
     }
 
     .pb-value{
-        background: url('images/profile_bar_2.jpg') 0 0 repeat-y;
+        background: #9fe04e url('images/profile_bar_2.jpg') 0 0 repeat-y;
         height: 100%;
      }
 
@@ -1956,6 +1959,8 @@ blockquote span.quotation{
     /*
     ** Widget Customizations
     */
+
+
 
     .widget-liste blockquote {
         line-height: 1.5;
@@ -2150,6 +2155,15 @@ blockquote span.quotation{
   border:none;
   padding: 20px 10px 0;
 }
+
+
+
+
+
+
+
+
+
 
 
 /*************************************************************************************
@@ -2351,6 +2365,24 @@ blockquote span.quotation{
 ** BAGIS SAYFASI
 *************************************************************************************/
 
+.widget-page {
+  position: relative;
+}
+
+.ribbon {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 155px;
+  height: 146px;
+  background: url('images/ribbon-success.png') no-repeat 0 0;
+}
+
+
+
+
+
+
 /*
  * Custom Organizations
  */
@@ -2515,6 +2547,12 @@ blockquote span.quotation{
 }
 
 
+
+#projects .p-inner {
+  min-height: 300px;
+}
+
+
 /*
 ** FACEBOX HACKS
 */
@@ -2592,7 +2630,6 @@ blockquote span.quotation{
     font-size: 14px;
     margin: 20px 0 10px;
 }
-
 
 
 
