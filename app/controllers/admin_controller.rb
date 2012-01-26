@@ -181,4 +181,18 @@ class AdminController < ApplicationController
 
   end
 
+  def features
+    @features = BvFeature::TEST_FEATURES
+  end
+
+  def enable_feature
+    BvFeature.enable_feature params[:name]
+    redirect_to :action => :features
+  end
+
+  def disable_feature
+    BvFeature.disable_feature params[:name]
+    redirect_to :action => :features
+  end
+
 end

@@ -26,6 +26,7 @@ class Organization < ActiveRecord::Base
   belongs_to :user
   has_one :paypal_info
   has_many :tmp_payments
+  has_many :supports
 
   before_validation :sanitize_description_html
 
@@ -104,6 +105,10 @@ class Organization < ActiveRecord::Base
 
   def self.featureds
     Organization.tagged_with("featured")
+  end
+
+  def top_pages
+    self.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
   end
 
 

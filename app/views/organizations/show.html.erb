@@ -8,6 +8,25 @@
     <div class="w-content">
       <div class="fullcontent-left">
         <%= image_tag @organization.logo.url(:thumb) %>
+        <% if BvFeature.is_support_enabled? %>
+          <% if @support %>
+            <%=support_path @support.organization, @support.user, :only_path => false%>
+          <% else%>
+              <%=link_to "Destekle", new_support_path(@organization), :class => "button green"%>
+          <% end %>
+          Benvarım Diyenler:
+          <ol>
+          <% @organization.supports.order("score DESC").each do |s|%>
+            <li><%=link_to s.user.name, s.user%> puan: <%=s.score%></li>
+          <% end %>
+          </ol>
+
+        <% end %>
+        <% if @reference %>
+        <!-- <%="reference #{@reference[:organization_id]} == #{@organization.id} && #{@reference[:user_id]} != #{@current_user.id}"%> -->
+        <% end %>
+
+
 
         <div class="pb-action">
           <% if @organization.can_be_donated? %>
