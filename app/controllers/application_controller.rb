@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
   before_filter :check_maintenance
+  before_filter :set_session_on_bv_feature
   protect_from_forgery
 protected
   def require_organization
@@ -17,6 +18,14 @@ protected
     end
   end
 
+  def require_facebook_connect!
+    user = current_user
+    puts user
+    if !user || !user.fb_connect
+      redirect_to user_omniauth_authorize_path(:facebook)
+    end
+  end
+
   def check_maintenance
     if self.controller_name == "home" && self.action_name == "maintenance"
       return
@@ -28,5 +37,9 @@ protected
       redirect_to maintenance_url
     end
     #
+  end
+
+  def set_session_on_bv_feature
+    BvFeature.set_session session
   end
 end

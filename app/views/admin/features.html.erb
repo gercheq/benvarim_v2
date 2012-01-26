@@ -1,0 +1,24 @@
+<%=render 'menu'%>
+<div id="main-content">
+  <div class="widget widget-light" id="w-iletisim">
+    <div class="w-inner">
+      <div class="w-title">Features (sadece bu sessionda, deneme amacli ozellikleri acip kapamak icin)</div>
+      <% @features.each do |f|%>
+        <%=f%>
+        <% if BvFeature.is_feature_enabled? f %>
+          <%=link_to "kapa", admin_disable_feature_path(f)%>
+        <% else %>
+          <%=link_to "aç", admin_enable_feature_path(f)%>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+<style>
+.stats-table td,th {
+  padding: 5px;
+  border: 1px solid black;
+}
+</style>
+<%= render 'layouts/sidebar'%>

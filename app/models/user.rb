@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
   has_many :pages
   has_many :organizations
+  has_many :supports
   has_one :fb_connect
 
   after_create :after_create_hook

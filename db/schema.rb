@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122235409) do
+ActiveRecord::Schema.define(:version => 20120123072135) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -196,6 +196,18 @@ ActiveRecord::Schema.define(:version => 20120122235409) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "supports", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.integer  "referer_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "supports", ["organization_id", "user_id"], :name => "index_supports_on_organization_id_and_user_id", :unique => true
+  add_index "supports", ["user_id"], :name => "index_supports_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

@@ -108,7 +108,13 @@ Benvarim::Application.routes.draw do
   get '/kurum/:id/duzenle' => "organizations#edit", :as => :edit_organization
   get '/kurum/:id' => "organizations#show", :as => :organization
   put '/kurum/:id' => "organizations#update", :as => :organization
+
+  get 'kurum/:id/destek' => 'organizations#support',  :as => :organization_support
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects
+
+  get 'kurum/:organization_id/destekle/:user_id' => 'organizations#support_landing',  :as => :support
+  get 'kurum/:organization_id/destek' => 'organizations#support',  :as => :new_support
+
 
   # search page
   get 'ara' => "search#index", :as => :search
@@ -129,6 +135,11 @@ Benvarim::Application.routes.draw do
   get '/kertenkele/organization_list' => "admin#organization_list", :as  => :admin_organization_list
   get '/kertenkele/featured' => "admin#featured", :as => :admin_featured
   post '/kertenkele/edit_featured' => "admin#edit_featured", :as => :admin_edit_featured
+  get '/kertenkele/features' => "admin#features", :as => :admin_features
+  get '/kertenkele/features/enable/:name' => "admin#enable_feature", :as => :admin_enable_feature
+  get '/kertenkele/features/disable/:name' => "admin#disable_feature", :as => :admin_disable_feature
+
+
 
 
 

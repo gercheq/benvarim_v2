@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class OrganizationsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, :except => [:show, :index, :support, :support_landing]
+  before_filter :require_facebook_connect!, :only => [:support, :support_landing]
   uses_tiny_mce
   def index
     @organizations = Organization.order("active desc, logo_updated_at desc")
@@ -8,8 +9,11 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @top_pages = @organization.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
+    @top_pages = @organization.top_pages
     @projects = @organization.projects
+    if current_user
+      @support = current_user.supports.find_by_organization_id @organization.id
+    end
     if !@organization.can_be_donated?
       flash.now[:error] = @organization.cant_be_donated_reason
     end
@@ -43,6 +47,62 @@ class OrganizationsController < ApplicationController
     else
       render :action => "edit"
     end
+  end
 
+  def support_landing
+    @organization = Organization.find params[:organization_id]
+    @user = User.find params[:user_id]
+    session[:organization_support_referer] = {
+      :user_id => @user.id,
+      :organization_id => @organization.id
+    }
+    puts "SETTING SESSION #{session[:organization_support_referer]}"
+    redirect_to @organization
+  end
+
+  def support
+    @reference = session[:organization_support_referer]
+    @organization = Organization.find params[:id]
+    @support = Support.find_by_user_id_and_organization_id current_user.id, @organization.id
+    @current_user = current_user
+    if !@support
+      @support = @organization.supports.build ({
+        :user_id => current_user.id,
+        :score => 1
+      })
+      begin
+        Support.transaction do
+          if @reference != nil
+            if @reference[:organization_id] == @organization.id && @reference[:user_id] != current_user.id
+              @referer = User.find @reference[:user_id]
+              @support.referer_id = @referer.id
+
+              user_support = Support.find_by_user_id_and_organization_id @reference[:user_id], @organization.id
+              if user_support
+                user_support.score += 1
+                user_support.save!
+              end
+            else
+              puts "REFERENCE ID IS NOT VALID"
+            end
+          else
+            puts "DID NOT FIND REFERER INFORMATION"
+          end
+          @support.save!
+          if @reference
+            session[:organization_support_referer] = nil
+          end
+        end
+      rescue Exception => e
+        puts e
+      end
+    end
+
+    @top_pages = @organization.top_pages
+    @projects = @organization.projects
+    if !@organization.can_be_donated?
+      flash.now[:error] = @organization.cant_be_donated_reason
+    end
+    render :action => "show"
   end
 end
