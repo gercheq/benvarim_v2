@@ -23,7 +23,9 @@
 
 
     <% if @show_fb_like_send %>
-      <li><fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like></li>
+      <li>
+        <fb:like send="true" layout="button_count" width="165" show_faces="false" href="<%=url_for :only_path => false%>#fb"></fb:like>
+      </li>
     <% else %>
       <li><a  target="_blank" name="fb_share" type="button_count">Facebook'ta Paylaş</a></li>
     <% end %>

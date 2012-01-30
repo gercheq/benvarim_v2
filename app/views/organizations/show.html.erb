@@ -120,11 +120,18 @@
       <%= render :partial => 'organizations/includes/share_options' %>
 
 
-      <!-- <%= render :partial => 'organizations/includes/share_options',
+<%
+=begin
+%>
+      <%= render :partial => 'organizations/includes/share_options',
         :locals => {
-          :title => "Destekliyorum! @organization.name"
+          :twitter_title => "Destekliyorum! @organization.name",
+          :url => "<% if @support %><%=support_path @support.organization, @support.user, :only_path => false%><% end %>"
         }
-      %> -->
+      %>
+<%
+=end
+%>
 
 
 
