@@ -8,20 +8,9 @@
     <div class="w-content">
       <div class="fullcontent-left">
         <%= image_tag @organization.logo.url(:thumb) %>
-        <% if BvFeature.is_support_enabled? %>
-          <% if @support %>
-            <%=support_path @support.organization, @support.user, :only_path => false%>
-          <% else%>
-              <%=link_to "Destekle", new_support_path(@organization), :class => "button green"%>
-          <% end %>
-          Benvarım Diyenler:
-          <ol>
-          <% @organization.supports.order("score DESC").each do |s|%>
-            <li><%=link_to s.user.name, s.user%> puan: <%=s.score%></li>
-          <% end %>
-          </ol>
 
-        <% end %>
+
+
         <% if @reference %>
         <!-- <%="reference #{@reference[:organization_id]} == #{@organization.id} && #{@reference[:user_id]} != #{@current_user.id}"%> -->
         <% end %>
@@ -106,6 +95,55 @@
   <% end %>
 </div><!-- end of #main-content -->
 
-<%= render 'layouts/sidebar_kurum'%>
+<%= render 'organizations/includes/sidebar'%>
 
 
+
+
+
+
+
+
+
+<% if @post_support %>
+
+  <div class="dialog" id="dialog-post-support" title="Teşekkürler!">
+    <div class="d-header">
+      <div class="dh-title">
+        <%= @organization.name %> kurumunu desteklediğin için teşekkür ederiz. Daha fazla kişinin bu kurumu desteklemesi için lütfen paylaşalım.
+      </div>
+    </div><!-- .d-header -->
+
+    <div class="d-content ">
+
+
+      <%= render :partial => 'organizations/includes/share_options' %>
+
+
+      <!-- <%= render :partial => 'organizations/includes/share_options',
+        :locals => {
+          :title => "Destekliyorum! @organization.name"
+        }
+      %> -->
+
+
+
+
+
+    </div><!-- .d-content -->
+
+    <div class="d-footer">
+    </div><!-- .d-footer -->
+  </div><!-- .d-dialog -->
+
+  <% captured = capture do %>
+  <script type="text/javascript">
+  $(document).ready(function(){
+      var $dialog = $("#dialog-post-support");
+      $dialog.dialog( "option", "width", 500 );
+      $dialog.dialog('open');
+  });
+  </script>
+  <% end %>
+  <%render_at_the_end captured%>
+<% end %>

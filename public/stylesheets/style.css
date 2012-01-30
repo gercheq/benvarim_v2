@@ -2043,6 +2043,39 @@ blockquote span.quotation{
     }
 
 
+    /*
+    ** BenVarim Diyenler
+    */
+    .w-supporters {
+
+    }
+
+    .supporters {
+
+    }
+
+    .supporter {
+      width: 50px;
+      margin: 0 10px 10px 0;
+    }
+
+    .supporter .s-photo{
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+
+    .s-photo img {
+      max-width: 50px;
+      border: 1px solid #CCC;
+    }
+
+    .s-name {
+      font-size: 12px;
+      text-align: center;
+    }
+
 
     /* Login Registration Form Links */
     .form-links{

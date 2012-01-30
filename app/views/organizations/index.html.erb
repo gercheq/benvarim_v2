@@ -1,13 +1,9 @@
 <div class="organizations list-view line clearfix" id="organizations">
   <div class="p-nav size1of5">
-
+    <%#= render 'organizations/includes/subnavigation'%>
     <ul>
-      <li>
-        <%=link_to "Öne Çıkanlar", organizations_path, :class => (!@tag ? 'selected' : '')%>
-      </li>
-
+      <li><a class="selected" href="http://benvarim.com/kurumlar">Öne Çıkan Kurumlar</a></li>
     </ul>
-
   </div><!-- subnav -->
   <div class="p-content size4of5 lastUnit">
     <div class="p-inner">
@@ -54,6 +50,18 @@
 </div><!-- .page -->
 
 
+
+
+
+<% if (defined?(organization) && current_user == organization.user) %>
+  <div class="row row-action">
+    <%= link_to 'Yeni bağış projesi oluştur!', new_project_for_organization_path(organization), :class=>"green button super" %>
+  </div>
+<% elsif defined?(link_to_organizations) && link_to_organizations == true %>
+  <div class="row row-action">
+    <%= link_to 'Tüm projeleri görüntüle', all_projects_path, :class=>"show-all" %>
+  </div>
+<% end %>
 
 
 
