@@ -1,0 +1,11 @@
+<ul>
+  <li>
+    <%=link_to "Öne Çıkanlar", organizations_path, :class => (!@tag ? 'selected' : '')%>
+  </li>
+  <% tags = ["Eğitim", "Sağlık"]%>
+  <% tags.each do |t| %>
+    <li>
+      <%=link_to t,organizations_by_tag_path(t), :class => (@tag == t ? 'selected' : '')%>
+    </li>
+  <% end %>
+</ul>
