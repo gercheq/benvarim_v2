@@ -6,8 +6,15 @@
 }
 
 
-.page-list-view .p-inner {
+/*
+ * Custom view for card listing
+ */
+.list-view .p-inner {
     padding: 30px 20px;
+}
+
+.list-view h1{
+  padding-left: 15px;
 }
 
 

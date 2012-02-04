@@ -1,0 +1,43 @@
+<% if BvFeature.is_support_enabled? %>
+
+
+  <div class="widget widget-light w-supporters">
+    <div class="w-inner">
+      <div class="w-title">Destekleyenler</div>
+
+      <div class="w-content">
+        <div class="supporters">
+          <% if @organization.supports.length != 0 %>
+            <% @organization.supports.order("score DESC").each do |s|%>
+              <div class="supporter clearfix">
+                <div class="s-photo">
+                  <%= image_tag s.user.photo.url(:thumb) %>
+                </div>
+                <div class="s-name">
+                  <%=link_to s.user.name, s.user%> (<%=s.score%>)
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p>İlk destekleyen sen ol!</p>
+          <% end %>
+        </div>
+      </div><!-- .w-content -->
+
+
+      <div class="w-action">
+        <% if @support %>
+          <%=support_path @support.organization, @support.user, :only_path => false%>
+        <% else%>
+            <%=link_to "Destekle", new_support_path(@organization), :class => "button green"%>
+        <% end %>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+<% end %>

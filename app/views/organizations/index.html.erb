@@ -1,33 +1,82 @@
-<div class="widget widget-light widget-kurum">
-  <div class="w-inner clearfix">
-    <div class="w-content">
-      <div class="w-title">Tüm Vakıflar ve Dernekler</div>
-      <div class="rows-container" id="donation-pages-container">
-        <% @organizations.each do |organization| %>
-          <div class="row clearfix">
-            <div class="row-photo clearfix"><%= image_tag organization.logo.url(:thumb) %></div>
-            <div class="row-details">
-              <h3><%= link_to organization.name, organization %></h3>
-              <p><%= organization.description %></p>
-              <p><%= organization.address %></p>
+<div class="organizations list-view line clearfix" id="organizations">
+  <div class="p-nav size1of5">
+    <%#= render 'organizations/includes/subnavigation'%>
+    <ul>
+      <li><a class="selected" href="http://benvarim.com/kurumlar">Öne Çıkan Kurumlar</a></li>
+    </ul>
+  </div><!-- subnav -->
+  <div class="p-content size4of5 lastUnit">
+    <div class="p-inner">
 
+      <h1>Öne Çıkan Kurumlar</h1>
 
-              <p><%= link_to 'Görüntüle', organization %></p>
+      <%
+      org_ids = []
+      %>
+
+      <% @organizations.each do |organization| %>
+        <div class="p-item rc">
+          <div class="pi-inner">
+            <div class="pi-img">
+                <div class="pi-img-inner">
+                  <%= image_tag organization.logo.url(:thumb) %>
+              </div>
+            </div>
+            <h3 class="pi-title">
+              <%= link_to organization.name, organization %>
+            </h3>
+            <div class="pi-subtitle">
+            </div>
+            <div class="pi-summary">
+              <p><%=truncate(organization.description, :length => 100) %></p>
+              <p><%= link_to 'Detayları göster', organization %></p>
+
               <% if (defined? show_edit_link) && show_edit_link %>
                 <p><%= link_to 'Düzenle', edit_project_path(organization) %></p>
               <% end %>
 
             </div>
-          </div>
-        <% end %>
-      </div>
+          </div><!-- .pi-inner -->
+        </div><!-- p-item -->
 
-
+        <%
+        org_ids << organization.id
+        %>
+      <% end %>
 
 
     </div>
+  </div><!-- p-content -->
+</div><!-- .page -->
+
+
+
+
+
+<% if (defined?(organization) && current_user == organization.user) %>
+  <div class="row row-action">
+    <%= link_to 'Yeni bağış projesi oluştur!', new_project_for_organization_path(organization), :class=>"green button super" %>
   </div>
-</div><!-- end of .widget -->
+<% elsif defined?(link_to_organizations) && link_to_organizations == true %>
+  <div class="row row-action">
+    <%= link_to 'Tüm projeleri görüntüle', all_projects_path, :class=>"show-all" %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

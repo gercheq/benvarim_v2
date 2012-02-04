@@ -3,9 +3,22 @@ class OrganizationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index, :support, :support_landing]
   before_filter :require_facebook_connect!, :only => [:support, :support_landing]
   uses_tiny_mce
+
   def index
-    @organizations = Organization.order("active desc, logo_updated_at desc")
+    # Old index
+    # @organizations = Organization.order("active desc, logo_updated_at desc")
+
+    tag = params[:tag]
+    if tag
+      @organizations = Organization.tagged_with tag
+    else
+      @organizations = Organization.all
+    end
+    @tag = tag
+
   end
+
+
 
   def show
     @organization = Organization.find(params[:id])
@@ -19,6 +32,10 @@ class OrganizationsController < ApplicationController
     if current_user
       @support = current_user.supports.find_by_organization_id @organization.id
     end
+
+    @post_support = params[:ps] == "1"
+
+
   end
 
   def new
@@ -102,9 +119,15 @@ class OrganizationsController < ApplicationController
 
     @top_pages = @organization.top_pages
     @projects = @organization.projects
-    if !@organization.can_be_donated?
-      flash.now[:error] = @organization.cant_be_donated_reason
-    end
+
+    # DISABLE ERROR MESSAGE FOR NON-ACTIVE ORGANIZATIONS
+    # if !@organization.can_be_donated?
+    #   flash.now[:error] = @organization.cant_be_donated_reason
+    # end
+
+    @post_support = params[:ps] == "1"
+
+
     render :action => "show"
   end
 end
