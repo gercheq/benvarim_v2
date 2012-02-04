@@ -2,7 +2,8 @@
   <div class="p-nav size1of5">
     <%#= render 'organizations/includes/subnavigation'%>
     <ul>
-      <li><a class="selected" href="http://benvarim.com/kurumlar">Öne Çıkan Kurumlar</a></li>
+      <li>
+        <%=link_to "Öne Çıkan Kurumlar", :all_organizations, :class=>"selected"%>
     </ul>
   </div><!-- subnav -->
   <div class="p-content size4of5 lastUnit">
