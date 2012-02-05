@@ -3,7 +3,17 @@
 
   <div class="widget widget-light w-supporters">
     <div class="w-inner">
+
       <div class="w-title">Destekleyenler</div>
+
+      <div class="w-action">
+        <% if @support %>
+          <%=link_to "Arkadaşlarınla paylaş, Puan Topla!", "javascript:openSupportDialog();", :class => "button green"%>
+        <% else%>
+            <%=link_to "Destekle", new_support_path(@organization), :class => "button green"%>
+        <% end %>
+      </div><br/>
+
 
       <div class="w-content">
         <div class="supporters">
@@ -25,13 +35,6 @@
       </div><!-- .w-content -->
 
 
-      <div class="w-action">
-        <% if @support %>
-          <%=support_path @support.organization, @support.user, :only_path => false%>
-        <% else%>
-            <%=link_to "Destekle", new_support_path(@organization), :class => "button green"%>
-        <% end %>
-      </div>
 
 
     </div>

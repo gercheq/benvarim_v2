@@ -105,8 +105,6 @@
 
 
 
-<% if @post_support %>
-
   <div class="dialog" id="dialog-post-support" title="Teşekkürler!">
     <div class="d-header">
       <div class="dh-title">
@@ -125,14 +123,21 @@
     </div><!-- .d-footer -->
   </div><!-- .d-dialog -->
 
-  <% captured = capture do %>
+<% captured = capture do %>
   <script type="text/javascript">
-  $(document).ready(function(){
+    openSupportDialog = function() {
       var $dialog = $("#dialog-post-support");
       $dialog.dialog( "option", "width", 500 );
       $dialog.dialog('open');
-  });
+    };
   </script>
+  <% if @post_support %>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        openSupportDialog();
+    });
+    </script>
   <% end %>
-  <%render_at_the_end captured%>
 <% end %>
+
+<%render_at_the_end captured%>
