@@ -113,30 +113,12 @@
         <%= @organization.name %> kurumunu desteklediğin için teşekkür ederiz. Daha fazla kişinin bu kurumu desteklemesi için lütfen paylaşalım.
       </div>
     </div><!-- .d-header -->
-
     <div class="d-content ">
-
-
-      <%= render :partial => 'organizations/includes/share_options' %>
-
-
-<%
-=begin
-%>
       <%= render :partial => 'organizations/includes/share_options',
-        :locals => {
-          :twitter_title => "Destekliyorum! @organization.name",
-          :url => "<% if @support %><%=support_path @support.organization, @support.user, :only_path => false%><% end %>"
-        }
-      %>
-<%
-=end
-%>
-
-
-
-
-
+          :locals => {
+            :url => support_path(@support.organization, @support.user, :only_path => false),
+            :twitter_text => "Destekliyorum! #{@organization.name}"
+          }%>
     </div><!-- .d-content -->
 
     <div class="d-footer">
