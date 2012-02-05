@@ -22,8 +22,14 @@ protected
     user = current_user
     puts user
     if !user || !user.fb_connect
-      redirect_to user_omniauth_authorize_path(:facebook)
+      store_location_for_sign_in
+      redirect_to user_omniauth_authorize_path :facebook
     end
+  end
+
+  def store_location_for_sign_in
+    # hacking devise, not good but could not find a workaround
+    session["user_return_to"] = request.fullpath
   end
 
   def check_maintenance
