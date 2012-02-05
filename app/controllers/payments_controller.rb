@@ -244,7 +244,8 @@ class PaymentsController < ApplicationController
         :amount => tmp_payment.amount_in_currency,
         :item_name => tmp_payment.organization.name + " - bağış",
         :item_number => tmp_payment.id,
-        :quantity => 1
+        :quantity => 1,
+        :no_shipping => 1
         # ,
         # :currency_code => "TRY"
         #:invoice => id

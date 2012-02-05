@@ -104,7 +104,7 @@
 
 
 
-
+<% if @support %>
   <div class="dialog" id="dialog-post-support" title="Teşekkürler!">
     <div class="d-header">
       <div class="dh-title">
@@ -122,6 +122,7 @@
     <div class="d-footer">
     </div><!-- .d-footer -->
   </div><!-- .d-dialog -->
+<% end %>
 
 <% captured = capture do %>
   <script type="text/javascript">
