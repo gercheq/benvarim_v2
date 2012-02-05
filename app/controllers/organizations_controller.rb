@@ -33,7 +33,7 @@ class OrganizationsController < ApplicationController
       @support = current_user.supports.find_by_organization_id @organization.id
     end
 
-    @post_support = params[:ps] == "1"
+    @post_support = flash[:post_support] == 1
 
 
   end
@@ -76,7 +76,7 @@ class OrganizationsController < ApplicationController
       :organization_id => @organization.id
     }
     puts "SETTING SESSION #{session[:organization_support_referer]}"
-    redirect_to @organization
+    redirect_to organization_support_path(@organization)
   end
 
   def support
@@ -124,10 +124,7 @@ class OrganizationsController < ApplicationController
     # if !@organization.can_be_donated?
     #   flash.now[:error] = @organization.cant_be_donated_reason
     # end
-
-    @post_support = params[:ps] == "1"
-
-
-    render :action => "show"
+    flash[:post_support] = 1
+    redirect_to @organization
   end
 end
