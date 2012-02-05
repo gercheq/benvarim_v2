@@ -1,5 +1,7 @@
 <% flash.each do |key, value| %>
-    <% if value.kind_of? Array %>
+    <% if [:post_support].include? key %>
+    <!-- do nothing  -->
+    <% elsif value.kind_of? Array %>
       <% value.each do |msg|%>
         <div class="msg msg-<%= key %>"><%= msg %></div>
       <% end %>
