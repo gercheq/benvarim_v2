@@ -55,6 +55,6 @@ class BvFeature
   end
 
   def self.is_feature_enabled? name
-    return @@session[:bv_features] && @@session[:bv_features][name] == true
+    return @_env ||= ActiveSupport::StringInquirer.new(RAILS_ENV) || (@@session[:bv_features] && @@session[:bv_features][name] == true)
   end
 end
