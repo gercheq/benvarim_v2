@@ -4,8 +4,11 @@
   </div><!-- subnav -->
   <div class="p-content size4of5 lastUnit">
     <div class="p-inner">
+<%
+title = "Öne Çıkan Projeler" unless (defined?(title) && title.nil? == false && title != "")
 
-      <h1>Öne Çıkan Projeler</h1>
+%>
+      <h1><%=title%></h1>
 
       <%
       org_ids = []
