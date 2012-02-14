@@ -108,6 +108,7 @@ Benvarim::Application.routes.draw do
   get '/kurum/:id/duzenle' => "organizations#edit", :as => :edit_organization
   get '/kurum/:id' => "organizations#show", :as => :organization
   put '/kurum/:id' => "organizations#update", :as => :organization
+  get '/kurumlar/:tag' => "organizations#index", :as => :organizations_by_tag
 
   get 'kurum/:id/destek' => 'organizations#support',  :as => :organization_support
   get 'kurum/:id/projeler' => 'projects#by_organization',  :as => :organization_projects

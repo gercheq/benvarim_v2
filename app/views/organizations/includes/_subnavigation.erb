@@ -1,6 +1,6 @@
 <ul>
   <li>
-    <%=link_to "Öne Çıkanlar", organizations_path, :class => (!@tag ? 'selected' : '')%>
+    <%=link_to "Öne Çıkanlar", all_organizations_path, :class => (!@tag ? 'selected' : '')%>
   </li>
     <% tags = ["Açlık ve Fakirlik", "Çevre", "Din", "Doğal Yaşamı Koruma", "Eğitim",  "Kadın ve Çocuk Hakları", "Sağlık", "Sanat", "Teknoloji" ]%>
   <% tags.each do |t| %>

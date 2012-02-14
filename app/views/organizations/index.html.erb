@@ -4,8 +4,10 @@
   </div><!-- subnav -->
   <div class="p-content size4of5 lastUnit">
     <div class="p-inner">
-
-      <h1>Öne Çıkan Kurumlar</h1>
+<%
+title = @tag.nil? ? "Öne Çıkan Kurumlar" : @tag
+%>
+      <h1><%=title%></h1>
 
       <%
       org_ids = []
