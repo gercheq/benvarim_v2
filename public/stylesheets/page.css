@@ -10,7 +10,8 @@
  * Custom view for card listing
  */
 .list-view .p-inner {
-    padding: 30px 20px;
+  padding: 30px 20px;
+  min-height: 600px;
 }
 
 .list-view h1{
