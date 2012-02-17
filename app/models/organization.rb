@@ -121,6 +121,7 @@ class Organization < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: organizations
@@ -148,5 +149,6 @@ end
 #  cached_slug       :string(255)
 #  facebook_url      :string(255)
 #  twitter_handle    :string(255)
+#  hidden            :boolean         default(FALSE)
 #
 

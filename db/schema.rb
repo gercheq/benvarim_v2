@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123072135) do
+ActiveRecord::Schema.define(:version => 20120217071429) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20120123072135) do
     t.string   "cached_slug"
     t.string   "facebook_url"
     t.string   "twitter_handle"
+    t.boolean  "hidden",            :default => false
   end
 
   add_index "organizations", ["cached_slug"], :name => "index_organizations_on_cached_slug", :unique => true
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20120123072135) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "cached_slug"
+    t.boolean  "hidden",            :default => false
   end
 
   add_index "pages", ["cached_slug"], :name => "index_pages_on_cached_slug", :unique => true
@@ -171,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20120123072135) do
     t.boolean  "accepts_random_payment", :default => true
     t.text     "description_html"
     t.float    "goal"
+    t.boolean  "hidden",                 :default => false
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true

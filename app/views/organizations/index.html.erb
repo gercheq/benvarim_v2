@@ -14,6 +14,9 @@ title = @tag.nil? ? "Öne Çıkan Kurumlar" : @tag
       %>
 
       <% @organizations.each do |organization| %>
+        <% if organization.hidden
+          next
+        end %>
         <div class="p-item rc">
           <div class="pi-inner">
             <div class="pi-img">

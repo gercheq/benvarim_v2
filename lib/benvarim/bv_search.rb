@@ -21,6 +21,9 @@ class ActiveRecord::Base
       puts "change map is nil " + self.class.name
       return
     end
+    if ["Organization", "Project", "Page"].include?(self.class.name) && self.hidden
+      return BvSearch.delete(self.class.name, self.id)
+    end
     data = {}
     variables = {}
     if(change_map[:fields])
@@ -169,7 +172,16 @@ class BvSearch
     puts "indexing id #{doc_id} data #{data} params #{params}"
     res = index.document(doc_id).add(data, params)
 
-    puts "index reuslt #{res}"
+    puts "index result #{res}"
+    res == 200
+  end
+
+  def self.delete class_name, id
+    index = get_index
+    doc_id = self.create_doc_id class_name, id
+    puts "deleting #{doc_id}"
+    res = index.document(doc_id).delete()
+    puts "delete result #{res}"
     res == 200
   end
 

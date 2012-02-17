@@ -95,6 +95,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: projects
@@ -117,5 +118,6 @@ end
 #  accepts_random_payment :boolean         default(TRUE)
 #  description_html       :text
 #  goal                   :float
+#  hidden                 :boolean         default(FALSE)
 #
 

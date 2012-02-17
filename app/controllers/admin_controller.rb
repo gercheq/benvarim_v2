@@ -125,6 +125,7 @@ class AdminController < ApplicationController
     org.set_tag_list_on(:hidden, params[:hidden_tags])
     org.set_tag_list_on(:visible, params[:visible_tags])
     org.active = params[:active] == "1"
+    org.hidden = params[:hidden] == "1"
     if params[:uid]
       u = User.find_by_id params[:uid]
       if u

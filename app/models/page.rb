@@ -1,30 +1,4 @@
 # -*- coding: utf-8 -*-
-# == Schema Information
-# Schema version: 20110409205016
-#
-# Table name: pages
-#
-#  id                :integer         not null, primary key
-#  title             :string(255)
-#  description       :text
-#  start_time        :datetime
-#  end_time          :datetime
-#  goal              :float           default(0.0)
-#  collected         :float           default(0.0)
-#  user_id           :integer
-#  organization_id   :integer
-#  project_id        :integer
-#  active            :boolean         default(TRUE)
-#  created_at        :datetime
-#  updated_at        :datetime
-#  description_html  :text
-#  logo_file_name    :string(255)
-#  logo_content_type :string(255)
-#  logo_file_size    :integer
-#  logo_updated_at   :datetime
-#  cached_slug       :string(255)
-#
-
 class Page < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
@@ -145,3 +119,30 @@ class Page < ActiveRecord::Base
       return nil
     end
 end
+
+# == Schema Information
+#
+# Table name: pages
+#
+#  id                :integer         not null, primary key
+#  title             :string(255)
+#  description       :text
+#  start_time        :datetime
+#  end_time          :datetime
+#  goal              :float           default(0.0)
+#  collected         :float           default(0.0)
+#  user_id           :integer
+#  organization_id   :integer
+#  project_id        :integer
+#  active            :boolean         default(TRUE)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  description_html  :text
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#  cached_slug       :string(255)
+#  hidden            :boolean         default(FALSE)
+#
+

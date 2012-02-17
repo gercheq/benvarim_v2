@@ -18,6 +18,7 @@
                     <% else %>
                       <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a><br/>
                     <% end %>
+                    Kurum Gizli: <%=check_box_tag :hidden, "1", organization.hidden%><br/>
                     Kurum Sahibi: <div id="org-user-<%=organization.id%>"><%=link_to organization.user.name, organization.user%> | <a class="change-org-user" org-id="<%=organization.id%>">Değiştir</a></div>
                     <input name="uid" value="<%=organization.user.id%>" type="hidden" id="org-user-hidden-input-<%=organization.id%>"/>
                     Gizli Etiketler: <%=text_field_tag :hidden_tags, organization.tag_list_on(:hidden).join(","), :style => "width:600px"%><br/>
