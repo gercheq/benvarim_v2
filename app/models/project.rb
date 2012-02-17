@@ -23,6 +23,9 @@ class Project < ActiveRecord::Base
    validate :validate_end_time
    validates_numericality_of :goal, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000000, :allow_nil => true
 
+   before_save :update_aggregated_hidden
+   after_save :after_save_hook
+
    has_friendly_id :name, :use_slug => true, :approximate_ascii => true
 
    index_map :fields => [:organization_id, :name, :description, :visible_tags, :to_param],
@@ -91,7 +94,28 @@ class Project < ActiveRecord::Base
      #   self.errors.add "end_time", "bugünden önce olamaz."
      # end
    end
+
+   def update_aggregated_hidden org_hidden=nil
+     if org_hidden.nil?
+       org_hidden = self.organization.hidden
+     end
+     new_hidden = org_hidden || self.hidden
+     if new_hidden != self.aggregated_hidden
+       self.aggregated_hidden = new_hidden
+       self.save
+     end
+   end
+
+   def after_save_hook
+     if self.aggregated_hidden_changed? || self.hidden_changed?
+       self.pages.each do |page|
+         page.update_aggregated_hidden self.aggregated_hidden
+       end
+     end
+   end
 end
+
+
 
 
 
@@ -119,5 +143,6 @@ end
 #  description_html       :text
 #  goal                   :float
 #  hidden                 :boolean         default(FALSE)
+#  aggregated_hidden      :boolean         default(FALSE)
 #
 

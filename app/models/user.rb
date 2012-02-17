@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_attached_file :photo, :default_url =>'/stylesheets/images/userpic_default.jpg',
                      :path => '/:class/:attachment/:id/:style/:safe_filename',
                      :storage => :s3,
-                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                      :styles => { :medium => "600x600>",
                                   :thumb => "200x200>" }
 

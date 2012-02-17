@@ -10,9 +10,11 @@
           <div class="">
             <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %>
             <!-- edit start -->
-            <%= form_tag admin_edit_page_path(page) do |f| %>
+            <%= form_tag admin_edit_page_path(page) + ".json", :class => "page_form"  do |f| %>
               Sayfa Aktif: <%=check_box_tag :active, "1", page.active%><br/>
-              <%=submit_tag "Değişikliği kaydet"%>
+              Sayfa Gizli: <%=check_box_tag :hidden, "1", page.hidden%><br/>
+              Agrage Gizli: <%=check_box_tag :aggregated_hidden, "1", page.aggregated_hidden, :disabled => true %>
+              <%=submit_tag "Değişikliği kaydet", :class => "submit_page"%>
             <% end%>
             <!-- edit end -->
 
@@ -48,5 +50,38 @@
     </div>
   </div>
 </div><!-- end of .widget -->
+
+<% captured = capture do %>
+<script>
+$(document).ready(function(){
+    $(".page_form").submit(function(event) {
+      event.preventDefault();
+      var $form = $( this );
+      $form.hide();
+
+      var url = $form.attr( 'action' );
+      $.post( url, $form.serialize(),
+          function( data ) {
+            $form.show();
+            if(!data) {
+              alert("hata, tekrar dene");
+            } else if(data.err) {
+              alert(data.err);
+            } else if(data.title) {
+              $form.find("[name=aggregated_hidden]").attr("checked", data.aggregated_hidden);
+              $form.find("[name=hidden]").attr("checked", data.hidden);
+              $form.find("[name=active]").attr("checked", data.active);
+              alert(data.title + " kaydedildi");
+            } else {
+              alert("wtf?");
+            }
+
+          }
+        );
+    });
+});
+</script>
+<% end %>
+<%render_at_the_end captured%>
 
 

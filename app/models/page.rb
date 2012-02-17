@@ -15,6 +15,7 @@ class Page < ActiveRecord::Base
   has_many :payments
 
   before_validation :sanitize_description_html
+  before_save :update_aggregated_hidden
 
   validates :organization_id, :presence => true
   validates :project_id, :presence => true
@@ -105,6 +106,17 @@ class Page < ActiveRecord::Base
     end
   end
 
+  def update_aggregated_hidden project_aggregated_hidden = nil
+    if project_aggregated_hidden.nil?
+      project_aggregated_hidden = self.project.aggregated_hidden
+    end
+    new_hidden = self.hidden || project_aggregated_hidden
+    if self.aggregated_hidden != new_hidden
+      self.aggregated_hidden = new_hidden
+      self.save!
+    end
+  end
+
   private
     def sanitize_description_html
       unless self.description_html.nil?
@@ -119,6 +131,8 @@ class Page < ActiveRecord::Base
       return nil
     end
 end
+
+
 
 # == Schema Information
 #
@@ -144,5 +158,6 @@ end
 #  logo_updated_at   :datetime
 #  cached_slug       :string(255)
 #  hidden            :boolean         default(FALSE)
+#  aggregated_hidden :boolean         default(FALSE)
 #
 

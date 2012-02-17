@@ -70,6 +70,12 @@ class Organization < ActiveRecord::Base
 
   def after_save_hook
     puts "obj after save"
+    if self.hidden_changed?
+      #update hidden of all projects. does not need to be done with a lock, not that critical
+      self.projects.each do |p|
+        p.update_aggregated_hidden self.hidden
+      end
+    end
   end
 
   def can_be_donated?

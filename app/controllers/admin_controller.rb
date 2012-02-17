@@ -37,22 +37,20 @@ class AdminController < ApplicationController
 
   def edit_page
     page = Page.find params[:id]
-    active = params[:active]
-
-    if active && page.active
-      flash[:notice] = "e zaten #{page.title} aktif :/"
-    elsif !active && !page.active
-      flash[:notice] = "e zaten #{page.title} pasif :/"
-    elsif active
-      page.active = true
-      page.save
-      flash[:notice] = "#{page.title} aktiflendi, hayirli ugurlu olsun."
-    else
-      page.active = false
-      page.save!
-      flash[:notice] = "#{page.title} kapatildi, cok uzuldum :("
+    page.active = params[:active] == "1"
+    page.hidden = params[:hidden] == "1"
+    page.save!
+    flash[:notice] = "Değişiklikler kaydedildi #{page.title} aktif: #{page.active} gizli: #{page.hidden}"
+    respond_to do |format|
+      format.html {redirect_to :action => :pages}
+      format.json { render :json => {
+        :title => page.title,
+        :active => page.active?,
+        :hidden => page.hidden,
+        :aggregated_hidden => page.aggregated_hidden
+        } }
     end
-    redirect_to :action => :pages
+
   end
 
   def user_list

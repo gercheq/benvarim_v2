@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20120217071429) do
     t.datetime "logo_updated_at"
     t.string   "cached_slug"
     t.boolean  "hidden",            :default => false
+    t.boolean  "aggregated_hidden", :default => false
   end
 
   add_index "pages", ["cached_slug"], :name => "index_pages_on_cached_slug", :unique => true
@@ -174,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20120217071429) do
     t.text     "description_html"
     t.float    "goal"
     t.boolean  "hidden",                 :default => false
+    t.boolean  "aggregated_hidden",      :default => false
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
