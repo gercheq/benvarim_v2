@@ -24,6 +24,11 @@ class ActiveRecord::Base
     if ["Organization", "Project", "Page"].include?(self.class.name) && self.hidden
       return BvSearch.delete(self.class.name, self.id)
     end
+
+    if ["Project", "Page"].include?(self.class.name) && self.aggregated_hidden
+      return BvSearch.delete(self.class.name, self.id)
+    end
+
     data = {}
     variables = {}
     if(change_map[:fields])
