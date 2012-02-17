@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     if organization.nil?
       @projects = Array.new
     else
-      @projects = organization.projects.all.collect do |p|
+      @projects = organization.visible_projects.all.collect do |p|
         [p.name, p.id]
       end
     end
@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.where("active").order("updated_at desc")
+    @pages = Page.filter_out_hidden.where("active").order("updated_at desc")
   end
 
   def my_pages

@@ -51,6 +51,10 @@ class Organization < ActiveRecord::Base
     self.errors.add "contact_email", "geçersiz" unless self.contact_email =~ /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
   end
 
+  def visible_projects
+    Project.filter_out_hidden self.projects
+  end
+
   def after_create_hook
     #create default project
     p = self.projects.build({
@@ -90,7 +94,7 @@ class Organization < ActiveRecord::Base
   end
 
   def self.available_organizations
-    Organization.where("active=?", true).all
+    Organization.filter_out_hidden.where("active=?", true).all
   end
 
   def self.available_organizations_simple
@@ -110,11 +114,16 @@ class Organization < ActiveRecord::Base
   end
 
   def self.featureds
-    Organization.tagged_with("featured")
+    Organization.filter_out_hidden.tagged_with("featured")
   end
 
   def top_pages
-    self.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
+    Page.filter_out_hidden self.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
+  end
+
+  def self.filter_out_hidden relation = nil
+    relation ||= Organization
+    relation.where("NOT organizations.hidden OR organizations.hidden IS NULL")
   end
 
 

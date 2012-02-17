@@ -86,13 +86,18 @@ class Project < ActiveRecord::Base
    end
 
    def self.featureds
-     Project.tagged_with("featured")
+     Project.filter_out_hidden.tagged_with("featured")
    end
 
    def validate_end_time
      # if self.end_time_changed? && !self.end_time.nil? && Time.now > self.end_time
      #   self.errors.add "end_time", "bugünden önce olamaz."
      # end
+   end
+
+   def self.filter_out_hidden relation=nil
+     relation ||= Project
+     relation.where("NOT projects.aggregated_hidden OR projects.aggregated_hidden IS NULL").where("NOT projects.hidden OR projects.hidden IS NULL")
    end
 
    def update_aggregated_hidden org_hidden=nil

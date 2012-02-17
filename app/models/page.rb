@@ -117,6 +117,11 @@ class Page < ActiveRecord::Base
     end
   end
 
+  def self.filter_out_hidden relation=nil
+    relation ||= Page
+    relation.where("NOT pages.aggregated_hidden OR pages.aggregated_hidden IS NULL").where("NOT pages.hidden OR pages.hidden IS NULL")
+  end
+
   private
     def sanitize_description_html
       unless self.description_html.nil?

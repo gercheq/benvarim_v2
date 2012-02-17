@@ -10,9 +10,9 @@ class OrganizationsController < ApplicationController
 
     tag = params[:tag]
     if tag
-      @organizations = Organization.tagged_with tag
+      @organizations = Organization.filter_out_hidden.tagged_with tag
     else
-      @organizations = Organization.all
+      @organizations = Organization.filter_out_hidden
     end
     @tag = tag
 
@@ -28,7 +28,7 @@ class OrganizationsController < ApplicationController
     #   flash.now[:error] = @organization.cant_be_donated_reason
     # end
     @top_pages = @organization.top_pages
-    @projects = @organization.projects
+    @projects = @organization.visible_projects
     if current_user
       @support = current_user.supports.find_by_organization_id @organization.id
     end

@@ -7,9 +7,9 @@ class ProjectsController < ApplicationController
   def index
     tag = params[:tag]
     if tag
-      @projects = Project.tagged_with tag
+      @projects = Project.filter_out_hidden.tagged_with tag
     else
-      @projects = Project.all
+      @projects = Project.filter_out_hidden.all
     end
     @tag = tag
 
@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   def by_organization
     org = Organization.find(params[:id])
     if org
-      @projects = org.projects.all
+      @projects = org.visible_projects.all
     else
       @projects = Array.new
     end
