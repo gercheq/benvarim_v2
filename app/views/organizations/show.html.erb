@@ -78,14 +78,15 @@
   </div>
 </div><!-- end of .widget -->
 <div id="main-content">
-  <%=render :partial => "projects/list_projects_condensed",
-    :locals => {
-      :show_edit_link => false,
-      :projects => @projects,
-      :hide_organization_link => true,
-      :organization => @organization
-    }%>
-
+  <% if @projects.length > 0 %>
+    <%=render :partial => "projects/list_projects_condensed",
+      :locals => {
+        :show_edit_link => false,
+        :projects => @projects,
+        :hide_organization_link => true,
+        :organization => @organization
+      }%>
+  <% end %>
   <% if @top_pages.length > 0 %>
   <%=render :partial => "pages/list_pages_condensed",
     :locals => {
