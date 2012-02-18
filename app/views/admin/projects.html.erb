@@ -1,0 +1,88 @@
+<%=render 'menu'%>
+<%=render :partial => 'layouts/errors'%>
+
+<div class="page list-view line clearfix" id="projects">
+  <div class="p-content size4of5 lastUnit">
+    <div class="p-inner">
+      <h1>Projeler</h1>
+<%
+projects = @projects
+%>
+
+      <%
+      org_ids = []
+      %>
+
+      <% projects.each do |project, index| %>
+
+        <div class="p-item rc">
+          <div class="pi-inner">
+            <div class="pi-img">
+                <div class="pi-img-inner">
+                <% if project.logo.file? %>
+                  <%= link_to image_tag(project.logo.url(:thumb)), project_path(project) %>
+                <% else %>
+                  <%= link_to image_tag(project.organization.logo.url(:thumb)), project_path(project) %>
+                <% end %>
+              </div>
+            </div>
+            <h3 class="pi-title">
+              <%= link_to project.name, project %>
+            </h3>
+            <div class="pi-subtitle">
+              <% unless (defined?(hide_organization_link) && hide_organization_link == true)%>
+                <%= link_to project.organization.name, project.organization%>
+              <% end %>
+            </div>
+            <div>
+              <%= form_tag admin_edit_project_path(project) + ".json", :class => "project_form"  do |f| %>
+                Proje Gizli: <%=check_box_tag :hidden, "1", project.hidden%><br/>
+                Agrage Gizli: <%=check_box_tag :aggregated_hidden, "1", project.aggregated_hidden, :disabled => true %>
+                <%=submit_tag "Değişikliği kaydet", :class => "submit_project"%>
+              <% end%>
+            </div>
+          </div><!-- .pi-inner -->
+        </div><!-- p-item -->
+
+        <%
+        org_ids << project.organization_id
+        %>
+      <% end %>
+
+
+    </div>
+  </div><!-- p-content -->
+</div><!-- .page -->
+
+<% captured = capture do %>
+<script>
+$(document).ready(function(){
+    $(".project_form").submit(function(event) {
+      event.preventDefault();
+      var $form = $( this );
+      $form.hide();
+
+      var url = $form.attr( 'action' );
+      $.post( url, $form.serialize(),
+          function( data ) {
+            $form.show();
+            if(!data) {
+              alert("hata, tekrar dene");
+            } else if(data.err) {
+              alert(data.err);
+            } else if(data.name) {
+              $form.find("[name=aggregated_hidden]").attr("checked", data.aggregated_hidden);
+              $form.find("[name=hidden]").attr("checked", data.hidden);
+              $form.find("[name=active]").attr("checked", data.active);
+              alert(data.name + " kaydedildi");
+            } else {
+              alert("wtf?");
+            }
+
+          }
+        );
+    });
+});
+</script>
+<% end %>
+<%render_at_the_end captured%>

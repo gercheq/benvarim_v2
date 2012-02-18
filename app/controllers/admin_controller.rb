@@ -35,6 +35,26 @@ class AdminController < ApplicationController
     @pages = Page.order("created_at DESC")
   end
 
+  def projects
+    @projects = Project.order("created_at DESC")
+  end
+
+  def edit_project
+    project = Project.find params[:id]
+    project.active = params[:active] == "1"
+    project.hidden = params[:hidden] == "1"
+    project.save!
+    flash[:notice] = "Değişiklikler kaydedildi #{project.name} aktif: #{project.active} gizli: #{project.hidden}"
+    respond_to do |format|
+      format.html {redirect_to :action => :projects}
+      format.json { render :json => {
+        :name => project.name,
+        :hidden => project.hidden,
+        :aggregated_hidden => project.aggregated_hidden
+        } }
+    end
+  end
+
   def edit_page
     page = Page.find params[:id]
     page.active = params[:active] == "1"

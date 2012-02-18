@@ -125,9 +125,11 @@ Benvarim::Application.routes.draw do
   get '/kertenkele' => "admin#index", :as => :admin
   post '/kertenkele/kurum/:id/duzenle' => "admin#edit_organization", :as => :admin_edit_organization
   post '/kertenkele/sayfa/:id/duzenle' => "admin#edit_page", :as => :admin_edit_page
+  post '/kertenkele/proje/:id/duzenle' => "admin#edit_project", :as => :admin_edit_project
   get '/kertenkele/impersonate/:k' => "admin#impersonate", :as => :admin_impersonate
   get '/kertenkele/impersonate' => "admin#impersonate", :as => :admin_impersonate
   get '/kertenkele/kurumlar' => "admin#organizations", :as => :admin_organizations
+  get '/kertenkele/projeler' => "admin#projects", :as => :admin_projects
   get '/kertenkele/sayfalar' => "admin#pages", :as => :admin_pages
   get '/kertenkele/epostalar' => "admin#export_emails", :as => :export_emails
   get '/kertenkele/stats' => "admin#stats", :as => :admin_stats
