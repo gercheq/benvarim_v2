@@ -100,6 +100,10 @@ class Project < ActiveRecord::Base
      relation.where("NOT projects.aggregated_hidden OR projects.aggregated_hidden IS NULL").where("NOT projects.hidden OR projects.hidden IS NULL")
    end
 
+   def top_pages
+     Page.filter_out_hidden self.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
+   end
+
    def update_aggregated_hidden org_hidden=nil
      if org_hidden.nil?
        org_hidden = self.organization.hidden
