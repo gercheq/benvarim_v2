@@ -14,7 +14,7 @@
        
         // some parameter validation
         var urlrx = /http(s)?:\/\/[a-z0-9]+.api.indextank.com/; 
-        if (!urlrx.test(apiurl)) throw("invalid api url!");
+        // if (!urlrx.test(apiurl)) throw("invalid api url!");
         if (indexName == undefined) throw("index name is not defined!");
 
         // Add a reverse reference to the DOM object

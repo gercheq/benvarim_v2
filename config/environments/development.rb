@@ -47,7 +47,10 @@ Benvarim::Application.configure do
   ENV['FACEBOOK_SECRET'] = "6e50bfd342289a64457fdc6289903f2c"
 
   #indextank settings
-  ENV['INDEXTANK_API_URL'] = 'http://:m8Qc52GryxmiN7@qgx.api.indextank.com'
-  ENV['INDEXTANK_PUBLIC_URL'] = 'http://qgx.api.indextank.com'
+  # ENV['INDEXTANK_API_URL'] = 'http://:m8Qc52GryxmiN7@qgx.api.indextank.com'
+  # ENV['INDEXTANK_PUBLIC_URL'] = 'http://qgx.api.indextank.com'
+  #searchify urls
+  ENV['INDEXTANK_API_URL'] = "http://:0ZeBJ3Yv1IVr8T@s26v.api.searchify.com"
+  ENV['INDEXTANK_PUBLIC_URL'] = "http://s26v.api.searchify.com"
 end
 
