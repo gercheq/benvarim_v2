@@ -3,5 +3,5 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 User-agent: *
 Allow: /
-Sitemap: http://benvarim.com/sitemap.xml
+Sitemap: https://www.benvarim.com/sitemap.xml
 

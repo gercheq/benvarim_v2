@@ -138,7 +138,7 @@ Devise.setup do |config|
   #   manager.oauth(:twitter) do |twitter|
   #     twitter.consumer_secret = <YOUR CONSUMER SECRET>
   #     twitter.consumer_key  = <YOUR CONSUMER KEY>
-  #     twitter.options :site => 'http://twitter.com'
+  #     twitter.options :site => 'https://twitter.com'
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
