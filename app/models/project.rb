@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
                       :path => '/:class/:attachment/:id/:style/resim.:extension',
                       :storage => :s3,
+                      :s3_protocol => 'https',
                       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                       :styles => { :medium => "600x600>",
                                    :thumb => "200x200>" }
