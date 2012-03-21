@@ -15,11 +15,11 @@
       <% end %>
 
       <% if @tmp_payment.page%>
-        <%= form_tag donate_for_page_path(@tmp_payment.page)%>
+        <%= form_tag donate_for_page_path(@tmp_payment.page), :id => 'donate-form'%>
       <% elsif @tmp_payment.project%>
-        <%= form_tag donate_for_project_path(@tmp_payment.project)%>
+        <%= form_tag donate_for_project_path(@tmp_payment.project), :id => 'donate-form'%>
       <% elsif @tmp_payment.organization%>
-        <%= form_tag donate_for_organization_path(@tmp_payment.organization)%>
+        <%= form_tag donate_for_organization_path(@tmp_payment.organization, :id => 'donate-form')%>
       <% else %>
         <%#cannot come here, checked in the control%>
 
@@ -64,7 +64,13 @@
       </div>
 
       <div class="actions">
-        <input type="submit" value="Gönder" name="commit" class="yellow button large button-send-to-paypal">
+        <% if @paypal_ec%>
+          <%=hidden_field_tag "tmp_payment[is_express]", "1"%>
+          <%= link_to image_tag("https://www.paypal.com/tr_TR/i/btn/btn_xpressCheckout.gif"), "javascript:void($('#donate-form').submit());" %>
+        <% else %>
+          <input type="submit" value="Gönder" name="commit" class="yellow button large button-send-to-paypal">
+        <% end %>
+
       </div>
 
       <div class="paypal-desc">

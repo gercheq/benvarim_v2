@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217071429) do
+ActiveRecord::Schema.define(:version => 20120321064955) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20120217071429) do
     t.float    "amount_in_currency"
     t.integer  "predefined_payment_id", :default => 0
     t.boolean  "hide_name",             :default => false
+    t.string   "express_token"
   end
 
   create_table "paypal_infos", :force => true do |t|
@@ -246,6 +247,8 @@ ActiveRecord::Schema.define(:version => 20120217071429) do
     t.float    "amount_in_currency"
     t.integer  "predefined_payment_id", :default => 0
     t.boolean  "hide_name",             :default => false
+    t.boolean  "is_express",            :default => false
+    t.string   "express_token"
   end
 
   create_table "users", :force => true do |t|

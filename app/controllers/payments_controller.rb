@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
     add_predefined_payments
-
+    @paypal_ec = true
     if params[:popup]
       render :layout => false
     end
@@ -68,10 +68,23 @@ class PaymentsController < ApplicationController
       @tmp_payment.amount_in_currency = pp.amount
     end
 
+    if @tmp_payment.is_express
+      response = EXPRESS_GATEWAY.setup_purchase(@tmp_payment.amount_in_currency * 100,
+          paypal_ec_params(@tmp_payment))
+      puts response
+      #TODO
+      #what if paypal request fails ???
+      @tmp_payment.express_token = response.token
+    end
+
 
     if @tmp_payment.save
-      #goto paypal!
-      redirect_to paypal_url(@tmp_payment)
+      if @tmp_payment.is_express
+        redirect_to EXPRESS_GATEWAY.redirect_url_for(@tmp_payment.express_token)
+      else
+        #goto paypal!
+        redirect_to paypal_url(@tmp_payment)
+      end
     else
       puts @tmp_payment.errors
       add_predefined_payments
@@ -150,41 +163,58 @@ class PaymentsController < ApplicationController
   def finalize
     BvLogger::log("paypal_finalize", "start")
     BvLogger::log("paypal_finalize", params.to_json)
-    require 'net/http'
-    require 'uri'
-    require 'cgi'
+    if params[:token]
+      #paypal express
+      #TODO
+      #assuming token is uniq, make sure!
+      tmp_payment = TmpPayment.find_by_express_token params[:token]
+      tmp_payment_id = tmp_payment.id
+      @page = tmp_payment.page
+      @project = tmp_payment.project
+      @organization = tmp_payment.organization
+      EXPRESS_GATEWAY.purchase(tmp_payment.amount_in_currency * 100,
+      {:token => params[:token] , :payer_id => params[:PayerID]
+        })
+      BvLogger::log("paypal_finalize", "ec tmp payment id #{tmp_payment_id}")
+    else
+      require 'net/http'
+      require 'uri'
+      require 'cgi'
 
-    url = URI.parse(ENV['PAYPAL_IPN_URL'])
-    if params[:page_id]
-      @page = Page.find(params[:page_id])
-      @organization = @page.organization
-      @project = @page.project
-    elsif params[:project_id]
-      @project = Project.find(params[:project_id])
-      @organization = @project.organization
-    elsif params[:organization_id]
-      @organization = Organization.find(params[:organization_id])
-    end
-
-    id_token = @organization.paypal_info.paypal_id_token
-    post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  id_token}
-    BvLogger::log("paypal_finalize", post_args.to_json)
-
-    resp, data = Net::HTTP.post_form(url, post_args)
-    BvLogger::log("paypal_finalize", resp)
-
-    return_map = Hash.new
-    if data.split("\n").first == 'SUCCESS'
-      data.each_line do |line|
-        key_val = line.split('=')
-        if key_val.length == 2
-          return_map[CGI::unescape(key_val[0])] = CGI::unescape(key_val[1])
-        end
+      url = URI.parse(ENV['PAYPAL_IPN_URL'])
+      if params[:page_id]
+        @page = Page.find(params[:page_id])
+        @organization = @page.organization
+        @project = @page.project
+      elsif params[:project_id]
+        @project = Project.find(params[:project_id])
+        @organization = @project.organization
+      elsif params[:organization_id]
+        @organization = Organization.find(params[:organization_id])
       end
 
-      tmp_payment_id = params[:cm]
+      id_token = @organization.paypal_info.paypal_id_token
+      post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  id_token}
+      BvLogger::log("paypal_finalize", post_args.to_json)
+
+      resp, data = Net::HTTP.post_form(url, post_args)
+      BvLogger::log("paypal_finalize", resp)
+
+      return_map = Hash.new
+      if data.split("\n").first == 'SUCCESS'
+        data.each_line do |line|
+          key_val = line.split('=')
+          if key_val.length == 2
+            return_map[CGI::unescape(key_val[0])] = CGI::unescape(key_val[1])
+          end
+        end
+
+        tmp_payment_id = params[:cm]
+      end
+      BvLogger::log("paypal_finalize", return_map.to_json)
     end
-    BvLogger::log("paypal_finalize", return_map.to_json)
+
+
 
     @payment = nil
     begin
@@ -205,9 +235,9 @@ class PaymentsController < ApplicationController
       flash[:error] = "Kayıt bulunamadı"
       BvLogger::log("paypal_finalize", "record not found error")
       BvLogger::log("paypal_finalize", notfound.to_json)
-    rescue
+    rescue Exception => ee
       flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
-      BvLogger::log("paypal_finalize", "unidentified error")
+      BvLogger::log("paypal_finalize", "unidentified error #{ee.backtrace}")
     end
 
     return redirect_to @page if @page
@@ -221,7 +251,7 @@ class PaymentsController < ApplicationController
 
   private
 
-    def paypal_url(tmp_payment)
+    def paypal_return_url(tmp_payment)
       if tmp_payment.page
         return_url = finalize_donation_for_page_path(tmp_payment.page, :only_path => false)
       elsif tmp_payment.project
@@ -229,6 +259,31 @@ class PaymentsController < ApplicationController
       else
         return_url = finalize_donation_for_organization_path(tmp_payment.organization, :only_path => false)
       end
+      return_url
+    end
+    def paypal_cancel_url(tmp_payment)
+      if tmp_payment.page
+        cancel_url = page_path(tmp_payment.page, :only_path => false)
+      elsif tmp_payment.project
+        cancel_url = project_path(tmp_payment.project, :only_path => false)
+      else
+        cancel_url = organization_path(tmp_payment.organization, :only_path => false)
+      end
+      cancel_url
+    end
+
+    def paypal_ec_params(tmp_payment)
+      {
+        :CURRENCYCODE => tmp_payment.currency,
+        :ip                => request.remote_ip,
+        :return_url        => paypal_return_url(tmp_payment),
+        :cancel_return_url => paypal_cancel_url(tmp_payment),
+        :localecode => 'tr_TR',
+        :NOSHIPPING => 1
+      }
+    end
+    def paypal_url(tmp_payment)
+      return_url = paypal_return_url tmp_payment
 
       puts return_url
 
@@ -267,6 +322,7 @@ class PaymentsController < ApplicationController
         attributes.delete "created_at"
         attributes.delete "updated_at"
         attributes.delete "payment_id"
+        attributes.delete "is_express"
 
         page = @tmp_payment.page
         organization = @tmp_payment.organization

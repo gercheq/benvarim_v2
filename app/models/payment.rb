@@ -50,6 +50,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: payments
@@ -68,5 +69,6 @@ end
 #  amount_in_currency    :float
 #  predefined_payment_id :integer         default(0)
 #  hide_name             :boolean         default(FALSE)
+#  express_token         :string(255)
 #
 
