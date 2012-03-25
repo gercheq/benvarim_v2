@@ -2,6 +2,8 @@
 class Organization < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
+  @paypal_ec_gateway = nil
+
   acts_as_taggable
 
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
@@ -125,6 +127,25 @@ class Organization < ActiveRecord::Base
   def self.filter_out_hidden relation = nil
     relation ||= Organization
     relation.where("NOT organizations.hidden OR organizations.hidden IS NULL")
+  end
+
+  def paypal_ec_gateway
+    unless @paypal_ec_gateway.nil?
+      return @paypal_ec_gateway
+    end
+
+    if Rails.env == "production"
+      #TODO!!!
+    else
+      ActiveMerchant::Billing::Base.mode = :test
+      paypal_options = {
+        :login => "satis_1298099260_biz_api1.benvarim.com",
+        :password => "4VDMUG2L45WJ54J3",
+        :signature => "AX52qiaHMK2EmWOU0dqpVvS59TZqAI--JjS2Ph4ZgcY9GMAd9AY8Oo9s"
+      }
+      @paypal_ec_gateway = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+      return @paypal_ec_gateway
+    end
   end
 
 

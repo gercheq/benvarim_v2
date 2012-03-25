@@ -67,9 +67,9 @@ class PaymentsController < ApplicationController
       end
       @tmp_payment.amount_in_currency = pp.amount
     end
-
     if @tmp_payment.is_express
-      response = EXPRESS_GATEWAY.setup_purchase(@tmp_payment.amount_in_currency * 100,
+      gateway = @organization.paypal_ec_gateway
+      response = gateway.setup_purchase(@tmp_payment.amount_in_currency * 100,
           paypal_ec_params(@tmp_payment))
       puts response
       #TODO
@@ -80,7 +80,8 @@ class PaymentsController < ApplicationController
 
     if @tmp_payment.save
       if @tmp_payment.is_express
-        redirect_to EXPRESS_GATEWAY.redirect_url_for(@tmp_payment.express_token)
+        gateway = @organization.paypal_ec_gateway
+        redirect_to gateway.redirect_url_for(@tmp_payment.express_token)
       else
         #goto paypal!
         redirect_to paypal_url(@tmp_payment)
@@ -141,7 +142,9 @@ class PaymentsController < ApplicationController
         #PAYPAL.info "could not read custom parameter"
         #probably someone else sent money to there.
       else
-        if create_payment(custom)
+        tmp_payment = TmpPayment.find_by_id custom
+        payment = BvPayment.finalize tmp_payment
+        if payment
           BvLogger::log("ipn_handler", "success in create_payment")
           #PAYPAL.info successfully created payment via IPN
         else
@@ -168,14 +171,6 @@ class PaymentsController < ApplicationController
       #TODO
       #assuming token is uniq, make sure!
       tmp_payment = TmpPayment.find_by_express_token params[:token]
-      tmp_payment_id = tmp_payment.id
-      @page = tmp_payment.page
-      @project = tmp_payment.project
-      @organization = tmp_payment.organization
-      EXPRESS_GATEWAY.purchase(tmp_payment.amount_in_currency * 100,
-      {:token => params[:token] , :payer_id => params[:PayerID]
-        })
-      BvLogger::log("paypal_finalize", "ec tmp payment id #{tmp_payment_id}")
     else
       require 'net/http'
       require 'uri'
@@ -210,16 +205,20 @@ class PaymentsController < ApplicationController
         end
 
         tmp_payment_id = params[:cm]
+        tmp_payment = TmpPayment.find_by_id tmp_payment_id
       end
       BvLogger::log("paypal_finalize", return_map.to_json)
     end
 
+    if tmp_payment.nil?
+      #wtf
+      flash[:error] = "Beklenmedik bir hata oluştu"
+      return redirect_to root_path
+    end
 
-
-    @payment = nil
     begin
-      res = create_payment tmp_payment_id
-      if res
+      @payment = BvPayment.finalize tmp_payment
+      if @payment
         flash[:success] = "Bağış yapıldı! Teşekkürler!"
         BvLogger::log("paypal_finalize", "success")
       else
@@ -227,22 +226,19 @@ class PaymentsController < ApplicationController
         BvLogger::log("paypal_finalize", "error")
       end
 
-    rescue ActiveRecord::RecordInvalid => invalid
-      flash[:error] = invalid.record.errors
-      BvLogger::log("paypal_finalize", "invalid record error")
-      BvLogger::log("paypal_finalize", invalid.to_json)
-    rescue ActiveRecord::RecordNotFound => notfound
-      flash[:error] = "Kayıt bulunamadı"
-      BvLogger::log("paypal_finalize", "record not found error")
-      BvLogger::log("paypal_finalize", notfound.to_json)
+    rescue BvExceptions::PaymentError => err
+      flash[:error] = err.message
+      BvLogger::log("paypal_finalize", "#{err.message}")
     rescue Exception => ee
       flash[:error] = "Beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz"
       BvLogger::log("paypal_finalize", "unidentified error #{ee.backtrace}")
     end
 
-    return redirect_to @page if @page
-    return redirect_to @project if @project
-    return redirect_to @organization if @organization
+    unless tmp_payment.nil?
+      return redirect_to tmp_payment.page if tmp_payment.page
+      return redirect_to tmp_payment.project if tmp_payment.project
+      return redirect_to tmp_payment.organization if tmp_payment.organization
+    end
     #wtf ??
     redirect_to root_path
     #send emails
@@ -279,7 +275,11 @@ class PaymentsController < ApplicationController
         :return_url        => paypal_return_url(tmp_payment),
         :cancel_return_url => paypal_cancel_url(tmp_payment),
         :localecode => 'tr_TR',
-        :NOSHIPPING => 1
+        :NOSHIPPING => 1,
+        :SOLUTIONTYPE => "Sole", #do not require paypal account
+        :LANDINGPAGE => "Billing", #non-paypal-account version
+        #TODO :HDRIMG
+        #TODO :CALLBACK
       }
     end
     def paypal_url(tmp_payment)
@@ -308,54 +308,5 @@ class PaymentsController < ApplicationController
 
       values[:custom] = tmp_payment.id
       ENV['PAYPAL_URL']+ "?" + values.to_query
-    end
-
-    def create_payment tmp_payment_id
-      Page.transaction do
-        @tmp_payment = TmpPayment.find tmp_payment_id
-        unless @tmp_payment.payment.nil?
-          flash[:success] = "Bağış yapıldı! Teşekkürler!"
-          return true
-        end
-        attributes = @tmp_payment.attributes
-        attributes.delete "id"
-        attributes.delete "created_at"
-        attributes.delete "updated_at"
-        attributes.delete "payment_id"
-        attributes.delete "is_express"
-
-        page = @tmp_payment.page
-        organization = @tmp_payment.organization
-        project = @tmp_payment.project
-        predefined_payment = @tmp_payment.predefined_payment
-
-        @payment = Payment.new attributes
-        @payment.save!
-
-        @tmp_payment.payment_id = @payment.id
-        @tmp_payment.save!
-
-        unless page.nil?
-          page.collected += @tmp_payment.amount
-          page.save!
-        end
-
-        unless organization.nil?
-          organization.collected += @tmp_payment.amount
-          organization.save!
-        end
-
-        unless project.nil?
-          project.collected += @tmp_payment.amount
-          project.save!
-        end
-
-        unless predefined_payment.nil?
-          predefined_payment.collected += @tmp_payment.amount
-          predefined_payment.count += 1
-          predefined_payment.save!
-        end
-      end
-      return true
     end
 end

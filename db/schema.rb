@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321064955) do
+ActiveRecord::Schema.define(:version => 20120325104903) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -250,6 +250,8 @@ ActiveRecord::Schema.define(:version => 20120321064955) do
     t.boolean  "is_express",            :default => false
     t.string   "express_token"
   end
+
+  add_index "tmp_payments", ["express_token"], :name => "index_tmp_payments_on_express_token", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

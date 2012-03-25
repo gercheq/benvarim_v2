@@ -33,17 +33,6 @@ Benvarim::Application.configure do
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.sendmail_settings = {:arguments => '-i'}
 
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
-    paypal_options = {
-      :login => "satis_1298099260_biz_api1.benvarim.com",
-      :password => "4VDMUG2L45WJ54J3",
-      :signature => "AX52qiaHMK2EmWOU0dqpVvS59TZqAI--JjS2Ph4ZgcY9GMAd9AY8Oo9s"
-    }
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
-
-
   #paypal settings
   ENV['PAYPAL_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_IPN_URL'] = 'http://www.sandbox.paypal.com/cgi-bin/webscr'
