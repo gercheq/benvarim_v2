@@ -5,11 +5,14 @@
 
 Sevgili <%=@payment.name%>,<br/><br/>
 <% if @page %>
-<%=@page_owner.name%> tarafından <a href="<%=project_path @project, :only_path => false%>"><%=@project.name%></a> için oluşturulan <a href="<%=page_path @page,:only_path => false%>"><%=@page.title%></a> sayfasına yapmış olduğunuz bağış için <a href="<%=organization_path @organization, :only_path => false%>"><%=@organization.name%></a> adına teşekkür ederiz.
+<%=@page_owner.name%> tarafından <a href="<%=project_path @project, :only_path => false%>"><%=@project.name%></a> için
+oluşturulan <a href="<%=page_path @page,:only_path => false%>"><%=@page.title%></a> sayfasına yapmış olduğunuz bağış
+için <a href="<%=organization_path @organization, :only_path => false%>"><%=@organization.name%></a> adına teşekkür ederiz.
 
 <% elsif @project %>
 
-<a href="<%=project_path(@project, :only_path => false)%>"><%=@project.name%></a> projesine yapmış olduğunuz bağış için <a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> adına teşekkür ederiz.
+<a href="<%=project_path(@project, :only_path => false)%>"><%=@project.name%></a> projesine yapmış olduğunuz bağış için
+<a href="<%=organization_path(@organization, :only_path => false)%>"><%=@organization.name%></a> adına teşekkür ederiz.
 
 <% else #organization%>
 
@@ -19,7 +22,8 @@ Yapmış olduğunuz bağış için <a href="<%=organization_path(@organization, 
 Bağışınız, <%=@organization.name%> banka hesaplarına güvenle ulaşmıştır.
 <br/><br/>
 
-Verilen desteği arttırmak ve hedeflerine ulaşmalarını sağlamak için, sayfayı Facebook, Twitter gibi sosyal ağlarda paylaşabilir, eposta ile çevrene ileterek, daha fazla bağış yapılmasını sağlayabilirsin.
+Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, bağış sayfasını Facebook, Twitter gibi sosyal
+ağlarda paylaşabilir, e-posta ile çevrenize ileterek, daha fazla bağış yapılmasını sağlayabilirsiniz.
 <br/><br/>
 
 <%=render :partial => "email_layouts/share_module",
@@ -29,7 +33,8 @@ Verilen desteği arttırmak ve hedeflerine ulaşmalarını sağlamak için, sayf
     :project => @project
   }%>
 
-<br/><br/>BenVarım'a <a href="<%=new_user_registration_path(:only_path => false)%>">kaydolarak</a> sen de bağış sayfanı oluşturabilir, inandığın kurumların daha fazla destek toplamasını sağlayabilirsin.
+<br/><br/>BenVarım'a <a href="<%=new_user_registration_path(:only_path => false)%>">kaydolarak</a> siz de bağış sayfaları
+oluşturabilir, inandığınız kurumların daha fazla destek toplamasını sağlayabilirsiniz.
 <br/>
 
 

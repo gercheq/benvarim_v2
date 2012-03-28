@@ -4,7 +4,8 @@ Sevgili <%=@payment.name%>,
 
 <% if @page %>
 
-<%=@page_owner.name%> tarafından "<%=@project.name%>" için oluşturulan "<%=@page.title%>" sayfasında yapmış olduğunuz bağış için "<%=@organization.name%>" adına teşekkür ederiz.
+<%=@page_owner.name%> tarafından "<%=@project.name%>" için oluşturulan "<%=@page.title%>" sayfasında yapmış olduğunuz
+bağış için "<%=@organization.name%>" adına teşekkür ederiz.
 
 <% elsif @project %>
 
@@ -17,9 +18,9 @@ Yapmış olduğunuz bağış için "<%=@organization.name%>" adına teşekkür e
 Bağışınız, <%=@organization.name%> banka hesaplarına güvenle ulaşmıştır.
 
 <%end%>
-Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, sayfayı
+Verilen desteği artırmak ve hedeflerine ulaşmalarını sağlamak için, bağış sayfasını
 Facebook, Twitter gibi sosyal ağlarda paylaşabilir,
-Eposta yoluyla çevrene ileterek, bağış yapılmasını rica edebilirsin.
+e-posta ile çevrenize ileterek, daha fazla bağış yapılmasını sağlayabilirsiniz.
 
 <%=render :partial => "email_layouts/share_module",
   :locals => {
@@ -28,7 +29,8 @@ Eposta yoluyla çevrene ileterek, bağış yapılmasını rica edebilirsin.
     :project => @project
   }%>
 
-Benvarim.com'a kayıt olarak (<%=new_user_registration_path(:only_path => false)%>), sen de bağış sayfası oluşturabilir ve desteklediğin kurumların daha fazla bağış toplamasını ve etkin tanıtım yapmasını sağlayabilirsin.
+BenVarım'a kaydolarak (<%=new_user_registration_path(:only_path => false)%>), siz de bağış sayfaları oluşturabilir
+ve desteklediğiniz kurumların daha fazla destek toplamasını sağlayabilirsiniz.
 
 
 Sevgilerimizle.
