@@ -61,7 +61,7 @@ class TmpPayment < ActiveRecord::Base
       #wtf, we cannot find conversion rate, is not acceptable to continue w/o it
       #TODO
       #report error! email us etc.
-      self.errors.add "currency_exchange", "sisteminde meydana gelen bir hatadan dolayı ödemeniz şuan yapılamamktadır"
+      self.errors.add "currency_exchange", "sisteminde meydana gelen bir hatadan dolayı ödemeniz şu an yapılamamaktadır"
       return
     end
     self.amount = self.amount_in_currency * conversion_rate
