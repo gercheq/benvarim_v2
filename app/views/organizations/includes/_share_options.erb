@@ -8,13 +8,19 @@ twitter_text = "Benvarım!" unless defined?(twitter_text)
   <ul class="clearfix">
 
     <li>
+
       <a
-        href="https://twitter.com/share?via=ben_varim"
+        href="https://twitter.com/share"
         class="twitter-share-button"
-        data-count="horizontal"
-        data-text="<%=twitter_text%>"
-        data-url="<%=url%>">Tweet</a>
-      </li>
+        data-url="<%= url %>"
+        data-text="<%= text %>"
+        data-via="ben_varim"
+        data-lang="tr"
+        data-size="large"
+        data-count="none"
+        data-related="ben_varim">Tweetle</a>
+    </li>
+
 
     <li style="margin-right: 10px">
       <span class='st_email_hcount' displayText='Email'></span>

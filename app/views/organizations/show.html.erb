@@ -3,56 +3,112 @@
 
 <% @bodyid = "page-kurum" %>
 
+<% if (user_signed_in? && current_user == @organization.user)%>
+<div class="admin-actions rc line">
+  <div class="size1of4 aa-title">Yönetim Paneli:</div>
+  <div class="size3of4 lastUnit">
+    <ul>
+      <li><%=link_to "Düzenle", edit_organization_path(@organization)%></li>
+      <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@organization)%></li>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
+
+      <div id="org-summary" class="line">
+
+        <div class="size1of4 org-logo">
+          <%= image_tag @organization.logo.url(:thumb) %>
+        </div>
+        <div class="size3of4 lastUnit org-creds">
+          <h1 class="org-name"><%= @organization.name %></h1>
+          <% if @organization.address %><p class="org-address"><strong>Adres:</strong> <%= @organization.address %></p><% end %>
+          <% if @organization.phone %><p class="org-address"><strong>Telefon:</strong> <%= @organization.phone %></p><% end %>
+
+          <%   if @organization.website %>
+            <p class="org-url outlink"><%=link_to "http://#{@organization.website}", "http://#{@organization.website}", :target => "_blank"%></p>
+          <% end %>
+
+
+
+
+          <!-- <% if @organization.facebook_url %>
+            <p class="org-url outlink">
+              <%=link_to "Facebook", "http://facebook.com/#{@organization.facebook_url}", :target => "_blank"%>
+            </p>
+          <% end %>
+
+          <% if @organization.twitter_handle %>
+            <p class="org-url outlink">
+              <%=link_to "Twitter", "http://twitter.com/#{@organization.twitter_handle}", :target => "_blank"%>
+            </p>
+          <% end %> -->
+
+
+
+
+          <% if @organization.can_be_donated? %>
+            <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button  no-margin", :rel => "facebox"%>
+          <% end %>
+
+
+
+
+
+
+
+        </div>
+      </div><!-- #org-summary -->
+
+      <!-- <div class="separator"></div> -->
+
+      <div class="line">
+        <div class="size1of4">
+          <%= render 'organizations/includes/widget_supporters'%>
+        </div>
+
+        <div class="size3of4 lastUnit">
+          <%= render 'organizations/includes/content'%>
+        </div>
+      </div><!-- .line -->
+
+
+
+
+
+
+
+
+
+
       <div class="fullcontent-left">
-        <%= image_tag @organization.logo.url(:thumb) %>
 
 
 
         <% if @reference %>
-        <!-- <%="reference #{@reference[:organization_id]} == #{@organization.id} && #{@reference[:user_id]} != #{@current_user.id}"%> -->
+          <%="reference #{@reference[:organization_id]} == #{@organization.id} && #{@reference[:user_id]} != #{@current_user.id}"%>
         <% end %>
 
 
 
-        <div class="pb-action">
-          <% if @organization.can_be_donated? %>
-            <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button super no-margin", :rel => "facebox"%>
-          <% end %>
-        </div>
 
 
 
 
 
-        <% if (user_signed_in? && current_user == @organization.user)%>
-        <div class="admin-actions">
-          <ul>
-            <li><%=link_to "Düzenle", edit_organization_path(@organization)%></li>
-            <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@organization)%></li>
-          </div>
-        <% end %>
+
+
 
       </div>
       <div class="fullcontent-right">
 
-        <h1 class="org-name"><%= @organization.name %></h1>
-        <p class="org-address"><%= @organization.address %></p>
-
-        <% if @organization.website %>
-          <p class="org-url outlink">
-            <%=link_to "http://#{@organization.website}", "http://#{@organization.website}", :target => "_blank"%>
-          </p>
-        <% end %>
 
 
-        <% if @organization.facebook_url %>
-          <p class="org-url outlink">
-            <%=link_to "Facebook: #{@organization.name}", "http://facebook.com/#{@organization.facebook_url}", :target => "_blank"%>
-          </p>
-        <% end %>
 
         <% if @organization.twitter_handle %>
           <p class="org-url outlink">
@@ -62,41 +118,15 @@
 
 
 
-        <%if @organization.collected? %>
-        <div class="toplam-bagis">
-          Bugüne kadar toplanan bağış miktarı: <%= @organization.collected_str %> <small>TL</small>
-        </div>
-        <% end %>
-
-        <br/>
-
-        <div class="fcr-desc org-desc truncate-short">
-          <%= raw @organization.description_html unless @organization.description_html.nil? %>
-        </div>
       </div>
     </div>
   </div>
 </div><!-- end of .widget -->
-<div id="main-content">
-  <% if @projects.length > 0 %>
-    <%=render :partial => "projects/list_projects_condensed",
-      :locals => {
-        :show_edit_link => false,
-        :projects => @projects,
-        :hide_organization_link => true,
-        :organization => @organization
-      }%>
-  <% end %>
-  <% if @top_pages.length > 0 %>
-  <%=render :partial => "pages/list_pages_condensed",
-    :locals => {
-      :title => "En çok bağış toplayanlar",
-      :pages => @top_pages
-    }%>
-  <% end %>
-</div><!-- end of #main-content -->
 
-<%= render 'organizations/includes/sidebar'%>
+
+<div id="main-content">
+
+</div><!-- end of #main-content -->
 
 
 
@@ -106,18 +136,71 @@
 
 
 <% if @support %>
-  <div class="dialog" id="dialog-post-support" title="Teşekkürler!">
+  <div class="dialog" id="dialog-post-support" title="<%= @organization.name %>'ni desteklediğin için teşekkürler!">
+    <!--
+      TODO(Yigit): decorator functiolara ihtiyacimiz var. Dilbilgisi olarak ekleri duzeltmemiz gerekli.
+      Buyuk unlu uyumuna da dikkat edebiliriz. En basit sekilde son harfine bakarak ı,i kalın, ince sesli olma durumuna göre hareket
+      edebiliriz.
+
+      ör: derneği, vakfı, projesi, vb.
+
+      function ekle(kelime, ek)
+    -->
+
+
     <div class="d-header">
       <div class="dh-title">
-        <%= @organization.name %> kurumunu desteklediğin için teşekkür ederiz. Daha fazla kişinin bu kurumu desteklemesi için lütfen paylaşalım.
+
+        <div class="line">
+          <div class="size1of3">
+            <%= image_tag @organization.logo.url(:thumb) %>
+          </div>
+          <div class="size2of3 lastUnit">
+
+            <p>25,000 destekçiye ulaşmak için yardımına ihtiyacımız var.<br/>Lütfen paylaş.</p>
+
+            <%= support_path(@support.organization, @support.user, :only_path => false) %>
+            <!--
+              TODO(Yigit): 25,000 kisi yazmak yerine belirli esiklere ihtiyacimiz var. Kurumun o an kaç destekçisi varsa bundan %20 fazlasını hedef olarak göster. Böylece insanlara bu hedefe ulaşabilmenin ne kadar kolay olduğunu gösterip paylaşmalarını sağla.
+
+              Minimum olarak 1000 kişi hedef olsun.
+
+
+            -->
+
+            <div class="pb-container-small clearfix">
+              <div class="progress-bar rc clearfix pb-small">
+                <div class="pb-value rc" style="width: 85%;">
+                  <div class="pb-reflection rc"></div>
+                  <div class="pb-hedef">HEDEF: <b>25,000 Kişi</b></div>
+                  <div class="pb-toplanan">
+                      Toplam Destekçi: <b>23,457</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <%= render :partial => 'organizations/includes/share_options',
+                :locals => {
+                  :url => support_path(@support.organization, @support.user, :only_path => false),
+                  :text => "Ben destekledim, sıra sende! #{@organization.name}"
+                }%>
+
+          </div>
+        </div><!-- .line -->
+
+
+
+
       </div>
     </div><!-- .d-header -->
     <div class="d-content ">
-      <%= render :partial => 'organizations/includes/share_options',
-          :locals => {
-            :url => support_path(@support.organization, @support.user, :only_path => false),
-            :twitter_text => "Destekliyorum! #{@organization.name}"
-          }%>
+
+      <div class="separator"></div>
+
+      <p><strong>Neden 25,000 destekçi gerekli?</strong></p>
+      <p>Şirketler, BenVarım platformu üzerinden sponsorluk anlaşması yapmadan önce insanların bu kuruma olan güvenini görmek istiyor. Size özel bu linki paylaşarak sevdiğiniz kurum için cebinizden hiç para çıkmadan destek toplayın.</p>
+
     </div><!-- .d-content -->
 
     <div class="d-footer">
@@ -129,7 +212,7 @@
   <script type="text/javascript">
     openSupportDialog = function() {
       var $dialog = $("#dialog-post-support");
-      $dialog.dialog( "option", "width", 500 );
+      $dialog.dialog( "option", "width", 660 );
       $dialog.dialog('open');
     };
   </script>

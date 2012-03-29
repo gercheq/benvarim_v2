@@ -1,7 +1,12 @@
+<% if generate_widget %>
 <div class="widget widget-light w-top-fundraisers widget-liste">
   <div class="w-inner clearfix">
     <div class="w-title"><%= title %></div>
     <div class="w-content">
+<% end %>
+
+
+
     <% pages.each do |page|%>
       <div class="row clearfix">
         <div class="row-photo bagisci">
@@ -14,6 +19,7 @@
             <span class="quotation">“ </span>
             <%=truncate(page.description, :length => 140) %>
           </blockquote>
+
 
           <div class="pb-container-small clearfix">
             <div class="progress-bar rc clearfix pb-small">
@@ -50,6 +56,10 @@
         <% end %>
       <% end %>
     </div><!-- end of .row -->
+
+
+<% if generate_widget %>
     </div>
   </div>
 </div>
+<% end %>

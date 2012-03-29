@@ -2,6 +2,22 @@
 
 <% @bodyid = "page-proje" %>
 
+
+
+<% if user_signed_in? && current_user == @project.organization.user%>
+<div class="admin-actions rc line">
+  <div class="size1of4 aa-title">Yönetim Paneli:</div>
+  <div class="size3of4 lastUnit">
+  <ul>
+    <li><%= link_to 'Düzenle', edit_project_path(@project) %></li>
+    <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@project)%></li>
+  </ul>
+  </div>
+</div>
+<% end %>
+
+
+
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
@@ -17,27 +33,12 @@
             <%=link_to "Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%>
           <% end %>
 
-          <% if user_signed_in? && current_user == @project.organization.user%>
-          <div class="admin-actions">
-            <ul>
-              <li><%= link_to 'Düzenle', edit_project_path(@project) %></li>
-              <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@project)%></li>
-            </ul>
-          </div>
-          <% end %>
-
-
         </div>
       </div>
       <div class="fullcontent-right">
         <h1><%= @project.name %></h1>
         <h6><%= link_to @project.organization.name, @project.organization %></h6>
 
-        <% if @project.organization.website %>
-          <p class="outlink">
-            <%=link_to "http://#{@project.organization.website}", :target => "_blank"%>
-          </p>
-        <% end %>
 
         <%if @project.organization.collected? %>
         <div class="toplam-bagis">
@@ -70,6 +71,7 @@
 
       <%=render :partial => "pages/list_pages_condensed",
         :locals => {
+          :generate_widget => true,
           :title => "En çok bağış toplayanlar",
           :pages => @top_pages
         }%>

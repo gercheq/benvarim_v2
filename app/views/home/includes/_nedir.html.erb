@@ -59,6 +59,7 @@
     <div class="size1of2 column">
       <%=render :partial => "projects/list_projects_condensed",
         :locals => {
+          :generate_widget => true,
           :show_edit_link => false,
           :projects => @top_projects,
           :hide_organization_link => true,
@@ -69,6 +70,7 @@
        <% if @top_pages.length > 0 %>
         <%=render :partial => "pages/list_pages_condensed",
           :locals => {
+            :generate_widget => true,
             :title => "En aktif gönüllüler ve bağış sayfaları",
             :pages => @top_pages,
             :link_to_pages => true
