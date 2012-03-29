@@ -8,7 +8,7 @@
           <div class="row clearfix">
             <div class="row-photo clearfix"><%= image_tag page.logo.url(:thumb) %></div>
             <div class="row-details">
-              <h3><%= link_to page.title, page %></h3>
+              <h1><%= link_to page.title, page %></h1>
               <p><%= link_to page.organization.name, page.organization %> &raquo; <%= link_to page.project.name, page.project %>  &raquo; <%= link_to page.user.name, page.user %></p>
 
               <div class="condense-200">
@@ -31,6 +31,12 @@
                     </div>
                   </div>
                 </div>
+
+
+
+
+
+
 
                 <% if page.can_be_donated? %>
                   <div class="pb-action">

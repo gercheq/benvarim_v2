@@ -1318,6 +1318,14 @@ blockquote span.quotation{
 **
 */
 
+.separator {
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #f0f0f0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  clear: both;
+}
+
   .center{
       text-align: center;
       margin: 0 auto;
@@ -1531,6 +1539,17 @@ blockquote span.quotation{
 	.right.button{ float: right !important;}
 	.no-margin.button { margin:0 !important;}
 
+
+	.button-destekle {
+    width: 170px;
+    text-align: center;
+    font-size: 18px !important;
+    padding: 15px 20px 14px !important;
+    margin-bottom: 20px;
+	}
+
+
+
   /* BUTTON EXCEPTIONS */
   #sidebar .button{
     display:block;
@@ -1539,6 +1558,11 @@ blockquote span.quotation{
   }
 
    #featured-content .button{ margin:0;}
+
+
+
+
+
 
 
 
@@ -1745,8 +1769,8 @@ blockquote span.quotation{
 
     .comment-bubble h1{
       line-height: 1.3;
-      font-size: 24px;
       text-shadow: 0 2px 0 #FFF;
+      margin-bottom: 0;
     }
 
     .comment-bubble h6{
@@ -1763,22 +1787,65 @@ blockquote span.quotation{
       float: left;
     }
 
+    .share-options {
+      margin-top: 0;
+      position: absolute;
+      top: 0;
+      width: 80px;
+      right: -120px;
+      background: white;
+      border-radius: 5px;
+      text-align: center;
+    }
+
 
     .share-options ul{
      list-style: none;
      margin-left:0 ;
+     padding: 10px;
     }
 
     .share-options li {
-     float: left;
-     height: 20px;
-     line-height: 20px;
-     font-size: 12px;
+      clear:both;
+      margin: 5px 0;
     }
+
+    .share-options h3 {
+      font-size: 14px;
+      padding: 5px 0;
+      border-bottom: 1px solid #EEE;
+      margin-bottom: 5px;
+    }
+    .share-options .vcount #count {
+      font-size: 14px;
+    }
+
+    .share-options .stButton .stBubble {
+      margin-top: 0;
+      height: 40px;
+    }
+
+    .share-options .stButton .stBubble_count {
+      font-size: 14px;
+      text-align: center;
+      padding-top: 10px;
+      width: auto;
+      height: 25px;
+      font-family: Verdana,Helvetica,sans-serif;
+      color: black;
+      position: relative;
+      z-index: -1;
+      border: 1px solid #CCC;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      background: white;
+      background: white;
+      margin: 0;
+      padding-top: 10px; }
 
 
     .dialog .share-options {
-      padding: 10px;
       border: 1px solid #CDE5FF;
       background: #EBF4FF;
       -moz-border-radius: 5px;
@@ -1786,17 +1853,19 @@ blockquote span.quotation{
       border-radius: 5px;
     }
 
+    .dialog .stButton .stBubble_count {
+      font-size: 14px;
+    }
 
     /*
     ** Progress Bar
     */
     .progress-bar-container{
       border-bottom: 1px solid #EEEEEE;
-      border-top: 1px solid #EEEEEE;
       height: auto;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       padding-bottom: 20px;
-      padding-top: 20px;
+      padding-top: 0;
       width: 100%;
     }
 
@@ -1869,7 +1938,8 @@ blockquote span.quotation{
     }
 
     .pb-action{
-      float: right;
+      float: left;
+      margin-left: 20px;
     }
 
 
@@ -1877,9 +1947,13 @@ blockquote span.quotation{
      * PROGRESS BAR - SMALL
      */
     .pb-small {
-      width: 206px;
+      width: 186px;
       font-size: 11px;
       height: 20px;
+    }
+
+    .pb-container-small .pb-action {
+      margin-left: 10px;
     }
 
     .pb-small .pb-value{
@@ -2057,6 +2131,7 @@ blockquote span.quotation{
     .supporter {
       width: 50px;
       margin: 0 10px 10px 0;
+      float: left;
     }
 
     .supporter .s-photo{
@@ -2210,6 +2285,11 @@ blockquote span.quotation{
     margin: 15px 15px;
     float: left;
     cursor: pointer;
+
+}
+
+.profile img {
+  width: 100%;
 }
 
 .pr-details {
@@ -2234,7 +2314,7 @@ blockquote span.quotation{
     position: relative;
     float: left;
     text-align: center;
-    width: 170px;
+    width: 100%;
 }
 
 ._pm_container ._pm {
@@ -2291,7 +2371,7 @@ blockquote span.quotation{
 }
 
 ._pm_details {
-  margin: 10px 0 5px;
+  margin: 12% 0 6%;
 }
 
 ._pm_details .p-title {
@@ -2310,8 +2390,8 @@ blockquote span.quotation{
 }
 
 .profile_pic .img_inner_shadow {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -2337,6 +2417,21 @@ blockquote span.quotation{
 }
 
 
+
+
+/*************************************************************************************
+** USER PROFILE
+*************************************************************************************/
+.widget-user {
+
+}
+
+.widget-user .p-item {
+  margin-left: 0;
+}
+
+
+
 /*************************************************************************************
 ** KURUM
 *************************************************************************************/
@@ -2348,9 +2443,14 @@ blockquote span.quotation{
 .fullcontent-left img{
  background: none repeat scroll 0 0 #FFFFFF;
  height: auto;
- padding: 3px;
  margin: 10px 0 20px;
- width: 174px; }
+ width: 100%;
+}
+
+.fullcontent-left .profile {
+  margin: 0;
+  width: 100%;
+}
 
 .fullcontent-left .button{
   text-align: center;
@@ -2363,6 +2463,39 @@ blockquote span.quotation{
 .widget-kurum h1{
     margin-bottom: 0;
 }
+
+
+.widget-kurum .fullcontent img {
+  float: left;
+}
+
+
+.widget-kurum .w-supporters {
+  margin-right: 20px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: auto;
+}
+
+
+
+#org-summary {
+  margin-bottom: 30px;
+}
+
+.org-logo {
+  text-align: center;
+}
+
+.org-creds{
+}
+
+.org-logo img{
+  max-width: 100%;
+  margin-right: 20px;
+}
+
 
 .org-address{
     font-size: 12px;
@@ -2397,13 +2530,29 @@ blockquote span.quotation{
 /*************************************************************************************
 ** BAGIS SAYFASI
 *************************************************************************************/
+.c-pages p{
+  font-size: 16px;
+}
+
+.c-pages .profile{
+  margin-bottom: 20px;
+}
+
+
+.c-pages .profile img {
+  min-height: 100px;
+}
 
 .widget-page {
   position: relative;
 }
 
+
+
+
 .ribbon {
   position: absolute;
+  z-index: 100;
   top: -7px;
   left: -7px;
   width: 155px;
@@ -2485,16 +2634,43 @@ blockquote span.quotation{
   display: none;
 }
 
+
+
+
 .admin-actions,
 .profile-actions{
-    border-top: 1px solid #EEEEEE;
-    clear: both;
-    float: left;
-    font-size: 11px;
-    margin-top: 30px;
-    padding-top: 10px;
+    border-bottom: 1px solid #CDE5FF;
+    font-size: 13px;
     width: 100%;
+    background: #EBF4FF;
+    padding: 10px 0;
+    line-height: 24px;
+    height: 24px;
+    overflow: hidden;
+    font-size: 15px;
+    margin-bottom: 20px;
+
 }
+
+.aa-title {
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.admin-actions ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.admin-actions li {
+  float: left;
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #CDE5FF;
+}
+
+
+
 
 #proje-detaylari {
 
@@ -2575,10 +2751,22 @@ blockquote span.quotation{
   margin-bottom: 10px;
 }
 
+
+
+/*
+ * HAKKIMIZDA
+ */
 #i-home-hakkimizda .ui-dialog-title{
   display: none;
 }
 
+.c-hakkimizda .profile{
+  width: 170px;
+}
+
+.c-hakkimizda .profile .img_inner_shadow {
+  border: none;
+}
 
 
 
@@ -2608,7 +2796,7 @@ blockquote span.quotation{
 #w-yeni-kayit textarea,
 #facebox textarea {
     width: 450px !important;
-    height: 200px;
+    height: 100px;
     margin-right: 0 !important;
 }
 
@@ -2696,6 +2884,64 @@ blockquote span.quotation{
  * Media queries for responsive design
  * These follow after primary styles so they will successfully override.
  */
+
+@media screen and (max-width: 1200px) {
+/*  .c-pages .share-options{
+    float: right;
+    position: relative;
+    right: auto;
+    top: auto;
+    border: 1px solid #DDD;
+    margin-left: 20px;
+    background: #EEE;
+  }
+
+  .c-pages .share-options h3 {
+    border: 1px solid #FFF;
+    border-bottom: 1px solid #DDD;
+  }*/
+
+  .c-pages .share-options{
+    display: block;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+    width: auto;
+    border: none;
+    background: transparent;
+  }
+
+  .c-pages .share-options h3 {
+    width: 80px;
+    margin: 0 20px 0 0;
+    border: none;
+    border-right: 1px solid #DDD;
+    float: left;
+    padding: 25px 10px 25px 20px;
+    text-align: left;
+    font-weight: normal;
+    text-transform:italic;
+    display: none;
+  }
+
+  .c-pages .share-options ul {
+    height: 65px;
+    overflow: hidden;
+    padding: 0;
+  }
+  .c-pages .share-options li {
+    float: left;
+    margin: 0;
+    margin-right: 10px;
+    clear:none;
+  }
+
+}
+
+
 
 @media all and (orientation:portrait) {
   /* Style adjustments for portrait mode goes here */

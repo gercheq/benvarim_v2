@@ -21,7 +21,9 @@ title = @tag.nil? ? "Öne Çıkan Kurumlar" : @tag
           <div class="pi-inner">
             <div class="pi-img">
                 <div class="pi-img-inner">
-                  <%= image_tag organization.logo.url(:thumb) %>
+
+                  <%= link_to image_tag(organization.logo.url(:thumb)), :action => 'show', :id => organization %>
+
               </div>
             </div>
             <h3 class="pi-title">

@@ -2,7 +2,7 @@
   <li>
     <%=link_to "Öne Çıkanlar", projects_path, :class => (!@tag ? 'selected' : '')%>
   </li>
-  <% tags = ["Açlık ve Fakirlik", "Çevre", "Din", "Doğal Yaşamı Koruma", "Eğitim",  "Kadın ve Çocuk Hakları", "Sağlık", "Sanat", "Teknoloji" ]%>
+  <% tags = ["Açlık ve Fakirlik", "Çevre", "Din", "Doğal Yaşam", "Eğitim",  "Kadın ve Çocuk", "Sağlık", "Sanat", "Teknoloji" ]%>
   <% tags.each do |t| %>
     <li>
       <%=link_to t,projects_by_tag_path(t), :class => (@tag == t ? 'selected' : '')%>

@@ -1,7 +1,10 @@
+<% if generate_widget %>
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="w-title">Destekleyebileceğiniz projeler</div>
+<% end %>
+
       <div class="rows-container clearfix" id="donation-pages-container">
         <%
         org_ids = []
@@ -39,6 +42,9 @@
         </div>
       <% end %>
 
+
+<% if generate_widget %>
     </div>
   </div>
 </div><!-- end of .widget -->
+<% end %>

@@ -6,9 +6,32 @@
     <div class="w-content">
       <div class="fullcontent-left">
 
-        <div class="userpic">
-          <%= image_tag @page.user.photo.url(:thumb) %>
-        </div>
+
+
+      <div class="profile clearfix dialog-trigger" id="p-levent" data-dialog="#dialog-lb">
+        <div class="profile_pic clearfix">
+          <div class="_pm_container">
+            <div class="_pm_shadow r"></div>
+            <div class="_pm_shadow l"></div>
+            <div class="_pm">
+              <div class="_pm_inner">
+                  <img alt="<% @page.user.name %>" src="<%= @page.user.photo.url(:thumb) %>"   /></a>
+              </div>
+              <div class="_pm_details">
+                <div class="p-name">
+
+
+                  <%=link_to @page.user.name, @page.user%>
+                </div>
+              </div><!-- _pm_details -->
+            </div>
+          </div>
+        </div><!-- end of profile_pic -->
+      </div><!-- end of .profile -->
+
+
+
+
 
         <div class="related-organization">
           <h2>Desteklediği Kuruluş:</h2>
@@ -31,10 +54,9 @@
       <div class="fullcontent-right">
         <div class="comment-bubble rc clearfix">
           <h1><%= @page.title %></h1>
-          <h6><%= @page.user.name%></h6>
+
           <%= render 'pages/share_options'%>
         </div><!-- .comment-bubble -->
-
 
         <div class="progress-bar-container clearfix">
 
@@ -62,9 +84,15 @@
 
 
         <div class="description clearfix condense-400">
+
+
             <% if @page.logo.file? %>
               <%= image_tag @page.logo.url(:thumb) %>
             <% end %>
+
+
+
+
             <%=raw @page.description_html %>
         </div>
 
