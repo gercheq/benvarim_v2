@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
     add_predefined_payments
-    @paypal_ec = true
+    @paypal_ec = BvFeature.is_paypal_ec_enabled? && paypal_ec_gateway
     if params[:popup]
       render :layout => false
     end

@@ -1,5 +1,5 @@
 class BvFeature
-  TEST_FEATURES = ["bv_support"]
+  TEST_FEATURES = ["bv_support", "paypal_ec"]
   FEATURE_PREDEFINED_PAYMENTS = "pre-paym"
   @@session = nil
   # def self.has_feature feature, obj
@@ -34,6 +34,10 @@ class BvFeature
 
   def self.is_support_enabled?
     return self.is_feature_enabled? "bv_support"
+  end
+
+  def self.is_paypal_ec_enabled?
+    return self.is_feature_enabled? "paypal_ec"
   end
 
   def self.init_session
