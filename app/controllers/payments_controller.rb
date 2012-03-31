@@ -172,11 +172,12 @@ class PaymentsController < ApplicationController
       #assuming token is uniq, make sure!
       tmp_payment = TmpPayment.find_by_express_token params[:token]
     else
+      require 'net/https'
       require 'net/http'
       require 'uri'
       require 'cgi'
 
-      url = URI.parse(ENV['PAYPAL_IPN_URL'])
+      url = URI.parse(ENV['PAYPAL_URL'])
       if params[:page_id]
         @page = Page.find(params[:page_id])
         @organization = @page.organization
@@ -191,23 +192,37 @@ class PaymentsController < ApplicationController
       id_token = @organization.paypal_info.paypal_id_token
       post_args = { "cmd" => '_notify-synch', "tx" => params[:tx], "at" =>  id_token}
       BvLogger::log("paypal_finalize", post_args.to_json)
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Post.new(url.request_uri)
+      request.set_form_data post_args
+      response = http.request(request)
+      if response && response.code.to_i == 200
+        data = response.body
+        BvLogger::log("paypal_finalize", data)
 
-      resp, data = Net::HTTP.post_form(url, post_args)
-      BvLogger::log("paypal_finalize", resp)
-
-      return_map = Hash.new
-      if data.split("\n").first == 'SUCCESS'
-        data.each_line do |line|
-          key_val = line.split('=')
-          if key_val.length == 2
-            return_map[CGI::unescape(key_val[0])] = CGI::unescape(key_val[1])
+        return_map = Hash.new
+        if data.split("\n").first == 'SUCCESS'
+          data.each_line do |line|
+            key_val = line.split('=')
+            if key_val.length == 2
+              return_map[CGI::unescape(key_val[0])] = CGI::unescape(key_val[1])
+            end
           end
+
+          tmp_payment_id = params[:cm]
+          tmp_payment = TmpPayment.find_by_id tmp_payment_id
+        end
+        BvLogger::log("paypal_finalize", return_map.to_json)
+      else
+        if response.nil?
+          BvLogger::log("paypal_finalize", "null response :/")
+        else
+          BvLogger::log("paypal_finalize", "response code invalid #{response.code}")
         end
 
-        tmp_payment_id = params[:cm]
-        tmp_payment = TmpPayment.find_by_id tmp_payment_id
       end
-      BvLogger::log("paypal_finalize", return_map.to_json)
     end
 
     if tmp_payment.nil?
