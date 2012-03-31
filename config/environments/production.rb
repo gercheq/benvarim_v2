@@ -59,6 +59,6 @@ Benvarim::Application.configure do
 
   #indextank settings
   ENV['INDEXTANK_PUBLIC_URL'] = 'https://2jean.api.indextank.com'
-  ENV['SEARCHIFY_PUBLIC_URL'] = 'http://8ip51.api.searchify.com'
-  ENV['SEARCHIFY_API_URL'] = 'http://:nxtZWMWywhe270@8ip51.api.searchify.com'
+  ENV['SEARCHIFY_PUBLIC_URL'] = 'https://8ip51.api.searchify.com'
+  ENV['SEARCHIFY_API_URL'] = 'https://:nxtZWMWywhe270@8ip51.api.searchify.com'
 end

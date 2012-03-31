@@ -242,7 +242,10 @@ class BvSearch
     puts "deleted index"
     client = self.get_client
     index = client.indexes @@defaultIndex
-    index.add :public_search => true
+    begin
+      index.add :public_search => true
+    rescue
+    end
 
     cnt = 20
     while not index.running? and cnt > 0
