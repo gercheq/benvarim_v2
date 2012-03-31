@@ -221,7 +221,7 @@ class BvSearch
 
   private
   def self.get_client
-    @client ||= IndexTank::Client.new(ENV['INDEXTANK_API_URL']) #ON DEV goes to y-benvarim index
+    @client ||= IndexTank::Client.new(ENV['SEARCHIFY_API_URL']) #ON DEV goes to y-benvarim index
     @client
   end
 
@@ -234,7 +234,11 @@ class BvSearch
   def self.recreate_index
     puts "recreating index"
     index = self.get_index
-    index.delete
+    begin
+      index.delete
+    rescue
+      puts "could not delete index (does not exist?)"
+    end
     puts "deleted index"
     client = self.get_client
     index = client.indexes @@defaultIndex

@@ -50,7 +50,7 @@ Benvarim::Application.configure do
   # ENV['INDEXTANK_API_URL'] = 'http://:m8Qc52GryxmiN7@qgx.api.indextank.com'
   # ENV['INDEXTANK_PUBLIC_URL'] = 'http://qgx.api.indextank.com'
   #searchify urls
-  ENV['INDEXTANK_API_URL'] = "http://:0ZeBJ3Yv1IVr8T@s26v.api.searchify.com"
-  ENV['INDEXTANK_PUBLIC_URL'] = "http://s26v.api.searchify.com"
+  ENV['SEARCHIFY_API_URL'] = "http://:cFmhDROc7SEKSa@aiaa.api.searchify.com"
+  ENV['SEARCHIFY_PUBLIC_URL'] = "http://aiaa.api.searchify.com"
 end
 
