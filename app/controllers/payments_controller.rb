@@ -73,9 +73,10 @@ class PaymentsController < ApplicationController
   def send_user_to_paypal tmp_payment
     if tmp_payment.is_express
       gateway = tmp_payment.organization.paypal_ec_gateway
+      puts paypal_ec_params(tmp_payment)
       response = gateway.setup_purchase(tmp_payment.amount_in_currency * 100,
           paypal_ec_params(tmp_payment))
-      puts response
+      puts response.params
       #TODO
       #what if paypal request fails ???
       tmp_payment.express_token = response.token
@@ -296,17 +297,49 @@ class PaymentsController < ApplicationController
 
     def paypal_ec_params(tmp_payment)
       {
-        :CURRENCYCODE => tmp_payment.currency,
+        :currency => tmp_payment.currency,
         :ip                => request.remote_ip,
         :return_url        => paypal_return_url(tmp_payment),
         :cancel_return_url => paypal_cancel_url(tmp_payment),
-        :localecode => 'tr_TR',
-        :NOSHIPPING => 1,
-        :SOLUTIONTYPE => "Sole", #do not require paypal account
-        :LANDINGPAGE => "Billing", #non-paypal-account version
-        #TODO :HDRIMG
-        #TODO :CALLBACK
+        :header_image => tmp_payment.organization.logo.url(:thumb),
+        :landing_page => 'Billing',
+        :email => tmp_payment.email,
+        :locale => 'tr_TR',
+        :brand_name => tmp_payment.organization.name,
+        :description => "#{tmp_payment.organization.name} - bağış",
+        :no_shipping => 1,
+        :allow_guest_checkout => true,
+        :custom => "#{tmp_payment.id}",
+        :items => paypal_ec_items(tmp_payment)
       }
+    end
+
+    def paypal_ec_items tmp_payment
+      base = {}
+      if tmp_payment.page
+        base = {
+          :name => tmp_payment.page.title,
+          :url => page_path(tmp_payment.page, :only_path => false)
+        }
+      elsif tmp_payment.project
+        base = {
+          :name => tmp_payment.project.name,
+          :url => project_path(tmp_payment.project, :only_path => false)
+        }
+      else
+        base = {
+          :name => tmp_payment.organization.name,
+          :url => organization_path(tmp_payment.organization, :only_path => false)
+        }
+      end
+      return [base.merge({
+        :amount => tmp_payment.amount_in_currency * 100,
+        :category => 'Digital',
+        :number => tmp_payment.id,
+        :quantity => 1,
+        :description => "#{base[:name]} - bağış",
+      })]
+
     end
     def paypal_url(tmp_payment)
       return_url = paypal_return_url tmp_payment
