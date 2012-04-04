@@ -69,6 +69,9 @@ class TmpPayment < ActiveRecord::Base
 
   def after_create_hook
     begin
+      if self.express_token
+        Delayed::Job.enqueue(CaptureExpressCheckoutJob.new(self.id), 0, 2.minutes.from_now)
+      end
       Delayed::Job.enqueue(IncompletePaymentJob.new(self.id), 0, 30.minutes.from_now)
     rescue
     end
