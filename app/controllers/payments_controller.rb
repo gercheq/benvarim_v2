@@ -146,7 +146,7 @@ class PaymentsController < ApplicationController
       http = Net::HTTP.new url.host, url.port
 
       response, data = http.post url.path, data, {'Content-Type' => 'application/x-www-for-urlencoded' }
-
+      BvLogger::log("ipn_handler", "response : #{response} , data: #{data} ")
       #PAYPAL.info "IPN paypal handshake return #{response} -- #{data}"
       custom = params[:custom]
       if custom.nil?
