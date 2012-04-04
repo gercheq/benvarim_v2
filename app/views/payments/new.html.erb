@@ -19,7 +19,7 @@
       <% elsif @tmp_payment.project%>
         <%= form_tag donate_for_project_path(@tmp_payment.project), :id => 'donate-form'%>
       <% elsif @tmp_payment.organization%>
-        <%= form_tag donate_for_organization_path(@tmp_payment.organization, :id => 'donate-form')%>
+        <%= form_tag donate_for_organization_path(@tmp_payment.organization), :id => 'donate-form'%>
       <% else %>
         <%#cannot come here, checked in the control%>
 

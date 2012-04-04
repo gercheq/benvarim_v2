@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
     add_predefined_payments
-    @paypal_ec = BvFeature.is_paypal_ec_enabled? && paypal_ec_gateway
+    @paypal_ec = BvFeature.is_paypal_ec_enabled? && @tmp_payment.organization.paypal_ec_gateway
     if params[:popup]
       render :layout => false
     end
@@ -67,27 +67,31 @@ class PaymentsController < ApplicationController
       end
       @tmp_payment.amount_in_currency = pp.amount
     end
-    if @tmp_payment.is_express
-      gateway = @organization.paypal_ec_gateway
-      response = gateway.setup_purchase(@tmp_payment.amount_in_currency * 100,
-          paypal_ec_params(@tmp_payment))
+    send_user_to_paypal @tmp_payment
+  end
+
+  def send_user_to_paypal tmp_payment
+    if tmp_payment.is_express
+      gateway = tmp_payment.organization.paypal_ec_gateway
+      response = gateway.setup_purchase(tmp_payment.amount_in_currency * 100,
+          paypal_ec_params(tmp_payment))
       puts response
       #TODO
       #what if paypal request fails ???
-      @tmp_payment.express_token = response.token
+      tmp_payment.express_token = response.token
     end
 
 
-    if @tmp_payment.save
-      if @tmp_payment.is_express
-        gateway = @organization.paypal_ec_gateway
-        redirect_to gateway.redirect_url_for(@tmp_payment.express_token)
+    if tmp_payment.save
+      if tmp_payment.is_express
+        gateway = tmp_payment.organization.paypal_ec_gateway
+        redirect_to gateway.redirect_url_for(tmp_payment.express_token)
       else
         #goto paypal!
-        redirect_to paypal_url(@tmp_payment)
+        redirect_to paypal_url(tmp_payment)
       end
     else
-      puts @tmp_payment.errors
+      puts tmp_payment.errors
       add_predefined_payments
       render :new
     end
@@ -105,13 +109,20 @@ class PaymentsController < ApplicationController
       return redirect_to root_path #wtf
     end
     #duplicate tmp payment not to have problems if user completes twice, screws data, we know :/
-    @new_payment = TmpPayment.new(tmp_payment.attributes.merge({:created_at => nil, :updated_at => nil}))
-    if @new_payment.save
-      #goto paypal!
-      redirect_to paypal_url(@new_payment)
-    else
+    begin
+      @new_payment = TmpPayment.new(tmp_payment.attributes.merge({:express_token => nil, :id => nil, :created_at => nil, :updated_at => nil}))
+      if @new_payment.save
+        #goto paypal!
+        send_user_to_paypal @new_payment
+      else
+        raise Exception.new("Kayıt eklenemedi")
+      end
+    rescue
       flash[:error] = "Beklenmedik bir hata oluştu, lütfen tekrar deneyiniz"
-      redirect_to :root
+      return redirect_to tmp_payment.page if tmp_payment.page
+      return redirect_to tmp_payment.project if tmp_payment.project
+      return redirect_to tmp_payment.organization if tmp_payment.organization
+      return redirect_to root_path #wtf
     end
   end
 
