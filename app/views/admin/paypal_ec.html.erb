@@ -1,0 +1,53 @@
+<%=render 'menu'%>
+<%=render :partial => 'layouts/errors'%>
+<div class="widget-light widget-kurum">
+  <div class="w-inner clearfix">
+    <div class="">
+      <%=debug @params%>
+      <%=debug @paypal_info.parse_ec_info%>
+
+      <%= form_tag admin_paypal_ec_path, :id => "edit_form" do |f| %>
+        <%=hidden_field "org_id",@organization_id%>
+        <%=hidden_field "submit","1"%>
+
+        Paypal EC Aktif:
+        <%=check_box_tag "use_express", "1", @paypal_info.use_express, :id => "use_express"%>
+        <br/>
+        Bilgileri Değiştir:<%=check_box_tag "update_info", "1", false, :id => "update_info"%><br/>
+        <div id="info_div" style="display:none">
+          Yeni Bilgiler:</br>
+          Login:<%=text_field_tag "login"%><br/>
+          Password:<%=text_field_tag "password"%><br/>
+          Signature:<%=text_field_tag "signature"%><br/>
+        </div>
+        <br/>
+        <%= submit_tag("Kaydet") %>
+      <% end%>
+    </div>
+    <hr/>
+  </div>
+</div>
+<% captured = capture do %>
+  <script>
+  $(document).ready(function(){
+    $form = $($('#edit_form'));
+    $("#update_info").live('click',function(e) {
+      // e.preventDefault();
+      if($(this).prop("checked")) {
+        $("#info_div").show();
+      } else {
+        $("#info_div").hide();
+      }
+    });
+
+    $("#use_express").live('click',function(e) {
+      <%unless @paypal_info.express_info%>
+        $("#update_info").prop("checked", true);
+        $("#info_div").show();
+      <% end %>
+
+    });
+  });
+  </script>
+<% end %>
+<%render_at_the_end captured%>

@@ -214,4 +214,29 @@ class AdminController < ApplicationController
     redirect_to :action => :features
   end
 
+  def paypal_ec
+    @organization = Organization.find params[:id]
+    @paypal_info = @organization.paypal_info
+    unless @paypal_info
+      @paypal_info = PaypalInfo.new
+    end
+
+    if request.post?
+      valid = true
+      @paypal_info.use_express = params[:use_express] == "1"
+      if params["update_info"] == "1"
+        @paypal_info.update_express_info(params[:login], params[:password], params[:signature])
+      end
+      # @organization.paypal_info = @paypal_info
+      if valid && @paypal_info.save
+        flash.now[:success] = "bilgiler kaydedildi"
+        Delayed::Job.enqueue MailJob.new("AdminMailer", "paypal_ec_updated_notifier", [current_user.id, @paypal_info.id])
+      else
+        flash.now[:error] = @paypal_info.errors
+      end
+    end
+
+    @params = params
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325104903) do
+ActiveRecord::Schema.define(:version => 20120407220325) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(:version => 20120325104903) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency",        :default => "TRY"
+    t.boolean  "use_express",     :default => false
+    t.text     "express_info"
   end
 
   create_table "predefined_payments", :force => true do |t|

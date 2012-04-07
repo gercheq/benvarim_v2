@@ -141,6 +141,8 @@ Benvarim::Application.routes.draw do
   get '/kertenkele/features' => "admin#features", :as => :admin_features
   get '/kertenkele/features/enable/:name' => "admin#enable_feature", :as => :admin_enable_feature
   get '/kertenkele/features/disable/:name' => "admin#disable_feature", :as => :admin_disable_feature
+  get '/kertenkele/paypal_ec/:id' => "admin#paypal_ec", :as => :admin_paypal_ec
+  post '/kertenkele/paypal_ec/:id' => "admin#paypal_ec", :as => :admin_paypal_ec
 
 
 

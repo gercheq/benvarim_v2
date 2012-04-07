@@ -1,0 +1,12 @@
+Kurum paypal  bilgileri <%=@user.name%> tarafindan asagidaki sekilde degistirildi:
+Kurum: <%=@paypal_info.organization.name%>
+Paypal Bilgileri:
+Paypal EC Aktif: <%= @paypal_info.use_express ? "Aktif" : "Pasif"%>
+<%if @paypal_info.use_express%>
+  Paypal EC Verisi(username, password, signature):
+  <%=@paypal_info.parse_ec_info.join("\n")%>
+<% end %>
+
+
+
+
