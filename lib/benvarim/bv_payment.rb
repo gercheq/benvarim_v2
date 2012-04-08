@@ -92,7 +92,7 @@ class BvPayment
         end
         payer_id = payer_info['PayerID']
         response = gateway.purchase(tmp_payment.amount_in_currency * 100,
-          {:token => tmp_payment.express_token , :payer_id => payer_id})
+          {:token => tmp_payment.express_token , :payer_id => payer_id, :currency => tmp_payment.organization.paypal_info.currency})
         if response.nil?
           #wtf paypal
           raise BvExceptions::PaymentError.new(true, "Beklenmedik bir hata oluştu")
