@@ -7,8 +7,9 @@
   	</ul>
 
   	<div id="hakkinda" class="clearfix">
-      <%= @organization.description_html %>
+      <%= raw @organization.description_html unless @organization.description.nil? %>
     </div> <!-- end of #hakkinda -->
+
 
   	<div id="projeler" class="clearfix">
       <%=render :partial => "projects/list_projects_condensed",
