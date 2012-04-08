@@ -2769,6 +2769,9 @@ blockquote span.quotation{
   display: none;
 }
 
+#i-home-hakkimizda .profile_pic {
+  width: 170px;
+}
 .c-hakkimizda .profile{
   width: 170px;
 }
