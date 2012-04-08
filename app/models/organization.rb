@@ -134,7 +134,7 @@ class Organization < ActiveRecord::Base
       return @paypal_ec_gateway
     end
 
-    if false || Rails.env == "production"
+    if Rails.env == "production"
       if self.paypal_info.nil? || !self.paypal_info.use_express
         return nil
       end

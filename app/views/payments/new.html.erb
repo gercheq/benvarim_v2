@@ -64,7 +64,7 @@
       </div>
 
       <div class="actions">
-        <% if @tmp_payment.is_express%>
+        <% if @tmp_payment.is_express?%>
           <%=hidden_field_tag "tmp_payment[is_express]", "1"%>
           <%= link_to image_tag("https://www.paypal.com/tr_TR/i/btn/btn_xpressCheckout.gif"), "javascript:void($('#donate-form').submit());" %>
         <% else %>

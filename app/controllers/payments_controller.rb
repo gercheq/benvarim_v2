@@ -20,7 +20,7 @@ class PaymentsController < ApplicationController
     @tmp_payment.project_id = @project.id if @project
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
-    @tmp_payment.is_express = BvFeature.is_paypal_ec_enabled? && @tmp_payment.organization.paypal_ec_gateway
+    @tmp_payment.is_express = BvFeature.is_paypal_ec_enabled? && @tmp_payment.organization.paypal_ec_gateway != nil
     add_predefined_payments
     if params[:popup]
       render :layout => false

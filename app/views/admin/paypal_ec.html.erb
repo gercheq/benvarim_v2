@@ -12,7 +12,8 @@
         Paypal EC Aktif:
         <%=check_box_tag "use_express", "1", @paypal_info.use_express, :id => "use_express"%>
         <br/>
-        Bilgileri Değiştir:<%=check_box_tag "update_info", "1", false, :id => "update_info"%><br/>
+        Para birimi:<%= select_tag "currency", options_for_select(%w{ TRY USD }, @paypal_info.currency) %><br/>
+        Paypal EC Bilgileri Değiştir:<%=check_box_tag "update_info", "1", false, :id => "update_info"%><br/>
         <div id="info_div" style="display:none">
           Yeni Bilgiler:</br>
           Login:<%=text_field_tag "login"%><br/>

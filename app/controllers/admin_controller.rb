@@ -226,6 +226,7 @@ class AdminController < ApplicationController
     if request.post?
       valid = true
       @paypal_info.use_express = params[:use_express] == "1"
+      @paypal_info.currency = params[:currency]
       if params["update_info"] == "1"
         @paypal_info.update_express_info(params[:login], params[:password], params[:signature])
       end
