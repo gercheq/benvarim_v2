@@ -46,7 +46,7 @@
       </div><!-- end of .row -->
     <% end %>
     <div class="row row-action">
-      <% if defined?(link_to_pages) && link_to_pages == true%>
+      <% if defined?(link_to_pages) && link_to_pages == true %>
         <%=link_to "Tüm bağış sayfalarını görüntüle", all_pages_path, :class => "show-all" %>
       <% else %>
         <% if @organization %>

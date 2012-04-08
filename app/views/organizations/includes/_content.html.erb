@@ -18,7 +18,8 @@
           :show_edit_link => false,
           :projects => @projects,
           :hide_organization_link => true,
-          :organization => @organization
+          :organization => @organization,
+          :link_to_projects => false
         }%>
 
 
@@ -34,6 +35,9 @@
            :link_to_pages => false
          }%>
        <% else %>
+        <p><%= @organization.name %> adına henüz hiç bağış sayfası oluşturulmadı. Gönüllü ol, ilk bağış sayfasını yarat!</p>
+        <%=link_to "Bağış sayfanı yarat", new_page_for_organization_path(@organization), :class => " button" %>
+
        <% end %>
 
     </div> <!-- end of #projeler -->

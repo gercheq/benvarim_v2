@@ -2251,6 +2251,10 @@ blockquote span.quotation{
   float: right;
 }
 
+.w-top-fundraisers .row-action {
+  display: none;
+}
+
 
 
 
