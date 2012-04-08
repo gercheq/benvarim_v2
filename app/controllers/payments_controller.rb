@@ -90,7 +90,7 @@ class PaymentsController < ApplicationController
       if !response || !response.token
         puts tmp_payment.errors
         add_predefined_payments
-        tmp_payment.errors.add, "", "Paypal'a ulaşamadık. Lütfen tekrar deneyiniz."
+        tmp_payment.errors.add "", "Paypal'a ulaşamadık. Lütfen tekrar deneyiniz."
         return render :new
       end
       tmp_payment.express_token = response.token
