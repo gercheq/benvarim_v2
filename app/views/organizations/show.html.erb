@@ -50,16 +50,9 @@
           <% end %> -->
 
 
-
-
           <% if @organization.can_be_donated? %>
             <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button  no-margin", :rel => "facebox"%>
           <% end %>
-
-
-
-
-
 
 
         </div>
@@ -73,47 +66,16 @@
         </div>
 
         <div class="size3of4 lastUnit">
-          <%= render 'organizations/includes/content'%>
+            <%#= render 'organizations/includes/content'%>
         </div>
       </div><!-- .line -->
 
-
-
-
-
-
-
-
-
-
       <div class="fullcontent-left">
-
-
-
         <% if @reference %>
           <%="reference #{@reference[:organization_id]} == #{@organization.id} && #{@reference[:user_id]} != #{@current_user.id}"%>
         <% end %>
-
-
-
-
-
-
-
-
-
-
-
       </div>
       <div class="fullcontent-right">
-
-
-
-
-
-
-
-
 
       </div>
     </div>
