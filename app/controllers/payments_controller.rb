@@ -348,7 +348,7 @@ class PaymentsController < ApplicationController
       end
       return [base.merge({
         :amount => tmp_payment.amount_in_currency * 100,
-        :category => 'Digital',
+        :category => 'Physical',
         :number => tmp_payment.id,
         :quantity => 1,
         :description => "#{base[:name]} - bağış",
