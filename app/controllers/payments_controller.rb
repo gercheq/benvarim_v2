@@ -69,8 +69,12 @@ class PaymentsController < ApplicationController
     end
     if @tmp_payment.valid?
       send_user_to_paypal @tmp_payment
+    else
+      puts @tmp_payment.errors
+      add_predefined_payments
+      render :new
     end
-    return redirect_to :action => :new
+
 
   end
 
