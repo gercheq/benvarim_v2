@@ -67,11 +67,11 @@ class PaymentsController < ApplicationController
       end
       @tmp_payment.amount_in_currency = pp.amount
     end
-    if @tmp_payment.valid? == false
-      flash[:error] = @tmp_payment.errors
-      return redirect_to :action => :new
+    if @tmp_payment.valid?
+      send_user_to_paypal @tmp_payment
     end
-    send_user_to_paypal @tmp_payment
+    return redirect_to :action => :new
+
   end
 
   def send_user_to_paypal tmp_payment
