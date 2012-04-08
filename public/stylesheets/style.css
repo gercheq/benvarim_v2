@@ -1204,7 +1204,7 @@ blockquote span.quotation{
 
 
 #featured-charities {
-    text-align: left;
+    text-align: center;
 }
 
 #featured-charities .w-title {
@@ -1215,7 +1215,7 @@ blockquote span.quotation{
 #featured-charities a {
     height: 80px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 25px;
     text-indent: -999em;
     background-repeat: no-repeat;
 }
@@ -1284,22 +1284,17 @@ blockquote span.quotation{
 
 #fc-tef {
     background: url('../images/logo-tef.png') top center;
-    width: 114px;
-}
-
-#fc-tegv{
-    background: url('../images/logo-tegv.png') top center;
-    width: 114px;
+    width: 64px;
 }
 
 #fc-bugday{
     background: url('../images/logo-bugday.png') top center;
-    width: 114px;
+    width: 84px;
 }
 
 #fc-biseg{
     background: url('../images/logo-biseg.gif') top center no-repeat;
-    width: 80px;
+    width: 70px;
 }
 
 
