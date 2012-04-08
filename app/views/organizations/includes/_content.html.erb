@@ -7,14 +7,33 @@
   	</ul>
 
   	<div id="hakkinda" class="clearfix">
-      <%= @organization.description %>
+      <%= @organization.description_html %>
     </div> <!-- end of #hakkinda -->
 
   	<div id="projeler" class="clearfix">
+      <%=render :partial => "projects/list_projects_condensed",
+        :locals => {
+          :generate_widget => false,
+          :show_edit_link => false,
+          :projects => @projects,
+          :hide_organization_link => true,
+          :organization => @organization
+        }%>
+
 
     </div> <!-- end of #projeler -->
 
     <div id="bagis-sayfalari" class="clearfix">
+      <% if @top_pages.length > 0 %>
+       <%=render :partial => "pages/list_pages_condensed",
+         :locals => {
+           :generate_widget => false,
+           :title => "En aktif gönüllüler ve bağış sayfaları",
+           :pages => @top_pages,
+           :link_to_pages => false
+         }%>
+       <% else %>
+       <% end %>
 
     </div> <!-- end of #projeler -->
 
