@@ -217,6 +217,7 @@ tr:
         amount : "miktar"
         amount_in_currency : "döviz miktarı"
         currency_exchange : "Döviz çevirimi"
+        express_token: "Paypal"
       payment:
         name : "İsim"
         email : "e-posta"
