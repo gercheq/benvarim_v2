@@ -138,7 +138,7 @@ class Organization < ActiveRecord::Base
       if self.paypal_info.nil? || !self.paypal_info.use_express
         return nil
       end
-      ActiveMerchant::Billing::Base.mode = :test
+      ActiveMerchant::Billing::Base.mode = :production
       data = self.paypal_info.parse_ec_info
       paypal_options = {
         :login => data[0],
