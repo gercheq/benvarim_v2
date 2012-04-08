@@ -1204,7 +1204,7 @@ blockquote span.quotation{
 
 
 #featured-charities {
-    text-align: center;
+    text-align: left;
 }
 
 #featured-charities .w-title {
@@ -1226,7 +1226,7 @@ blockquote span.quotation{
 
 #featured-charities .more-link a {
     font-size: %90;
-    text-align: right;
+    text-align: left;
     float: right;
     clear: both;
     padding: 20px 0;
@@ -1296,6 +1296,12 @@ blockquote span.quotation{
     background: url('../images/logo-bugday.png') top center;
     width: 114px;
 }
+
+#fc-biseg{
+    background: url('../images/logo-biseg.gif') top center no-repeat;
+    width: 80px;
+}
+
 
 #featured-charities .opaque {
       filter: alpha(opacity=20);
