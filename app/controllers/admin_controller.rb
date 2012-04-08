@@ -216,10 +216,12 @@ class AdminController < ApplicationController
 
   def paypal_ec
     @organization = Organization.find params[:id]
-    @paypal_info = @organization.paypal_info
-    unless @paypal_info
-      @paypal_info = PaypalInfo.new
+    if @organization.paypal_info.nil?
+      @organization.paypal_info = PaypalInfo.new
+    else
+
     end
+    @paypal_info = @organization.paypal_info
 
     if request.post?
       valid = true

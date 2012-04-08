@@ -20,8 +20,8 @@ class PaymentsController < ApplicationController
     @tmp_payment.project_id = @project.id if @project
     @tmp_payment.organization_id = @organization.id
     @tmp_payment.currency = @organization.paypal_info.currency
+    @tmp_payment.is_express = BvFeature.is_paypal_ec_enabled? && @tmp_payment.organization.paypal_ec_gateway
     add_predefined_payments
-    @paypal_ec = BvFeature.is_paypal_ec_enabled? && @tmp_payment.organization.paypal_ec_gateway
     if params[:popup]
       render :layout => false
     end
@@ -67,6 +67,10 @@ class PaymentsController < ApplicationController
       end
       @tmp_payment.amount_in_currency = pp.amount
     end
+    if @tmp_payment.valid? == false
+      flash[:error] = @tmp_payment.errors
+      return redirect_to :action => :new
+    end
     send_user_to_paypal @tmp_payment
   end
 
@@ -79,6 +83,12 @@ class PaymentsController < ApplicationController
       puts response.params
       #TODO
       #what if paypal request fails ???
+      if !response || !response.token
+        puts tmp_payment.errors
+        add_predefined_payments
+        flash.now[:error] = "Paypal'a ulaşamadık. Lütfen tekrar deneyiniz."
+        return render :new
+      end
       tmp_payment.express_token = response.token
     end
 

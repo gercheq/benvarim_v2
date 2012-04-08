@@ -1,4 +1,5 @@
 <div class="one-column">
+  <%=render :partial => 'layouts/errors'%>
   <div class="widget widget-light" id="w-yeni-kayit">
     <div class="w-inner">
       <div class="w-title">Bağış Yap</div>
@@ -64,7 +65,7 @@
       </div>
 
       <div class="actions">
-        <% if @paypal_ec%>
+        <% if @tmp_payment.is_express%>
           <%=hidden_field_tag "tmp_payment[is_express]", "1"%>
           <%= link_to image_tag("https://www.paypal.com/tr_TR/i/btn/btn_xpressCheckout.gif"), "javascript:void($('#donate-form').submit());" %>
         <% else %>

@@ -5,7 +5,7 @@ class PaypalInfo < ActiveRecord::Base
 
 
   def validate_paypal_ec
-    puts "validating"
+    puts "validatingx #{self.organization_id} #{self.express_info}"
     if self.use_express && self.express_info.nil?
       errors.add :express_info, "Paypal EC bilgilerini girmelisiniz"
     end
@@ -19,7 +19,14 @@ class PaypalInfo < ActiveRecord::Base
       return false
     end
     self.express_info = merge_ec_info login, password, signature
-    return true
+    #make sure we can decryte it before saving!!
+    parsed = self.parse_ec_info
+    if(parsed == [login, password, signature])
+      return true
+    end
+    #is not good, we could not decrpyt what we encrypted :/
+    self.express_info = nil
+    return false
   end
 
   def merge_ec_info login, password, signature
@@ -29,8 +36,8 @@ class PaypalInfo < ActiveRecord::Base
     c = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
     c.encrypt
     c.key = Digest::SHA1.hexdigest(ENV["ec_key"])
-    c.update data
-    enc = c.final
+    enc = c.update data
+    enc << c.final
     return Base64.encode64(enc)
   end
 
@@ -44,8 +51,8 @@ class PaypalInfo < ActiveRecord::Base
     c = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
     c.decrypt
     c.key = Digest::SHA1.hexdigest(ENV["ec_key"])
-    c.update data
-    dec = c.final
+    dec = c.update data
+    dec << c.final
     return dec.split(@@separator)
   end
 end

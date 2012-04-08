@@ -12,11 +12,12 @@
               <h3><%= link_to organization.name, organization %></h3>
               <p>
                   <%= form_tag (admin_edit_organization_path(organization) + ".json"), :class => "org_form" do |f| %>
+                  <%=link_to "Paypal EC Ayarları", admin_paypal_ec_path(organization)%><br/>
                     <% if organization.paypal_info != nil%>
                       Paypal Hesabı: <%=label_tag organization.paypal_info.paypal_user%></br>
                       Kurum Aktif: <%=check_box_tag :active, "1", organization.active%><br/>
                     <% else %>
-                      <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a> | <%=link_to "Paypal EC Ayarları", admin_paypal_ec_path(organization)%><br/>
+                      <a href="javascript:alert('insallah bir gun :)');return false;">Paypal Bilgilerini Gir</a><br/>
                     <% end %>
                     Kurum Gizli: <%=check_box_tag :hidden, "1", organization.hidden%><br/>
                     Kurum Sahibi: <div id="org-user-<%=organization.id%>"><%=link_to organization.user.name, organization.user%> | <a class="change-org-user" org-id="<%=organization.id%>">Değiştir</a></div>

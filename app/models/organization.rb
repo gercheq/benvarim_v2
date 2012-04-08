@@ -134,8 +134,19 @@ class Organization < ActiveRecord::Base
       return @paypal_ec_gateway
     end
 
-    if Rails.env == "production"
-      #TODO!!!
+    if false || Rails.env == "production"
+      if self.paypal_info.nil? || !self.paypal_info.use_express
+        return nil
+      end
+      ActiveMerchant::Billing::Base.mode = :test
+      data = self.paypal_info.parse_ec_info
+      paypal_options = {
+        :login => data[0],
+        :password => data[1],
+        :signature => data[2]
+      }
+      @paypal_ec_gateway = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+      return @paypal_ec_gateway
     else
       ActiveMerchant::Billing::Base.mode = :test
       paypal_options = {

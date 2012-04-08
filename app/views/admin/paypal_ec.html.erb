@@ -3,11 +3,10 @@
 <div class="widget-light widget-kurum">
   <div class="w-inner clearfix">
     <div class="">
-      <%=debug @params%>
       <%=debug @paypal_info.parse_ec_info%>
 
-      <%= form_tag admin_paypal_ec_path, :id => "edit_form" do |f| %>
-        <%=hidden_field "org_id",@organization_id%>
+      <h3><%=link_to @organization.name, organization_path(@organization), :target=> "_blank"%> paypal bilgileri</h3>
+      <%= form_tag admin_paypal_ec_path(@organization), :id => "edit_form" do |f| %>
         <%=hidden_field "submit","1"%>
 
         Paypal EC Aktif:
