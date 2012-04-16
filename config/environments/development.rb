@@ -52,6 +52,6 @@ Benvarim::Application.configure do
   ENV['SEARCHIFY_API_URL'] = "http://:cFmhDROc7SEKSa@aiaa.api.searchify.com"
   ENV['SEARCHIFY_PUBLIC_URL'] = "http://aiaa.api.searchify.com"
 
-  ENV['ec_key'] = "1stabluE5"
+  ENV['ec_key'] = "fkdlsafklaekwlafe"
 end
 

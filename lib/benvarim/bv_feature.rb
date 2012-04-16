@@ -37,7 +37,7 @@ class BvFeature
   end
 
   def self.is_paypal_ec_enabled?
-    return self.is_feature_enabled? "paypal_ec"
+    return true
   end
 
   def self.init_session
