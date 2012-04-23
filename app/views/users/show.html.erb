@@ -6,57 +6,142 @@
 </div>
 <% end %>
 
+<% if user_signed_in? && current_user == @user%>
+<div class="admin-actions rc line">
+  <div class="size1of4 aa-title">Yönetim Paneli:</div>
+  <div class="size3of4 lastUnit">
+    <ul>
+       <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user) %></li>
+       <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
+       <li><%= link_to "Çıkış", destroy_user_session_path %></li>
+    </ul>
+    <br />
+
+
+    <!-- <ul>
+      <li><%= link_to "Kurum Ekle", new_organization_path %></li>
+      <% @user.organizations.each do |organization| %>
+      <li>
+        <%= link_to organization.name, organization%>
+        | <%= link_to "Düzenle", edit_organization_path(organization) %>
+   | <%= link_to "Projeleri", organization_projects_path(organization) %>
+        | <%= link_to "Proje Yarat", new_project_for_organization_path(organization) %>
+      </li>
+      <% end %>
+    </ul> -->
+
+
+    <!-- <ul>
+       <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
+       <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
+    </ul>
+
+    <ul class="sub-ul">
+    <% @user.pages.each do |page| %>
+      <li>
+        <%= link_to page.title, page %> <%=page.collected_str%> TL
+
+        |  <%= link_to "Düzenle", edit_page_path(page)%>
+      </li>
+    <% end %>
+    </ul> -->
+
+
+  </div>
+</div>
+<% end %>
+
+
+
 <div class="widget widget-light widget-user">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="fullcontent-left">
-
         <div class="userpic">
           <%= image_tag @user.photo.url(:thumb) %>
         </div>
-
-        <div class="related-organization">
-          <h2><%= @user.name %><% if @user.birthday %> <span class="small">(<%="#{@user.age}"%>)<% end %></span></h2>
-        </div>
-
-        <% if user_signed_in? && current_user == @user%>
-        <div class="profile-actions">
-            <h4>Yönetim Paneli</h4>
-            <ul>
-               <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user) %></li>
-               <li><%= link_to "Çıkış", destroy_user_session_path %></li>
-            </ul>
-            <br />
-            <ul>
-              <li><%= link_to "Kurum Ekle", new_organization_path %></li>
-              <% @user.organizations.each do |organization| %>
-              <li>
-                <%= link_to organization.name, organization%>
-                | <%= link_to "Düzenle", edit_organization_path(organization) %>
-           | <%= link_to "Projeleri", organization_projects_path(organization) %>
-                | <%= link_to "Proje Yarat", new_project_for_organization_path(organization) %>
-              </li>
-              <% end %>
-            </ul>
-            <ul>
-               <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
-               <li><%= link_to "Bağış Sayfalarım", my_pages_path %></li>
-            </ul>
-            <ul class="sub-ul">
-            <% @user.pages.each do |page| %>
-              <li>
-                <%= link_to page.title, page %> <%=page.collected_str%> TL
-
-                |  <%= link_to "Düzenle", edit_page_path(page)%>
-              </li>
-            <% end %>
-            </ul>
-        </div>
-        <% end %>
       </div>
 
 
       <div class="fullcontent-right">
+
+        <h1>
+          <%= @user.name %>
+          <!-- <% if @user.birthday %><span class="small">(<%="#{@user.age}"%>)<% end %></span>-->
+        </h1>
+
+        <p><%= @user.address %></p>
+
+
+
+
+        <div class="separator"></div>
+
+
+
+
+
+        <h3>Bağış Sayfaları<h3>
+        <ul>
+        <% @user.pages.each do |page| %>
+          <li>
+            <%= link_to page.title, page %> <%=page.collected_str%> TL
+
+            <% if user_signed_in? && current_user == @user%>
+            |  <%= link_to "Düzenle", edit_page_path(page)%>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+
+
+        <div class="separator"></div>
+
+
+
+
+        <h3>Desteklediği Kurumlar</h3>
+
+        <% @user.supports.each do |support| %>
+
+          <div class="p-item rc">
+           <div class="pi-inner">
+             <div class="pi-img">
+              <div class="pi-img-inner">
+                   <%= image_tag support.organization.logo.url(:thumb) %>
+               </div>
+             </div>
+             <h3 class="pi-title">
+               <%= link_to support.organization.name, support.organization %>
+             </h3>
+             <div class="pi-subtitle">
+             </div>
+             <div class="pi-summary">
+               <p><%=truncate(support.organization.description, :length => 100) %></p>
+               <p><%= link_to 'Detayları göster', support.organization %></p>
+
+               <% if (defined? show_edit_link) && show_edit_link %>
+                 <p><%= link_to 'Düzenle', edit_project_path(support.organization) %></p>
+               <% end %>
+             </div>
+           </div><!-- .pi-inner -->
+          </div><!-- p-item -->
+
+
+
+
+
+        <% end %>
+
+
+
+
+
+
+
+
+        <div class="separator"></div>
+
         <% if user_signed_in? && current_user == @user%>
           <p>Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:<br/></p>
           <div>

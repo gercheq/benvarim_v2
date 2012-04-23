@@ -1,0 +1,47 @@
+<div class="tabs-container">
+  <div id="tabs">
+  	<ul>
+  		<li><a href="#hakkinda">Hakkında</a></li>
+  		<li><a href="#projeler">Projeler</a></li>
+  		<li><a href="#bagis-sayfalari">Bağış Sayfaları</a></li>
+  	</ul>
+
+  	<div id="hakkinda" class="clearfix">
+      <%= raw @organization.description_html unless @organization.description.nil? %>
+    </div> <!-- end of #hakkinda -->
+
+
+  	<div id="projeler" class="clearfix">
+      <%=render :partial => "projects/list_projects_condensed",
+        :locals => {
+          :generate_widget => false,
+          :show_edit_link => false,
+          :projects => @projects,
+          :hide_organization_link => true,
+          :organization => @organization,
+          :link_to_projects => false
+        }%>
+
+
+    </div> <!-- end of #projeler -->
+
+    <div id="bagis-sayfalari" class="clearfix">
+      <% if @top_pages.length > 0 %>
+       <%=render :partial => "pages/list_pages_condensed",
+         :locals => {
+           :generate_widget => false,
+           :title => "En aktif gönüllüler ve bağış sayfaları",
+           :pages => @top_pages,
+           :link_to_pages => false
+         }%>
+       <% else %>
+        <p><%= @organization.name %> adına henüz hiç bağış sayfası oluşturulmadı. Gönüllü ol, ilk bağış sayfasını yarat!</p>
+        <%=link_to "Bağış sayfanı yarat", new_page_for_organization_path(@organization), :class => " button" %>
+
+       <% end %>
+
+    </div> <!-- end of #projeler -->
+
+
+  </div>
+</div><!-- .tabs-container -->

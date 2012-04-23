@@ -1,23 +1,25 @@
 <% if BvFeature.is_support_enabled? %>
 
 
-  <div class="widget widget-light w-supporters">
-    <div class="w-inner">
+  <div class="w-supporters">
 
-      <div class="w-title">Destekleyenler</div>
 
-      <div class="w-action">
-        <% if @support %>
-          <%=link_to "Arkadaşlarınla paylaş, Puan Topla!", "javascript:openSupportDialog();", :class => "button green"%>
-        <% else%>
-            <%=link_to "Destekle", new_support_path(@organization), :class => "button green"%>
-        <% end %>
-      </div><br/>
+    <% if @support %>
+      <%=link_to "Destekle", "javascript:openSupportDialog();", :class => "button green large button-destekle"%>
+    <% else%>
+        <%=link_to "Destekle", new_support_path(@organization), :class => "button green large button-destekle"%>
+    <% end %>
+
 
 
       <div class="w-content">
         <div class="supporters">
           <% if @organization.supports.length != 0 %>
+            <p><strong>Destekleyenler:</strong> <%= @organization.supports.length %> Kişi</p>
+            <!-- TODO(Yigit): Toplam destekleyen kisi sayisi goruntulensin. -->
+
+
+
             <% @organization.supports.order("score DESC").each do |s|%>
               <div class="supporter clearfix">
                 <div class="s-photo">
@@ -33,14 +35,5 @@
           <% end %>
         </div>
       </div><!-- .w-content -->
-
-
-
-
-    </div>
   </div>
-
-
-
-
 <% end %>

@@ -1,7 +1,10 @@
+<% if generate_widget %>
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
       <div class="w-title">Destekleyebileceğiniz projeler</div>
+<% end %>
+
       <div class="rows-container clearfix" id="donation-pages-container">
         <%
         org_ids = []
@@ -30,15 +33,21 @@
         <% end %>
       </div>
       <% if (defined?(organization) && current_user == organization.user) %>
+        <!--
         <div class="row row-action">
           <%= link_to 'Yeni bağış projesi oluştur!', new_project_for_organization_path(organization), :class=>"green button super" %>
         </div>
+        -->
+
       <% elsif defined?(link_to_organizations) && link_to_organizations == true %>
         <div class="row row-action">
           <%= link_to 'Tüm projeleri görüntüle', all_projects_path, :class=>"show-all" %>
         </div>
       <% end %>
 
+
+<% if generate_widget %>
     </div>
   </div>
 </div><!-- end of .widget -->
+<% end %>
