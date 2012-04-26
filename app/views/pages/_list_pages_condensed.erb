@@ -49,7 +49,7 @@
       <% if defined?(link_to_pages) && link_to_pages == true %>
         <%=link_to "Tüm bağış sayfalarını görüntüle", all_pages_path, :class => "show-all" %>
       <% else %>
-        <% if @organization %>
+        <% if @organization && @organization.can_be_donated? %>
           <%=link_to "Sen de gönüllü ol, bağış sayfanı yarat!", new_page_for_organization_path(@organization), :class => "green button large" %>
         <% else %>
           <%=link_to "Gönüllü ol, bağış sayfanı yarat!", :new_page, :class => "button green large"%>
