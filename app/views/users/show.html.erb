@@ -70,28 +70,7 @@
         <p><%= @user.address %></p>
         <!-- <% if @user.birthday %><span class="small">(<%="#{@user.age}"%>)<% end %></span>-->
 
-        <ul class="stats">
-
-          <% if @user.pages.length > 0 %>
-          <li class="rc">
-            <div class="label">Topladığı Bağış:</div>
-            <div class="number"><%= @user.total_fundraised %> TL</div>
-          </li>
-          <% end %>
-
-          <li class="rc">
-            <div class="label">Yaptığı Bağış:</div>
-            <div class="number">150 TL</div>
-          </li>
-
-          <% if @user.supports.length > 0  %>
-          <li class="rc">
-            <div class="label">Desteklediği Kurum:</div>
-            <div class="number"><%= @user.supports.length %></div>
-          </li>
-          <% end %>
-
-        </ul>
+        <%= render 'users/includes/stats' %>
 
       </div>
     </div>
