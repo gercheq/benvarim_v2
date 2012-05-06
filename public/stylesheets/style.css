@@ -1821,7 +1821,7 @@ blockquote span.quotation{
     .share-options h3 {
       font-size: 14px;
       padding: 5px 0;
-      border-bottom: 1px solid #CDE5FF;
+      border-bottom: 1px solid #CDE5FFl;
       margin-bottom: 0;
     }
     .share-options .vcount #count {
@@ -2298,6 +2298,10 @@ blockquote span.quotation{
     float: left;
     cursor: pointer;
 
+}
+
+.w-top .profile {
+  margin: 0;
 }
 
 .profile img {
@@ -2793,6 +2797,21 @@ blockquote span.quotation{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 ** FACEBOX HACKS
 */
@@ -2933,7 +2952,7 @@ blockquote span.quotation{
     margin-bottom: 0;
     width: auto;
     border: none;
-    background: transparent;
+    background: transparent !important;
   }
 
   .c-pages .share-options h3 {
@@ -2953,11 +2972,13 @@ blockquote span.quotation{
     height: 65px;
     overflow: hidden;
     padding: 0;
+    background: transparent !important;
+
   }
   .c-pages .share-options li {
     float: left;
     margin: 0;
-    margin-right: 10px;
+    margin: 0 10px 0 0 !important;
     clear:none;
   }
 

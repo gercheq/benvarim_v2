@@ -46,3 +46,4 @@ stylesheets:
     - public/stylesheets/page.css
     - public/stylesheets/login-registration.css
     - public/stylesheets/tooltips.css
+    - public/stylesheets/tools.css

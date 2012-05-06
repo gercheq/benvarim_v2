@@ -82,6 +82,16 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def total_fundraised
+    total = 0
+
+    self.pages.each do |page|
+      total += page.collected_str.to_i
+    end
+
+    return total
+  end
+
   def age
     if !birthday
       return "?"

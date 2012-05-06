@@ -10,14 +10,11 @@
         <%=link_to "Destekle", new_support_path(@organization), :class => "button green large button-destekle"%>
     <% end %>
 
-
-
       <div class="w-content">
         <div class="supporters">
           <% if @organization.supports.length != 0 %>
             <p><strong>Destekleyenler:</strong> <%= @organization.supports.length %> Kişi</p>
             <!-- TODO(Yigit): Toplam destekleyen kisi sayisi goruntulensin. -->
-
 
 
             <% @organization.supports.order("score DESC").each do |s|%>

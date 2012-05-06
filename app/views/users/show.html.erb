@@ -12,7 +12,7 @@
   <div class="size3of4 lastUnit">
     <ul>
        <li><%= link_to "Bilgilerimi Düzenle", edit_user_path(current_user) %></li>
-       <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li>
+       <!-- <li><%= link_to "Bağış Sayfası Yarat", new_page_path %></li> -->
        <li><%= link_to "Çıkış", destroy_user_session_path %></li>
     </ul>
     <br />
@@ -55,82 +55,108 @@
 
 <div class="widget widget-light widget-user">
   <div class="w-inner clearfix">
+
+
+    <div class="line w-top">
+      <div class="size1of4">
+
+        <img alt="<% @user.name %>" src="<%= @user.photo.url(:thumb) %>"   />
+
+
+
+      </div>
+      <div class="size3of4 lastUnit">
+        <h1><%= @user.name %></h1>
+        <p><%= @user.address %></p>
+        <!-- <% if @user.birthday %><span class="small">(<%="#{@user.age}"%>)<% end %></span>-->
+
+        <ul class="stats">
+
+          <% if @user.pages.length > 0 %>
+          <li class="rc">
+            <div class="label">Topladığı Bağış:</div>
+            <div class="number"><%= @user.total_fundraised %> TL</div>
+          </li>
+          <% end %>
+
+          <li class="rc">
+            <div class="label">Yaptığı Bağış:</div>
+            <div class="number">150 TL</div>
+          </li>
+
+          <% if @user.supports.length > 0  %>
+          <li class="rc">
+            <div class="label">Desteklediği Kurum:</div>
+            <div class="number"><%= @user.supports.length %></div>
+          </li>
+          <% end %>
+
+        </ul>
+
+      </div>
+    </div>
+
+
+
+
+
     <div class="w-content">
       <div class="fullcontent-left">
-        <div class="userpic">
-          <%= image_tag @user.photo.url(:thumb) %>
-        </div>
-      </div>
 
+      </div>
 
       <div class="fullcontent-right">
 
-        <h1>
-          <%= @user.name %>
-          <!-- <% if @user.birthday %><span class="small">(<%="#{@user.age}"%>)<% end %></span>-->
-        </h1>
 
-        <p><%= @user.address %></p>
+        <% if @user.pages.length > 0 %>
+          <h2>Bağış Sayfaları<h2>
+          <ul>
+          <% @user.pages.each do |page| %>
+            <li>
+              <%= link_to page.title, page %> <%=page.collected_str%> TL
 
-
-
-
-        <div class="separator"></div>
-
-
-
-
-
-        <h3>Bağış Sayfaları<h3>
-        <ul>
-        <% @user.pages.each do |page| %>
-          <li>
-            <%= link_to page.title, page %> <%=page.collected_str%> TL
-
-            <% if user_signed_in? && current_user == @user%>
-            |  <%= link_to "Düzenle", edit_page_path(page)%>
-            <% end %>
-          </li>
-        <% end %>
-        </ul>
-
-
-        <div class="separator"></div>
+              <% if user_signed_in? && current_user == @user%>
+              |  <%= link_to "Düzenle", edit_page_path(page)%>
+              <% end %>
+            </li>
+          <% end %>
+          </ul>
+          <div class="separator"></div>
+        <% end%>
 
 
 
 
-        <h3>Desteklediği Kurumlar</h3>
 
-        <% @user.supports.each do |support| %>
+        <% if @user.supports.length > 0  %>
+          <h2>Desteklediği Kurumlar</h2>
 
-          <div class="p-item rc">
-           <div class="pi-inner">
-             <div class="pi-img">
-              <div class="pi-img-inner">
-                   <%= image_tag support.organization.logo.url(:thumb) %>
+          <% @user.supports.each do |support| %>
+
+            <div class="p-item rc">
+             <div class="pi-inner">
+               <div class="pi-img">
+                <div class="pi-img-inner">
+                     <%= image_tag support.organization.logo.url(:thumb) %>
+                 </div>
                </div>
-             </div>
-             <h3 class="pi-title">
-               <%= link_to support.organization.name, support.organization %>
-             </h3>
-             <div class="pi-subtitle">
-             </div>
-             <div class="pi-summary">
-               <p><%=truncate(support.organization.description, :length => 100) %></p>
-               <p><%= link_to 'Detayları göster', support.organization %></p>
+               <h3 class="pi-title">
+                 <%= link_to support.organization.name, support.organization %>
+               </h3>
+               <div class="pi-subtitle">
+               </div>
+               <div class="pi-summary">
+                 <p><%=truncate(support.organization.description, :length => 100) %></p>
+                 <p><%= link_to 'Detayları göster', support.organization %></p>
 
-               <% if (defined? show_edit_link) && show_edit_link %>
-                 <p><%= link_to 'Düzenle', edit_project_path(support.organization) %></p>
-               <% end %>
-             </div>
-           </div><!-- .pi-inner -->
-          </div><!-- p-item -->
-
-
-
-
-
+                 <% if (defined? show_edit_link) && show_edit_link %>
+                   <p><%= link_to 'Düzenle', edit_project_path(support.organization) %></p>
+                 <% end %>
+               </div>
+             </div><!-- .pi-inner -->
+            </div><!-- p-item -->
+          <% end %>
+          <div class="separator"></div>
         <% end %>
 
 
@@ -138,9 +164,6 @@
 
 
 
-
-
-        <div class="separator"></div>
 
         <% if user_signed_in? && current_user == @user%>
           <p>Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:<br/></p>

@@ -7,31 +7,14 @@
       <div class="fullcontent-left">
 
 
+        <%=render :partial => "layouts/generate_polaroid",
+          :locals => {
+            :image => @page.user.photo.url(:thumb),
+            :name => @page.user.name,
+            :link => @page.user
+          }%>
 
-      <div class="profile clearfix">
-        <div class="profile_pic clearfix">
-          <div class="_pm_container">
-            <div class="_pm_shadow r"></div>
-            <div class="_pm_shadow l"></div>
-            <div class="_pm">
-              <div class="_pm_inner">
-                  <img alt="<% @page.user.name %>" src="<%= @page.user.photo.url(:thumb) %>"   /></a>
-              </div>
-              <div class="_pm_details">
-                <div class="p-name">
-
-
-                  <%=link_to @page.user.name, @page.user%>
-                </div>
-              </div><!-- _pm_details -->
-            </div>
-          </div>
-        </div><!-- end of profile_pic -->
-      </div><!-- end of .profile -->
-
-
-
-
+ 
 
         <div class="related-organization">
           <h2>Desteklediği Kuruluş:</h2>
@@ -61,7 +44,7 @@
         <div class="progress-bar-container clearfix">
 
           <div class="progress-bar rc clearfix">
-            <div class="pb-value rc" data-width="<%=@page.collect_ratio_str%>">
+            <div class="pb-value rc" style="width: <%=@page.collect_ratio_str%>%">
               <div class="pb-reflection rc"></div>
               <div class="pb-hedef">HEDEF: <b><%= @page.goal_str %> TL</b></div>
               <div class="pb-toplanan">
