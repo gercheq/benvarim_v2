@@ -1339,8 +1339,9 @@ blockquote span.quotation{
   */
   .one-column{
     width: 630px;
-    margin: 40px auto;
+    margin: 10px auto 0;
   }
+
 
   .one-column h1{
       text-align: center;
@@ -1797,6 +1798,7 @@ blockquote span.quotation{
       background: white;
       border-radius: 5px;
       text-align: center;
+      border: 1px solid #CDE5FF;
     }
 
 
@@ -1804,18 +1806,23 @@ blockquote span.quotation{
      list-style: none;
      margin-left:0 ;
      padding: 10px;
+     background: #EBF4FF;
+
     }
 
     .share-options li {
       clear:both;
-      margin: 5px 0;
+      margin: 10px 0 0 !important;
+    }
+    .share-options li:first-child {
+      margin: 0 0 0  !important;
     }
 
     .share-options h3 {
       font-size: 14px;
       padding: 5px 0;
-      border-bottom: 1px solid #EEE;
-      margin-bottom: 5px;
+      border-bottom: 1px solid #CDE5FF;
+      margin-bottom: 0;
     }
     .share-options .vcount #count {
       font-size: 14px;
@@ -2774,6 +2781,14 @@ blockquote span.quotation{
 .c-hakkimizda .profile .img_inner_shadow {
   border: none;
 }
+
+
+#i-pages-index #list-pages .pb-action {
+  display: none;
+}
+
+
+
 
 
 

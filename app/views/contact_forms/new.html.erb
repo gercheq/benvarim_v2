@@ -1,37 +1,54 @@
 <div class="one-column">
+  <h1>Her zaman iletişimde olalım!</h1>
   <div class="widget widget-light" id="w-iletisim">
     <div class="w-inner">
-      <div class="w-title">İletişim</div>
-        <p style="font-size:16px">Her türlü öneri, istek ve şikayetlerinizi bize bildirmekten lütfen çekinmeyin. Gönderdiğiniz mesajlar en geç 24 saat içinde yanıtlanacaktır.</p>
-        <br/>
-        <%= render 'form' %>
 
-        <div class="separator"></div>
 
-        <table id="info_table">
-          <tr><td><strong>Posta adresi:</strong></td><td>Ahmet Cevdet Paşa Sk, Polat Çamlık Sitesi A Blok No:7 D:9 - Bostancı, İstanbul</td></tr>
-          <tr><td><strong>E-posta:</strong></td><td>iletisim@benvarim.com</td></tr>
-          <tr><td><strong>Telefon:</strong></td><td>0(216) 373-9031</td></tr>
-        </table>
+      <p style="font-size:16px">Her türlü öneri, istek ve şikayetlerinizi lütfen bize bildirin. BenVarım hakkında en çok merak edilen soruların cevaplarını <%= link_to 'Sık Sorulan Sorular', sik_sorulan_sorular_path %> sayfasında bulabilirsiniz.</p>
+
+
+      <div class="separator"></div>
+
+
+      <%= render 'form' %>
+
+      <div class="separator"></div>
+
+      <table id="info_table">
+        <tr>
+          <td><strong>Posta adresi:</strong></td>
+          <td>Ahmet Cevdet Paşa Sk, Polat Çamlık Sitesi A Blok No:7 D:9 - Bostancı, İstanbul</td>
+        </tr>
+        <tr>
+          <td><strong>E-posta:</strong></td>
+          <td>iletisim@benvarim.com</td>
+        </tr>
+        <tr>
+          <td><strong>Telefon:</strong></td>
+          <td>0(216) 373-9031</td>
+        </tr>
+      </table>
+
+
     </div>
   </div>
-
-
-
-
-
 </div>
-<style>
+<style type="text/css">
 p {
-  padding: 10px 0;
+  padding: 10px 0 0;
 }
 .separator {
   margin: 30px 0;
+  display: block;
 }
-.one-column .w-title {
+.one-column .widget p{
   margin-bottom: 20px;
 }
 #info_table td {
   padding: 5px 5px 5px 0;
+}
+.media-container{
+  height: auto;
+  padding: 0;
 }
 </style>

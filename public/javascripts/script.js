@@ -215,6 +215,16 @@ function init_tracking(){
 
 
 
+
+function init_progress_bar(){
+    var $progress_bar = $('.progress-bar');
+    $progress_bar.width($progress_bar.data('width'));
+}
+
+
+
+
+
 /*
 ** DOM READY
 */
