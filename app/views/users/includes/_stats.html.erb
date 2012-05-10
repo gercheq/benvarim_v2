@@ -1,0 +1,23 @@
+<ul class="stats">
+
+  <% if @user.pages.length > 0 %>
+  <li class="rc">
+    <div class="label">Topladığı Bağış:</div>
+    <div class="number"><%= @user.total_fundraised %> TL</div>
+  </li>
+  <% end %>
+
+  <!-- TODO(Yigit): Toplam Yapilan Bagis -->
+  <li class="rc">
+    <div class="label">Yaptığı Bağış:</div>
+    <div class="number">150 TL</div>
+  </li>
+
+  <% if @user.supports.length > 0  %>
+  <li class="rc">
+    <div class="label">Desteklediği Kurum:</div>
+    <div class="number"><%= @user.supports.length %></div>
+  </li>
+  <% end %>
+
+</ul>

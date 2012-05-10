@@ -1,0 +1,69 @@
+<% if @support %>
+  <div class="dialog" id="dialog-post-support" title="Desteklediğin için teşekkürler!">
+    <!--
+      TODO(Yigit): decorator functiolara ihtiyacimiz var. Dilbilgisi olarak ekleri duzeltmemiz gerekli.
+      Buyuk unlu uyumuna da dikkat edebiliriz. En basit sekilde son harfine bakarak ı,i kalın, ince sesli olma durumuna göre hareket
+      edebiliriz.
+
+      ör: derneği, vakfı, projesi, vb.
+
+      function ekle(kelime, ek)
+    -->
+
+
+    <div class="d-header">
+      <div class="dh-title">
+
+        <div class="line">
+
+          <div class="size2of3">
+
+
+            <p>25,000 destekçiye ulaşmak için yardımına ihtiyacımız var.<br/>Lütfen paylaş.</p>
+
+            <%= support_path(@support.organization, @support.user, :only_path => false) %>
+            <!--
+              TODO(Yigit): 25,000 kisi yazmak yerine belirli esiklere ihtiyacimiz var. Kurumun o an kaç destekçisi varsa bundan %20 fazlasını hedef olarak göster. Böylece insanlara bu hedefe ulaşabilmenin ne kadar kolay olduğunu gösterip paylaşmalarını sağla.
+
+              Minimum olarak 1000 kişi hedef olsun.
+            -->
+
+            <div class="pb-container-small clearfix">
+              <div class="progress-bar rc clearfix pb-small">
+                <div class="pb-value rc" style="width: 85%;">
+                  <div class="pb-reflection rc"></div>
+                  <div class="pb-hedef">HEDEF: <b>25,000 Kişi</b></div>
+                  <div class="pb-toplanan">
+                      Toplam Destekçi: <b>23,457</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p><i><%= @support.organization.name %></i></p>
+
+            <%= render :partial => 'organizations/includes/share_options',
+                :locals => {
+                  :url => support_path(@support.organization, @support.user, :only_path => false),
+                  :text => "Ben destekledim, sıra sende! #{@organization.name}"
+                }%>
+
+          </div>
+          <div class="size1of3 lastUnit">
+            <%= image_tag @organization.logo.url(:thumb) %>
+          </div>
+        </div><!-- .line -->
+
+      </div>
+    </div><!-- .d-header -->
+
+    <div class="d-content ">
+      <div class="separator"></div>
+      <p><strong>Neden 25,000 destekçi gerekli?</strong></p>
+      <p>Şirketler, BenVarım platformu üzerinden sponsorluk anlaşması yapmadan önce insanların bu kuruma olan güvenini görmek istiyor. Size özel bu linki paylaşarak sevdiğiniz kurum için cebinizden hiç para çıkmadan destek toplayın.</p>
+    </div><!-- .d-content -->
+
+    <div class="d-footer">
+    </div><!-- .d-footer -->
+  </div><!-- .d-dialog -->
+<% end %>
