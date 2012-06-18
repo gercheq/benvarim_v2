@@ -37,6 +37,7 @@ stylesheets:
     - public/stylesheets/typography.css
     - public/stylesheets/gercek.sass
     - public/stylesheets/style.css
+    - public/stylesheets/tables.css
     # - public/stylesheets/jquery-ui-1.8.8.custom.css
     - public/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css
     - public/stylesheets/uploader.css

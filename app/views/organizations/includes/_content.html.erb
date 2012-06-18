@@ -1,18 +1,96 @@
 <div class="tabs-container">
   <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
   	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
   		<li><a href="#hakkinda">Hakkında</a></li>
+  		<% if @organization.facebook_url %><li><a href="#guncel">Haberler</a></li><% end %>
   		<li><a href="#projeler">Projeler</a></li>
-
   		<% if @top_pages.length > 0 %>
-  		<li><a href="#bagis-sayfalari">Bağış Sayfaları</a></li>
+  		  <li><a href="#bagis-sayfalari">Bağış Sayfaları</a></li>
   		<% end%>
-
   	</ul>
 
   	<div id="hakkinda" class="clearfix">
-      <%= raw @organization.description_html unless @organization.description.nil? %>
+
+
+  	    <div class="kurum-detay">
+
+  	      <table class="table table-bordered table-striped table-condensed kurum-meta">
+            <% if @organization.address %>
+            <tr>
+              <td>
+                <strong>Adres: </strong> <%= @organization.address %>
+              </td>
+            </tr>
+            <% end %>
+
+            <% if @organization.phone %>
+            <tr>
+              <td>
+                <strong>Telefon:</strong></br>
+                <%= @organization.phone %>
+              </td>
+            </tr>
+            <% end %>
+
+            <% if @organization.website %>
+            <tr>
+              <td>
+                <strong>URL:</strong><br/>
+                <%=link_to "http://#{@organization.website}", "http://#{@organization.website}", :target => "_blank"%>
+              </td>
+            </tr>
+            <% end %>
+
+          </table>
+
+
+
+          <% if @organization.twitter_handle %>
+          <script src="https://widgets.twimg.com/j/2/widget.js"></script>
+          <script type="text/javascript">
+  	      new TWTR.Widget({
+            version: 2,
+            type: 'profile',
+            rpp: 6,
+            interval: 5000,
+            width: 240,
+            height: 207,
+            theme: {
+              shell: {
+                background: '#f5f5f5',
+                color: '#0862a2'
+              },
+              tweets: {
+                background: '#F9F9F9',
+                color: '#444444',
+                links: '#0862a2'
+              }
+            },
+            features: {
+              scrollbar: false,
+              loop: false,
+              live: true,
+              hashtags: true,
+              timestamp: true,
+              avatars: false,
+              behavior: 'default'
+            }
+          }).render().setUser('<%= @organization.twitter_handle %>').start();
+          </script>
+          <% end %>
+  	    </div>
+
+  	    <%= raw @organization.description_html unless @organization.description.nil? %>
+
+
     </div> <!-- end of #hakkinda -->
+
+    <% if @organization.facebook_url %>
+    <div id="guncel" class="clearfix">
+      <div class="fb-like-box" data-href="http://facebook.com/<%= @organization.facebook_url %>" data-width="640" data-height="600" data-show-faces="false" data-border-color="#FFF" data-stream="true" data-header="false"></div>
+    </div>
+    <% end %>
 
 
   	<div id="projeler" class="clearfix">
@@ -25,23 +103,24 @@
           :organization => @organization,
           :link_to_projects => false
         }%>
-
-
     </div> <!-- end of #projeler -->
 
     <% if @top_pages.length > 0 %>
     <div id="bagis-sayfalari" class="clearfix">
 
-       <%=render :partial => "pages/list_pages_condensed",
-         :locals => {
-           :generate_widget => false,
-           :title => "En aktif gönüllüler ve bağış sayfaları",
-           :pages => @top_pages,
-           :link_to_pages => false
-         }%>
-       <% elsif @organization.can_be_donated? %>
-        <p><%= @organization.name %> adına henüz hiç bağış sayfası oluşturulmadı. Gönüllü ol, ilk bağış sayfasını yarat!</p>
-        <%=link_to "Bağış sayfanı yarat", new_page_for_organization_path(@organization), :class => " button" %>
+      <%=render :partial => "pages/list_pages_condensed",
+       :locals => {
+         :generate_widget => false,
+         :title => "En aktif gönüllüler ve bağış sayfaları",
+         :pages => @top_pages,
+         :link_to_pages => false
+       }%>
+
+       <% if @organization.can_be_donated? %>
+          <p><%= @organization.name %> adına henüz hiç bağış sayfası oluşturulmadı. Gönüllü ol, ilk bağış sayfasını yarat!</p>
+          <%=link_to "Bağış sayfanı yarat", new_page_for_organization_path(@organization), :class => " button" %>
+      <% end %>
+
     </div> <!-- end of #bagis-sayfalari -->
     <% end %>
 

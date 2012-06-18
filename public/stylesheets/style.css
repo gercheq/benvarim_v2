@@ -2495,6 +2495,26 @@ blockquote span.quotation{
 }
 
 
+/* TABS */
+#hakkinda{
+
+}
+
+#hakkinda .kurum-detay {
+  float: right;
+  margin-left: 30px;
+  width: 240px;
+}
+
+#hakkinda .kurum-meta,
+#hakkinda .kurum-sosyal {
+}
+
+#hakkinda .kurum-meta {
+  font-size: 85%;
+}
+
+
 
 #org-summary {
   margin-bottom: 30px;
@@ -3050,4 +3070,10 @@ blockquote span.quotation{
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
 }
+
+
+
+
+
+
 
