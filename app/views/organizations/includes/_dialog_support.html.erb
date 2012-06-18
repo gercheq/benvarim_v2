@@ -44,9 +44,10 @@
 
             <%= render :partial => 'organizations/includes/share_options',
                 :locals => {
-                  :url => support_path(@support.organization, @support.user, :only_path => false),
                   :text => "Ben destekledim, sıra sende! #{@organization.name}"
-                }%>
+                }
+            %>
+
 
           </div>
           <div class="size1of3 lastUnit">
