@@ -25,6 +25,7 @@ class PaymentMailer < ActionMailer::Base
       @page_owner = @page.user
     end
     mail(:to => tmp_payment.email,
+         :bcc => "team@benvarim.com",
          :subject => "Yarım kalan bağışınız. - Benvarim.com",
          "X-SMTPAPI" => '{"category": "payment_incomplete"}')
   end
