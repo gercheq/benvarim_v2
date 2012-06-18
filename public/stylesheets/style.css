@@ -2921,6 +2921,33 @@ blockquote span.quotation{
 
 
 
+
+/*
+ * Dogum Gunu
+ */
+
+#i-home-dogum_gunu {
+
+}
+
+
+#widget-dogum-gunu {
+  background: #FFF;
+}
+
+#widget-dogum-gunu img {
+  float: left;
+  margin-right: 30px;
+  max-width: 480px;
+}
+
+
+
+
+
+
+
+
 /*
  * Media queries for responsive design
  * These follow after primary styles so they will successfully override.

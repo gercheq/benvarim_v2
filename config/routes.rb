@@ -28,6 +28,8 @@ Benvarim::Application.routes.draw do
   get "/basinda_benvarim" => "home#basinda_benvarim", :as => :basinda_benvarim
 
 
+  # KONSEPT SAYFALARI - Dogun Gunu, Spor, Dugun/Nikah vb.
+  get "/dogum_gunu" => "home#dogum_gunu", :as => :dogum_gunu
 
 
 
