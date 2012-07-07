@@ -5,7 +5,7 @@
 
 
     <% if @support %>
-      <%=link_to "Destekle", "javascript:openSupportDialog();", :class => "button green large button-destekle"%>
+      <%=link_to "destekci sayini arttir", "javascript:openSupportDialog();", :class => "button green large button-destekle"%>
     <% else%>
         <%=link_to "Destekle", new_support_path(@organization), :class => "button green large button-destekle"%>
     <% end %>

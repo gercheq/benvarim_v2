@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   # Include default devise modules. Others available are:
   # , :confirmable, :lockable and :timeoutable, :trackable
   devise :database_authenticatable, :registerable, :token_authenticatable,
@@ -83,11 +84,15 @@ class User < ActiveRecord::Base
   end
 
   def total_fundraised
-    total = 0
-    self.pages.each do |page|
-      total += page.collected_str.to_i
-    end
-    return total
+    number_with_precision(self.pages.sum("collected"), :locale => :tr)
+  end
+
+  def payments
+    Payment.find_all_by_email self.email
+  end
+
+  def total_donated
+    number_with_precision(self.payments.sum(&:amount), :locale => :tr)
   end
 
   def age
