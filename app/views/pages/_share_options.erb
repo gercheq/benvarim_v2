@@ -16,7 +16,7 @@
       <a href="http://twitter.com/share?via=ben_varim"
          class="twitter-share-button"
          data-count="vertical"
-         data-text="<%= @page.title %>">Tweetle</a>
+         data-text="<% if defined? text %><%= text %><% else %><%= @page.title %><% end %>">Tweetle</a>
     </li>
 
 

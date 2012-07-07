@@ -7,6 +7,10 @@ module ApplicationHelper
     "selected"
   end
 
+  def requires_bootstrap?
+    ["home"].include? controller.controller_name
+  end
+
   def is_in_homepage
     controller.controller_name == "home" &&
       (controller.action_name == "nedir" || controller.action_name == "index")
