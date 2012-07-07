@@ -28,8 +28,8 @@ javascripts:
     - public/javascripts/jquerytools/src/tooltip/tooltip.js
     - public/javascripts/jquerytools/src/tooltip/tooltip.slide.js
     - public/javascripts/script.js
-
-
+  bootstrap:
+    - public/bootstrap/js/bootstrap.js
 
 
 stylesheets:
@@ -48,3 +48,7 @@ stylesheets:
     - public/stylesheets/login-registration.css
     - public/stylesheets/tooltips.css
     - public/stylesheets/tools.css
+  bootstrap:
+    - public/bootstrap/css/bootstrap.css
+    - public/stylesheets/bootstrap-benvarim.css
+

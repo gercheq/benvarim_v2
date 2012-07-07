@@ -1,12 +1,7 @@
 Benvarim::Application.routes.draw do
   get "admin/impersonate"
 
-
-
   get "/sitemap" => "sitemap#index", :as => :sitemap
-
-
-
 
   post "iletisim" => "contact_forms#create", :as => :new_contact_form
   get "iletisim/yeni" => "contact_forms#new", :as => :new_contact_form
