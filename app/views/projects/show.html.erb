@@ -10,7 +10,7 @@
   <div class="size3of4 lastUnit">
   <ul>
     <li><%= link_to 'Düzenle', edit_project_path(@project) %></li>
-    <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@project)%></li>
+    <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@project.organization)%></li>
   </ul>
   </div>
 </div>
