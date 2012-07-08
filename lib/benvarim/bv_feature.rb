@@ -33,7 +33,8 @@ class BvFeature
   end
 
   def self.is_support_enabled?
-    return self.is_feature_enabled? "bv_support"
+    # return self.is_feature_enabled? "bv_support"
+    return true
   end
 
   def self.is_paypal_ec_enabled?

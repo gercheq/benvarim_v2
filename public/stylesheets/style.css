@@ -2925,6 +2925,34 @@ blockquote span.quotation{
 
 }
 
+.support-message {
+  margin-bottom: 20px;
+}
+
+.list-share {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-share li {
+  margin-bottom: 1em;
+/*  height: 30px !important;*/
+/*  overflow: hidden;*/
+}
+
+.list-share .stArrow {
+  display: none !important;
+}
+
+.more-support {
+  border-top: 1px solid #EEE;
+  margin-top: 10px;
+  padding-top: 10px;
+  clear: both;
+}
+
+
 .organization-fundraiser-details {
   clear: both;
   margin-top: 30px;

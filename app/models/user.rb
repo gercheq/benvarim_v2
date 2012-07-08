@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     number_with_precision(self.payments.sum(&:amount), :locale => :tr)
   end
 
+  def total_supporters
+    self.supports.sum("score") - self.supports.count
+  end
+
   def age
     if !birthday
       return "?"

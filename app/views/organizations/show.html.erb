@@ -28,23 +28,17 @@
         <div class="size3of4 lastUnit org-creds">
           <h1 class="org-name"><%= @organization.name %></h1>
 
-
-
           <% if @organization.can_be_donated? %>
             <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button  no-margin", :rel => "facebox"%>
           <% end %>
 
-
         </div>
       </div><!-- #org-summary -->
-
-      <!-- <div class="separator"></div> -->
 
       <div class="line">
         <div class="size1of4">
           <%= render 'organizations/includes/widget_supporters'%>
         </div>
-
         <div class="size3of4 lastUnit">
             <%= render 'organizations/includes/content'%>
         </div>
@@ -87,6 +81,8 @@
       $dialog.dialog( "option", "width", 660 );
       $dialog.dialog('open');
     };
+
+
   </script>
   <% if @post_support %>
     <script type="text/javascript">

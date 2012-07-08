@@ -7,16 +7,24 @@
   </li>
   <% end %>
 
-  <!-- TODO(Yigit): Toplam Yapilan Bagis -->
+  <% if @user.total_donated.to_i > 0 %>
   <li class="rc">
     <div class="label">Yaptığı Bağış:</div>
     <div class="number"><%=@user.total_donated%> TL</div>
   </li>
+  <% end %>
 
   <% if @user.supports.length > 0  %>
   <li class="rc">
     <div class="label">Desteklediği Kurum:</div>
     <div class="number"><%= @user.supports.length %></div>
+  </li>
+  <% end %>
+
+  <% if @user.total_supporters > 0 %>
+  <li class="rc">
+    <div class="label">Topladığı Destekçiler:</div>
+    <div class="number"><%= @user.total_supporters %></div>
   </li>
   <% end %>
 

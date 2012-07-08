@@ -1,72 +1,58 @@
 <% if @support %>
+
+  <% url = support_path(@support.organization, @support.user, :only_path => false) %>
+
+  <% target_supporters = 10000 %>
+  <% target_supporters_str =  "10,000" %>
+  <% total_supporters = @organization.supports.count %>
+
+  <% percentage = (total_supporters/target_supporters) %>
+
+
   <div class="dialog" id="dialog-post-support" title="Desteklediğin için teşekkürler!">
-    <!--
-      TODO(Yigit): decorator functiolara ihtiyacimiz var. Dilbilgisi olarak ekleri duzeltmemiz gerekli.
-      Buyuk unlu uyumuna da dikkat edebiliriz. En basit sekilde son harfine bakarak ı,i kalın, ince sesli olma durumuna göre hareket
-      edebiliriz.
-
-      ör: derneği, vakfı, projesi, vb.
-
-      function ekle(kelime, ek)
-    -->
-
 
     <div class="d-header">
       <div class="dh-title">
+        <div class="support-message">
+          <div style="float: right;">
+            <%= image_tag @organization.logo.url(:thumb) %>
+          </div>
 
-        <div class="line">
+          <p>
+            <%= target_supporters_str %> destekçiye ulaşmak için <strong><%= @support.organization.name %> sana ihtiyaç duyuyor.</strong> Bu sayfayı paylaşarak sen de daha fazla kişinin desteklemesini sağlayabilirsin.
+          </p>
 
-          <div class="size2of3">
-
-
-            <p>25,000 destekçiye ulaşmak için yardımına ihtiyacımız var.<br/>Lütfen paylaş.</p>
-            <% url = support_path(@support.organization, @support.user, :only_path => false) %>
-            <!--
-              TODO(Yigit): 25,000 kisi yazmak yerine belirli esiklere ihtiyacimiz var. Kurumun o an kaç destekçisi varsa bundan %20 fazlasını hedef olarak göster. Böylece insanlara bu hedefe ulaşabilmenin ne kadar kolay olduğunu gösterip paylaşmalarını sağla.
-
-              Minimum olarak 1000 kişi hedef olsun.
-            -->
-
-            <div class="pb-container-small clearfix">
-              <div class="progress-bar rc clearfix pb-small">
-                <div class="pb-value rc" style="width: 85%;">
-                  <div class="pb-reflection rc"></div>
-                  <div class="pb-hedef">HEDEF: <b>25,000 Kişi</b></div>
-                  <div class="pb-toplanan">
-                      Toplam Destekçi: <b>23,457</b>
-                  </div>
+          <!-- <div class="pb-container-small clearfix">
+            <div class="progress-bar rc clearfix pb-small">
+              <div class="pb-value rc" style="width: <%= percentage %>%;">
+                <div class="pb-reflection rc"></div>
+                <div class="pb-hedef">HEDEF: <b><%= target_supporters_str %> Kişi</b></div>
+                <div class="pb-toplanan">
+                    Toplam Destekçi: <b> <%= total_supporters %></b>
                 </div>
               </div>
             </div>
+          </div> -->
 
-            <p><i><%= @support.organization.name %></i></p>
+        </div><!-- support-message -->
 
-            <%=url%>
-
-            <%= render :partial => 'organizations/includes/share_options',
-                :locals => {
-                  :text => "Ben destekledim, sıra sende! #{@organization.name}",
-                  :url => url
-                }
-            %>
-
-
-          </div>
-          <div class="size1of3 lastUnit">
-            <%= image_tag @organization.logo.url(:thumb) %>
-          </div>
-        </div><!-- .line -->
+        <%= render :partial => 'organizations/includes/share_options',
+            :locals => {
+              :text => "Ben destekledim, sıra sende! #{@organization.name}",
+              :url => url
+            }
+        %>
 
       </div>
     </div><!-- .d-header -->
 
     <div class="d-content ">
       <div class="separator"></div>
-      <p><strong>Neden 25,000 destekçi gerekli?</strong></p>
-      <p>Şirketler, BenVarım platformu üzerinden sponsorluk anlaşması yapmadan önce insanların bu kuruma olan güvenini görmek istiyor. Size özel bu linki paylaşarak sevdiğiniz kurum için cebinizden hiç para çıkmadan destek toplayın.</p>
+      <p><strong>Neden <%= target_supporters_str %> destekçi gerekli?</strong></p>
+      <p>Şirketler, BenVarım platformu üzerinden sponsorluk anlaşması yapmadan önce kuruma olan güveni ve desteği görmek istiyor. Size özel bu linki paylaşarak sevdiğiniz kurum için "<i>cebinizden hiç para çıkmadan</i>" destek toplayın.</p>
     </div><!-- .d-content -->
 
-    <div class="d-footer">
-    </div><!-- .d-footer -->
+    <div class="d-footer"></div><!-- .d-footer -->
+
   </div><!-- .d-dialog -->
 <% end %>
