@@ -56,9 +56,11 @@
 
   <!-- CSS : implied media="all" -->
   <%= include_stylesheets :workspace, :media => 'all' %>
+
   <% if requires_bootstrap? %>
     <%= include_stylesheets :bootstrap, :media => 'all' %>
   <% end %>
+
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <%= stylesheet_link_tag "handheld" %>
   -->
@@ -69,8 +71,6 @@
 
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <%= javascript_include_tag "libs/modernizr-1.6.min" %>
-
-
 
   <script type="text/javascript">var switchTo5x=true;</script>
 </head>

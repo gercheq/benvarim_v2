@@ -51,7 +51,9 @@
   <li>
     <span class='st_email_hcount'
           displayText='Email ile Paylaş'
-          st_url="<%= url %>"
+          <% if defined? url %>
+            st_url="<%= url %>"
+          <% end %>
           st_title="<%= share_msg %>"
     ></span>
   </li>
