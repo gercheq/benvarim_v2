@@ -8,7 +8,8 @@ module ApplicationHelper
   end
 
   def requires_bootstrap?
-    ["home"].include? controller.controller_name
+    #  ["home"].include? controller.controller_name
+    return false
   end
 
   def is_in_homepage
