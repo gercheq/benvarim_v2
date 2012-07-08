@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_session_on_bv_feature
   protect_from_forgery
 protected
+  ROBOTS = ["googlebot","twitterbot", "facebookexternalhit", "google.com/bot.html", "facebook.com/externalhit_uatext.php", "tweetmemebot", "sitebot", "msnbot", "robot", "bot"]
+  def is_robot?
+    ROBOTS.include? request.env["HTTP_USER_AGENT"]
+  end
+
   def require_organization
     unless user_signed_in? && current_user.organizations.length > 0
       flash[:notice] = "İlk önce bir kurum eklemelisiniz"

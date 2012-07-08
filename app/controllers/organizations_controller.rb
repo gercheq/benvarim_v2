@@ -75,6 +75,10 @@ class OrganizationsController < ApplicationController
       :user_id => @user.id,
       :organization_id => @organization.id
     }
+    if is_robot?
+      redirect_to organization_path @organization
+      return
+    end
     puts "SETTING SESSION #{session[:organization_support_referer]}"
     redirect_to organization_support_path(@organization)
   end
