@@ -46,39 +46,6 @@
 
 
 
-          <% if @organization.twitter_handle %>
-          <script type="text/javascript">
-  	      new TWTR.Widget({
-            version: 2,
-            type: 'profile',
-            rpp: 6,
-            interval: 5000,
-            width: 240,
-            height: 207,
-            theme: {
-              shell: {
-                background: '#f5f5f5',
-                color: '#0862a2'
-              },
-              tweets: {
-                background: '#F9F9F9',
-                color: '#444444',
-                links: '#0862a2'
-              }
-            },
-            features: {
-              scrollbar: false,
-              loop: false,
-              live: true,
-              hashtags: true,
-              timestamp: true,
-              avatars: false,
-              behavior: 'default'
-            }
-          }).render().setUser('<%= @organization.twitter_handle %>').start();
-          </script>
-        <% end %>
-
   	    </div>
 
   	    <%= raw @organization.description_html unless @organization.description.nil? %>
