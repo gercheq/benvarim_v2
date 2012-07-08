@@ -47,7 +47,6 @@
 
 
           <% if @organization.twitter_handle %>
-          <script src="https://widgets.twimg.com/j/2/widget.js"></script>
           <script type="text/javascript">
   	      new TWTR.Widget({
             version: 2,
@@ -78,7 +77,8 @@
             }
           }).render().setUser('<%= @organization.twitter_handle %>').start();
           </script>
-          <% end %>
+        <% end %>
+
   	    </div>
 
   	    <%= raw @organization.description_html unless @organization.description.nil? %>
