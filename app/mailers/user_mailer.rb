@@ -36,7 +36,7 @@ class UserMailer < ActionMailer::Base
     @user = page.user
     @page = page
     mail(:to => @user.email,
-         :bcc => "team@benvarim.com"
+         :bcc => "team@benvarim.com",
          :subject => "Bağış Sayfanın Başarıya Ulaşmasını Dileriz",
          "X-SMTPAPI" => '{"category": "user_newpage"}')
   end
