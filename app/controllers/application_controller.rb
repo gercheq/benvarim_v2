@@ -13,7 +13,7 @@ protected
 
   def authenticate_admin!
     authenticate_user!
-    unless ["yboyar@gmail.com", "baslevent@gmail.com", "gercekk@gmail.com", "melis.okan@gmail.com"].include? current_user.email
+    unless ["berkan.kisaoglu@gmail.com", "yboyar@gmail.com", "baslevent@gmail.com", "gercekk@gmail.com", "melis.okan@gmail.com"].include? current_user.email
       redirect_to root_url
     end
   end

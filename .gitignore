@@ -9,3 +9,4 @@ notes.txt
 .idea
 script/benvarim/*.dump
 *.patch
+nbproject*

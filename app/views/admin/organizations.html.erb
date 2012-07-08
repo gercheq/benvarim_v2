@@ -11,7 +11,7 @@
             <div class="row-details">
               <h3><%= link_to organization.name, organization %></h3>
               <p>
-                  <%= form_tag (admin_edit_organization_path(organization) + ".json"), :class => "org_form" do |f| %>
+                  <%= form_tag (admin_edit_organization_path(organization) + ".json", :class => "org_form") do |f| %>
                   <%=link_to "Paypal EC Ayarları", admin_paypal_ec_path(organization)%><br/>
                     <% if organization.paypal_info != nil%>
                       Paypal Hesabı: <%=label_tag organization.paypal_info.paypal_user%></br>
