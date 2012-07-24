@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(:version => 20120407220325) do
     t.string   "cached_slug"
     t.boolean  "hidden",            :default => false
     t.boolean  "aggregated_hidden", :default => false
+    t.boolean  "is_deleted",         :default => false
+    t.datetime  "time_deleted",
   end
 
   add_index "pages", ["cached_slug"], :name => "index_pages_on_cached_slug", :unique => true
