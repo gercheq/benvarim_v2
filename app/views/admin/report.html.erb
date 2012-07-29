@@ -1,0 +1,93 @@
+<div class="widget-light widget-kurum">
+  <div class="w-inner clearfix">
+    <p>Rapor tarihlerini degistir:</p>
+    <%= form_tag (admin_report_page_path(@organization), :method=>"get") do |of|%>
+    <p>
+      <input id="" name="to" type="text" value="" class="organization-report-calender" /> ile
+      <input id="" name="from" type="text" value="" class="organization-report-calender" /> arasi <%=submit_tag "Raporu Goruntule"%>
+    </p>
+    <% end %>
+  </div>
+</div>
+
+<div class="widget-light widget-kurum" style="margin-top:10px">
+  <div class="w-inner clearfix">
+      <h3><%= link_to @organization.name, @organization %> Raporu</h3>
+      <table class="table">
+        <tr><td>Olusturulma tarihi:</td><td><%=Date.today.to_s%></td></tr>
+        <tr><td>Rapor tarihleri:</td><td><b><%=@arranged_dates[:from]%></b> ile <b><%=@arranged_dates[:to]%></b> arasi</td></tr>
+      </table>
+
+      <table class="table">
+        <tr><th>Stat ismi</th><th>Unique kisi sayisi</th><th>Toplam sayi</th><th>Hedeflenen/Yapilan Bagis miktari</th></tr>
+        <% @all_actions.each do |k,v| %>
+          <tr>
+            <td><%=v[:definition]%></td>
+            <td><%= (@stats[k].user unless @stats[k].user.to_i == 0) unless @stats[k].nil? %></td>
+            <td><%= (@stats[k].count unless @stats[k].count.to_i == 0) unless @stats[k].nil? %></td>
+            <td><%= (@stats[k].amount unless @stats[k].amount.to_f == 0.0)unless @stats[k].nil? %></td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+</div>
+
+<div class="widget-light widget-kurum" style="margin-top:10px">
+  <div class="w-inner clearfix">
+    <h3><%=link_to @organization.name, @organization %> icin BenVarim'da bugune kadar acilan sayfalar</h3>
+    <table class="table">
+      <tr>
+        <th>Gonulli ismi</th>
+        <th>Sayfa Slogani</th>
+        <th>Proje Ismi</th>
+        <th>Hedef</th>
+        <th>Toplanan</th>
+        <th>Bagisci #</th>
+        <th>Ilk bagis</th>
+        <th>Son bagis</th>
+      </tr>
+
+      <%
+        @t_user = 0
+        @t_collected = 0
+        @t_goal = 0
+      %>
+      <% @pages.each do |p| %>
+        <tr>
+          <td><%=link_to p.user.name, p.user %></td>
+          <td><%=link_to p.title, p%></td>
+          <td><%=link_to p.project.name, p.project%></td>
+          <td><%=p.goal%></td>
+          <td><%=p.collected%></td>
+          <td><%=@page_stats[p.id].user unless @page_stats[p.id].nil? %></td>
+          <td><%=@page_stats[p.id].mindate unless @page_stats[p.id].nil? %></td>
+          <td><%=@page_stats[p.id].maxdate unless @page_stats[p.id].nil? %></td>
+        </tr>
+        <%
+          @t_user += @page_stats[p.id].user.to_i unless @page_stats[p.id].nil?
+          @t_collected += p.collected
+          @t_goal += p.goal
+        %>
+      <% end %>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Hedef</th>
+        <th>Toplanan</th>
+        <th>Bagisci #</th>
+        <th colspan="2">Kisi basi bagis</th>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Toplam:</td>
+        <td><%=@t_goal%></td>
+        <td><%=@t_collected%></td>
+        <td><%=@t_user%></td>
+        <td colspan="2"><%=@t_collected/@t_user%></td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -242,4 +242,16 @@ class AdminController < ApplicationController
     @params = params
   end
 
+  def report
+    @organization = Organization.find params[:id]
+    
+    @all_actions = BvTrackingAction.get_all_tracking_actions
+    @arranged_dates = BvReport.validate_dates params[:from], params[:to]
+    @stats = BvReport.get_all_global_stats @organization, @arranged_dates[:from], @arranged_dates[:to]
+
+    @pages = Page.find(:all, :conditions => "organization_id=#{@organization.id}")
+    
+    @page_stats = BvReport.get_all_page_stats @pages
+  end
+
 end

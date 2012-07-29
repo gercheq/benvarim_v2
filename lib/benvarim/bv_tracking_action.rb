@@ -15,12 +15,12 @@ class BvTrackingAction
   @tracking_actions = {
     1 => {:definition => "Kurum sayfasini begen(facebook)", :single_row => false },
     2 => {:definition => "Proje sayfasini begen(facebook)", :single_row => false },
-    3 => {:definition => "Kullanici sayfasini begen(facebook)", :single_row => false },
-    4 => {:definition => "Toplanan toplam bagis", :single_row => false },
-    5 => {:definition => "Organizasyon sayfasindan toplanan toplam bagis", :single_row => false },
+    3 => {:definition => "Bagis sayfasini begen(facebook)", :single_row => false },
+    4 => {:definition => "Yapilan toplam bagis", :single_row => false },
+    5 => {:definition => "Kurum sayfasindan toplanan toplam bagis", :single_row => false },
     6 => {:definition => "Proje sayfasindan toplanan toplam bagis", :single_row => false },
-    7 => {:definition => "Kullanici sayfasindan toplanan toplam bagis", :single_row => false },
-    8 => {:definition => "Yeni acilan bagis sayfalari", :single_row => true },
+    7 => {:definition => "Bagis sayfasindan toplanan toplam bagis", :single_row => false },
+    8 => {:definition => "Yeni acilan bagis sayfalari", :single_row => true }
   }
 
   public
@@ -29,7 +29,7 @@ class BvTrackingAction
   end
 
 
-  # No need to aggregate those actions for now, because we don't have that much traffic
+  # No need to aggregate those actions for now, because we don't have traffic
   # So, we can query only, but at some point it would be great to have such a thing TODO(berkan)
   public
   def self.aggregate_daily_actions

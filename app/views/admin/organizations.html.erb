@@ -10,8 +10,13 @@
             <div class="row-photo clearfix"><%= image_tag organization.logo.url(:thumb) %></div>
             <div class="row-details">
               <h3><%= link_to organization.name, organization %></h3>
+              <%= form_tag (admin_report_page_path(organization), :method=>"get", :target=>"_blank") do |of|%>
               <p>
-                  <%= form_tag (admin_edit_organization_path(organization) + ".json"), :class => "org_form" do |f| %>
+                <input id="" name="to" type="text" value="" class="organization-report-calendar" /> ile
+                <input id="" name="from" type="text" value="" class="organization-report-calendar" /> arasi <%=submit_tag "Raporu Goruntule"%> </p>
+              <% end %>
+              <p>
+                  <%= form_tag (admin_edit_organization_path(organization) + ".json", :class => "org_form") do |f| %>
                   <%=link_to "Paypal EC Ayarları", admin_paypal_ec_path(organization)%><br/>
                     <% if organization.paypal_info != nil%>
                       Paypal Hesabı: <%=label_tag organization.paypal_info.paypal_user%></br>
