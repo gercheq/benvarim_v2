@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407220325) do
+ActiveRecord::Schema.define(:version => 20120729015736) do
 
   create_table "bvlogs", :force => true do |t|
     t.string   "namespace"
@@ -254,6 +254,18 @@ ActiveRecord::Schema.define(:version => 20120407220325) do
   end
 
   add_index "tmp_payments", ["express_token"], :name => "index_tmp_payments_on_express_token", :unique => true
+
+  create_table "tracking_actions", :force => true do |t|
+    t.integer  "action_id"
+    t.string   "email"
+    t.integer  "organization_id"
+    t.integer  "project_id"
+    t.integer  "page_id"
+    t.integer  "count"
+    t.float    "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
