@@ -1,10 +1,10 @@
 <div class="widget-light widget-kurum">
   <div class="w-inner clearfix">
-    <p>Rapor tarihlerini degistir:</p>
+    <p>Rapor tarihlerini değiştir:</p>
     <%= form_tag (admin_report_page_path(@organization), :method=>"get") do |of|%>
     <p>
-      <input id="" name="to" type="text" value="" class="organization-report-calender" /> ile
-      <input id="" name="from" type="text" value="" class="organization-report-calender" /> arasi <%=submit_tag "Raporu Goruntule"%>
+      <input id="" name="to" type="text" value="" class="organization-report-calendar" /> ile
+      <input id="" name="from" type="text" value="" class="organization-report-calendar" /> arası <%=submit_tag "Raporu Gorüntüle"%>
     </p>
     <% end %>
   </div>
@@ -14,12 +14,12 @@
   <div class="w-inner clearfix">
       <h3><%= link_to @organization.name, @organization %> Raporu</h3>
       <table class="table">
-        <tr><td>Olusturulma tarihi:</td><td><%=Date.today.to_s%></td></tr>
-        <tr><td>Rapor tarihleri:</td><td><b><%=@arranged_dates[:from]%></b> ile <b><%=@arranged_dates[:to]%></b> arasi</td></tr>
+        <tr><td>Oluşturulma tarihi:</td><td><%=Date.today.to_s%></td></tr>
+        <tr><td>Rapor tarihleri:</td><td><b><%=@arranged_dates[:from]%></b> ile <b><%=@arranged_dates[:to]%></b> arası</td></tr>
       </table>
 
       <table class="table">
-        <tr><th>Stat ismi</th><th>Unique kisi sayisi</th><th>Toplam sayi</th><th>Hedeflenen/Yapilan Bagis miktari</th></tr>
+        <tr><th>Stat İsmi</th><th>Unique Kişi Sayısı</th><th>Toplam Sayı</th><th>Hedeflenen/Yapılan Bağış miktarı</th></tr>
         <% @all_actions.each do |k,v| %>
           <tr>
             <td><%=v[:definition]%></td>
@@ -34,17 +34,17 @@
 
 <div class="widget-light widget-kurum" style="margin-top:10px">
   <div class="w-inner clearfix">
-    <h3><%=link_to @organization.name, @organization %> icin BenVarim'da bugune kadar acilan sayfalar</h3>
+    <h3><%=link_to @organization.name, @organization %> için BenVarım'da bugüne kadar açılan sayfalar</h3>
     <table class="table">
       <tr>
-        <th>Gonulli ismi</th>
-        <th>Sayfa Slogani</th>
-        <th>Proje Ismi</th>
+        <th>Gönüllü İsmi</th>
+        <th>Sayfa Sloganı</th>
+        <th>Proje İsmi</th>
         <th>Hedef</th>
         <th>Toplanan</th>
-        <th>Bagisci #</th>
-        <th>Ilk bagis</th>
-        <th>Son bagis</th>
+        <th>Bağışçı #</th>
+        <th>İlk Bağış</th>
+        <th>Son Bağış</th>
       </tr>
 
       <%
@@ -60,8 +60,8 @@
           <td><%=p.goal%></td>
           <td><%=p.collected%></td>
           <td><%=@page_stats[p.id].user unless @page_stats[p.id].nil? %></td>
-          <td><%=@page_stats[p.id].mindate unless @page_stats[p.id].nil? %></td>
-          <td><%=@page_stats[p.id].maxdate unless @page_stats[p.id].nil? %></td>
+          <td><%=@page_stats[p.id].mindate.to_date unless @page_stats[p.id].nil? %></td>
+          <td><%=@page_stats[p.id].maxdate.to_date unless @page_stats[p.id].nil? %></td>
         </tr>
         <%
           @t_user += @page_stats[p.id].user.to_i unless @page_stats[p.id].nil?
@@ -75,8 +75,8 @@
         <th></th>
         <th>Hedef</th>
         <th>Toplanan</th>
-        <th>Bagisci #</th>
-        <th colspan="2">Kisi basi bagis</th>
+        <th>Bağışçı #</th>
+        <th colspan="2">Kişi başı bağış</th>
       </tr>
 
       <tr>

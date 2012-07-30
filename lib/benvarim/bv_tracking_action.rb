@@ -13,14 +13,14 @@ class BvTrackingAction
   CREATED_PAGE_FOR_ORGANIZATION = 8
 
   @tracking_actions = {
-    1 => {:definition => "Kurum sayfasini begen(facebook)", :single_row => false },
-    2 => {:definition => "Proje sayfasini begen(facebook)", :single_row => false },
-    3 => {:definition => "Bagis sayfasini begen(facebook)", :single_row => false },
-    4 => {:definition => "Yapilan toplam bagis", :single_row => false },
-    5 => {:definition => "Kurum sayfasindan toplanan toplam bagis", :single_row => false },
-    6 => {:definition => "Proje sayfasindan toplanan toplam bagis", :single_row => false },
-    7 => {:definition => "Bagis sayfasindan toplanan toplam bagis", :single_row => false },
-    8 => {:definition => "Yeni acilan bagis sayfalari", :single_row => true }
+    1 => {:definition => "Kurum sayfasını beğen(facebook)"},
+    2 => {:definition => "Proje sayfasını beğen(facebook)"},
+    3 => {:definition => "Bağış sayfasını beğen(facebook)"},
+    4 => {:definition => "Yapılan toplam bağış"},
+    5 => {:definition => "Kurum sayfasından yapılan toplam bağış"},
+    6 => {:definition => "Proje sayfasından yapılan toplam bağış"},
+    7 => {:definition => "Bağış sayfasından yapılan toplam bağış"},
+    8 => {:definition => "Yeni açılan bagış sayfaları"}
   }
 
   public
@@ -38,14 +38,6 @@ class BvTrackingAction
   public
   def self.record_action action_id, count=1, amount=0.0, args = {}
     return false if action_id.nil?
-    
-    # Update the existing one, this is silly
-    if @tracking_actions[action_id][:single_row] && action = TrackingAction.find(:first, :conditions => args)
-      action.count = count
-      action.amount = amount
-
-      return action.save
-    end
 
     # Add default count and amount, do not override if exits
     args = {:count=>count, :amount=>amount}.merge! args
