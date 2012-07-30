@@ -249,9 +249,16 @@ class AdminController < ApplicationController
     @arranged_dates = BvReport.validate_dates params[:from], params[:to]
     @stats = BvReport.get_all_global_stats @organization, @arranged_dates[:from], @arranged_dates[:to]
 
-    @pages = Page.find(:all, :conditions => "organization_id=#{@organization.id}")
-    
-    @page_stats = BvReport.get_all_page_stats @pages
+    @pages = Page.all(
+      :select => "pages.*, count(payments.id) as total, MIN(payments.created_at) as min_date, MAX(payments.created_at) as max_date",
+      :joins => "LEFT JOIN payments ON pages.id = payments.page_id",
+      :conditions => "pages.organization_id=#{@organization.id}",
+      :group => "pages.id"
+    )
+
+    @t_collected = 0.0
+    @t_goal = 0.0
+    @t_count = 0
   end
 
 end

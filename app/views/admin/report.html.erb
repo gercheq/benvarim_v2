@@ -48,27 +48,23 @@
         <th>Son Bağış</th>
       </tr>
 
-      <%
-        @t_user = 0
-        @t_collected = 0
-        @t_goal = 0
-      %>
       <% @pages.each do |p| %>
-        <tr>
-          <td><%=link_to p.user.name, p.user %></td>
-          <td><%=link_to p.title, p%></td>
-          <td><%=link_to p.project.name, p.project%></td>
-          <td><%=p.goal%></td>
-          <td><%=p.collected%></td>
-          <td><%=@page_stats[p.id].user unless @page_stats[p.id].nil? %></td>
-          <td><%=@page_stats[p.id].mindate.to_date unless @page_stats[p.id].nil? %></td>
-          <td><%=@page_stats[p.id].maxdate.to_date unless @page_stats[p.id].nil? %></td>
-        </tr>
-        <%
-          @t_user += @page_stats[p.id].user.to_i unless @page_stats[p.id].nil?
-          @t_collected += p.collected
-          @t_goal += p.goal
-        %>
+      <tr>
+        <td><%=link_to p.user.name, p.user %></td>
+        <td><%=link_to p.title, p%></td>
+        <td><%=link_to p.project.name, p.project%></td>
+        <td><%=p.goal%></td>
+        <td><%=p.collected%></td>
+        <td><%=p.total%></td>
+        <td><%=p.min_date.to_date unless p.min_date.nil?%></td>
+        <td><%=p.max_date.to_date unless p.min_date.nil?%></td>
+      </tr>
+
+      <%
+        @t_collected += p.collected.to_f
+        @t_goal += p.goal.to_f
+        @t_count += p.total.to_i
+      %>
       <% end %>
       <tr>
         <th></th>
@@ -79,16 +75,15 @@
         <th>Bağışçı #</th>
         <th colspan="2">Kişi başı bağış</th>
       </tr>
-
       <tr>
         <td></td>
         <td></td>
         <td>Toplam:</td>
         <td><%=@t_goal%></td>
         <td><%=@t_collected%></td>
-        <td><%=@t_user%></td>
+        <td><%=@t_count%></td>
         <td colspan="2">
-          <%= @t_collected.to_f/@t_user %>
+          <%= @t_collected/@t_count %>
         </td>
       </tr>
     </table>
