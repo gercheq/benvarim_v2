@@ -9,14 +9,15 @@
           <div class="clearfix">
             <div class="row-photo clearfix"><%= image_tag organization.logo.url(:thumb) %></div>
             <div class="row-details">
-              <%= #TODO(berkan) DONOT forget to change the form_tags const. style %>
               <h3><%= link_to organization.name, organization %></h3>
+              <% #TODO(berkan) below syntax might blow the page, if so change it. %>
               <%= form_tag (admin_report_page_path(organization), :method=>"get", :target=>"_blank") do |of|%>
               <p>
                 <input id="" name="to" type="text" value="" class="organization-report-calendar" /> ile
                 <input id="" name="from" type="text" value="" class="organization-report-calendar" /> arası <%=submit_tag "Raporu Görüntüle"%> </p>
               <% end %>
               <p>
+                  <% #TODO(berkan) below syntax might blow the page, if so change it. %>
                   <%= form_tag (admin_edit_organization_path(organization) + ".json", :class => "org_form") do |f| %>
                   <%=link_to "Paypal EC Ayarları", admin_paypal_ec_path(organization)%><br/>
                     <% if organization.paypal_info != nil%>

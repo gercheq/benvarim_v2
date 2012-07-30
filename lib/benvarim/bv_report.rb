@@ -48,6 +48,7 @@ class BvReport
   public
   def self.get_all_page_stats pages
     page_ids = pages.collect {|p| p.id}
+    return {} if page_ids.empty?
 
     result = Payment.all(
       :select => "page_id as page_id, COUNT(DISTINCT email) as user, MIN(created_at) as mindate, MAX(created_at) as maxdate",

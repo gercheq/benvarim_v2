@@ -260,6 +260,16 @@ class PaymentsController < ApplicationController
     begin
       @payment = BvPayment.finalize tmp_payment
       if @payment
+        args = BvTrackingAction.construct_args @payment.email, @payment.page, @payment.project, @payment.organization
+        if @payment.page_id
+          BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE, 1, @payment.amount, args
+        elsif @payment.project_id
+          BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION_FROM_PROJECT_PAGE, 1, @payment.amount, args
+        elsif @payment.organization_id
+          BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION_FROM_ORGANIZATION_PAGE, 1, @payment.amount, args
+        end
+        BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION, 1, @payment.amount, args
+
         flash[:success] = "Bağış yapıldı! Teşekkürler!"
         BvLogger::log("paypal_finalize", "success")
       else

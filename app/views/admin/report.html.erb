@@ -1,6 +1,7 @@
 <div class="widget-light widget-kurum">
   <div class="w-inner clearfix">
     <p>Rapor tarihlerini değiştir:</p>
+    <% #TODO(berkan) below syntax might blow the page, if so change it. %>
     <%= form_tag (admin_report_page_path(@organization), :method=>"get") do |of|%>
     <p>
       <input id="" name="to" type="text" value="" class="organization-report-calendar" /> ile
@@ -86,7 +87,9 @@
         <td><%=@t_goal%></td>
         <td><%=@t_collected%></td>
         <td><%=@t_user%></td>
-        <td colspan="2"><%=@t_collected/@t_user%></td>
+        <td colspan="2">
+          <%= @t_collected.to_f/@t_user %>
+        </td>
       </tr>
     </table>
   </div>

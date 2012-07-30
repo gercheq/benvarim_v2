@@ -99,6 +99,8 @@ class PagesController < ApplicationController
     parse_end_time
     @page = current_user.pages.build(params[:page])
     if @page.save
+      args = BvTrackingAction.construct_args current_user.email, @page
+      BvTrackingAction.record_action BvTrackingAction::CREATED_PAGE_FOR_ORGANIZATION, 1, @page.goal, args
       redirect_to(@page, :success => 'Bağış sayfası yaratıldı.')
     else
       add_organization_list
@@ -110,7 +112,12 @@ class PagesController < ApplicationController
   def update
     parse_end_time
     @page = current_user.pages.find(params[:id])
+    old_goal = @page.goal
     if @page.update_attributes(params[:page])
+      if (!old_goal.equal? @page.goal)
+        args = BvTrackingAction.construct_args current_user.email, @page
+        BvTrackingAction.record_action BvTrackingAction::CREATED_PAGE_FOR_ORGANIZATION, 0, (@page.goal - old_goal), args
+      end
       redirect_to(@page, :success => 'Bağış sayfası güncellendi.')
     else
       add_organization_list
