@@ -428,6 +428,8 @@ $(document).ready(function(){
         });
     });
 
+    $('.organization-report-calendar').datepicker({dateFormat: "yy-mm-dd"})
+
     $(['/stylesheets/images/search-loading.gif']).preload();
 
 });

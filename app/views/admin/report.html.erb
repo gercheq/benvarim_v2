@@ -1,0 +1,102 @@
+<div class="widget-light widget-kurum">
+  <div class="w-inner clearfix">
+    <p>Rapor tarihlerini değiştir:</p>
+    <% #TODO(berkan) below syntax might blow the page, if so change it. %>
+    <%= form_tag (admin_report_page_path(@organization), :method=>"get") do |of|%>
+    <p>
+      <input id="" name="to" type="text" value="" class="organization-report-calendar" /> ile
+      <input id="" name="from" type="text" value="" class="organization-report-calendar" /> arası <%=submit_tag "Raporu Gorüntüle"%>
+    </p>
+    <% end %>
+  </div>
+</div>
+
+<div class="widget-light widget-kurum" style="margin-top:10px">
+  <div class="w-inner clearfix">
+      <h3><%= link_to @organization.name, @organization %> Raporu</h3>
+      <table class="table">
+        <tr><td>Oluşturulma tarihi:</td><td><%=Date.today.to_s%></td></tr>
+        <tr><td>Rapor tarihleri:</td><td><b><%=@arranged_dates[:from]%></b> ile <b><%=@arranged_dates[:to]%></b> arası</td></tr>
+      </table>
+
+      <table class="table">
+        <tr><th>Stat İsmi</th><th>Unique Kişi Sayısı</th><th>Toplam Sayı</th><th>Hedeflenen/Yapılan Bağış miktarı</th></tr>
+        <% @all_actions.each do |k,v| %>
+          <tr>
+            <td><%=v[:definition]%></td>
+            <td><%= (@stats[k].user unless @stats[k].user.to_i == 0) unless @stats[k].nil? %></td>
+            <td><%= (@stats[k].count unless @stats[k].count.to_i == 0) unless @stats[k].nil? %></td>
+            <td><%= (@stats[k].amount unless @stats[k].amount.to_f == 0.0)unless @stats[k].nil? %></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <table class="table">
+        <tr>
+          <td>Kişi başı bağış miktarı</td>
+          <td><%=@stats[BvTrackingAction::FUNDED_ORGANIZATION].amount/@stats[BvTrackingAction::FUNDED_ORGANIZATION].count unless @stats[BvTrackingAction::FUNDED_ORGANIZATION].nil? %></td>
+        </tr>
+        <tr>
+          <td>Sayfa başı bağış miktarı</td>
+          <td><%=@stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].amount/@stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].count unless @stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].nil?%></td>
+        </tr>
+      </table>
+  </div>
+</div>
+
+<div class="widget-light widget-kurum" style="margin-top:10px">
+  <div class="w-inner clearfix">
+    <h3><%=link_to @organization.name, @organization %> için BenVarım'da bugüne kadar açılan sayfalar</h3>
+    <table class="table">
+      <tr>
+        <th>Gönüllü İsmi</th>
+        <th>Sayfa Sloganı</th>
+        <th>Proje İsmi</th>
+        <th>Hedef</th>
+        <th>Toplanan</th>
+        <th>Bağışçı #</th>
+        <th>İlk Bağış</th>
+        <th>Son Bağış</th>
+      </tr>
+
+      <% @pages.each do |p| %>
+      <tr>
+        <td><%=link_to p.user.name, p.user %></td>
+        <td><%=link_to p.title, p%></td>
+        <td><%=link_to p.project.name, p.project%></td>
+        <td><%=p.goal%></td>
+        <td><%=p.collected%></td>
+        <td><%=p.total%></td>
+        <td><%=p.min_date.to_date unless p.min_date.nil?%></td>
+        <td><%=p.max_date.to_date unless p.min_date.nil?%></td>
+      </tr>
+
+      <%
+        @t_collected += p.collected.to_f
+        @t_goal += p.goal.to_f
+        @t_count += p.total.to_i
+      %>
+      <% end %>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Hedef</th>
+        <th>Toplanan</th>
+        <th>Bağışçı #</th>
+        <th colspan="2">Kişi başı bağış</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Toplam:</td>
+        <td><%=@t_goal%></td>
+        <td><%=@t_collected%></td>
+        <td><%=@t_count%></td>
+        <td colspan="2">
+          <%= @t_collected/@t_count %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

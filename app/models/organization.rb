@@ -30,6 +30,7 @@ class Organization < ActiveRecord::Base
   has_one :paypal_info
   has_many :tmp_payments
   has_many :supports
+  has_many :tracking_actions
 
   before_validation :sanitize_description_html
 
