@@ -30,6 +30,17 @@
           </tr>
         <% end %>
       </table>
+
+      <table class="table">
+        <tr>
+          <td>Kişi başı bağış miktarı</td>
+          <td><%=@stats[BvTrackingAction::FUNDED_ORGANIZATION].amount/@stats[BvTrackingAction::FUNDED_ORGANIZATION].count unless @stats[BvTrackingAction::FUNDED_ORGANIZATION].nil? %></td>
+        </tr>
+        <tr>
+          <td>Sayfa başı bağış miktarı</td>
+          <td><%=@stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].amount/@stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].count unless @stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].nil?%></td>
+        </tr>
+      </table>
   </div>
 </div>
 

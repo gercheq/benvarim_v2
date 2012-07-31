@@ -3,9 +3,9 @@ class BvReport
   DEFAULT_MONTH_INTERVAL = 12
 
   FUNDED_ORGANIZATION = [
-    BvTrackingAction::LIKED_ORGANIZATION,
-    BvTrackingAction::LIKED_PROJECT,
-    BvTrackingAction::LIKED_PAGE,
+    # BvTrackingAction::LIKED_ORGANIZATION,
+    # BvTrackingAction::LIKED_PROJECT,
+    # BvTrackingAction::LIKED_PAGE,
     BvTrackingAction::FUNDED_ORGANIZATION,
     BvTrackingAction::FUNDED_ORGANIZATION_FROM_ORGANIZATION_PAGE,
     BvTrackingAction::FUNDED_ORGANIZATION_FROM_PROJECT_PAGE,
@@ -42,21 +42,6 @@ class BvReport
     )
 
     result = Hash[*result.map{|r| [r.action.to_i, r]}.flatten]
-    return result
-  end
-
-  public
-  def self.get_all_page_stats pages
-    page_ids = pages.collect {|p| p.id}
-    return {} if page_ids.empty?
-
-    result = Payment.all(
-      :select => "page_id as page_id, COUNT(DISTINCT email) as user, MIN(created_at) as mindate, MAX(created_at) as maxdate",
-      :conditions => "page_id IN (#{page_ids.join(",")})",
-      :group => "page_id"
-    )
-    
-    result = Hash[*result.map{|r| [r.page_id.to_i, r]}.flatten]
     return result
   end
   

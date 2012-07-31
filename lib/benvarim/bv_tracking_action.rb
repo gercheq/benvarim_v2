@@ -13,9 +13,9 @@ class BvTrackingAction
   CREATED_PAGE_FOR_ORGANIZATION = 8
 
   @tracking_actions = {
-    1 => {:definition => "Kurum sayfasını beğen(facebook)"},
-    2 => {:definition => "Proje sayfasını beğen(facebook)"},
-    3 => {:definition => "Bağış sayfasını beğen(facebook)"},
+#    1 => {:definition => "Kurum sayfasını beğen(facebook)"},
+#    2 => {:definition => "Proje sayfasını beğen(facebook)"},
+#    3 => {:definition => "Bağış sayfasını beğen(facebook)"},
     4 => {:definition => "Yapılan toplam bağış"},
     5 => {:definition => "Kurum sayfasından yapılan toplam bağış"},
     6 => {:definition => "Proje sayfasından yapılan toplam bağış"},
@@ -55,19 +55,21 @@ class BvTrackingAction
   end
 
   public
-  def self.construct_args email = nil, page = nil, project = nil, organization = nil
+  def self.construct_args email = nil, object = nil
     result = {}
     
     if !email.nil?
       result = {:email=>email}.merge! result
     end
 
-    if !page.nil?
-      result = {:page_id=>page.id, :project_id => page.project.id, :organization_id => page.organization.id }.merge! result
-    elsif !project.nil?
-      result = {:project_id => project.id, :organization_id => project.organization.id }.merge! result
-    elsif !organization.nil?
-      result = {:organization_id => organization.id }.merge! result
+    return result if object.nil?
+
+    if object.is_a? Page
+      result = {:page_id=>object.id, :project_id => object.project.id, :organization_id => object.organization.id }.merge! result
+    elsif object.is_a? Project
+      result = {:project_id => object.id, :organization_id => object.organization.id }.merge! result
+    elsif object.is_a? Organization
+      result = {:organization_id => object.id }.merge! result
     end
 
     return result

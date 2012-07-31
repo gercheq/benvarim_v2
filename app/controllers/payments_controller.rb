@@ -260,12 +260,14 @@ class PaymentsController < ApplicationController
     begin
       @payment = BvPayment.finalize tmp_payment
       if @payment
-        args = BvTrackingAction.construct_args @payment.email, @payment.page, @payment.project, @payment.organization
         if @payment.page_id
+          args = BvTrackingAction.construct_args @payment.email, @payment.page
           BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE, 1, @payment.amount, args
         elsif @payment.project_id
+          args = BvTrackingAction.construct_args @payment.email, @payment.project
           BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION_FROM_PROJECT_PAGE, 1, @payment.amount, args
         elsif @payment.organization_id
+          args = BvTrackingAction.construct_args @payment.email, @payment.organization
           BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION_FROM_ORGANIZATION_PAGE, 1, @payment.amount, args
         end
         BvTrackingAction.record_action BvTrackingAction::FUNDED_ORGANIZATION, 1, @payment.amount, args
