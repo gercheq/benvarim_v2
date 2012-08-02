@@ -14,7 +14,6 @@ class Page < ActiveRecord::Base
   belongs_to :project
   has_many :tmp_payments
   has_many :payments
-  has_many :tracking_actions
 
   before_validation :sanitize_description_html
   before_save :update_aggregated_hidden

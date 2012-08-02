@@ -15,30 +15,35 @@
   <div class="w-inner clearfix">
       <h3><%= link_to @organization.name, @organization %> Raporu</h3>
       <table class="table">
-        <tr><td>Oluşturulma tarihi:</td><td><%=Date.today.to_s%></td></tr>
-        <tr><td>Rapor tarihleri:</td><td><b><%=@arranged_dates[:from]%></b> ile <b><%=@arranged_dates[:to]%></b> arası</td></tr>
-      </table>
-
-      <table class="table">
-        <tr><th>Stat İsmi</th><th>Unique Kişi Sayısı</th><th>Toplam Sayı</th><th>Hedeflenen/Yapılan Bağış miktarı</th></tr>
-        <% @all_actions.each do |k,v| %>
-          <tr>
-            <td><%=v[:definition]%></td>
-            <td><%= (@stats[k].user unless @stats[k].user.to_i == 0) unless @stats[k].nil? %></td>
-            <td><%= (@stats[k].count unless @stats[k].count.to_i == 0) unless @stats[k].nil? %></td>
-            <td><%= (@stats[k].amount unless @stats[k].amount.to_f == 0.0)unless @stats[k].nil? %></td>
-          </tr>
-        <% end %>
-      </table>
-
-      <table class="table">
         <tr>
-          <td>Kişi başı bağış miktarı</td>
-          <td><%=@stats[BvTrackingAction::FUNDED_ORGANIZATION].amount/@stats[BvTrackingAction::FUNDED_ORGANIZATION].count unless @stats[BvTrackingAction::FUNDED_ORGANIZATION].nil? %></td>
+          <td>Oluşturulma tarihi:</td><td><%=Date.today.to_s%></td>
         </tr>
         <tr>
-          <td>Sayfa başı bağış miktarı</td>
-          <td><%=@stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].amount/@stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].count unless @stats[BvTrackingAction::FUNDED_ORGANIZATION_FROM_USER_PAGE].nil?%></td>
+          <td>Rapor tarihleri:</td><td><%=@arranged_dates[:from]%> ile <%=@arranged_dates[:to]%> arası</td>
+        </tr>
+        <tr>
+          <td>Açılan yeni sayfa sayısı</td><td><%=@count_new_page%></td>
+        </tr>
+        <tr>
+          <td>Hedeflenen bağış miktarı</td><td><%=@amount_new_page_goal%></td>
+        </tr>
+        <tr>
+          <td>Toplam bağış miktarı</td><td><%=@total_fund%></td>
+        </tr>
+        <tr>
+          <td>Sayfalar aracılığıyla</td><td><%=@total_fund_from_page%></td>
+        </tr>
+        <tr>
+          <td>Kurum profilinden</td><td><%=@total_fund_from_org%></td>
+        </tr>
+        <tr>
+          <td>Bağışçı sayısı</td><td><%=@total_funder%></td>
+        </tr>
+        <tr>
+          <td>Kişi başı bağış miktarı</td><td><%=@total_fund_from_page/@total_funder unless @total_funder == 0%></td>
+        </tr>
+        <tr>
+          <td>Sayfa başı bağış miktarı</td><td><%=@total_fund_from_page/@count_new_page unless @count_new_page == 0%></td>
         </tr>
       </table>
   </div>

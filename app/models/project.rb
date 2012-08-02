@@ -5,8 +5,6 @@ class Project < ActiveRecord::Base
   has_many :payments
   has_many :pages, :dependent => :delete_all
   has_many :predefined_payments
-  has_many :tracking_actions
-
   before_validation :sanitize_description_html
 
   acts_as_taggable
