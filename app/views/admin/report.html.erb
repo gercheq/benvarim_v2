@@ -1,0 +1,107 @@
+<div class="widget-light widget-kurum">
+  <div class="w-inner clearfix">
+    <p>Rapor tarihlerini değiştir:</p>
+    <% #TODO(berkan) below syntax might blow the page, if so change it. %>
+    <%= form_tag (admin_report_page_path(@organization), :method=>"get") do |of|%>
+    <p>
+      <input id="" name="to" type="text" value="" class="organization-report-calendar" /> ile
+      <input id="" name="from" type="text" value="" class="organization-report-calendar" /> arası <%=submit_tag "Raporu Gorüntüle"%>
+    </p>
+    <% end %>
+  </div>
+</div>
+
+<div class="widget-light widget-kurum" style="margin-top:10px">
+  <div class="w-inner clearfix">
+      <h3><%= link_to @organization.name, @organization %> Raporu</h3>
+      <table class="table">
+        <tr>
+          <td>Oluşturulma tarihi:</td><td><%=Date.today.to_s%></td>
+        </tr>
+        <tr>
+          <td>Rapor tarihleri:</td><td><%=@arranged_dates[:from]%> ile <%=@arranged_dates[:to]%> arası</td>
+        </tr>
+        <tr>
+          <td>Açılan yeni sayfa sayısı</td><td><%=@count_new_page%></td>
+        </tr>
+        <tr>
+          <td>Hedeflenen bağış miktarı</td><td><%=number_with_precision(@amount_new_page_goal, :locale=>:tr)%> TL</td>
+        </tr>
+        <tr>
+          <td>Toplam bağış miktarı</td><td><%=number_with_precision(@total_fund, :locale=>:tr)%> TL</td>
+        </tr>
+        <tr>
+          <td>Sayfalar aracılığıyla</td><td><%=number_with_precision(@total_fund_from_page, :locale=>:tr)%> TL</td>
+        </tr>
+        <tr>
+          <td>Kurum profilinden</td><td><%=number_with_precision(@total_fund_from_org, :locale=>:tr)%> TL</td>
+        </tr>
+        <tr>
+          <td>Bağışçı sayısı</td><td><%=@total_funder%></td>
+        </tr>
+        <tr>
+          <td>Kişi başı bağış miktarı</td><td><%=number_with_precision(@total_fund/@total_funder, :locale=>:tr)+" TL" unless @total_funder == 0%></td>
+        </tr>
+        <tr>
+          <td>Sayfa başı bağış miktarı</td><td><%=number_with_precision(@total_fund_from_page/@count_new_page, :locale=>:tr)+" TL" unless @count_new_page == 0%></td>
+        </tr>
+      </table>
+  </div>
+</div>
+
+<div class="widget-light widget-kurum" style="margin-top:10px">
+  <div class="w-inner clearfix">
+    <h3><%=link_to @organization.name, @organization %> için BenVarım'da bugüne kadar açılan sayfalar</h3>
+    <table class="table">
+      <tr>
+        <th>Gönüllü İsmi</th>
+        <th>Sayfa Sloganı</th>
+        <th>Proje İsmi</th>
+        <th>Hedef</th>
+        <th>Toplanan</th>
+        <th>Bağışçı #</th>
+        <th>İlk Bağış</th>
+        <th>Son Bağış</th>
+      </tr>
+
+      <% @pages.each do |p| %>
+      <tr>
+        <td><%=link_to p.user.name, p.user %></td>
+        <td><%=link_to p.title, p%></td>
+        <td><%=link_to p.project.name, p.project%></td>
+        <td><%=number_with_precision(p.goal, :locale=>:tr)%></td>
+        <td><%=number_with_precision(p.collected, :locale=>:tr)%></td>
+        <td><%=number_with_precision(p.total, :locale=>:tr)%></td>
+        <td><%=p.min_date.to_date unless p.min_date.nil?%></td>
+        <td><%=p.max_date.to_date unless p.min_date.nil?%></td>
+      </tr>
+
+      <%
+        @t_collected += p.collected.to_f
+        @t_goal += p.goal.to_f
+        @t_count += p.total.to_i
+      %>
+      <% end %>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Hedef</th>
+        <th>Toplanan</th>
+        <th>Bağışçı #</th>
+        <th colspan="2">Kişi başı bağış</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Toplam:</td>
+        <td><%=number_with_precision(@t_goal, :locale=>:tr)%></td>
+        <td><%=number_with_precision(@t_collected, :locale=>:tr)%></td>
+        <td><%=@t_count%></td>
+        <td colspan="2">
+          <%= number_with_precision(@t_collected/@t_count,:locale=>:tr) unless @t_count== 0%> TL
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

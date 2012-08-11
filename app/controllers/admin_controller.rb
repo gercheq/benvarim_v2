@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class AdminController < ApplicationController
+  include ActionView::Helpers::NumberHelper
+  
   before_filter :authenticate_admin!
   def impersonate
     if params[:k]
@@ -240,6 +242,55 @@ class AdminController < ApplicationController
     end
 
     @params = params
+  end
+
+  def report
+    @organization = Organization.find params[:id]
+    @arranged_dates = BvReport.validate_dates params[:from], params[:to]
+
+    page_stats = Page.all(
+      :select => "COUNT(1) AS total, COUNT(DISTINCT user_id) AS user, SUM(goal) AS goal",
+      :conditions =>["pages.organization_id=? AND pages.created_at BETWEEN ? AND ?",@organization.id, @arranged_dates[:from], @arranged_dates[:to]],
+      :group => "organization_id"
+    )
+
+    payment_stats = Payment.all(
+      :select =>"CASE WHEN page_id IS NULL THEN 'f_organization' ELSE 'f_page' END AS source, COUNT(1) AS total, COUNT(DISTINCT email) AS user, SUM(amount) AS collected",
+      :conditions =>["payments.organization_id=? AND payments.created_at BETWEEN ? AND ?",@organization.id,@arranged_dates[:from], @arranged_dates[:to]],
+      :group => "source"
+    )
+
+    @pages = Page.all(
+      :select => "pages.*, count(payments.id) as total, MIN(payments.created_at) as min_date, MAX(payments.created_at) as max_date",
+      :joins => "LEFT JOIN payments ON pages.id = payments.page_id",
+      :conditions =>["pages.organization_id=?", @organization.id],
+      :group => "pages.id"
+    )
+
+    @count_new_page = 0
+    @amount_new_page_goal = 0.0
+    @total_fund = 0.0
+    @total_fund_from_page = 0.0
+    @total_fund_from_org = 0.0
+    @total_funder = 0
+
+    unless page_stats.nil? || page_stats.empty?
+      @count_new_page = page_stats.first.total.to_i
+      @amount_new_page_goal = page_stats.first.goal.to_f
+    end
+    
+    unless payment_stats.nil? || payment_stats.empty?
+      payment_stats.each do |s|
+        @total_fund += s.collected.to_f
+        @total_fund_from_page = s.collected.to_f if s.source == "f_page"
+        @total_fund_from_org = s.collected.to_f if s.source == "f_organization"
+        @total_funder += s.total.to_i
+      end
+    end
+
+    @t_count = 0
+    @t_collected = 0
+    @t_goal = 0
   end
 
 end
