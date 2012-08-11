@@ -28,7 +28,9 @@
 
         <div class="profile-actions">
           <% if user_signed_in? && @page.user == current_user %>
-            <%= link_to 'Düzenle', edit_page_path(@page) %>
+            <%= link_to 'Düzenle', edit_page_path(@page) %><br/>
+            <%= link_to 'Sil', delete_page_path(@page) %>
+
           <% end %>
         </div>
       </div>

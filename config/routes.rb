@@ -40,6 +40,7 @@ Benvarim::Application.routes.draw do
   get "/proje/:project_id/yeni_sayfa" => "pages#new", :as => :new_page_for_project
   get "/kurum/:organization_id/yeni_sayfa" => "pages#new", :as => :new_page_for_organization
   get "/sayfa/:id/duzenle" => "pages#edit", :as => :edit_page
+  get "/sayfa/:id/sil" => "pages#delete", :as => :delete_page
   get "/sayfa/:id" => "pages#show", :as => :page
   put "/sayfa/:id" => "pages#update",  :as => :page
   get "/sayfalarim" => "pages#my_pages", :as => :my_pages

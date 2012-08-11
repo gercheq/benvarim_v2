@@ -95,6 +95,10 @@ class PagesController < ApplicationController
     add_project_list @page.organization
   end
 
+  def delete
+    @page = current_user.pages.find(params[:id])
+  end
+
   def create
     parse_end_time
     @page = current_user.pages.build(params[:page])
