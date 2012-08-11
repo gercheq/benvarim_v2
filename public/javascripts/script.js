@@ -280,16 +280,17 @@ $(document).ready(function(){
   // Autocomplete - Homepage
   //
   var availableOrganizations = window.availableOrganizations || [];
-
-	$( "#featured-input" ).autocomplete({
-		source: availableOrganizations,
-		minLength: 1,
-		select : function(event, ui) {
-		  if(ui.item) {
-		    $('#org_id').val(ui.item.id);
-		  }
-		}
-	});
+    if($( "#featured-input" ).length) {
+	    $( "#featured-input" ).autocomplete({
+    		source: availableOrganizations,
+    		minLength: 1,
+    		select : function(event, ui) {
+    		  if(ui.item) {
+    		    $('#org_id').val(ui.item.id);
+    		  }
+    		}
+    	});
+	}
 
 
   //
@@ -337,13 +338,15 @@ $(document).ready(function(){
   //
   // Dialog global initialization
   //
-  $('.dialog').dialog({
-    modal: true,
-    width: 600,
-    show: "fade",
-    hide: "fade",
-    autoOpen: false
-  });
+  if($('.dialog').length) {
+      $('.dialog').dialog({
+        modal: true,
+        width: 600,
+        show: "fade",
+        hide: "fade",
+        autoOpen: false
+      });
+  }
 
   $('.dialog-trigger').live('click', function(e){
     e.preventDefault();
