@@ -68,14 +68,41 @@ class PaymentsController < ApplicationController
       @tmp_payment.amount_in_currency = pp.amount
     end
     if @tmp_payment.valid?
-      send_user_to_paypal @tmp_payment
+      if @tmp_payment.ykpostnet_xid && @tmp_payment.ykpostnet_xid == "true"
+        send_user_to_ykpostnet @tmp_payment
+      else
+        send_user_to_paypal @tmp_payment
+      end
     else
       puts @tmp_payment.errors
       add_predefined_payments
       render :new
     end
+  end
 
+  def send_user_to_ykpostnet tmp_payment
+    tmp_payment.assign_yk_postnet_xid
+    if tmp_payment.save
+      redirect_to redirect_to_ykpostnet_path tmp_payment
+    else
+      add_predefined_payments
+      render :new
+    end
+  end
 
+  def redirect_to_ykpostnet
+    @tmp_payment = TmpPayment.find_by_id params[:id]
+    #sanity check
+    if @tmp_payment.ykpostnet_xid.nil? || @tmp_payment.ykpostnet_xid == "false"
+      return redirect_to @tmp_payment.organization
+    end
+
+    @ykpostnet_info = @tmp_payment.organization.get_ykpostnet_info
+    @post_url = URI.parse(ENV['YKPOSTNET_URL']);
+    @success_url = ykpostnet_success_url(@tmp_payment)
+    @fail_url = ykpostnet_fail_url(@tmp_payment)
+    
+    render :layout => false
   end
 
   def send_user_to_paypal tmp_payment
@@ -192,7 +219,10 @@ class PaymentsController < ApplicationController
   def finalize
     BvLogger::log("paypal_finalize", "start")
     BvLogger::log("paypal_finalize", params.to_json)
-    if params[:token]
+    # Check some parameters to make sure its coming from ykpostnet
+    if params[:xid] && params[:xid]!="" && params[:returncode] && params[:returncode]=="1"
+      tmp_payment = TmpPayment.find_by_ykpostnet_xid params[:xid]
+    elsif params[:token]
       #paypal express
       #TODO
       #assuming token is uniq, make sure!
@@ -307,6 +337,28 @@ class PaymentsController < ApplicationController
         cancel_url = organization_path(tmp_payment.organization, :only_path => false)
       end
       cancel_url
+    end
+
+    def ykpostnet_success_url(tmp_payment)
+      if tmp_payment.page
+        success_url = finalize_donation_for_page_path(tmp_payment.page, :only_path => false)
+      elsif tmp_payment.project
+        success_url = finalize_donation_for_project_path(tmp_payment.project, :only_path => false)
+      else
+        success_url = finalize_donation_for_organization_path(tmp_payment.organization, :only_path => false)
+      end
+      success_url
+    end
+
+    def ykpostnet_fail_url(tmp_payment)
+      if tmp_payment.page
+        fail_url = page_path(tmp_payment.page, :only_path => false)
+      elsif tmp_payment.project
+        fail_url = project_path(tmp_payment.project, :only_path => false)
+      else
+        fail_url = organization_path(tmp_payment.organization, :only_path => false)
+      end
+      fail_url
     end
 
     def paypal_ec_params(tmp_payment)

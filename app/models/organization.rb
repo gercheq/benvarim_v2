@@ -3,7 +3,8 @@ class Organization < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
   @paypal_ec_gateway = nil
-
+  @ykpostnet_info = nil
+  
   acts_as_taggable
 
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
@@ -44,6 +45,25 @@ class Organization < ActiveRecord::Base
   validates :description, :presence => true, :length => {:minimum => 20, :maximum => 5000}
 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true
+
+  def ykpostnet_info
+    if @ykpostnet_info.nil?
+      # TODO(berkan): If we continue with this on many organizations, move it to db
+      # OrganizationID => [MerchantID, TerminalID, PostnetID]
+      @ykpostnet_info = {
+        22 => [6700000067,67100944,3371]
+      }
+    end
+    return @ykpostnet_info
+  end
+  
+  def supports_ykpostnet?
+    return BvFeature.is_ykpostnet_enabled? && self.ykpostnet_info[self.id]
+  end
+
+  def get_ykpostnet_info
+    return self.ykpostnet_info[self.id] if self.supports_ykpostnet?
+  end
 
   def safefilename
     transliterate(logo_file_name)

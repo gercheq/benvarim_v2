@@ -61,4 +61,6 @@ Benvarim::Application.configure do
   ENV['INDEXTANK_PUBLIC_URL'] = 'https://2jean.api.indextank.com'
   ENV['SEARCHIFY_PUBLIC_URL'] = 'https://8ip51.api.searchify.com'
   ENV['SEARCHIFY_API_URL'] = 'https://:nxtZWMWywhe270@8ip51.api.searchify.com'
+
+  ENV['YKPOSTNET_URL'] = "https://www.posnet.ykb.com/3DSWebService/OOS";
 end

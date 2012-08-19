@@ -1,0 +1,52 @@
+<style>
+  *{
+     outline: none;
+  }
+
+  body{
+    font-family: "museo-sans-rounded-1","museo-sans-rounded-2", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  a,
+  a:focus,
+  a:active,
+  a:visited { text-decoration:none; color: #0862A2;}
+  a:hover{ text-decoration: underline; }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #0a3663;
+    margin-bottom: 15px;
+    font-family: "museo-sans-rounded-1","museo-sans-rounded-2", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  p{
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+</style>
+<form action="<%=@post_url%>" method="POST" id="sale-form">
+  <input type="hidden" name="posnetID" value="<%=@ykpostnet_info[2]%>" />
+  <input type="hidden" name="mid" value="<%=@ykpostnet_info[0]%>" />
+  <input type="hidden" name="xid" value="<%=@tmp_payment.ykpostnet_xid%>" />
+  <input type="hidden" name="tranType" value="Sale" />
+  <input type="hidden" name="lang" value="tr" />
+  <input type="hidden" name="amount" value="<%=@tmp_payment.amount_in_currency%>" />
+  <input type="hidden" name="installment" value="0" />
+  <input type="hidden" name="currencyCode" value="<%=@tmp_payment.currency[0..1]%>" />
+  <input type="hidden" name="merchantReturnSuccessURL" value="<%=@success_url%>" />
+  <input type="hidden" name="merchantReturnFailURL" value="<%=@fail_url%>" />
+</form>
+
+<div  style="text-align: center;margin-top:40px;">
+  <h2>Bağışınızı yapmak üzere yönlendiriliyorsunuz</h2>
+  <p>Yönlendirmenin çalışmadığı durumda <a href="javascript:submit()">buraya</a> tıklayarak bağışınızı tamamlayabilirsiniz.</p>
+</div>
+<script type="text/javascript">
+  function submit(){
+    var form = document.getElementById("sale-form");
+    form.submit();
+  }
+
+  setTimeout("submit()", 3000);
+</script>

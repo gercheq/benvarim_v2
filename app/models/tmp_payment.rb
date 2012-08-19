@@ -76,7 +76,15 @@ class TmpPayment < ActiveRecord::Base
     rescue
     end
   end
+
+  def assign_yk_postnet_xid
+    #TODO, make sure this is unique from db
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;
+    self.ykpostnet_xid  =  (0..19).map{ o[rand(o.length)]  }.join;
+  end
+
 end
+
 
 
 
@@ -103,5 +111,6 @@ end
 #  hide_name             :boolean         default(FALSE)
 #  is_express            :boolean         default(FALSE)
 #  express_token         :string(255)
+#  ykpostnet_xid         :string(255)
 #
 

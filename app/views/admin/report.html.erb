@@ -71,7 +71,7 @@
         <td><%=link_to p.project.name, p.project%></td>
         <td><%=number_with_precision(p.goal, :locale=>:tr)%></td>
         <td><%=number_with_precision(p.collected, :locale=>:tr)%></td>
-        <td><%=number_with_precision(p.total, :locale=>:tr)%></td>
+        <td><%=p.total%></td>
         <td><%=p.min_date.to_date unless p.min_date.nil?%></td>
         <td><%=p.max_date.to_date unless p.min_date.nil?%></td>
       </tr>

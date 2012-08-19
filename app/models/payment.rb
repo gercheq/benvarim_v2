@@ -51,6 +51,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: payments
@@ -70,5 +71,6 @@ end
 #  predefined_payment_id :integer         default(0)
 #  hide_name             :boolean         default(FALSE)
 #  express_token         :string(255)
+#  ykpostnet_xid         :string(255)
 #
 
