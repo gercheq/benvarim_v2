@@ -64,13 +64,17 @@
       </div>
 
       <div class="actions">
+        <% if @tmp_payment.organization.supports_ykpostnet? %>
+          <%=hidden_field_tag "tmp_payment[ykpostnet_xid]", "false" ,:id=>"ykpostnet_xid"%>
+          <a style="float:left; margin-right: 10px;" href="javascript:redirect_ykpostnet()" class="yellow button large">Bağışı Tamamla</a>
+        <% end %>
+
         <% if @tmp_payment.is_express?%>
           <%=hidden_field_tag "tmp_payment[is_express]", "1"%>
           <%= link_to image_tag("https://www.paypal.com/tr_TR/i/btn/btn_xpressCheckout.gif"), "javascript:void($('#donate-form').submit());" %>
         <% else %>
           <input type="submit" value="Gönder" name="commit" class="yellow button large button-send-to-paypal">
         <% end %>
-
       </div>
 
       <div class="paypal-desc">
