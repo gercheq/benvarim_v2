@@ -97,6 +97,12 @@ class PagesController < ApplicationController
 
   def delete
     @page = current_user.pages.find(params[:id])
+    @pages = current_user.pages.all
+    if @page.delete
+      redirect_to(@pages, :success => 'Bağış sayfası silindi.')
+    else
+     redirect_to(@page, :success => 'Silmekten son anda vazgectiniz.')
+    end
   end
 
   def create
