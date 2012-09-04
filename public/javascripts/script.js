@@ -102,8 +102,10 @@ function equalHeight(group) {
  */
 function init_benvarim_gallery($container){ }
 
-
-
+function redirect_ykpostnet(){
+    $("#ykpostnet_xid").val(true);
+    $("#donate-form").submit();
+}
 
 
 //

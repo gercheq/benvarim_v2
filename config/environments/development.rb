@@ -53,5 +53,7 @@ Benvarim::Application.configure do
   ENV['SEARCHIFY_PUBLIC_URL'] = "http://aiaa.api.searchify.com"
 
   ENV['ec_key'] = "fkdlsafklaekwlafe"
+
+  ENV['YKPOSTNET_URL'] = 'http://setmpos.ykb.com/3DSWebService/OOS';
 end
 

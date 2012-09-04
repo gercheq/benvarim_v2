@@ -47,6 +47,7 @@ Benvarim::Application.routes.draw do
 
   post '/bagis/kontrol' => 'payments#ipn_handler' , :as => :paypal_ipn
   get '/bagis/tekrar/:id/:retrykey' => 'payments#tmp_payment_retry', :as => :payment_retry
+  get '/bagis/yonlendir/:id' => 'payments#redirect_to_ykpostnet', :as => :redirect_to_ykpostnet
 
   get '/sayfa/:page_id/bagis' => "payments#new", :as => :donate_for_page
   get '/kurum/:organization_id/bagis' => "payments#new", :as => :donate_for_organization
@@ -65,7 +66,6 @@ Benvarim::Application.routes.draw do
   get '/proje/:project_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_project
   get '/kurum/:organization_id/bagis/tamamla' => "payments#finalize", :as => :finalize_donation_for_organization
   get '/proje/:id' => "projects#show", :as => :project
-
 
   devise_for :users, :skip => [:sessions], :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
     get '/gonullu/giris' => 'devise/sessions#new', :as => :new_user_session

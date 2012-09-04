@@ -1,5 +1,5 @@
 class BvFeature
-  TEST_FEATURES = ["bv_support", "paypal_ec"]
+  TEST_FEATURES = ["bv_support", "paypal_ec", "ykpostnet"]
   FEATURE_PREDEFINED_PAYMENTS = "pre-paym"
   @@session = nil
   # def self.has_feature feature, obj
@@ -39,6 +39,10 @@ class BvFeature
 
   def self.is_paypal_ec_enabled?
     return true
+  end
+
+  def self.is_ykpostnet_enabled?
+    return self.is_feature_enabled? "ykpostnet"
   end
 
   def self.init_session
