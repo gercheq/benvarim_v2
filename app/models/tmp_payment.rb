@@ -79,10 +79,13 @@ class TmpPayment < ActiveRecord::Base
 
   def assign_yk_postnet_xid
     #TODO, make sure this is unique from db
-    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;
-    self.ykpostnet_xid  =  (0..19).map{ o[rand(o.length)]  }.join;
+    if self.ykpostnet_xid == "true"
+      o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;
+      self.ykpostnet_xid  =  (0..19).map{ o[rand(o.length)]  }.join;
+    else
+      self.ykpostnet_xid = nil
+    end
   end
-
 end
 
 
