@@ -68,7 +68,8 @@ class PaymentsController < ApplicationController
       @tmp_payment.amount_in_currency = pp.amount
     end
     if @tmp_payment.valid?
-      if @tmp_payment.ykpostnet_xid && @tmp_payment.ykpostnet_xid == "true"
+      @tmp_payment.assign_yk_postnet_xid
+      unless @tmp_payment.ykpostnet_xid.nil?
         send_user_to_ykpostnet @tmp_payment
       else
         send_user_to_paypal @tmp_payment
@@ -81,7 +82,6 @@ class PaymentsController < ApplicationController
   end
 
   def send_user_to_ykpostnet tmp_payment
-    tmp_payment.assign_yk_postnet_xid
     if tmp_payment.save
       redirect_to redirect_to_ykpostnet_path tmp_payment
     else
@@ -93,7 +93,7 @@ class PaymentsController < ApplicationController
   def redirect_to_ykpostnet
     @tmp_payment = TmpPayment.find_by_id params[:id]
     #sanity check
-    if @tmp_payment.ykpostnet_xid.nil? || @tmp_payment.ykpostnet_xid == "false"
+    if @tmp_payment.ykpostnet_xid.nil? 
       return redirect_to @tmp_payment.organization
     end
 
