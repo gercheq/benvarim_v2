@@ -101,6 +101,7 @@ class PaymentsController < ApplicationController
     @post_url = URI.parse(ENV['YKPOSTNET_URL']);
     @success_url = ykpostnet_success_url(@tmp_payment)
     @fail_url = ykpostnet_fail_url(@tmp_payment)
+    @currencyCode = BvCurrency.currency_code_for_ykposnet @tmp_payment.currency
     
     render :layout => false
   end

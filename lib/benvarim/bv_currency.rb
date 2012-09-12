@@ -78,4 +78,17 @@ class BvCurrency
         type
     end
   end
+  
+  def self.currency_code_for_ykposnet(currency)
+    case currency
+      when "TRY"
+        "TL"
+      when "USD"
+        "US"
+      when "EUR"
+        "EU"
+      else
+        currency
+    end    
+  end
 end

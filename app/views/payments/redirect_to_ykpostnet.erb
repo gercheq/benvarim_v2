@@ -33,7 +33,7 @@
   <input type="hidden" name="lang" value="tr" />
   <input type="hidden" name="amount" value="<%=@tmp_payment.amount_in_currency%>" />
   <input type="hidden" name="installment" value="0" />
-  <input type="hidden" name="currencyCode" value="<%=@tmp_payment.currency[0..1]%>" />
+  <input type="hidden" name="currencyCode" value="<%=@currencyCode%>" />
   <input type="hidden" name="merchantReturnSuccessURL" value="<%=@success_url%>" />
   <input type="hidden" name="merchantReturnFailURL" value="<%=@fail_url%>" />
 </form>
