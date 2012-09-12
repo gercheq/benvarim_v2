@@ -89,6 +89,6 @@ class BvCurrency
         "EU"
       else
         currency
-    end    
+    end
   end
 end

@@ -25,7 +25,7 @@
     line-height: 1.5;
   }
 </style>
-<form action="<%=@post_url%>" method="POST" id="sale-form">
+<form action="<%=@post_url%>" method="POST" id="sale-form" name="mercForm">
   <input type="hidden" name="posnetID" value="<%=@ykpostnet_info[2]%>" />
   <input type="hidden" name="mid" value="<%=@ykpostnet_info[0]%>" />
   <input type="hidden" name="xid" value="<%=@tmp_payment.ykpostnet_xid%>" />
