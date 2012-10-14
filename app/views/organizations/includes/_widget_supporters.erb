@@ -17,7 +17,7 @@
                 <%= image_tag s.user.photo.url(:thumb) %>
               </div>
               <div class="s-name">
-                <%=link_to s.user.name, s.user%> (<%=s.score%>)
+                <%=link_to s.user.name, s.user%> <span class="hidden">(<%=s.score%>)</span>
               </div>
             </div>
           <% end %>
