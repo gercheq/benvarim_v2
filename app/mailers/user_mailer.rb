@@ -147,7 +147,7 @@ class UserMailer < ActionMailer::Base
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => @subject,
-         "X-SMTPAPI" => '{"category": "user_page_goal_failed"}')
+         "X-SMTPAPI" => '{"category": "page_goal_failed"}')
   end
 
   def send_last_days_emails
