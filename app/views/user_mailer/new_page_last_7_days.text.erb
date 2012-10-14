@@ -1,8 +1,23 @@
 <%=render :partial => "email_layouts/header"%>
 Merhaba <%=@user.name%>,
 
-<%=@page.name%> isimli bağış sayfanın kapanmasına 7 gün kaldı. Bağış hedefine ulaşmak için <%=@page.remaining_str%> TL daha toplanması gerekiyor. <br/>
-<br/>
-Haydi şimdi bu bilgiyi dostlarınla paylaş ve onları destek olmaya bir kez daha davet et.<br/>
+<%=@page.title%> isimli bağış sayfanın kapanmasına 7 gün kaldı. Bağış hedefine ulaşmak için <%=@page.remaining_str%> TL daha toplanması gerekiyor.
+
+Haydi şimdi bu bilgiyi dostlarınla paylaş ve onları destek olmaya bir kez daha davet et.
+
+
+<%=render :partial => "layouts/fb_msg_to_friends_link",
+    :locals => {
+      :url => page_path(@page, :only_path => false),
+      :text => "Yakın dostlarına email ve mesaj at."
+    }%>
+
+<%=render :partial => "layouts/tweet_link",
+      :locals => {
+        :url => page_path(@page, :only_path => false),
+        :text => "Twitter'da paylaş",
+        :tweet_text => "Sayfamın başarıya ulaşması için son 7 gün. :( Haydi!"
+      }%>
+
 
 <%=render :partial => "email_layouts/footer" %>

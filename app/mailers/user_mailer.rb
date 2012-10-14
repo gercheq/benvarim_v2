@@ -55,6 +55,16 @@ class UserMailer < ActionMailer::Base
          "X-SMTPAPI" => '{"category": "user_newpage_third_day"}')
   end
 
+  def new_page_last_7_days page_id
+    @page = Page.find page_id
+    @user = @page.user
+    @subject = "#{@user.name}, sayfanı başarıya ulaştırmak için 7 gün kaldı!"
+    mail(:to => @user.email,
+         :bcc => "team@benvarim.com",
+         :subject => @subject,
+         "X-SMTPAPI" => '{"category": "user_newpage_last_7_days"}')
+  end
+
 
   def send_inactivity_for_days(now, period)
     start_date = now - period.day

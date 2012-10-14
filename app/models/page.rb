@@ -65,6 +65,10 @@ class Page < ActiveRecord::Base
     number_with_precision(self.goal, :locale => :tr)
   end
 
+  def remaining_str
+    number_with_precision(self.goal - self.collected, :locale => :tr)
+  end
+
   def can_be_donated?
     self.active? && (self.end_time.nil? || self.end_time > Time.now) && self.project.can_be_donated?
   end
