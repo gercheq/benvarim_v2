@@ -104,6 +104,7 @@ class Page < ActiveRecord::Base
     begin
       Delayed::Job.enqueue MailJob.new("UserMailer", "new_page", self.id)
       Delayed::Job.enqueue(MailJob.new("UserMailer", "new_page_3_days", self.id), 0, 3.days.from_now)
+#      Delayed::Job.enqueue(MailJob.new("UserMailer", "new_page_7_days", self.id), 0, 7.days.from_now)
     rescue
     end
   end
