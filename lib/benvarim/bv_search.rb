@@ -82,6 +82,7 @@ class ActiveRecord::Base
     # BvSearchObserver.add_class self.name, index_map
   end
 
+  public
   def index_after_save
     puts "after save #{self.class.name}"
     puts @@index_maps
@@ -109,7 +110,7 @@ class ActiveRecord::Base
     Delayed::Job.enqueue IndexJob.new({:class_name => self.class.name, :id => self.id, :index_map => index_map})
   end
 
-
+  protected
   def add_to_index data, variables = nil
     data = data || {}
     data[:id] = self.id

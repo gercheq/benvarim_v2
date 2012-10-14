@@ -102,7 +102,8 @@ class Page < ActiveRecord::Base
 
   def after_create_hook
     begin
-      Delayed::Job.enqueue MailJob.new("UserMailer", "new_page", self)
+      Delayed::Job.enqueue MailJob.new("UserMailer", "new_page", self.id)
+      Delayed::Job.enqueue(MailJob.new("UserMailer", "new_page_3_days", self.id), 0, 3.days.from_now)
     rescue
     end
   end

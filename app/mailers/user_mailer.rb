@@ -32,14 +32,29 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def new_page(page)
-    @user = page.user
-    @page = page
+  def new_page page_id
+    @page = Page.find page_id
+    @user = @page.user
+    if @page.aggregated_hidden
+      # hidden page, don't even bother
+      return
+    end
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => "#{@user.name}, Bağış Sayfanı Yarattın. Tebrikler!",
          "X-SMTPAPI" => '{"category": "user_newpage"}')
   end
+
+  def  new_page_3_days page_id
+    @page = Page.find page_id
+    @user = @page.user
+    @subject = "#{@user.name}, bağış sayfan nasıl gidiyor?"
+    mail(:to => @user.email,
+         :bcc => "team@benvarim.com",
+         :subject => @subject,
+         "X-SMTPAPI" => '{"category": "user_newpage_third_day"}')
+  end
+
 
   def send_inactivity_for_days(now, period)
     start_date = now - period.day

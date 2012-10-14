@@ -17,4 +17,9 @@ task :cron => :environment do
     PaymentMailer.send_5_days_goal_not_reached_email
   rescue
   end
+  day_of_year = Time.new.yday % 3
+  if day_of_year % 3 == 0
+    # re-create search index once in three days to catch up
+    BvIndexRebuilder.re_index({"recreate_index" => false, "sync" => false})
+  end
 end

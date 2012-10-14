@@ -1215,7 +1215,7 @@ blockquote span.quotation{
 #featured-charities a {
     height: 80px;
     display: inline-block;
-    margin: 10px 25px;
+    margin: 10px 10px 10px 0;
     text-indent: -999em;
     background-repeat: no-repeat;
 }
@@ -1225,15 +1225,15 @@ blockquote span.quotation{
 }
 
 #featured-charities .more-link a {
-    font-size: %90;
-    text-align: left;
-    float: right;
-    clear: both;
-    padding: 20px 0;
-    display: block;
-    margin: 0;
-    text-indent: 0;
-    height: auto;
+  font-size: %90;
+  text-align: left;
+  clear: both;
+  padding: 15px 0 0;
+  display: block;
+  margin: 15px 0 0;
+  text-indent: 0;
+  height: auto;
+  border-top: 1px dotted #DDD;
 }
 
 .fc-default{
@@ -1297,6 +1297,18 @@ blockquote span.quotation{
     width: 70px;
 }
 
+#fc-sizofreni{
+    background: url('../images/logo-sizofreni.png') top center no-repeat;
+    width: 155px;
+}
+#fc-tocev{
+    background: url('../images/logo-tocev.png') top center no-repeat;
+    width: 170px;
+}
+#fc-tofd{
+    background: url('../images/logo-tofd.png') top center no-repeat;
+    width: 84px;
+}
 
 #featured-charities .opaque {
       filter: alpha(opacity=20);
@@ -2140,6 +2152,8 @@ blockquote span.quotation{
       width: 50px;
       margin: 0 10px 10px 0;
       float: left;
+      height: 80px;
+      overflow: hidden;
     }
 
     .supporter .s-photo{
