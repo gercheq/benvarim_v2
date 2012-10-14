@@ -1215,7 +1215,7 @@ blockquote span.quotation{
 #featured-charities a {
     height: 80px;
     display: inline-block;
-    margin: 10px 25px;
+    margin: 10px 10px;
     text-indent: -999em;
     background-repeat: no-repeat;
 }
@@ -2140,6 +2140,8 @@ blockquote span.quotation{
       width: 50px;
       margin: 0 10px 10px 0;
       float: left;
+      height: 80px;
+      overflow: hidden;
     }
 
     .supporter .s-photo{
