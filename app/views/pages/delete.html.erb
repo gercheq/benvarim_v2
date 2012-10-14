@@ -1,0 +1,24 @@
+<%=render :partial => 'layouts/errors'%>
+
+<div class="one-column">
+  <div class="widget widget-light">
+    <div class="w-inner">
+      <div class="w-title">"<%= @page.title %>" sayfanızı gerçekten silmek istiyor musunuz?</div>
+
+
+
+      <%= form_for @page, :html => { :multipart => true } do |f| %>
+
+        <%= f.hidden_field :hidden, :value=>"1" %>
+
+
+        <input type="submit" value="Evet" class="button yellow"/>
+
+        <%= link_to 'Hayır, vazgeçtim.', pages_path, :class=>"button yellow" %>
+
+      <% end%>
+
+
+    </div>
+  </div>
+</div><!-- end of .one-column -->
