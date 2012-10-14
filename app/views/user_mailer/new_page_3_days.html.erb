@@ -2,21 +2,25 @@
   :locals => {
     :title => @subject
   }%>
-<% page = @page%>
 Merhaba <%=@user.name%>,<br/>
 <br/>
 Sayfanı <%=render :partial => "layouts/like_link",
     :locals => {
-      :url => page_path(page, :only_path => false),
+      :url => page_path(@page, :only_path => false),
       :text => "Facebook"
     }%> ve <%=render :partial => "layouts/tweet_link",
           :locals => {
-            :url => page_path(page, :only_path => false),
+            :url => page_path(@page, :only_path => false),
             :text => "Twitter",
-            :tweet_text => page.title
+            :tweet_text => @page.title
           }%>  gibi sosyal medya hesaplarında paylaştın mı?<br/>
 <br/>
-Yakın dostlarına <a href="https://www.facebook.com/messages/new">email ve mesaj</a> da atmalısın.
+Yakın dostlarına
+<%=render :partial => "layouts/fb_msg_to_friends_link",
+    :locals => {
+      :url => page_path(@page, :only_path => false),
+      :text => "email ve mesaj"
+    }%> da atmalısın.<br/>
 <br/>
 <br/>
 Hatırladın mı, sayfanı çevrene düzenli olarak hatırlatmak başarıya giden en önemli yol.

@@ -1,0 +1,11 @@
+<%
+unless defined?(text) && text != nil
+  text = "Benvarim.com"
+end
+unless defined?(url) && url != nil
+  url = "http://benvarim.com"
+end
+
+final_url = "https://www.facebook.com/dialog/send?app_id=#{ENV['FACEBOOK_APP_ID']}&name=#{CGI.escape(text)}&link=#{CGI.escape(url)}&redirect_uri=#{CGI.escape(root_path(:only_path=>false))}"
+%>
+<a href="<%=final_url%>"><%=text%></a>

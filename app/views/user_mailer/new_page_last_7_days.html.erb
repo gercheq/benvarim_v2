@@ -1,0 +1,14 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => @subject
+  }%>
+<% page = @page%>
+Merhaba <%=@user.name%>,<br/>
+<br/>
+
+<%=render :partial => "layouts/like_link",
+    :locals => {
+      :url => page_path(page, :only_path => false),
+      :text => "Facebook"
+    }%>
+<%=render :partial => "email_layouts/footer" %>

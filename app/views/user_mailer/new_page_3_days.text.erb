@@ -7,8 +7,12 @@ Sayfanı Facebook, Twitter, Friendfeed gibi sosyal medya hesaplarında paylaşt�
     :page => @page
   }%>
 
-Yakın dostlarına email ve mesaj da atmalısın.
-https://www.facebook.com/messages/new
+  <%= render :partial => "layouts/fb_msg_to_friends_link",
+      :locals => {
+        :url => page_path(@page, :only_path => false),
+        :text => "Yakın dostlarına email ve mesaj da atmalısın."
+      }%>
+
 
 Hatırladın mı, sayfanı çevrene düzenli olarak hatırlatmak başarıya giden en önemli yol.
 
