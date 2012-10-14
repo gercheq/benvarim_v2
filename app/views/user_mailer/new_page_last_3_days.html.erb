@@ -5,11 +5,12 @@
 
 Merhaba <%=@user.name%>,<br/>
 <br/>
-<a href="<%=page_path(@page, :only_path => false)%>"><%=@page.title%><a/> isimli bağış sayfanın kapanmasına 7 gün kaldı. Bağış hedefine ulaşmak için <%=@page.remaining_str%> TL daha toplanması gerekiyor. <br/>
+<a href="<%=page_path(@page, :only_path => false)%>"><%=@page.title%><a/> isimli bağış sayfanın kapanmasına 3 gün kaldı. Bağış hedefine ulaşmak için <%=@page.remaining_str%> TL daha toplanması gerekiyor. <br/>
 <br/>
-Haydi şimdi bu bilgiyi dostlarınla paylaş ve onları destek olmaya bir kez daha davet et.<br/>
+Hala vakit var, şimdi son bir hatırlatma yapmanın tam zamanı. Sence? <br/>
 <br/>
-Yakın dostlarına <%=render :partial => "layouts/fb_msg_to_friends_link",
+
+Yakın dostlarınla <%=render :partial => "layouts/fb_msg_to_friends_link",
     :locals => {
       :url => page_path(@page, :only_path => false),
       :text => "email ve mesaj at."
@@ -18,7 +19,7 @@ Yakın dostlarına <%=render :partial => "layouts/fb_msg_to_friends_link",
 <%=render :partial => "layouts/tweet_link",
       :locals => {
         :url => page_path(@page, :only_path => false),
-        :text => "Twitter'da paylaş",
+        :text => "Twitter'da paylaş!",
         :tweet_text => "Sayfamın başarıya ulaşması için son 7 gün. :( Haydi!"
       }%><br/>
 

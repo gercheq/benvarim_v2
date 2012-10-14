@@ -97,10 +97,26 @@ class UserMailer < ActionMailer::Base
     @page = Page.find page_id
     @user = @page.user
     @organization = @page.organization
+
+    return unless @page.can_be_donated?
     
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => "#{@user.name}, Mektup Var!-#{@organization.name})",
-         "X-SMTPAPI" => '{"category": "user_newpage"}')
+         "X-SMTPAPI" => '{"category": "user_newpage_7_days"}')
   end
+  
+  def new_page_last_3_days page_id
+    @page = Page.find page_id
+    @user = @page.user
+    @subject = "#{@user.name}, 3 Günde Neler Değişir Neler..."
+    
+    return unless @page.can_be_donated?
+    
+    mail(:to => @user.email,
+         :bcc => "team@benvarim.com",
+         :subject => @subject,
+         "X-SMTPAPI" => '{"category": "user_newpage_last_3_days"}')
+  end
+  
 end
