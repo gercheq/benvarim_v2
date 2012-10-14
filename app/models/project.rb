@@ -101,6 +101,11 @@ class Project < ActiveRecord::Base
      relation.where("NOT projects.aggregated_hidden OR projects.aggregated_hidden IS NULL").where("NOT projects.hidden OR projects.hidden IS NULL")
    end
 
+   def self.filter_out_visible relation=nil
+     relation ||= Project
+     relation.where("projects.aggregated_hidden AND projects.aggregated_hidden IS NOT NULL").where("projects.hidden AND projects.hidden IS NOT NULL")
+   end
+   
    def top_pages
      Page.filter_out_hidden self.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
    end

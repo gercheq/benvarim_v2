@@ -1,0 +1,58 @@
+<table class="table">
+	<tr>
+		<th></th>
+		<th>Seçilen Tarih Aralığı</th>
+		<th>Son Ay</th>
+		<th>Son 6 Ay</th>
+		<th>Bugüne Kadar</th>
+	</tr>
+	<tr>
+		<td>Yeni eklenen "Destekleyen" sayısı</td>
+		<td><%=@supporter%></td>
+		<td><%=@supporter_lm%></td>
+		<td><%=@supporter_6m%></td>
+		<td><%=@supporter_lt%></td>
+	</tr>
+	<tr>
+		<td>Kurumunuza ait aktif proje sayısı</td>
+		<td><%=@total_project_count%></td>
+		<td><%=@total_project_count_lm%></td>
+		<td><%=@total_project_count_6m%></td>
+		<td><%=@total_project_count_lt%></td>
+	</tr>
+	<tr>
+		<td>(a) Toplam bağış miktarı</td>
+		<td><%=number_with_precision(@total_fund, :locale=>:tr)%> TL</td>
+		<td><%=number_with_precision(@total_fund_lm, :locale=>:tr)%> TL</td>
+		<td><%=number_with_precision(@total_fund_6m, :locale=>:tr)%> TL</td>
+		<td><%=number_with_precision(@total_fund_lt, :locale=>:tr)%> TL</td>
+	</tr>
+	<tr>
+		<td>(b) Bağışçı sayısı</td>
+		<td><%=@total_funder%></td>
+		<td><%=@total_funder_lm%></td>
+		<td><%=@total_funder_6m%></td>
+		<td><%=@total_funder_lt%></td>
+	</tr>
+	<tr>
+		<td>(c) Kullanıcıların açtıgı aktif sayfa sayısı</td>
+		<td><%=@count_new_page%></td>
+		<td><%=@count_new_page_lm%></td>
+		<td><%=@count_new_page_6m%></td>
+		<td><%=@count_new_page_lt%></td>
+	</tr>
+	<tr>
+		<td>Sayfa başı bağış miktarı(a/c)</td>
+		<td><%=number_with_precision(@total_fund/@count_new_page, :locale=>:tr)+" TL" unless @count_new_page == 0%></td>
+		<td><%=number_with_precision(@total_fund_lm/@count_new_page_lm, :locale=>:tr)+" TL" unless @count_new_page_lm == 0%></td>
+		<td><%=number_with_precision(@total_fund_6m/@count_new_page_6m, :locale=>:tr)+" TL" unless @count_new_page_6m == 0%></td>
+		<td><%=number_with_precision(@total_fund_lm/@count_new_page_lt, :locale=>:tr)+" TL" unless @count_new_page_lt == 0%></td>
+	</tr>
+	<tr>
+		<td>Sayfa başı bağışçı sayısı(b/c)</td>
+		<td><%=number_with_precision(@total_fund/@total_funder, :locale=>:tr) unless @total_funder == 0%></td>
+		<td><%=number_with_precision(@total_fund_lm/@total_funder_lm, :locale=>:tr)+" TL" unless @total_funder_lm == 0%></td>
+		<td><%=number_with_precision(@total_fund_6m/@total_funder_6m, :locale=>:tr)+" TL" unless @total_funder_6m == 0%></td>
+		<td><%=number_with_precision(@total_fund_lt/@total_funder_lt, :locale=>:tr)+" TL" unless @total_funder_lt == 0%></td>
+	</tr>
+</table>

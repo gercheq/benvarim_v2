@@ -2494,7 +2494,31 @@ blockquote span.quotation{
   width: auto;
 }
 
+/* REPORT */
+.widget-report-left {
+	width: 465px;
+	margin-right: 20px;
+}
 
+.widget-report-right {
+	width: 465px;
+	float:right;
+}
+
+.organization-report-calendar{
+	font-family: "museo-sans-rounded-1","museo-sans-rounded-2", Helvetica, Arial, sans-serif;
+	color: #444;
+	width: 300px;
+	padding: 5px;
+	font-size: 16px;
+	border: none;
+	background: #EDF9FB;
+	border: 1px solid #D3DDDF;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
 /* TABS */
 #hakkinda{
 

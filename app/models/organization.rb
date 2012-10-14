@@ -77,6 +77,10 @@ class Organization < ActiveRecord::Base
   def visible_projects
     Project.filter_out_hidden self.projects
   end
+  
+  def hidden_projects
+    Project.filter_out_visible self.projects
+  end
 
   def after_create_hook
     #create default project

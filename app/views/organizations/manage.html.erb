@@ -1,0 +1,138 @@
+<div class="line">
+	<div class="widget widget-light clearfix">
+		<div class="w-inner">
+			<%=link_to @organization.name, organization_path(@organization)%> > Yönetim Paneli
+			<div class="line">
+	        	<div class="size4of4">
+	          		<h1 class="org-name" style="display: inline-block"><%=@organization.name%></h1>
+					- <%=link_to "Kurum Bilgilerini Düzenle", edit_organization_path(@organization), :class=>""%>
+				</div>
+	  		</div>
+		</div>
+	</div>	
+</div>
+<div class="line">
+	<div class="size2of4">
+		<div class="widget widget-light clearfix widget-report-left">
+			<div class="w-inner">
+	    		<div class="line">
+	    			<div class="size1of2">
+	    				<h4>Kurum İletişim Bilgileri</h4>
+	    				<p style="margin-left:10px">
+	    					<b>Adres:</b> <%=@organization.address%><br/>
+	    					<b>Telefon:</b> <%=@organization.phone%><br/>
+	    					<b>Email:</b> <%=@organization.email%>
+	    				</p>
+	    			</div>
+	    			<div class="size1of2">
+	    				<h4>İletişim Kişişi</h4>
+	    				<p style="margin-left:10px">
+	    					<%=@organization.contact_name%><br/>
+	    					<%=@organization.contact_title%><br/>
+	    					<b>Telefon:</b> <%=@organization.contact_phone%><br/>
+	    					<b>Email:</b> <%=@organization.contact_email%>
+	    				</p>
+	    			</div>
+	    		</div>
+	  		</div>
+		</div>
+	</div>
+	<div class="size2of4">
+		<div class="widget widget-light clearfix widget-report-right">
+			<div class="w-inner">
+				<div class="line">
+					<div class="size1of1">
+						<h4>Aktif Projeler</h4>
+						<ul>
+						<% @organization.visible_projects.each do |p| %>
+							<li><%=link_to p.name, project_path(p)%> - <%=link_to "Proje Bilgilerini Düzenle", edit_project_path(p), :class=>"editleme"%></li>			
+						<% end %>
+						</ul>
+						<%="Aktif proje bulunmamaktadır." if @organization.visible_projects.size == 0 %>
+						<h4>Kapalı(geçmiş) Projeler</h4>
+						<ul>
+						<% @organization.hidden_projects.each do |p| %>
+							<li><%=link_to p.name, project_path(p)%> - <%=link_to "Proje Bilgilerini Düzenle", edit_project_path(p)%></li>			
+						<% end %>
+						</ul>
+						<%="Kapalı proje bulunmamaktadır." if @organization.hidden_projects.size == 0 %>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>	
+</div>
+<div class="line">
+	<div class="size1of1">
+		<div class="widget widget-light clearfix">
+			<div class="w-inner">
+				<h2>Kurum Performansınız</h2>
+				<div id="report-calender-container">
+					<p>
+						Başlangıç Tarihi: <input id="cal-from-performance" name="from" type="text" value="<%=@default_dates[:from].to_date%>" class="text-field organization-report-calendar" /> 						
+						Bitiş Tarihi: <input id="cal-to-performance" name="to" type="text" value="<%=@default_dates[:to].to_date%>" class="text-field organization-report-calendar" /> <%=link_to "Görüntüle", "#", :id=>"show-report-performance", :class=>"button yellow"%>
+					</p>
+				</div>
+				<div id="report-small-container">
+					Rapor oluşturuluyor...
+				</div>
+			</div>
+		</div>
+		<div class="widget widget-light clearfix">
+			<div class="w-inner">
+				<h2>Detaylar</h2>
+				<div id="report-calender-container">
+				    <p>
+						Başlangıç Tarihi: <input id="cal-from-details" name="from" type="text" value="<%=@default_dates[:from].to_date%>" class="organization-report-calendar" /> 
+						Bitiş Tarihi: <input id="cal-to-details" name="to" type="text" value="<%=@default_dates[:to].to_date%>" class="organization-report-calendar" /> <%=link_to "Görüntüle", "#", :id=>"show-report-details",:class=>"button yellow" %>
+				    </p>
+				</div>
+				<div id="report-large-container">
+					Rapor oluşturuluyor...
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% captured = capture do %>
+<script type="text/javascript">
+	var submit_performance = function(){
+		var from = $("#cal-from-performance").val();
+		var to = $("#cal-to-performance").val();
+		
+		$('#report-small-container').html("Rapor oluşturuluyor...");
+		
+		$.get('<%=report_performance_path(@organization)%>',{from: from, to: to}, function(data) {
+			$('#report-small-container').html(data);
+		});
+	}
+	
+	var submit_details = function(){
+		var from = $("#cal-from-details").val();
+		var to = $("#cal-to-details").val();
+		
+		$('#report-large-container').html("Rapor oluşturuluyor...");
+		
+		$.get('<%=report_details_path(@organization)%>',{from: from, to: to}, function(data) {
+			$('#report-large-container').html(data);
+		});
+	}
+
+	$(document).ready(function(){
+		$("#show-report-performance").click(function(e){ 
+			e.preventDefault();
+			submit_performance(); 
+		});
+		$("#show-report-details").click(function(e){ 
+			e.preventDefault();
+			submit_details(); 
+		});
+	
+		submit_performance();
+		submit_details();
+	});
+</script>
+<% end %>
+<%render_at_the_end captured%>
+

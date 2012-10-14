@@ -112,11 +112,17 @@ Benvarim::Application.routes.draw do
 
   get 'kurum/:organization_id/destekle/:user_id' => 'organizations#support_landing',  :as => :support
   get 'kurum/:organization_id/destek' => 'organizations#support',  :as => :new_support
+  
+  get 'kurum/:organization_id/yonetim' => 'organizations#manage', :as => :manage_screen_for_organization
 
 
   # search page
   get 'ara' => "search#index", :as => :search
   get 'ara/d/:id' => "search#id_redirect", :as => :search_result_redirect
+
+  # report page
+  get 'performans/:organization_id' => "report#performance", :as => :report_performance
+  get 'detay/:organization_id' => "report#details", :as => :report_details
 
   # ADMIN PAGES
   get '/kertenkele' => "admin#index", :as => :admin

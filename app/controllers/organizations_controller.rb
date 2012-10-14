@@ -131,4 +131,14 @@ class OrganizationsController < ApplicationController
     flash[:post_support] = 1
     redirect_to @organization
   end
+  
+  def manage
+    begin
+      @organization = current_user.organizations.find(params[:organization_id])
+      @default_dates = BvReport.validate_dates
+    rescue
+    end
+    
+    redirect_to :root if @organization.nil?
+  end
 end

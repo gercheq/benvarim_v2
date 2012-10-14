@@ -1,0 +1,53 @@
+<h3>Açılan Bağış Sayfaları</h3>
+<% if @pages.count == 0 %>
+	Herhangi bir sayfa bulunmamaktadır.
+<%else%>
+<table class="table">
+  <tr>
+    <th>Gönüllü İsmi</th>
+    <th>Sayfa Sloganı</th>
+    <th>Proje İsmi</th>
+    <th>Hedef</th>
+    <th>Toplanan</th>
+    <th>Bağışçı #</th>
+    <th style="width: 80px">Sayfa Açılma Tarihi</th>
+    <th style="width: 80px">Son Bağış Tarihi</th>
+  </tr>
+
+  <% @pages.each do |p| %>
+  <tr>
+    <td><%=link_to p.user.name, p.user %></td>
+    <td><%=link_to p.title, p%></td>
+    <td><%=link_to p.project.name, p.project%></td>
+    <td><%=number_with_precision(p.goal, :locale=>:tr)%></td>
+    <td><%=number_with_precision(p.collected, :locale=>:tr)%></td>
+    <td><%=p.total%></td>
+    <td><%=p.created_at.to_date unless p.created_at.nil?%></td>
+    <td><%=p.max_date.to_date unless p.min_date.nil?%></td>
+  </tr>
+  <% end %>
+</table>
+<%end%>
+
+<h3>Yapılan Bağışlar</h3>
+<% if @payments.count == 0 %>
+	Herhangi bir bağış bulunmamaktadır.
+<%else%>
+<table class="table">
+  <tr>
+    <th>Bağış Sahibi</th>
+    <th>Bağışçının Mesajı</th>
+    <th>Bağış Yapılan Sayfa</th>
+    <th>Bağış Miktarı-TL</th>
+    <th style="width: 80px">Bağış Tarihi</th>
+  </tr>
+  <% @payments.each do |p| %>
+  <tr>
+    <td><%=p.name%></td>
+    <td><%=p.note%></td>
+    <td><%=link_to p.page.title, p.page unless p.page.nil? %><%= "-" if p.page.nil? %></td>
+    <td><%=number_with_precision(p.amount, :locale=>:tr)%></td>
+    <td><%=p.created_at.to_date unless p.created_at.nil?%></td>
+  </tr>
+  <% end %>
+<%end%>

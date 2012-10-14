@@ -3,19 +3,6 @@
 
 <% @bodyid = "page-kurum" %>
 
-<% if (user_signed_in? && current_user == @organization.user)%>
-<div class="admin-actions rc line">
-  <div class="size1of4 aa-title">Yönetim Paneli:</div>
-  <div class="size3of4 lastUnit">
-    <ul>
-      <li><%=link_to "Düzenle", edit_organization_path(@organization)%></li>
-      <li><%=link_to "Yeni Proje Ekle", new_project_for_organization_path(@organization)%></li>
-    </ul>
-  </div>
-</div>
-<% end %>
-
-
 <div class="widget widget-light widget-kurum ">
   <div class="w-inner clearfix">
     <div class="w-content">
@@ -31,7 +18,9 @@
           <% if @organization.can_be_donated? %>
             <%=link_to "Bağış Yap", donate_popup_for_organization_path(@organization), :class => "yellow button  no-margin", :rel => "facebox"%>
           <% end %>
-
+		  <% if (user_signed_in? && current_user == @organization.user)%>
+		  	<%=link_to "Yönetim Paneli", manage_screen_for_organization_path(@organization), :class => "yellow button  no-margin", :style => "float:right"%>
+  		  <% end %>
         </div>
       </div><!-- #org-summary -->
 
