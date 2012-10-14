@@ -1,0 +1,19 @@
+<%=render :partial => "email_layouts/header"%>
+
+Merhaba <%=@user.name%>,
+Ben <%=@organization.contact_name%>, <%=@organization.name%>'de <%=@organization.contact_title%> olarak görev yapmaktayım.  
+Benvarim.com'da kurumumuzu desteklemek adına açtığın bağış sayfası için teşekkürler. Bu emailde sana <%=@organization.name%> ve toplanan kaynağın aktarılacağı proje hakkında daha detaylı bilgi vermek isterim. 
+
+BAZI BILGILER RESIMLER
+
+Umarım bu bilgiler senin vasıtanla toplanan bağışlar ile neler başaracağımıza dair bir ipucu vermiştir. Bizim için daha çok kaynak daha çok proje demek. İşte bu yüzden senin koyduğun hedefe ulaşman çok önemli. 
+Haydi sayfanı bir kez daha paylaş ve onların da desteğini iste. 
+Daha çok kaynağa sahip olmamıza ön ayak olduğun için <%=@organization.name%> adına teşekkür ederim. 
+
+
+
+<%=@organization.contact_name%>
+<%=@organization.contact_title%>
+<%=@organization.name%>-<%=organization_path(@organization, :only_path=>false)%> 
+
+<%=render :partial => "email_layouts/footer" %>

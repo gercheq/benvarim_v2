@@ -1,17 +1,16 @@
 <%=render :partial => "email_layouts/header"%>
+
 Merhaba <%=@user.name%>,
 
-Benvarim.com'da oluşturduğun bağış sayfası ve topladığın bağışlar için tebrik ederiz.
-Dileriz sayfada oluşturduğun bağış hedefi en kısa zamanda başarıya ulaşır.
+Benvarim.com'da "<%=@page.title%>" isimli bağış sayfanı yarattın. Tebrikler! Şimdi sıra hedefine ulaşmaya geldi. 
+Başarıya ulaşma yöntemleri ile ilgili videomuzu seyretmen ister misin? (https://vimeo.com/33775867) 
 
-BenVarım ekibinin yardımcı olabileceği bir konu varsa bizimle her zaman iletişime geçebilirsin.
+Sayfanı başarıya ulaştırmanın 3 altın kuralı var:
+	İyi bir sebep ve teşvik edici bir açıklama
+	Doğru bir hedef
+	Çevreni yeterince haberdar etmek
 
-Sayfanın başarılı olması için, birkaç altın kural var. Öncelikle yakın çevrenden bağış yapacağına emin olduğun kişilerden bağış istemek faydalı olur.
-En önemlisi, düzenli aralıklarla sayfanı paylaşmak ve çevrene duyurmak.
-Yılmadan paylaşmaya, bağış istemeye devam ettikçe, bağış hedefine ulaşacaksın.
-
-Ekte linkini verdiğimiz video ve birkaç blog linklerinin yardımcı olacağına inanıyoruz.
-Gönüllü sayfası nasıl hazırlanır? http://blog.benvarim.com/gonullu-bagis-sayfasi-nasil-hazirlanir/
-Bağış sayfanızla başarıyla ulaşmanın sırları http://vimeo.com/33775867
+Bu konuda daha detaylı bir yazıyı blog'umuzda bulabilirsin. (http://blog.benvarim.com/gonullu-bagis-sayfasi-nasil-hazirlanir/) 
+"Ben de varım" dedigin için teşekkürler!
 
 <%=render :partial => "email_layouts/footer" %>

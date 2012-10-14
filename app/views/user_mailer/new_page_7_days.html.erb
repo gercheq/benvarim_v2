@@ -1,0 +1,21 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => ""
+  }%>
+
+Merhaba <%=@user.name%>,<br/>
+Ben <%=@organization.contact_name%>, <%=@organization.name%>'de <%=@organization.contact_title%> olarak görev yapmaktayım. <br/> 
+<a href="https://benvarim.com">Benvarim.com</a>'da kurumumuzu desteklemek adına açtığın bağış sayfası için teşekkürler. Bu emailde sana <%=@organization.name%> ve toplanan kaynağın aktarılacağı proje hakkında daha detaylı bilgi vermek isterim. <br/><br/>
+
+BAZI BILGILER RESIMLER<br/><br/>
+
+Umarım bu bilgiler senin vasıtanla toplanan bağışlar ile neler başaracağımıza dair bir ipucu vermiştir. Bizim için daha çok kaynak daha çok proje demek. İşte bu yüzden senin koyduğun hedefe ulaşman çok önemli. <br/>
+Haydi sayfanı bir kez daha paylaş ve onların da desteğini iste. <br/>
+Daha çok kaynağa sahip olmamıza ön ayak olduğun için <%=@organization.name%> adına teşekkür ederim. <br/><br/><br/>
+
+<%=@organization.contact_name%><br/>
+<%=@organization.contact_title%><br/>
+<%=link_to @organization.name, organization_path(@organization, :only_path=>false)%>  
+
+
+<%=render :partial => "email_layouts/footer" %>

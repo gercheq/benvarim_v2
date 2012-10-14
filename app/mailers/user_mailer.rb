@@ -37,7 +37,7 @@ class UserMailer < ActionMailer::Base
     @page = page
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
-         :subject => "Bağış Sayfanın Başarıya Ulaşmasını Dileriz",
+         :subject => "#{@user.name}, Bağış Sayfanı Yarattın. Tebrikler!",
          "X-SMTPAPI" => '{"category": "user_newpage"}')
   end
 
@@ -66,5 +66,16 @@ class UserMailer < ActionMailer::Base
          :bcc => "team@benvarim.com",
          :subject => "Bağış sayfanı tekrar canlandırmak için yapman gerekenler",
          "X-SMTPAPI" => '{"category": "user_pageinactivity"}')
+  end
+  
+  def new_page_7_days page_id
+    @page = Page.find page_id
+    @user = @page.user
+    @organization = @page.organization
+    
+    mail(:to => @user.email,
+         :bcc => "team@benvarim.com",
+         :subject => "#{@user.name}, Mektup Var!-#{@organization.name})",
+         "X-SMTPAPI" => '{"category": "user_newpage"}')
   end
 end
