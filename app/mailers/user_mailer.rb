@@ -119,4 +119,17 @@ class UserMailer < ActionMailer::Base
          "X-SMTPAPI" => '{"category": "user_newpage_last_3_days"}')
   end
   
+  def page_goal_failed page_id
+    @page = Page.find page_id
+    @user = @page.user
+    @subject = "#{@user.name}, Bu Sefer Olmadı, Bir Dahaki Sefere..."
+
+    return unless @page.can_be_donated?
+    
+    mail(:to => @user.email,
+         :bcc => "team@benvarim.com",
+         :subject => @subject,
+         "X-SMTPAPI" => '{"category": "user_page_goal_failed"}')
+  end
+  
 end

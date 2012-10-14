@@ -1,0 +1,17 @@
+<%=render :partial => "email_layouts/header",
+  :locals => {
+    :title => @subject
+  }%>
+
+Merhaba <%=@user.name%>,<br/>
+<br/>
+<a href="<%=page_path(@page, :only_path => false)%>"><%=@page.title%><a/> isimli bağış sayfan artık kapandı. Bu sefer hedefe ulaşmadı, ama olsun, yılmak yok yola devam. Bundan sonraki sayfalarının başarıya ulaşması açısından gözardı edilmemesi gereken birkaç kriter: <br/>
+<ul>
+	<li>Kendine güzel bir sebep buldun mu?</li>
+	<li>Açıklamanı doğru bir şekilde yazdın mı?</li>
+	<li>Hedeflediğin bağış miktarı gerçekçi mi?</li>
+	<li>Çevrendeki insanlarla yeterince paylaştın mı?</li>
+</ul>
+<br/>
+Herhangi bir konuda sorun olursa bizimle her zaman <a href="mailto:iletisim@benvarim.com">iletişime</a> geçebilirsin. Aramızda iyi ki sen de varsın! <br/>
+<%=render :partial => "email_layouts/footer" %>
