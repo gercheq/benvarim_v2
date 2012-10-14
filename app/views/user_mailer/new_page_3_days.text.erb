@@ -1,0 +1,15 @@
+<%=render :partial => "email_layouts/header"%>
+Merhaba <%=@user.name%>,
+
+Sayfanı Facebook, Twitter, Friendfeed gibi sosyal medya hesaplarında paylaştın mı?
+<%=render :partial => "email_layouts/share_module",
+  :locals => {
+    :page => @page
+  }%>
+
+Yakın dostlarına email ve mesaj da atmalısın.
+https://www.facebook.com/messages/new
+
+Hatırladın mı, sayfanı çevrene düzenli olarak hatırlatmak başarıya giden en önemli yol.
+
+<%=render :partial => "email_layouts/footer" %>
