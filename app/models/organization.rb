@@ -4,7 +4,7 @@ class Organization < ActiveRecord::Base
 
   @paypal_ec_gateway = nil
   @ykpostnet_info = nil
-  
+
   acts_as_taggable
 
   has_attached_file :logo, :default_url =>'/stylesheets/images/logo.gif',
@@ -56,7 +56,7 @@ class Organization < ActiveRecord::Base
     end
     return @ykpostnet_info
   end
-  
+
   def supports_ykpostnet?
     return BvFeature.is_ykpostnet_enabled? && self.ykpostnet_info[self.id]
   end
@@ -77,7 +77,7 @@ class Organization < ActiveRecord::Base
   def visible_projects
     Project.filter_out_hidden self.projects
   end
-  
+
   def hidden_projects
     Project.filter_out_visible self.projects
   end
@@ -114,6 +114,7 @@ class Organization < ActiveRecord::Base
   end
 
   def cant_be_donated_reason
+    return "Kurum bulunamadı" if self.hidden?
     if self.active?
       return nil
     end

@@ -49,6 +49,7 @@ class Project < ActiveRecord::Base
    def cant_be_donated_reason
      return "Proje aktif olmadığı için bağış yapamazsınız." unless self.active?
      return "Projenin süresi dolduğu için bağış yapamazsınız." unless (self.end_time.nil? || self.end_time > Time.now)
+     return "Proje bulunamadı" if self.hidden?
      return self.organization.cant_be_donated_reason
    end
 
@@ -105,7 +106,7 @@ class Project < ActiveRecord::Base
      relation ||= Project
      relation.where("projects.aggregated_hidden AND projects.aggregated_hidden IS NOT NULL").where("projects.hidden AND projects.hidden IS NOT NULL")
    end
-   
+
    def top_pages
      Page.filter_out_hidden self.pages.where("pages.collected > 0").order("pages.collected DESC").limit(3)
    end

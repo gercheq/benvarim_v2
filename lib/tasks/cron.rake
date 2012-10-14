@@ -13,6 +13,12 @@ task :cron => :environment do
     UserMailer.send_5_days_inactivity_email
   rescue
   end
+
+  begin
+    UserMailer.send_last_days_emails
+  rescue
+  end
+
   begin
     PaymentMailer.send_5_days_goal_not_reached_email
   rescue

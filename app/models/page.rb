@@ -70,12 +70,13 @@ class Page < ActiveRecord::Base
   end
 
   def can_be_donated?
-    self.active? && (self.end_time.nil? || self.end_time > Time.now) && self.project.can_be_donated?
+    return self.cant_be_donated_reason == nil
   end
 
   def cant_be_donated_reason
     return "Sayfa aktif olmadığı için bağış yapamazsınız" unless self.active?
     return "Sayfanın süresi dolduğu için bağış yapamazsınız" unless (self.end_time.nil? || self.end_time > Time.now)
+    return "Sayfa bulunamadı" if self.hidden?
     return self.project.cant_be_donated_reason
   end
 

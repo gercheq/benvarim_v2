@@ -47,6 +47,9 @@ class UserMailer < ActionMailer::Base
 
   def  new_page_3_days page_id
     @page = Page.find page_id
+    unless @page.can_be_donated?
+      return
+    end
     @user = @page.user
     @subject = "#{@user.name}, bağış sayfan nasıl gidiyor?"
     mail(:to => @user.email,
@@ -57,6 +60,10 @@ class UserMailer < ActionMailer::Base
 
   def new_page_last_7_days page_id
     @page = Page.find page_id
+    unless @page.can_be_donated?
+      # this is wrong, it will still try to render and call deliver but it is fine. error is error; done!
+      return
+    end
     @user = @page.user
     @subject = "#{@user.name}, sayfanı başarıya ulaştırmak için 7 gün kaldı!"
     mail(:to => @user.email,
@@ -65,6 +72,15 @@ class UserMailer < ActionMailer::Base
          "X-SMTPAPI" => '{"category": "user_newpage_last_7_days"}')
   end
 
+# find unsuccessful pages which are x days from finishing
+  def send_last_x_day(period, method)
+    pages = Page.where("goal > collected AND end_time between now() - interval '?' day AND now() - interval '?' day",period,period-1)
+    pages.each do |p|
+      if(true||p.can_be_donated? && p.did_reach_goal? == false)
+        Delayed::Job.enqueue MailJob.new("UserMailer", method, p.id)
+      end
+    end
+  end
 
   def send_inactivity_for_days(now, period)
     start_date = now - period.day
@@ -77,59 +93,66 @@ class UserMailer < ActionMailer::Base
         Delayed::Job.enqueue MailJob.new("UserMailer", "page_inactivity", p)
       end
     end
+    pages
   end
 
-  def send_5_days_inactivity_email
+  def self.send_5_days_inactivity_email
     now = Time.now.in_time_zone("Istanbul")
     UserMailer.send_inactivity_for_days(now, 5)
   end
 
   def page_inactivity page
     @page = page
+    unless @page.can_be_donated?
+      return
+    end
     @user = page.user
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => "Bağış sayfanı tekrar canlandırmak için yapman gerekenler",
          "X-SMTPAPI" => '{"category": "user_pageinactivity"}')
   end
-  
+
   def new_page_7_days page_id
     @page = Page.find page_id
+    return unless @page.can_be_donated?
     @user = @page.user
     @organization = @page.organization
-
-    return unless @page.can_be_donated?
-    
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => "#{@user.name}, Mektup Var!-#{@organization.name})",
          "X-SMTPAPI" => '{"category": "user_newpage_7_days"}')
   end
-  
+
   def new_page_last_3_days page_id
     @page = Page.find page_id
     @user = @page.user
     @subject = "#{@user.name}, 3 Günde Neler Değişir Neler..."
-    
+
     return unless @page.can_be_donated?
-    
+
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => @subject,
          "X-SMTPAPI" => '{"category": "user_newpage_last_3_days"}')
   end
-  
+
   def page_goal_failed page_id
     @page = Page.find page_id
     @user = @page.user
     @subject = "#{@user.name}, Bu Sefer Olmadı, Bir Dahaki Sefere..."
 
     return unless @page.can_be_donated?
-    
+
     mail(:to => @user.email,
          :bcc => "team@benvarim.com",
          :subject => @subject,
          "X-SMTPAPI" => '{"category": "user_page_goal_failed"}')
   end
-  
+
+  def send_last_days_emails
+    UserMailer.send_last_x_day(7, "new_page_last_7_days")
+    UserMailer.send_last_x_day(3, "new_page_last_3_days")
+    UserMailer.send_last_x_day(0, "page_goal_failed")
+  end
 end
