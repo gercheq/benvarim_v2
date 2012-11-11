@@ -1,5 +1,12 @@
 class HomeController < ApplicationController
+  include ActionView::Helpers::NumberHelper
+  
   def index
+    @user_count = User.all.count
+    @donor_count = Payment.all(:select => "COUNT(DISTINCT email) as count").first.count
+    @payment_amount = number_with_precision(Payment.all(:select => "SUM(amount) as total").first.total,:locale=>:tr)
+    
+    
     @available_organizations = Organization.available_organizations_simple
     @top_pages = Page.filter_out_hidden.where("pages.collected > 0 AND active").order("pages.updated_at DESC").limit(4)
     rows = 4
