@@ -999,6 +999,12 @@ p{
   color: #ffea00;
 }
 
+#footer .mixpanel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 /*
  * Media
  */
@@ -1320,7 +1326,36 @@ blockquote span.quotation{
 
 
 
+#featured-supporters {
 
+}
+
+#featured-supporters ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#featured-supporters li {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 0 10px 0;
+}
+
+#featured-supporters img {
+  width: 30px;
+  margin-right: 5px;
+  height: 30px;
+}
+
+#featured-supporters a,
+#featured-supporters p {
+  height: 30px;
+  line-height: 30px;
+  margin: 0;
+  vertical-align: top;
+  display: inline-block;
+}
 
 
 
