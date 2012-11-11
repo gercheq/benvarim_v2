@@ -7,7 +7,16 @@ class ProjectsController < ApplicationController
   def index
     tag = params[:tag]
     if tag
-      @projects = Project.filter_out_hidden.tagged_with tag
+      @projects = []
+      
+      organizations = Organization.filter_out_hidden.tagged_with tag
+      organizations.each do |o|
+        @projects += o.projects
+      end
+
+      @projects += Project.filter_out_hidden.tagged_with tag
+      @projects.uniq
+
     else
       @projects = Project.filter_out_hidden.all
     end
