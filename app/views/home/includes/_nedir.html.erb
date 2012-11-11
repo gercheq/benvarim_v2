@@ -60,7 +60,7 @@
 
 
   <div class="line">
-    <div class="size1of2 column">
+    <div class="size1of2 column column-projects">
       <%=render :partial => "projects/list_projects_condensed",
         :locals => {
           :generate_widget => true,
@@ -70,7 +70,7 @@
           :link_to_organizations => true
         }%>
     </div>
-    <div class="size1of2 lastUnit column">
+    <div class="size1of2 lastUnit column column-pages">
        <% if @top_pages.length > 0 %>
         <%=render :partial => "pages/list_pages_condensed",
           :locals => {

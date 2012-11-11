@@ -225,6 +225,29 @@ function init_progress_bar(){
 
 
 
+// Equalize Columns on Homepage
+function equalizeColumns() {
+
+  var $projectsWidget = $('.column-projects .widget');
+  var $pagesWidget = $('.column-pages .widget');
+
+
+  var projectsColumnHeight = $pagesWidget.height();
+  var pagesColumnHeight = $pagesWidget.height();
+
+  var maxHeight = Math.max(pagesColumnHeight, projectsColumnHeight);
+  console.log(maxHeight);
+
+  $pagesWidget.height(maxHeight);
+	$projectsWidget.height(maxHeight);
+}
+
+$(window).load(function(){
+  var $homepage = $('#i-home-index');
+  if($homepage.length){
+    equalizeColumns();
+  }
+});
 
 
 /*

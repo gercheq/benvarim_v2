@@ -1327,7 +1327,8 @@ blockquote span.quotation{
 
 
 #featured-supporters {
-
+  margin-top: 20px;
+  margin-bottom: -30px;
 }
 
 #featured-supporters ul {
