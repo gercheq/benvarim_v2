@@ -28,7 +28,7 @@
           <%= image_tag @project.organization.logo.url(:thumb) %>
         <% end %>
 
-        <div class="pb-action">
+        <div class="project-actions">
           <% if @project.can_be_donated? %>
             <%=link_to "Bağış Yap", donate_popup_for_project_path(@project), :class => "yellow button super no-margin", :rel => "facebox"%>
           <% end %>
