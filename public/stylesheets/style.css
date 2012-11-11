@@ -2164,6 +2164,7 @@ blockquote span.quotation{
     }
 
     .s-photo img {
+      min-height: 50px;
       max-width: 50px;
       border: 1px solid #CCC;
     }
