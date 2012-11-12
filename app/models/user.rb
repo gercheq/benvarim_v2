@@ -109,6 +109,8 @@ class User < ActiveRecord::Base
 
   def after_create_hook
     begin
+      key = BvCacheManager.get_cache_key_for_home_page_stats
+      Rails.cache.delete(key)
       # UserMailer.signup(self).deliver
       Delayed::Job.enqueue MailJob.new("UserMailer", "signup", self)
     rescue
