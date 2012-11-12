@@ -56,6 +56,8 @@ class BvTrack
       session["mixpanel_distinct_id"] = [@@distinct_id]
     end
     user_supers = self.get_user_supers current_user
+    puts "BB #{user_supers}"
+    puts "AA #{supers}"
     supers.merge! user_supers
     supers
   end
@@ -79,17 +81,17 @@ class BvTrack
 
   def self.get_user_supers user
     if user.nil?
-       return
        {
          :logged_in => false
        }
+    else
+      {
+        :logged_in => true,
+        :user_name => user.name,
+        :user_birthday => user.birthday,
+        :user_created_at => user.created_at
+      }
     end
-    {
-      :logged_in => true,
-      :user_name => user.name,
-      :user_birthday => user.birthday,
-      :user_created_at => user.created_at
-    }
   end
   def self.get_env req
     unless req.nil?
