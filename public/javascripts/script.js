@@ -159,7 +159,7 @@ function init_tooltips() {
     });
 
 
-
+    // homepage feed tooltips
     $('.more-feed-trigger').tooltip({
       position: 'bottom center'
     })
