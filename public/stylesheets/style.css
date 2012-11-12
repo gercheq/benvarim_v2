@@ -2513,10 +2513,43 @@ blockquote span.quotation{
 
 }
 
+.widget-user .separator {
+  border-top: 1px solid #CCC;
+  border-bottom: none;
+}
+
 .widget-user .p-item {
   margin-left: 0;
 }
 
+.widget-user .user-details{
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.user-pages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-pages li {
+  margin-bottom: 30px;
+}
+
+.user-pages .details {
+  margin-left: 200px;
+}
+
+.user-pages .image{
+  float: left;
+  margin-right: 15px;
+}
+
+.user-pages .image img{
+  width: 180px;
+}
 
 
 /*************************************************************************************
