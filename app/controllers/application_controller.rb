@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
+  before_filter :init_mixpanel
   before_filter :check_maintenance
   before_filter :set_session_on_bv_feature
   protect_from_forgery
@@ -14,6 +15,11 @@ protected
       flash[:notice] = "İlk önce bir kurum eklemelisiniz"
       redirect_to new_organization_path
     end
+  end
+
+  def init_mixpanel
+    puts "initializing mixpanel"
+    BvTrack.set_supers session, request, current_user
   end
 
   def authenticate_admin!

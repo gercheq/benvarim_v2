@@ -19,6 +19,8 @@ Benvarim::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
+  # mixpanel
+  ENV['MIXPANEL_TOKEN'] = '5311e790475ed5724eedd785c38ed3de'
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
