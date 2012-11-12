@@ -63,4 +63,7 @@ Benvarim::Application.configure do
   ENV['SEARCHIFY_API_URL'] = 'https://:nxtZWMWywhe270@8ip51.api.searchify.com'
 
   ENV['YKPOSTNET_URL'] = "https://www.posnet.ykb.com/3DSWebService/OOS";
+
+  # mixpanel
+  ENV['MIXPANEL_TOKEN'] = '560aa9cfca7da5a5fac094ab7abd27f6'
 end

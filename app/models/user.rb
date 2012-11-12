@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_one :fb_connect
 
   after_create :after_create_hook
+  after_save :after_save_hook
 
   validates :name, :length => { :minimum => 5, :maximum => 100 }
 
@@ -109,10 +110,13 @@ class User < ActiveRecord::Base
 
   def after_create_hook
     begin
-      # UserMailer.signup(self).deliver
       Delayed::Job.enqueue MailJob.new("UserMailer", "signup", self)
     rescue
     end
+  end
+
+  def after_save_hook
+    Delayed::Job.enqueue TrackUserJob.new(self.id)
   end
 end
 

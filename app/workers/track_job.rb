@@ -15,7 +15,9 @@ class TrackJob
   end
 
   def perform
-    props = {}
+    props = {
+      "token" => ENV['MIXPANEL_TOKEN']
+    }
     props.merge! self.super_properties
     props.merge! self.properties
     params = {"event" => event_name, "properties" => props}
