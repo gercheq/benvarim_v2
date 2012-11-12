@@ -2,10 +2,19 @@ class HomeController < ApplicationController
   include ActionView::Helpers::NumberHelper
   
   def index
+    # Get stats for home page
     @user_count = User.all.count
     @donor_count = Payment.all(:select => "COUNT(DISTINCT email) as count").first.count
     p = Payment.all(:select => "SUM(amount) as total").first.total.to_i
     @payment_amount = number_with_precision(p,:locale=>:tr,:strip_insignificant_zeros=>true);
+    
+    # Get feed for home page
+    @feed = Support.find(
+      :all,
+      :order => "id desc",
+      :limit => 50
+    )
+    @feed = @feed.group_by {|s| s.user }
     
     @available_organizations = Organization.available_organizations_simple
     @top_pages = Page.filter_out_hidden.where("pages.collected > 0 AND active").order("pages.updated_at DESC").limit(4)
