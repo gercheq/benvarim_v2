@@ -30,10 +30,11 @@
 <div id="stats">
   <div class="container">
     <p>
-      <span class="count count-supporter"></span> <%=@stats[:user_count]%> gönüllü,
-      <span class="count count-donor"></span><%=@stats[:donor_count]%> bağışçı
+      BenVarım kullanıcısı
+      <span class="count count-supporter"> <%=@stats[:user_count]%> </span> gönüllü ve
+      <span class="count count-donor"><%=@stats[:donor_count]%></span> bağışçı
       sayesinde bugüne kadar toplam
-      <span class="count count-total"></span><%=@stats[:payment_amount]%> TL bağış toplandı.
+      <span class="count count-total"><strong><%=@stats[:payment_amount]%> TL</strong></span> bağış toplandı.
     </p>
   </div>
 </div>
@@ -103,7 +104,7 @@
                 <% support.each_with_index do |s, i| %>
                 	  <% if (i+1 == len) && (i>0) %> ve <% end %>
                 	  <a href="<%=organization_path(s.organization)%>">
-                	    <span class="supported-org"><%=s.organization.name%></span></a><% if (i+1 != len) && (i+2 != len)   %>, <% end%>
+                	    <span class="supported-org"><%=s.organization.name%></span></a><% if (i+1 != len) &&show_edit_link (i+2 != len)   %>, <% end%>
                 <% end %>
 
                 <a href="#"><span class="supported-org"></span></a> <%=support.count>1?"kurumlarını":"kurumunu"%> destekledi.
