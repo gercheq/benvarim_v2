@@ -31,7 +31,7 @@
   <div class="container">
     <p>
       BenVarım kullanıcısı
-      <span class="count count-supporter"><%=@user_count%> </span> gönüllü,
+      <span class="count count-supporter"><%=@user_count%> </span> gönüllü ve
       <span class="count count-donor"><%=@donor_count%></span> bağışçı
       sayesinde bugüne kadar toplam
       <span class="count count-total"><strong><%=@payment_amount%> TL</strong></span> bağış toplandı.
@@ -92,15 +92,19 @@
         <ul>
 
 		<% @feed.each do |user,support| %>
-          <li>
-            <p>
-              <img src="<%=user.photo.url(:thumb)%>" class="supporter-photo"/>
-              <a href="<%=user_path(user)%>"><span class="supporter-name"><%=user.name%></span></a>,
-              <% support.each do |s| %>
-              	  <a href="<%=organization_path(s.organization)%>"><span class="supported-org"><%=s.organization.name%></span></a>,
-              <% end %>
-              <a href="#"><span class="supported-org"></span></a> <%=support.count>1?"kurumlarını":"kurumunu"%> destekledi.
-            </p>
+          <li class="clearfix feed-item">
+            <div class="feed-item-image">
+              <img src="<%=user.photo.url(:thumb)%>" c lass="supporter-photo"/>
+            </div>
+            <div class="feed-item-details">
+              <p>
+                <a href="<%=user_path(user)%>"><span class="supporter-name"><%=user.name%></span></a>,
+                <% support.each do |s| %>
+                	  <a href="<%=organization_path(s.organization)%>"><span class="supported-org"><%=s.organization.name%></span></a>,
+                <% end %>
+                <a href="#"><span class="supported-org"></span></a> <%=support.count>1?"kurumlarını":"kurumunu"%> destekledi.
+              </p>
+            </div>
           </li>
 		<% end %>
         </ul>
