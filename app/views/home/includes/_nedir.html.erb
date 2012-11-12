@@ -116,18 +116,24 @@
             	  <% if len == 1%>
             	  kurumunu destekledi.
             	  <% elsif len > 2%>
-            	  ve <a class="more-feed-trigger" href="#"><%=len-1%> kurumu</a> daha destekledi.
+            	  ve
+            	  <a
+            	    class="more-feed-trigger"
+            	    href="#"
+            	    title='<ul>
+              	    <%support.each_with_index do |s, i|%>
+              	      <% next if i == 0 %>
+              	      <li>
+                    	  <a href="<%=organization_path(s.organization)%>">
+                    	    <span class="supported-org"><%=s.organization.name%></span>
+                    	  </a>
+                    	</li>
+                    <% end %>
+                  </ul>'>
+            	      <%=len-1%> kurumu
+            	  </a> daha destekledi.
 
-            	  <ul class="more-feed-list" style="display:none;">
-            	    <%support.each_with_index do |s, i|%>
-            	      <% next if i == 0 %>
-            	      <li>
-                  	  <a href="<%=organization_path(s.organization)%>">
-                  	    <span class="supported-org"><%=s.organization.name%></span>
-                  	  </a>
-                  	</li>
-                  <% end %>
-                </ul>
+
 
             	  <% else %>
             	  kurumlarını destekledi.

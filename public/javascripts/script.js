@@ -158,6 +158,14 @@ function init_tooltips() {
 
     });
 
+
+
+    $('.more-feed-trigger').tooltip({
+      position: 'bottom center'
+    })
+
+
+
 }
 
 
