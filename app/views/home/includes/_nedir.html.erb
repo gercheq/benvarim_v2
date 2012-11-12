@@ -30,11 +30,9 @@
 <div id="stats">
   <div class="container">
     <p>
-      BenVarım kullanıcısı
-      <span class="count count-supporter"> <%=@stats[:user_count]%> </span> gönüllü ve
-      <span class="count count-donor"><%=@stats[:donor_count]%></span> bağışçı
-      sayesinde bugüne kadar toplam
-      <span class="count count-total"><strong><%=@stats[:payment_amount]%> TL</strong></span> bağış toplandı.
+      "Ben varım!" diyen
+      <strong><%=@stats[:user_count].to_i + @stats[:donor_count].to_i%> gönüllü</strong> sayesinde bugüne kadar
+      <strong><%=@stats[:payment_amount]%> TL</strong> bağış toplandı.
     </p>
   </div>
 </div>
