@@ -101,13 +101,37 @@
                 <a href="<%=user_path(user)%>"><span class="supporter-name"><%=user.name%></span></a>,
 
                 <% len = support.length %>
-                <% support.each_with_index do |s, i| %>
-                	  <% if (i+1 == len) && (i>0) %> ve <% end %>
-                	  <a href="<%=organization_path(s.organization)%>">
-                	    <span class="supported-org"><%=s.organization.name%></span></a><% if (i+1 != len) &&show_edit_link (i+2 != len)   %>, <% end%>
-                <% end %>
+                <a href="<%=organization_path(support.first.organization)%>">
+            	    <span class="supported-org"><%=support.first.organization.name%></span>
+            	  </a>
+            	  <% if len > 2 %>
 
-                <a href="#"><span class="supported-org"></span></a> <%=support.count>1?"kurumlarını":"kurumunu"%> destekledi.
+
+                <%elsif len > 1%>
+                  ve <a href="<%=organization_path(support[1].organization)%>">
+              	    <span class="supported-org"><%=support[1].organization.name%></span>
+              	  </a>
+          	    <% end
+            	  %>
+            	  <% if len == 1%>
+            	  kurumunu destekledi.
+            	  <% elsif len > 2%>
+            	  ve <a class="more-feed-trigger" href="#"><%=len-1%> kurumu</a> daha destekledi.
+
+            	  <ul class="more-feed-list" style="display:none;">
+            	    <%support.each_with_index do |s, i|%>
+            	      <% next if i == 0 %>
+            	      <li>
+                  	  <a href="<%=organization_path(s.organization)%>">
+                  	    <span class="supported-org"><%=s.organization.name%></span>
+                  	  </a>
+                  	</li>
+                  <% end %>
+                </ul>
+
+            	  <% else %>
+            	  kurumlarını destekledi.
+            	  <% end%>
               </p>
             </div>
           </li>
