@@ -57,17 +57,13 @@
   <div class="w-inner clearfix">
 
 
-    <div class="line w-top">
+    <div class="line w-top user-details">
       <div class="size1of4">
-
         <img alt="<% @user.name %>" src="<%= @user.photo.url(:thumb) %>"   />
-
-
-
       </div>
       <div class="size3of4 lastUnit">
         <h1><%= @user.name %></h1>
-        <p><%= @user.address %></p>
+        <!-- <p><%= @user.address %></p> -->
         <!-- <% if @user.birthday %><span class="small">(<%="#{@user.age}"%>)<% end %></span>-->
 
         <%= render 'users/includes/stats' %>
@@ -79,31 +75,58 @@
 
 
 
-    <div class="w-content">
-      <div class="fullcontent-left">
-
-      </div>
-
-      <div class="fullcontent-right">
+    <div class="line">
 
 
         <% if @user.pages.length > 0 %>
-          <h2>Bağış Sayfaları<h2>
-          <ul>
+          <h2>Bağış Sayfaları</h2>
+          <ul class="user-pages">
           <% @user.pages.each do |page| %>
-            <li>
-              <%= link_to page.title, page %> <%=page.collected_str%> TL
+            <li class="clearfix">
 
-              <% if user_signed_in? && current_user == @user%>
-              |  <%= link_to "Düzenle", edit_page_path(page)%>
-              <% end %>
+              <div class="image">
+                <% if page.logo.file? %>
+                  <%= image_tag page.logo.url(:thumb) %>
+                <% else %>
+                  <%= image_tag page.organization.logo.url(:thumb) %>
+                <% end %>
+              </div>
+
+              <div class="details">
+
+                <h3><%= link_to page.title, page %></h3>
+                <p><%= page.description[0..300] %>... <%= link_to "devamı »", page%></p>
+
+                <div class="pb-container-small clearfix">
+                  <div class="progress-bar rc clearfix pb-small">
+                    <div class="pb-value rc" style="width: <%= page.collect_ratio_str%>%;">
+                      <div class="pb-reflection rc"></div>
+                      <div class="pb-hedef">HEDEF: <b><%= page.goal_str %> TL</b></div>
+                      <div class="pb-toplanan">
+                        <% if page.collected < 1 && page.active? %>
+                          İlk bağış yapan sen ol!
+                        <% else %>
+                          Toplanan: <b><%= page.collected_str %> TL</b>
+                        <% end%>
+                      </div>
+                    </div>
+                  </div>
+                  <% if page.can_be_donated? %>
+                  <div class="pb-action">
+                    <%=link_to "Bağış Yap", page, :class => "yellow button small no-margin"  %>
+                  </div>
+                  <% end %>
+                </div><!-- .pb-container-small -->
+
+                <% if user_signed_in? && current_user == @user%>
+                |  <%= link_to "Düzenle", edit_page_path(page)%>
+                <% end %>
+              <div>
             </li>
           <% end %>
           </ul>
           <div class="separator"></div>
         <% end%>
-
-
 
 
 
@@ -143,21 +166,20 @@
 
 
 
-<% if false %>
-        <% if user_signed_in? && current_user == @user%>
-          <p>Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:<br/></p>
-          <div>
-          <%=render :partial => "layouts/quickstart_widget",
-          :locals => {
-            :available_organizations => @available_organizations
-          }
-          %>
-          </div>
+        <% if false %>
+          <% if user_signed_in? && current_user == @user%>
+            <p>Hemen bağış toplamaya başlamak için, gönüllüsü olacağınız S.T.K.’yı seçin:<br/></p>
+            <div>
+            <%=render :partial => "layouts/quickstart_widget",
+            :locals => {
+              :available_organizations => @available_organizations
+            }
+            %>
+            </div>
+          <% end %>
         <% end %>
-<% end %>
 
 
-      </div>
     </div>
   </div>
 </div>
