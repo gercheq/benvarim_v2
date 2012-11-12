@@ -121,9 +121,6 @@
 .pf-video{
   padding: 10px;
   border: 1px solid #CCC;
-  -moz-box-shadow:  0 3px 4px #999;
-  -webkit-box-shadow:  0 3px 4px #999;
-  box-shadow: 0 3px 4px #999;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
   -moz-border-radius: 5px;
