@@ -53,11 +53,9 @@ class BvTrack
     supers["distinct_id"] = self.get_distinct_id session, current_user
 
     unless session.nil?
-      session["mixpanel_distinct_id"] = [@@distinct_id]
+      session["mixpanel_distinct_id"] = supers["distinct_id"]
     end
     user_supers = self.get_user_supers current_user
-    puts "BB #{user_supers}"
-    puts "AA #{supers}"
     supers.merge! user_supers
     supers
   end
@@ -68,7 +66,7 @@ class BvTrack
     end
     unless session.nil?
       if session["mixpanel_distinct_id"].nil?
-        session["mixpanel_distinct_id"] = generate_distinct_id
+        session["mixpanel_distinct_id"] = self.generate_distinct_id
       end
       return session["mixpanel_distinct_id"]
     end
