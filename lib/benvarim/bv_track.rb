@@ -9,16 +9,26 @@ class BvTrack
     Delayed::Job.enqueue TrackJob.new(event_name, properties, @@super_params)
   end
 
-  def self.set_supers session = nil, req = nil, current_user = nil
-    @@super_params = self.get_env req
-    @@super_params["token"] = ENV['MIXPANEL_TOKEN']
-    @@distinct_id = self.get_distinct_id session, current_user
-    session["mixpanel_distinct_id"] = [@@distinct_id]
-    @@super_params["distinct_id"] = @@distinct_id
-
-    user_supers = self.get_user_supers current_user
-    @@super_params.merge! user_supers
+  def self.track_with_user user, event_name, properties = nil
+    supers = self.create_supers nil, nil, user
+    supers[:logged_in] = false
+    Delayed::Job.enqueue TrackJob.new(event_name, properties, supers)
   end
+
+  def self.set_supers session = nil, req = nil, current_user = nil
+    @@super_params = create_supers session, req, current_user
+    @@distinct_id = @@super_params['distinct_id']
+    unless session.nil? || current_user.nil?
+      if session["SET_MIXPANEL_USER_DATA"].nil? || session["SET_MIXPANEL_USER_DATA"] != current_user.id
+        Delayed::Job.enqueue TrackUserJob.new(current_user.id)
+        session["SET_MIXPANEL_USER_DATA"] = current_user.id
+      end
+    end
+
+  end
+
+
+
 
   def self.supers_as_json
     if @@super_params.nil?
@@ -37,6 +47,18 @@ class BvTrack
   end
 
   private
+
+  def self.create_supers session = nil, req = nil, current_user = nil
+    supers = self.get_env req
+    supers["distinct_id"] = self.get_distinct_id session, current_user
+
+    unless session.nil?
+      session["mixpanel_distinct_id"] = [@@distinct_id]
+    end
+    user_supers = self.get_user_supers current_user
+    supers.merge! user_supers
+    supers
+  end
 
   def self.get_distinct_id session, current_user
     unless current_user.nil?
@@ -70,7 +92,6 @@ class BvTrack
     }
   end
   def self.get_env req
-    puts "XXXX #{req}"
     unless req.nil?
       return {
         'REMOTE_ADDR' => req.env['REMOTE_ADDR'],
