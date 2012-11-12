@@ -2,13 +2,13 @@
   <div class="w-supporters">
 
     <% if not @support %>
-        <%=link_to "Destekle", new_support_path(@organization), :class => "button green large button-destekle"%>
+        <%=link_to "Beğen", new_support_path(@organization), :class => "button green large button-destekle"%>
     <% end %>
 
     <div class="w-content">
       <div class="supporters">
         <% if @organization.supports.length != 0 %>
-          <p><strong>Destekleyenler:</strong> <%= @organization.supports.length %> Kişi</p>
+          <p><strong>Beğenenler:</strong> <%= @organization.supports.length %> Kişi</p>
 
 
           <% @organization.supports.order("score DESC").each do |s|%>
@@ -22,7 +22,7 @@
             </div>
           <% end %>
         <% else %>
-          <p>İlk destekleyen sen ol!</p>
+          <p>İlk beğenen sen ol!</p>
         <% end %>
       </div>
     </div><!-- .w-content -->
