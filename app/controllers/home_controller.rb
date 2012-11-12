@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  
+
   def index
+<<<<<<< HEAD
     key = BvCacheManager.get_cache_key_for_home_page_stats
     cached = Rails.cache.read(key)
     
@@ -18,15 +19,23 @@ class HomeController < ApplicationController
         Rails.cache.write(key, @stats);
     end    
     
+=======
+    # Get stats for home page
+    @user_count = User.all.count
+    @donor_count = Payment.all(:select => "COUNT(DISTINCT email) as count").first.count
+    p = Payment.all(:select => "SUM(amount) as total").first.total.to_i
+    @payment_amount = number_with_precision(p,:locale=>:tr,:strip_insignificant_zeros=>true);
+>>>>>>> 38ef307066a6791b2665080c5274af9e5961f3c0
 
     # Get feed for home page
     @feed = Support.find(
       :all,
       :order => "id desc",
-      :limit => 50
+      :limit => 40
     )
     @feed = @feed.group_by {|s| s.user }
-    
+    @feed = @feed.take(10)
+
     @available_organizations = Organization.available_organizations_simple
     @top_pages = Page.filter_out_hidden.where("pages.collected > 0 AND active").order("pages.updated_at DESC").limit(4)
     rows = 4

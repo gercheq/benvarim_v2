@@ -30,10 +30,18 @@
 <div id="stats">
   <div class="container">
     <p>
+<<<<<<< HEAD
       <span class="count count-supporter"></span> <%=@stats[:user_count]%> gönüllü,
       <span class="count count-donor"></span><%=@stats[:donor_count]%> bağışçı
       sayesinde bugüne kadar toplam
       <span class="count count-total"></span><%=@stats[:payment_amount]%> TL bağış toplandı.
+=======
+      BenVarım kullanıcısı
+      <span class="count count-supporter"><%=@user_count%> </span> gönüllü ve
+      <span class="count count-donor"><%=@donor_count%></span> bağışçı
+      sayesinde bugüne kadar toplam
+      <span class="count count-total"><strong><%=@payment_amount%> TL</strong></span> bağış toplandı.
+>>>>>>> 38ef307066a6791b2665080c5274af9e5961f3c0
     </p>
   </div>
 </div>
@@ -91,15 +99,24 @@
         <ul>
 
 		<% @feed.each do |user,support| %>
-          <li>
-            <p>
-              <img src="<%=user.photo.url(:thumb)%>" class="supporter-photo"/>
-              <a href="<%=user_path(user)%>"><span class="supporter-name"><%=user.name%></span></a>,
-              <% support.each do |s| %>
-              	  <a href="<%=organization_path(s.organization)%>"><span class="supported-org"><%=s.organization.name%></span></a>,
-              <% end %>
-              <a href="#"><span class="supported-org"></span></a> <%=support.count>1?"kurumlarını":"kurumunu"%> destekledi.
-            </p>
+          <li class="clearfix feed-item">
+            <div class="feed-item-image">
+              <img src="<%=user.photo.url(:thumb)%>" c lass="supporter-photo"/>
+            </div>
+            <div class="feed-item-details">
+              <p>
+                <a href="<%=user_path(user)%>"><span class="supporter-name"><%=user.name%></span></a>,
+
+                <% len = support.length %>
+                <% support.each_with_index do |s, i| %>
+                	  <% if (i+1 == len) && (i>0) %> ve <% end %>
+                	  <a href="<%=organization_path(s.organization)%>">
+                	    <span class="supported-org"><%=s.organization.name%></span></a><% if (i+1 != len) && (i+2 != len)   %>, <% end%>
+                <% end %>
+
+                <a href="#"><span class="supported-org"></span></a> <%=support.count>1?"kurumlarını":"kurumunu"%> destekledi.
+              </p>
+            </div>
           </li>
 		<% end %>
         </ul>

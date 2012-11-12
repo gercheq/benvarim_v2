@@ -1337,25 +1337,31 @@ blockquote span.quotation{
   margin: 0;
 }
 
-#featured-supporters li {
-  height: 30px;
-  line-height: 30px;
+.feed-item {
   margin: 0 0 10px 0;
 }
 
-#featured-supporters img {
+.feed-item-image {
   width: 30px;
-  margin-right: 5px;
+  height: 30px;
+  overflow: hidden;
+  float: left;
+  margin-right: 10px;
+}
+
+.feed-item img {
+  width: 30px;
+  min-height: 30px;
+}
+
+.feed-item-details {
+  display: table;
   height: 30px;
 }
 
-#featured-supporters a,
-#featured-supporters p {
-  height: 30px;
-  line-height: 30px;
-  margin: 0;
-  vertical-align: top;
-  display: inline-block;
+.feed-item-details p {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 
@@ -2320,7 +2326,7 @@ blockquote span.quotation{
   padding: 10px 0;
   line-height: 60px;
   height: 60px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 
