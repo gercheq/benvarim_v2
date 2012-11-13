@@ -2,6 +2,7 @@
 class OrganizationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index, :support, :support_landing]
   before_filter :require_facebook_connect!, :only => [:support, :support_landing]
+  skip_before_filter :require_facebook_connect!, :only =>[:support_landing] if :is_robot?
   uses_tiny_mce
 
   def index

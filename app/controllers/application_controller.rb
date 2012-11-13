@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_session_on_bv_feature
   protect_from_forgery
 protected
-  ROBOTS = ["googlebot","twitterbot", "facebookexternalhit", "google.com/bot.html", "facebook.com/externalhit_uatext.php", "tweetmemebot", "sitebot", "msnbot", "robot", "bot"]
+  ROBOTS = ["googlebot","twitterbot", "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)", "facebookexternalhit", "google.com/bot.html", "facebook.com/externalhit_uatext.php", "tweetmemebot", "sitebot", "msnbot", "robot", "bot"]
   def is_robot?
     ROBOTS.include? request.env["HTTP_USER_AGENT"]
   end
